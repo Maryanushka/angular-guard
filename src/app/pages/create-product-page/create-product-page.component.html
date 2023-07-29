@@ -1,0 +1,9 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+	<label>
+		<span class="mb-2 inline-block">Type title of new product</span>
+		<input appFocus formControlName="title" type="text" name="" class="border rounded-sm px-3 py-1 w-full">
+		<span *ngIf="title.errors?.['minlength'] && title.touched" class="error text-red-600">Your title lesss than 6. your length {{ title.value.length }}</span>
+	</label>
+
+	<button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-sm mt-2">Submit</button>
+</form>

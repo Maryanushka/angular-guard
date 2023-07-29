@@ -1,0 +1,17 @@
+<div class="wrapper flex justify-center items-center h-full flex-col">
+	<h4 class="font-bold text-xl mb-12">Please sign in </h4>
+	<form [formGroup]="form" (ngSubmit)="submit()" class="w-1/2">
+		<label>
+			<span class="mb-2 inline-block">Name</span>
+			<input appFocus formControlName="name" type="text" name="name" class="border rounded-sm px-3 py-1 w-full">
+			<span *ngIf="name.errors?.['minlength'] && name.touched" class="error text-red-600">Your title lesss than 6. your length {{ name.value.length }}</span>
+		</label>
+		<label>
+			<span class="mb-2 inline-block">Password</span>
+			<input appFocus formControlName="password" type="text" name="password" class="border rounded-sm px-3 py-1 w-full">
+			<span *ngIf="password.errors?.['minlength'] && password.touched" class="error text-red-600">Your title lesss than 6. your length {{ password.value.length }}</span>
+		</label>
+	
+		<button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-sm mt-2">Submit</button>
+	</form>
+</div>

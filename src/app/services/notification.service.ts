@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ToggleModalService {
+export class NotificationService {
 
 	isModalVisible$ = new BehaviorSubject<boolean>(false)
   constructor() { }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
-import { ToggleModalService } from '../../services/toggle-modal.service';
+import { NotificationService } from '../../services/notification.service';
 import { IProduct } from '../../models/product';
 import { Observable, tap } from 'rxjs';
 
@@ -19,7 +19,7 @@ export class ProductPageComponent {
 
 	constructor(
 		public productsService: ProductsService,
-		public modalService: ToggleModalService
+		public notificationService: NotificationService
 	) {}
 
 	ngOnInit(): void {

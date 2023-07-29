@@ -17,9 +17,7 @@
 		<app-product *ngFor="let p of productsService.products | filterProducts: filter" [product]="p"></app-product>
 	</div>
 
-	<app-modal title="title" *ngIf="modalService.isModalVisible$ | async">
-		<app-create-product></app-create-product>
-	</app-modal>
+	<app-notification title="title" *ngIf="notificationService.isModalVisible$ | async"></app-notification>
 
 
-	<button (click)="modalService.open()" class="rounded-full bg-red-500 text-white fixed bottom-2 right-2 h-12 w-12">+</button>
+	<button (click)="notificationService.open()" class="rounded-full bg-red-500 text-white fixed bottom-2 right-2 h-12 w-12">+</button>

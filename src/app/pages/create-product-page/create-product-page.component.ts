@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProductsService } from '../../services/products.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { delay } from 'rxjs';
+
 import { NotificationService } from '../../services/notification.service';
 
 @Component({
-  selector: 'app-create-product',
-  templateUrl: './create-product.component.html',
-  styleUrls: ['./create-product.component.scss']
+  selector: 'app-create-product-page',
+  templateUrl: './create-product-page.component.html',
+  styleUrls: ['./create-product-page.component.scss']
 })
-export class CreateProductComponent {
-
+export class CreateProductPageComponent {
 	constructor(
 		private productService: ProductsService,
 		public notificationService: NotificationService
@@ -37,6 +38,8 @@ export class CreateProductComponent {
 				image: 'https://i.pravatar.cc',
 				category: 'electronic'
 			}).subscribe( () => {
+				this.notificationService.open()
+				delay(2000)
 				this.notificationService.close()
 			})
 		}

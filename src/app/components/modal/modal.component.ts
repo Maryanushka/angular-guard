@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ToggleModalService } from '../../services/toggle-modal.service';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-modal',
@@ -10,6 +10,6 @@ export class ModalComponent {
 
 	@Input() title = ''
 
-	constructor(public modalService: ToggleModalService) {}
+	constructor(public notificationService: NotificationService) {}
 
 }
