@@ -1,10 +1,12 @@
+<app-global-error></app-global-error>
+
 <div class="wrapper flex justify-center items-center h-full flex-col">
 	<h4 class="font-bold text-xl mb-12">Please sign in </h4>
 	<form [formGroup]="form" (ngSubmit)="submit()" class="w-1/2">
 		<label>
-			<span class="mb-2 inline-block">Name</span>
-			<input appFocus formControlName="name" type="text" name="name" class="border rounded-sm px-3 py-1 w-full">
-			<span *ngIf="name.errors?.['minlength'] && name.touched" class="error text-red-600">Your title lesss than 6. your length {{ name.value.length }}</span>
+			<span class="mb-2 inline-block">Email</span>
+			<input appFocus formControlName="email" type="text" name="email" class="border rounded-sm px-3 py-1 w-full">
+			<span *ngIf="email.errors?.['minlength'] && email.touched" class="error text-red-600">Your title lesss than 6. your length {{ email.value.length }}</span>
 		</label>
 		<label>
 			<span class="mb-2 inline-block">Password</span>
