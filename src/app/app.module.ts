@@ -13,7 +13,6 @@ import { FocusDirective } from './directives/focus.directive';
 import { ModalComponent } from './components/modal/modal.component';
 import { ProductComponent } from './components/product/product.component';
 import { GlobalErrorComponent } from './components/global-error/global-error.component';
-import { CreateProductComponent } from './components/create-product/create-product.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { AboutPageComponent } from './pages/about-page/about-page.component';
 import { ProductPageComponent } from './pages/product-page/product-page.component';
@@ -31,7 +30,6 @@ import { NotificationComponent } from './components/notification/notification.co
     ModalComponent,
     ProductComponent,
     GlobalErrorComponent,
-    CreateProductComponent,
     AboutPageComponent,
     ProductPageComponent,
     NavigationComponent,
