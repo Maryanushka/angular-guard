@@ -6,41 +6,82 @@ import { delay } from 'rxjs';
 import { NotificationService } from '../../../shared/services/notification.service';
 
 @Component({
-  selector: 'app-create-product-page',
-  templateUrl: './create-product-page.component.html',
-  styleUrls: ['./create-product-page.component.scss'],
+	selector: 'app-create-product-page',
+	templateUrl: './create-product-page.component.html',
+	styleUrls: ['./create-product-page.component.scss'],
 })
 export class CreateProductPageComponent {
-  constructor(
-    private productService: ProductsService,
-    public notificationService: NotificationService,
-  ) {}
+	notificationTitle = ''
 
-  form = new FormGroup({
-    title: new FormControl<string>('', [
-      Validators.required,
-      Validators.minLength(6),
-    ]),
-  });
+	constructor(
+		private productService: ProductsService,
+		public notificationService: NotificationService,
+	) { }
 
-  get title() {
-    return this.form.controls.title as FormControl;
-  }
+	form = new FormGroup({
+		title: new FormControl<string>('', {
+			validators: [
+				Validators.required,
+				Validators.minLength(6),
+			]
+		}),
+		price: new FormControl<number>(0, {
+			validators: Validators.required
+		}),
+		category: new FormControl<string>('', {
+			validators: [
+				Validators.required,
+				Validators.minLength(2),
+			]
+		}),
+		description: new FormControl<string>('', {
+			validators: [
+				Validators.required,
+				Validators.minLength(6),
+			]
+		}),
+		image: new FormControl<string>('', {
+			validators: [
+				Validators.required,
+				Validators.pattern(/^https:\/\/.*\.(jpg|png|webp)$/),
+			]
+		}),
+	});
 
-  submit() {
-    console.log(this.form.value.title);
-    this.productService
-      .createProduct({
-        title: this.form.value.title as string,
-        price: 13.5,
-        description: 'lorem ipsum set',
-        image: 'https://i.pravatar.cc',
-        category: 'electronic',
-      })
-      .subscribe(() => {
-        this.notificationService.open();
-        delay(2000);
-        this.notificationService.close();
-      });
-  }
+	get title() {
+		return this.form.controls.title as FormControl;
+	}
+
+	submit() {
+		console.log(this.form.value.title);
+		this.productService
+			.createProduct({
+				title: this.form.value.title as string,
+				price: this.form.value.price as number,
+				description: this.form.value.image as string,
+				image: this.form.value.image as string,
+				category: this.form.value.image as string,
+			})
+			.subscribe(
+				// 	{
+				// 	next(value) {
+
+
+				// 	},
+				// 	error(err) {
+				// 		console.log(err);
+
+				// 	},
+				// }
+				(w) => {
+					console.log(w);
+
+					this.notificationTitle = 'Product created successfully'
+					this.notificationService.open();
+				},
+
+
+			);
+	}
+
 }
