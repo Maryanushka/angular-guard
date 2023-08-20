@@ -6,13 +6,13 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class NotificationService {
 
-	isModalVisible$ = new BehaviorSubject<boolean>(false)
+	isNotification$ = new BehaviorSubject<boolean>(false)
   constructor() { }
 
 	open() {
-		this.isModalVisible$.next(true)
+		this.isNotification$.next(true)
 	}
 	close() {
-		this.isModalVisible$.next(false)
+		this.isNotification$.next(false)
 	}
 }

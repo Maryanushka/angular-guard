@@ -19,9 +19,9 @@ export class NotificationComponent implements OnInit {
   }
 
   hideModalAfterDelay(): void {
-    this.notificationService.isModalVisible$.pipe(
+    this.notificationService.isNotification$.pipe(
       delay(2000),
-      tap(() => this.notificationService.isModalVisible$.next(false))
+      tap(() => this.notificationService.isNotification$.next(false))
     ).subscribe();
   }
 	

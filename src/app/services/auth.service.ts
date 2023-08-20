@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, catchError, isEmpty, map, tap, throwError } from 'rxjs';
 import { IToken, IUserCredentials } from '../models/product';
-import { ErrorService } from './error.service';
+import { ErrorService } from '../shared/services/error.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
-import { NotificationService } from '../../services/notification.service';
+import { NotificationService } from '../../shared/services/notification.service';
 import { IProduct } from '../../models/product';
 import { Observable, tap } from 'rxjs';
 

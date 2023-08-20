@@ -3,7 +3,7 @@ import { ProductsService } from '../../services/products.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { delay } from 'rxjs';
 
-import { NotificationService } from '../../services/notification.service';
+import { NotificationService } from '../../shared/services/notification.service';
 
 @Component({
   selector: 'app-create-product-page',

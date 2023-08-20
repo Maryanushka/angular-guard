@@ -10,15 +10,14 @@ import { FilterProductsPipe } from './pipes/filter-products.pipe';
 
 import { FocusDirective } from './directives/focus.directive';
 
-import { ModalComponent } from './components/modal/modal.component';
 import { ProductComponent } from './components/product/product.component';
-import { GlobalErrorComponent } from './components/global-error/global-error.component';
-import { NavigationComponent } from './components/navigation/navigation.component';
+import { GlobalErrorComponent } from './shared/components/global-error/global-error.component';
+import { NavigationComponent } from './shared/components/navigation/navigation.component';
 import { AboutPageComponent } from './pages/about-page/about-page.component';
 import { ProductPageComponent } from './pages/product-page/product-page.component';
 import { CreateProductPageComponent } from './pages/create-product-page/create-product-page.component';
 import { SigninPageComponent } from './pages/signin-page/signin-page.component';
-import { NotificationComponent } from './components/notification/notification.component';
+import { NotificationComponent } from './shared/components/notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +26,6 @@ import { NotificationComponent } from './components/notification/notification.co
 
     FocusDirective,
 
-    ModalComponent,
     ProductComponent,
     GlobalErrorComponent,
     AboutPageComponent,

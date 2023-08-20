@@ -1,7 +1,7 @@
 <nav class="bg-indigo-900 flex justify-between items-center py-2 px-4">
-	<p class="text-white">Angular app</p>
+	<p class="text-white">Angular Products</p>
 	<ul class="flex">
-		<li><a class="text-white mr-4" routerLink="/" routerLinkActive="active">Home</a></li>
+		<li><a class="text-white mr-4" routerLink="/" routerLinkActive="active">Products</a></li>
 		<li><a class="text-white mr-4" routerLink="/about" routerLinkActive="active">About</a></li>
 		<li *ngIf="authService.isLoginSubject$ | async"><a class="text-white mr-4" routerLink="/create-product" routerLinkActive="active">Create product</a></li>
 		<li *ngIf="!(authService.isLoginSubject$ | async)"><a class="text-white" routerLink="/signin" routerLinkActive="active">Sign in</a></li>
