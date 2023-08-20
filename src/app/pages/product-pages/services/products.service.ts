@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Observable, catchError, delay, retry, tap, throwError } from 'rxjs';
-import { IProduct } from '../models/product';
-import { ErrorService } from '../shared/services/error.service';
+import { IProduct } from '../models/product.inerface';
+import { ErrorService } from '../../../shared/services/error.service';
 
 @Injectable({
   providedIn: 'root'

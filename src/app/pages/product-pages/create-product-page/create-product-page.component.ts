@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { ProductsService } from '../../services/products.service';
+import { ProductsService } from '../services/products.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { delay } from 'rxjs';
 
-import { NotificationService } from '../../shared/services/notification.service';
+import { NotificationService } from '../../../shared/services/notification.service';
 
 @Component({
   selector: 'app-create-product-page',

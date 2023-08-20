@@ -1,13 +1,17 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, catchError, isEmpty, map, tap, throwError } from 'rxjs';
-import { IToken, IUserCredentials } from '../models/product';
-import { ErrorService } from '../shared/services/error.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { BehaviorSubject, Observable, catchError, isEmpty, map, tap, throwError } from 'rxjs';
 import { Router } from '@angular/router';
+
+import { ErrorService } from '../shared/services/error.service';
+
+import { IToken } from '../shared/types/token.interface';
+import { IUserCredentials } from '../shared/types/userCredential.interface';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
 	isLoginSubject$ = new BehaviorSubject<boolean>(this.hasToken());
   constructor(

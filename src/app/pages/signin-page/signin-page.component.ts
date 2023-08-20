@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { IUserCredentials } from '../../models/product';
+import { IUserCredentials } from '../../shared/types/userCredential.interface';
 
 @Component({
   selector: 'app-signin-page',
