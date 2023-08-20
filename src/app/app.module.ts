@@ -38,11 +38,11 @@ import { NotificationComponent } from './shared/components/notification/notifica
   imports: [
     BrowserModule,
     AppRoutingModule,
-		HttpClientModule,
-		FormsModule,
-		ReactiveFormsModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

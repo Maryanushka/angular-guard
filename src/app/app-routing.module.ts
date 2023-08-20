@@ -7,22 +7,22 @@ import { CreateProductPageComponent } from './pages/product-pages/create-product
 import { AuthenticaionGuard } from './services/authenticaion.guard';
 
 const routes: Routes = [
-	{path: '', component: ProductPageComponent},
-	{path: 'about', component: AboutPageComponent},
-	{
-		path: 'signin', 
-		// canActivate: [!AuthenticaionGuard],
-		component: SigninPageComponent
-	},
-	{
-		path: 'create-product', 
-		canActivate: [AuthenticaionGuard],
-		component: CreateProductPageComponent
-	},
+  { path: '', component: ProductPageComponent },
+  { path: 'about', component: AboutPageComponent },
+  {
+    path: 'signin',
+    // canActivate: [!AuthenticaionGuard],
+    component: SigninPageComponent,
+  },
+  {
+    path: 'create-product',
+    canActivate: [AuthenticaionGuard],
+    component: CreateProductPageComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
