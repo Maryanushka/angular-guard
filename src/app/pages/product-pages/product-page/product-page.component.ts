@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../services/products.service';
 import { NotificationService } from '../../../shared/services/notification.service';
 import { IProduct } from '../models/product.inerface';
@@ -9,7 +9,7 @@ import { Observable, tap } from 'rxjs';
   templateUrl: './product-page.component.html',
   styleUrls: ['./product-page.component.scss']
 })
-export class ProductPageComponent {
+export class ProductPageComponent implements OnInit {
   title = 'angular guard';
 
 	// products:  IProduct[] = [];

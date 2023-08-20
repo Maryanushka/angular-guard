@@ -20,8 +20,6 @@ export class ProductComponent {
 	isDetailsActive = false
 	detailsButtonText = 'Show details'
 
-	constructor() {}
-
 	toggleDetails() {
 		this.isDetailsActive = !this.isDetailsActive
 		this.isDetailsActive ? this.detailsButtonText = 'Hide details' : this.detailsButtonText = "Show details"

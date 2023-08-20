@@ -7,7 +7,6 @@ import { BehaviorSubject } from 'rxjs';
 export class NotificationService {
 
 	isNotification$ = new BehaviorSubject<boolean>(false)
-  constructor() { }
 
 	open() {
 		this.isNotification$.next(true)

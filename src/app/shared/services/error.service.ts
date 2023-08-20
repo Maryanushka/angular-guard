@@ -8,8 +8,6 @@ export class ErrorService {
 
 	error$ = new Subject<string>()
 
-  constructor() { }
-
 	handle(message: string)  {
 		this.error$.next(message)
 	}

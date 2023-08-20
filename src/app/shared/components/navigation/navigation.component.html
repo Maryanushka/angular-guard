@@ -4,7 +4,7 @@
 		<li><a class="text-white mr-4" routerLink="/" routerLinkActive="active">Products</a></li>
 		<li><a class="text-white mr-4" routerLink="/about" routerLinkActive="active">About</a></li>
 		<li *ngIf="authService.isLoginSubject$ | async"><a class="text-white mr-4" routerLink="/create-product" routerLinkActive="active">Create product</a></li>
-		<li *ngIf="!(authService.isLoginSubject$ | async)"><a class="text-white" routerLink="/signin" routerLinkActive="active">Sign in</a></li>
+		<li *ngIf="(authService.isLoginSubject$ | async) === false"><a class="text-white" routerLink="/signin" routerLinkActive="active">Sign in</a></li>
 		<li *ngIf="authService.isLoginSubject$ | async"><button (click)="authService.logout()" class="text-white">Sign out</button></li>
 	</ul>
 </nav>
