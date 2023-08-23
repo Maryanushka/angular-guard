@@ -7,12 +7,19 @@ import { CreateProductPageComponent } from './pages/product-pages/create-product
 import { AuthenticaionGuard } from './services/authenticaion.guard';
 
 const routes: Routes = [
-  { path: '', component: ProductPageComponent },
-  { path: 'about', component: AboutPageComponent },
+  {
+    path: '',
+    component: ProductPageComponent,
+  },
+  {
+    path: 'about',
+    component: AboutPageComponent,
+  },
   {
     path: 'signin',
-    // canActivate: [!AuthenticaionGuard],
     component: SigninPageComponent,
+    // redirectTo: '',
+    // pathMatch: 'full',
   },
   {
     path: 'create-product',

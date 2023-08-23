@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { IUserCredentials } from '../../shared/types/userCredential.interface';
+import { Router } from '@angular/router';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-signin-page',
@@ -9,7 +11,10 @@ import { IUserCredentials } from '../../shared/types/userCredential.interface';
   styleUrls: ['./signin-page.component.scss'],
 })
 export class SigninPageComponent {
-  constructor(public auth: AuthService) {}
+  constructor(
+    private auth: AuthService,
+    private router: Router,
+  ) {}
 
   form = new FormGroup({
     email: new FormControl<string>('john@mail.com', [
@@ -35,7 +40,17 @@ export class SigninPageComponent {
     // here send request to postman https://dummyjson.com/docs/auth
     // get token store to localstorage
 
-    this.auth.getToken(this.form.value as IUserCredentials);
+    this.auth
+      .getToken(this.form.value as IUserCredentials)
+      .pipe(
+        tap((e) => {
+          console.log(e);
+
+          this.router.navigate(['']);
+        }),
+      )
+      .subscribe();
+
     // this.productService.createProduct({
     // 	title: this.form.value.title as string,
     // 	price: 13.5,

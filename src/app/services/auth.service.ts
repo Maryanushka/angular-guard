@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { BehaviorSubject, Observable, catchError, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, tap, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 
 import { ErrorService } from '../shared/services/error.service';
@@ -19,16 +19,18 @@ export class AuthService {
     private router: Router,
   ) {}
 
-  getToken(userc: IUserCredentials) {
-    this.http
+  getToken(userc: IUserCredentials): Observable<IUserCredentials> {
+    return this.http
       .post<IUserCredentials>(
         `https://api.escuelajs.co/api/v1/auth/login`,
         userc,
       )
-      .pipe(catchError(this.handleError.bind(this)))
-      .subscribe((e) => {
-        this.storeToStroage(e as unknown as IToken);
-      });
+      .pipe(
+        tap((e) => {
+          this.storeToStroage(e as unknown as IToken);
+        }),
+        catchError(this.handleError.bind(this)),
+      );
   }
 
   storeToStroage(token: IToken) {
