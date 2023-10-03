@@ -3,10 +3,10 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject, Observable, catchError, tap, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 
-import { ErrorService } from '../shared/services/error.service';
+import { ErrorService } from '../services/error.service';
 
-import { IToken } from '../shared/types/token.interface';
-import { IUserCredentials } from '../shared/types/userCredential.interface';
+import { IToken } from '../types/token.interface';
+import { IUserCredentials } from '../types/userCredential.interface';
 
 @Injectable({
   providedIn: 'root',
