@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductsService } from '../services/products.service';
+import { ProductsService } from '../../services/products.service';
 import { NotificationService } from '../../../shared/services/notification.service';
-import { IProduct } from '../models/product.inerface';
+import { IProduct } from '../../models/product.inerface';
 import { Observable, tap } from 'rxjs';
 
 @Component({

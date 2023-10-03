@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
-import { IUserCredentials } from '../../shared/types/userCredential.interface';
+import { AuthService } from '../services/auth.service';
+import { IUserCredentials } from '../shared/types/userCredential.interface';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs';
 

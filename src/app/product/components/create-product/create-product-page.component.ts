@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ProductsService } from '../services/products.service';
+import { ProductsService } from '../../services/products.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { delay } from 'rxjs';
 
