@@ -25,7 +25,7 @@
 		<input appFocus formControlName="image" type="text" name="image" class="border rounded-sm px-3 py-1 w-full">
 		<span *ngIf="form.controls['image'].invalid && form.controls['image'].touched" class="error text-red-600">Please paste image link</span>
 	</label>
-	<button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-sm mt-6 block">Submit</button>
+	<button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-sm mt-6 block" [ngClass]="{'bg-slate-600': !form.valid, 'bg-blue-600': form.valid}" [disabled]="!form.valid">Submit</button>
 </form>
 
 <app-notification [title]="notificationTitle" *ngIf="notificationService.isNotification$ | async"></app-notification>

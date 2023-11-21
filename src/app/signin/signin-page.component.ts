@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../product/services/auth.service';
 import { IUserCredentials } from '../shared/types/userCredential.interface';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs';
@@ -21,6 +21,10 @@ export class SigninPageComponent {
       Validators.required,
       Validators.minLength(6),
     ]),
+    // userName: new FormControl<string>('john', [
+    //   Validators.required,
+    //   Validators.minLength(2),
+    // ]),
     password: new FormControl<string>('changeme', [
       Validators.required,
       Validators.minLength(6),

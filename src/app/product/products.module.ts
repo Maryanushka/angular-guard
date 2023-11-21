@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { AuthenticaionGuard } from '../services/authenticaion.guard';
+import { AuthenticaionGuard } from './services/authenticaion.guard';
 import { CreateProductPageComponent } from './components/create-product/create-product-page.component';
 import { ProductComponent } from './components/product/product.component';
 import { ProductPageComponent } from './components/product-page/product-page.component';
@@ -18,6 +18,7 @@ const routes = [
     path: 'create-product',
     canActivate: [AuthenticaionGuard],
     component: CreateProductPageComponent,
+    data: {roles: ['user']},
   },
 	{
     path: '',

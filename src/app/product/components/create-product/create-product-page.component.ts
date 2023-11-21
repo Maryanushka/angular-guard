@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { delay } from 'rxjs';
 
 import { NotificationService } from '../../../shared/services/notification.service';
 
@@ -17,6 +16,9 @@ export class CreateProductPageComponent {
     private productService: ProductsService,
     public notificationService: NotificationService,
   ) {}
+
+  // write validation for form values non empty
+
 
   form = new FormGroup({
     title: new FormControl<string>('', {
@@ -49,23 +51,12 @@ export class CreateProductPageComponent {
       .createProduct({
         title: this.form.value.title as string,
         price: this.form.value.price as number,
-        description: this.form.value.image as string,
+        description: this.form.value.description as string,
         image: this.form.value.image as string,
-        category: this.form.value.image as string,
+        category: this.form.value.category as string,
       })
       .subscribe(
-        // 	{
-        // 	next(value) {
-
-        // 	},
-        // 	error(err) {
-        // 		console.log(err);
-
-        // 	},
-        // }
         (w) => {
-          console.log(w);
-
           this.notificationTitle = 'Product created successfully';
           this.notificationService.open();
         },

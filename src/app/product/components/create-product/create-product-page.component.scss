@@ -1,7 +1,11 @@
 :host {
 	width: 50%;
 }
-
+input {
+  &.ng-invalid.ng-touched {
+    border: 1px solid red;
+  }
+}
 input[type="number"] {
 	appearance: none;
 	margin: 0;
@@ -12,4 +16,6 @@ input[type="number"] {
 		-webkit-appearance: none;
 		margin: 0;
 	}
+
+
 }
