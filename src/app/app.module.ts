@@ -8,6 +8,10 @@ import { ProductsModule } from './product/products.module';
 import { AboutModule } from './about/about.module';
 import { SigninModule } from './signin/signin.module';
 import { NavigationModule } from './shared/components/navigation/navigation.module';
+import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { getAuth, provideAuth } from '@angular/fire/auth';
+import { environment } from './environments/environment';
 
 @NgModule({
   declarations: [
@@ -20,6 +24,9 @@ import { NavigationModule } from './shared/components/navigation/navigation.modu
 		AboutModule,
 		SigninModule,
 		NavigationModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirestore(() => getFirestore()),
+    provideAuth(() => getAuth()),
   ],
   providers: [],
   bootstrap: [AppComponent],

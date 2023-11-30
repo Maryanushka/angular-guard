@@ -1,0 +1,129 @@
+- Generating browser application bundles (phase: setup)...
+
+[1m[33mwarn[39m[22m - As of Tailwind CSS v3.0, `trueGray` has been renamed to `neutral`.
+[1m[33mwarn[39m[22m - Update your configuration file to silence this warning.
+
+[1m[33mwarn[39m[22m - As of Tailwind CSS v3.0, `coolGray` has been renamed to `gray`.
+[1m[33mwarn[39m[22m - Update your configuration file to silence this warning.
+
+[1m[33mwarn[39m[22m - As of Tailwind CSS v3.0, `blueGray` has been renamed to `slate`.
+[1m[33mwarn[39m[22m - Update your configuration file to silence this warning.
+✔ Browser application bundle generation complete.
+
+Initial Chunk Files   | Names         |  Raw Size
+vendor.js             | vendor        |   4.15 MB |
+polyfills.js          | polyfills     | 315.00 kB |
+styles.css, styles.js | styles        | 225.33 kB |
+main.js               | main          |  95.78 kB |
+runtime.js            | runtime       |   6.52 kB |
+
+| Initial Total |   4.78 MB
+
+Build at: 2023-11-30T18:33:03.871Z - Hash: 3eadc3a9ba87590c - Time: 19218ms
+
+** Angular Live Development Server is listening on localhost:4200, open your browser on http://localhost:4200/ **
+
+
+√ Compiled successfully.
+✔ Browser application bundle generation complete.
+
+Initial Chunk Files | Names   | Raw Size
+main.js             | main    | 96.19 kB |
+runtime.js          | runtime |  6.52 kB |
+
+3 unchanged chunks
+
+Build at: 2023-11-30T18:37:25.829Z - Hash: a7c72ce69b9654b4 - Time: 860ms
+
+√ Compiled successfully.
+✔ Browser application bundle generation complete.
+
+5 unchanged chunks
+
+Build at: 2023-11-30T18:37:26.217Z - Hash: a7c72ce69b9654b4 - Time: 325ms
+
+√ Compiled successfully.
+✔ Browser application bundle generation complete.
+
+Initial Chunk Files | Names   | Raw Size
+main.js             | main    | 96.19 kB |
+runtime.js          | runtime |  6.52 kB |
+
+3 unchanged chunks
+
+Build at: 2023-11-30T18:38:10.083Z - Hash: 49194f30e6ae23da - Time: 877ms
+
+√ Compiled successfully.
+✔ Browser application bundle generation complete.
+
+5 unchanged chunks
+
+Build at: 2023-11-30T18:38:10.441Z - Hash: 49194f30e6ae23da - Time: 299ms
+
+√ Compiled successfully.
+✔ Browser application bundle generation complete.
+
+Initial Chunk Files | Names   | Raw Size
+main.js             | main    | 96.51 kB |
+runtime.js          | runtime |  6.52 kB |
+
+3 unchanged chunks
+
+Build at: 2023-11-30T18:39:25.648Z - Hash: b8b2172d69a60591 - Time: 409ms
+
+√ Compiled successfully.
+✔ Browser application bundle generation complete.
+
+Initial Chunk Files | Names   | Raw Size
+main.js             | main    | 96.53 kB |
+runtime.js          | runtime |  6.52 kB |
+
+3 unchanged chunks
+
+Build at: 2023-11-30T18:43:39.858Z - Hash: dbaaa734c0a5e370 - Time: 859ms
+
+√ Compiled successfully.
+✔ Browser application bundle generation complete.
+
+Initial Chunk Files | Names   | Raw Size
+main.js             | main    | 96.59 kB |
+runtime.js          | runtime |  6.52 kB |
+
+3 unchanged chunks
+
+Build at: 2023-11-30T19:15:47.585Z - Hash: 37489a9aab7f2033 - Time: 900ms
+
+√ Compiled successfully.
+✔ Browser application bundle generation complete.
+
+Initial Chunk Files | Names   | Raw Size
+main.js             | main    | 96.65 kB |
+runtime.js          | runtime |  6.52 kB |
+
+3 unchanged chunks
+
+Build at: 2023-11-30T19:16:03.509Z - Hash: b3da646007cd5589 - Time: 482ms
+
+√ Compiled successfully.
+✔ Browser application bundle generation complete.
+
+Initial Chunk Files | Names   | Raw Size
+main.js             | main    | 96.21 kB |
+runtime.js          | runtime |  6.52 kB |
+
+3 unchanged chunks
+
+Build at: 2023-11-30T19:17:27.910Z - Hash: 61601659da230159 - Time: 363ms
+
+√ Compiled successfully.
+✔ Browser application bundle generation complete.
+
+Initial Chunk Files | Names   | Raw Size
+main.js             | main    | 95.76 kB |
+runtime.js          | runtime |  6.52 kB |
+
+3 unchanged chunks
+
+Build at: 2023-11-30T19:17:29.785Z - Hash: 3749db360332d6ef - Time: 533ms
+
+√ Compiled successfully.

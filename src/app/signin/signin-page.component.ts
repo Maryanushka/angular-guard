@@ -4,6 +4,7 @@ import { AuthService } from '../product/services/auth.service';
 import { IUserCredentials } from '../shared/types/userCredential.interface';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs';
+import { Auth, GoogleAuthProvider, signInWithPopup, signInAnonymously, createUserWithEmailAndPassword, } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-signin-page',
@@ -14,6 +15,7 @@ export class SigninPageComponent {
   constructor(
     private auth: AuthService,
     private router: Router,
+    private authGoogle: Auth
   ) {}
 
   form = new FormGroup({
@@ -54,6 +56,22 @@ export class SigninPageComponent {
         }),
       )
       .subscribe();
+    if(this.form.value.email && this.form.value.password) {
+
+      createUserWithEmailAndPassword(this.authGoogle, this.form.value.email, this.form.value.password)
+        .then((userCredential) => {
+          // Signed up
+          const user = userCredential.user;
+          console.log(user);
+
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          // ..
+        });
+    }
 
     // this.productService.createProduct({
     // 	title: this.form.value.title as string,
@@ -65,4 +83,13 @@ export class SigninPageComponent {
     // 	this.notificationService.close()
     // })
   }
+
+  async loginWithGoogle() {
+    const provider = new GoogleAuthProvider();
+    const user = await signInWithPopup(this.authGoogle, provider);
+    console.log(user);
+
+    // await this.router.navigate(['']);
+  }
+
 }
