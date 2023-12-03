@@ -302,27 +302,31 @@
         },
         {
           "file": ".nx/cache/d/daemon.log",
-          "hash": "15197353814723729100"
+          "hash": "4402721248619370317"
         },
         {
           "file": ".nx/cache/d/server-process.json",
-          "hash": "9346330781351457914"
+          "hash": "5608114908943364547"
         },
         {
           "file": ".nx/cache/file-map.json",
-          "hash": "7775488289613417144"
+          "hash": "11383163567719074541"
         },
         {
           "file": ".nx/cache/lockfile.hash",
-          "hash": "5683131957737900911"
+          "hash": "14910997299736465040"
         },
         {
           "file": ".nx/cache/parsed-lock-file.json",
-          "hash": "4292356110729768235"
+          "hash": "2034895259605900371"
         },
         {
           "file": ".nx/cache/project-graph.json",
-          "hash": "12876329057839041408"
+          "hash": "16377479256229598049"
+        },
+        {
+          "file": ".nx/cache/terminalOutputs/4720286316414432962",
+          "hash": "8781043343852431822"
         },
         {
           "file": ".vscode/extensions.json",
@@ -475,7 +479,7 @@
         },
         {
           "file": "src/app/product/components/create-product/create-product-page.component.html",
-          "hash": "6443800779019446003"
+          "hash": "12809541836695706813"
         },
         {
           "file": "src/app/product/components/create-product/create-product-page.component.scss",
@@ -575,12 +579,13 @@
         },
         {
           "file": "src/app/product/services/auth.service.ts",
-          "hash": "8158721869770518133",
+          "hash": "16183269575569208650",
           "deps": [
             "npm:@angular/core",
             "npm:@angular/common",
             "npm:rxjs",
-            "npm:@angular/router"
+            "npm:@angular/router",
+            "npm:@angular/fire"
           ]
         },
         {
@@ -766,13 +771,11 @@
         },
         {
           "file": "src/app/signin/signin-page.component.ts",
-          "hash": "16109074002893885577",
+          "hash": "6123668263035064101",
           "deps": [
             "npm:@angular/core",
             "npm:@angular/forms",
-            "npm:@angular/router",
-            "npm:rxjs",
-            "npm:@angular/fire"
+            "npm:@angular/router"
           ]
         },
         {
@@ -830,6 +833,20 @@
         {
           "file": "yarn.lock",
           "hash": "1572086635549633546"
+        },
+        {
+          "file": "src/app/shared/services/localStorage.service.ts",
+          "hash": "6454170366106622015",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "src/app/shared/services/localStorage.service.spec.ts",
+          "hash": "16471608041890884119",
+          "deps": [
+            "npm:@angular/core"
+          ]
         }
       ]
     }

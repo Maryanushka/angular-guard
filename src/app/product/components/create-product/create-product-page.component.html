@@ -12,17 +12,17 @@
 	</label>
 	<label class="mb-6 block">
 		<span class="mb-2 inline-block">Decription</span>
-		<input appFocus formControlName="description" type="text" name="description" class="border rounded-sm px-3 py-1 w-full">
+		<input formControlName="description" type="text" name="description" class="border rounded-sm px-3 py-1 w-full">
 		<span *ngIf="form.controls['description'].errors?.['minlength']  && form.controls['description'].touched" class="error text-red-600">Your title lesss than 6. your length</span>
 	</label>
 	<label class="mb-6 block">
 		<span class="mb-2 inline-block">Category</span>
-		<input appFocus formControlName="category" type="text" name="category" class="border rounded-sm px-3 py-1 w-full">
+		<input formControlName="category" type="text" name="category" class="border rounded-sm px-3 py-1 w-full">
 		<span *ngIf="form.controls['category'].errors?.['minlength']  && form.controls['category'].touched" class="error text-red-600">Your title lesss than 2. your length</span>
 	</label>
 	<label class="mb-6 block">
 		<span class="mb-2 inline-block">Image</span>
-		<input appFocus formControlName="image" type="text" name="image" class="border rounded-sm px-3 py-1 w-full">
+		<input formControlName="image" type="text" name="image" class="border rounded-sm px-3 py-1 w-full">
 		<span *ngIf="form.controls['image'].invalid && form.controls['image'].touched" class="error text-red-600">Please paste image link</span>
 	</label>
 	<button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-sm mt-6 block" [ngClass]="{'bg-slate-600': !form.valid, 'bg-blue-600': form.valid}" [disabled]="!form.valid">Submit</button>
