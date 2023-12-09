@@ -12,6 +12,7 @@ import { NotificationModule } from '../shared/components/notification/notificati
 import { FocusDirective } from '../shared/directives/focus.directive';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ErrorService } from '../shared/services/error.service';
+import { ProductSingleComponent } from './components/product-single/product-single.component';
 
 const routes = [
 	{
@@ -24,12 +25,17 @@ const routes = [
     path: '',
     component: ProductPageComponent,
   },
+	{
+    path: 'products/:slug',
+    component: ProductSingleComponent,
+  },
 ]
 
 @NgModule({
   declarations: [
 		ProductComponent,
 		ProductPageComponent,
+    ProductSingleComponent,
 		CreateProductPageComponent,
 		FilterProductsPipe,
 		FocusDirective

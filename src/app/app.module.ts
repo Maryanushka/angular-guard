@@ -12,6 +12,7 @@ import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { environment } from './environments/environment';
+import { GraphQLModule } from './graphql.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { environment } from './environments/environment';
 		ProductsModule,
 		AboutModule,
 		SigninModule,
+    GraphQLModule,
 		NavigationModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),

@@ -1,23 +1,30 @@
 <app-global-error></app-global-error>
-	
+
 
 	<h1 class="font-bold text-center text-3xl my-6">{{ title | titlecase}}</h1>
 
-	<label class="flex flex-col mb-3 mx-4">
+	<!-- <label class="flex flex-col mb-3 mx-4">
 		<span class="font-bold">Filter products</span>
 		<input [(ngModel)]="filter" class="border mt-2 rounded-sm px-3 py-1 focus:border-gray-500" type="text" name="filter">
 	</label>
-	<span>{{ filter }}</span>
+	<span>{{ filter }}</span> -->
 
 	<p *ngIf="loading" class="loading text-center font-bold">
 		loading products..
 	</p>
 
-	<div *ngIf="productsService.products">
-		<app-product *ngFor="let p of productsService.products | filterProducts: filter" [product]="p"></app-product>
+	<div *ngIf="products">
+    @if(products.length === 0) {
+      <p class="text-center font-bold">No products found</p>
+    }
+    @else {
+      @for (item of products; track item.slug) {
+        <app-product [product]="item"></app-product>
+      }
+    }
 	</div>
 
-	<app-notification title="title" *ngIf="notificationService.isNotification$ | async"></app-notification>
+	<!-- <app-notification title="title" *ngIf="notificationService.isNotification$ | async"></app-notification> -->
 
 
-	<button (click)="notificationService.open()" class="rounded-full bg-red-500 text-white fixed bottom-2 right-2 h-12 w-12">+</button>
+	<!-- <button (click)="notificationService.open()" class="rounded-full bg-red-500 text-white fixed bottom-2 right-2 h-12 w-12">+</button> -->

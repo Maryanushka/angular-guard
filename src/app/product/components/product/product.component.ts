@@ -8,12 +8,11 @@ import { IProduct } from '../../models/product.inerface';
 })
 export class ProductComponent {
   @Input() product: IProduct = {
-    category: '',
-    id: 0,
-    image: '',
-    price: 0,
-    description: '',
+    _slug: '',
     title: '',
+    description: '',
+    cover: [],
+    categories: [],
   };
 
   isDetailsActive = false;

@@ -1,0 +1,11 @@
+<div>
+  <ng-container *ngIf="product">
+    <div class="flex flex-col items-center">
+      <img [src]="product.cover[0].url" alt="">
+    </div>
+  </ng-container>
+  <ng-container *ngIf="!product">
+    <p class="text-center font-bold">No product found</p>
+  </ng-container>
+</div>
+

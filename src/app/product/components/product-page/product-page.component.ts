@@ -1,32 +1,43 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
 import { NotificationService } from '../../../shared/services/notification.service';
 import { IProduct } from '../../models/product.inerface';
-import { Observable, tap } from 'rxjs';
+import { Observable, Subscription, tap } from 'rxjs';
+import { Apollo } from 'apollo-angular';
+import { GetAllProducts } from '../../../shared/queries/getAllProducts';
 
 @Component({
   selector: 'app-product-page',
   templateUrl: './product-page.component.html',
   styleUrls: ['./product-page.component.scss'],
 })
-export class ProductPageComponent implements OnInit {
+export class ProductPageComponent implements OnInit, OnDestroy {
   title = 'angular guard';
 
-  // products:  IProduct[] = [];
-  products$!: Observable<IProduct[]>;
-  loading = false;
+  loading: boolean = false;
+  products: any;
   filter = '';
+  private querySubscription = new Subscription;
 
   constructor(
-    public productsService: ProductsService,
-    public notificationService: NotificationService,
+    // public productsService: ProductsService,
+    // public notificationService: NotificationService,
+    private apollo: Apollo
   ) {}
 
-  ngOnInit(): void {
-    this.loading = true;
-    this.products$ = this.productsService
-      .getAll()
-      .pipe(tap(() => (this.loading = false)));
-    this.productsService.getAll().subscribe(() => (this.loading = false));
+  ngOnInit() {
+    this.querySubscription = this.apollo
+      .watchQuery<any>({
+        query: GetAllProducts
+      })
+      .valueChanges.subscribe(({ data, loading }) => {
+        this.loading = loading;
+        this.products = data.Products.items;
+      });
+  }
+
+
+  ngOnDestroy() {
+    this.querySubscription.unsubscribe();
   }
 }

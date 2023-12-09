@@ -47,19 +47,19 @@ export class CreateProductPageComponent {
 
   submit() {
     console.log(this.form.value.title);
-    this.productService
-      .createProduct({
-        title: this.form.value.title as string,
-        price: this.form.value.price as number,
-        description: this.form.value.description as string,
-        image: this.form.value.image as string,
-        category: this.form.value.category as string,
-      })
-      .subscribe(
-        (w) => {
-          this.notificationTitle = 'Product created successfully';
-          this.notificationService.open();
-        },
-      );
+    // this.productService
+    //   .createProduct({
+    //     title: this.form.value.title as string,
+    //     price: this.form.value.price as number,
+    //     description: this.form.value.description as string,
+    //     image: this.form.value.image as string,
+    //     category: this.form.value.category as string,
+    //   })
+    //   .subscribe(
+    //     (w) => {
+    //       this.notificationTitle = 'Product created successfully';
+    //       this.notificationService.open();
+    //     },
+    //   );
   }
 }
