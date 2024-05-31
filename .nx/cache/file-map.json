@@ -55,52 +55,84 @@
   "fileMap": {
     "nonProjectFiles": [
       {
-        "file": "src/app/product/components/product/product.component.ts",
-        "hash": "15618698636104063097"
+        "file": "src/app/shared/components/navigation/navigation.component.ts",
+        "hash": "2008865980255463647"
       },
       {
-        "file": "src/app/product/models/product.inerface.ts",
-        "hash": "13366230564299750094"
+        "file": "src/assets/flower_home_big_right.png",
+        "hash": "12800711320270500518"
       },
       {
-        "file": "src/app/product/components/product/product.component.html",
-        "hash": "17024892984183733645"
+        "file": "src/app/home/components/home.component.spec.ts",
+        "hash": "2620641819347346630"
       },
       {
-        "file": "src/app/product/components/product-single/product-single.component.html",
-        "hash": "13587763627207951917"
+        "file": "src/assets/logo.png",
+        "hash": "862528548240414972"
       },
       {
-        "file": "src/app/shared/queries/getAllProducts.ts",
-        "hash": "12598701404559344187"
+        "file": "src/app/shared/components/navigation/navigation.component.html",
+        "hash": "3734457565966469193"
       },
       {
-        "file": "src/app/product/components/create-product/create-product-page.component.ts",
-        "hash": "5660099401441652450"
+        "file": "src/app/home/components/home.component.scss",
+        "hash": "17246131991647134774"
       },
       {
-        "file": "src/app/product/components/product-page/product-page.component.ts",
-        "hash": "8937101765607891509"
+        "file": "src/assets/flower_home_small_left.png",
+        "hash": "5808821347937112365"
       },
       {
-        "file": "src/app/shared/queries/getSingleProduct.ts",
-        "hash": "6360622046193020861"
+        "file": "src/assets/logo_home.png",
+        "hash": "17333851227444649102"
       },
       {
-        "file": "src/app/product/components/product-single/product-single.component.ts",
-        "hash": "11518444442621498516"
+        "file": "src/app/app.component.html",
+        "hash": "17385897758380840601"
       },
       {
-        "file": "src/app/product/components/product-single/product-single.component.css",
-        "hash": "3244421341483603138"
+        "file": "src/app/product/components/product-page/product-page.component.html",
+        "hash": "16744375701498128644"
       },
       {
-        "file": "src/app/product/components/product-single/product-single.component.spec.ts",
-        "hash": "17225393067763083757"
+        "file": "src/app/app.module.ts",
+        "hash": "16350475936997078703"
+      },
+      {
+        "file": "tailwind.config.js",
+        "hash": "13868511068861071744"
+      },
+      {
+        "file": "src/assets/telegram.svg",
+        "hash": "9806267593457082962"
+      },
+      {
+        "file": "src/app/home/components/home.component.ts",
+        "hash": "7080625818916472695"
+      },
+      {
+        "file": "src/assets/insta.svg",
+        "hash": "13574278211904880764"
+      },
+      {
+        "file": "src/app/home/components/home.component.html",
+        "hash": "7911810386579908002"
+      },
+      {
+        "file": "src/assets/mobile_home_left.png",
+        "hash": "4667546699881611861"
+      },
+      {
+        "file": "src/app/home/home.module.ts",
+        "hash": "15075142467326444685"
       },
       {
         "file": "src/app/product/products.module.ts",
-        "hash": "2430770912976617099"
+        "hash": "10060598672764116425"
+      },
+      {
+        "file": "src/styles.scss",
+        "hash": "14994176262938074394"
       }
     ],
     "projectFileMap": {
@@ -354,31 +386,35 @@
         },
         {
           "file": ".nx/cache/d/daemon.log",
-          "hash": "2661167899696330463"
+          "hash": "18304914077823381005"
         },
         {
           "file": ".nx/cache/d/server-process.json",
-          "hash": "15224751639937930871"
+          "hash": "8122615824284157680"
         },
         {
           "file": ".nx/cache/file-map.json",
-          "hash": "5688425381120821966"
+          "hash": "13450397861178652787"
         },
         {
           "file": ".nx/cache/lockfile.hash",
-          "hash": "8821602269075747368"
+          "hash": "7452241466688395012"
         },
         {
           "file": ".nx/cache/nx_files.nxt",
-          "hash": "11556934584846456226"
+          "hash": "9572461547284643380"
         },
         {
           "file": ".nx/cache/parsed-lock-file.json",
-          "hash": "3978953455471628094"
+          "hash": "11594367139052302445"
         },
         {
           "file": ".nx/cache/project-graph.json",
-          "hash": "11567617212107055194"
+          "hash": "8631428282564180599"
+        },
+        {
+          "file": ".nx/cache/terminalOutputs/11247319961250920040",
+          "hash": "6612541774276096685"
         },
         {
           "file": ".nx/cache/terminalOutputs/12512454284412749058",
@@ -578,29 +614,6 @@
           ]
         },
         {
-          "file": "src/app/product/components/create-product/create-product-page.component.html",
-          "hash": "12809541836695706813"
-        },
-        {
-          "file": "src/app/product/components/create-product/create-product-page.component.scss",
-          "hash": "12686664527403310655"
-        },
-        {
-          "file": "src/app/product/components/create-product/create-product-page.component.spec.ts",
-          "hash": "11104990843831387891",
-          "deps": [
-            "npm:@angular/core"
-          ]
-        },
-        {
-          "file": "src/app/product/components/create-product/create-product-page.component.ts",
-          "hash": "4734131604293616831",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/forms"
-          ]
-        },
-        {
           "file": "src/app/product/components/product-page/product-page.component.html",
           "hash": "3556365898530073511"
         },
@@ -617,7 +630,7 @@
         },
         {
           "file": "src/app/product/components/product-page/product-page.component.ts",
-          "hash": "7696205509097092920",
+          "hash": "8937101765607891509",
           "deps": [
             "npm:@angular/core",
             "npm:rxjs",
@@ -625,30 +638,79 @@
           ]
         },
         {
-          "file": "src/app/product/components/product/product.component.html",
-          "hash": "7157955235976629859"
+          "file": "src/app/product/components/product-page/product/product.component.html",
+          "hash": "17024892984183733645"
         },
         {
-          "file": "src/app/product/components/product/product.component.scss",
+          "file": "src/app/product/components/product-page/product/product.component.scss",
           "hash": "3244421341483603138"
         },
         {
-          "file": "src/app/product/components/product/product.component.spec.ts",
+          "file": "src/app/product/components/product-page/product/product.component.spec.ts",
           "hash": "9013237116437657571",
           "deps": [
             "npm:@angular/core"
           ]
         },
         {
-          "file": "src/app/product/components/product/product.component.ts",
-          "hash": "5472367525539862236",
+          "file": "src/app/product/components/product-page/product/product.component.ts",
+          "hash": "15967922003644522688",
           "deps": [
             "npm:@angular/core"
           ]
         },
         {
+          "file": "src/app/product/components/product-single/product-single.component.css",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "src/app/product/components/product-single/product-single.component.html",
+          "hash": "13587763627207951917"
+        },
+        {
+          "file": "src/app/product/components/product-single/product-single.component.spec.ts",
+          "hash": "17225393067763083757",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/platform-browser"
+          ]
+        },
+        {
+          "file": "src/app/product/components/product-single/product-single.component.ts",
+          "hash": "11518444442621498516",
+          "deps": [
+            "npm:@angular/core",
+            "npm:apollo-angular",
+            "npm:rxjs",
+            "npm:@angular/router"
+          ]
+        },
+        {
+          "file": "src/app/product/create-product/create-product-page.component.html",
+          "hash": "12809541836695706813"
+        },
+        {
+          "file": "src/app/product/create-product/create-product-page.component.scss",
+          "hash": "12686664527403310655"
+        },
+        {
+          "file": "src/app/product/create-product/create-product-page.component.spec.ts",
+          "hash": "11104990843831387891",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "src/app/product/create-product/create-product-page.component.ts",
+          "hash": "5660099401441652450",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/forms"
+          ]
+        },
+        {
           "file": "src/app/product/models/product.inerface.ts",
-          "hash": "4544500862040127282"
+          "hash": "13366230564299750094"
         },
         {
           "file": "src/app/product/pipes/filter-products.pipe.spec.ts",
@@ -663,7 +725,7 @@
         },
         {
           "file": "src/app/product/products.module.ts",
-          "hash": "6564451782536687535",
+          "hash": "270953710715115999",
           "deps": [
             "npm:@angular/core",
             "npm:@angular/common",
@@ -816,8 +878,15 @@
           ]
         },
         {
-          "file": "src/app/shared/queries.ts",
+          "file": "src/app/shared/queries/getAllProducts.ts",
           "hash": "12598701404559344187",
+          "deps": [
+            "npm:apollo-angular"
+          ]
+        },
+        {
+          "file": "src/app/shared/queries/getSingleProduct.ts",
+          "hash": "6360622046193020861",
           "deps": [
             "npm:apollo-angular"
           ]

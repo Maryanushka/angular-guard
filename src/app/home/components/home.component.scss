@@ -1,0 +1,9 @@
+:host {
+  ::ng-deep {
+    .home {
+      h1 {
+        filter: drop-shadow(7px 9px 7px #121212 )
+      }
+    }
+  }
+}

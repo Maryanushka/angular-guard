@@ -5,7 +5,14 @@ module.exports = {
   content: ["./src/**/*.{html,ts}"],
   theme: {
     extend: {
+      fontFamily: {
+        lato: ['Lato', 'sans-serif'],
+      },
       colors: {
+        ghostWhite: '#F4F4F9',
+        munsell: '#EC0B43',
+        darkGreen: '#123633',
+        pesianGreen: '#00A194',
         transparent: "transparent",
         current: "currentColor",
         black: colors.black,
