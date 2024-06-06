@@ -55,84 +55,32 @@
   "fileMap": {
     "nonProjectFiles": [
       {
-        "file": "src/app/shared/components/navigation/navigation.component.ts",
-        "hash": "2008865980255463647"
-      },
-      {
-        "file": "src/assets/flower_home_big_right.png",
-        "hash": "12800711320270500518"
-      },
-      {
-        "file": "src/app/home/components/home.component.spec.ts",
-        "hash": "2620641819347346630"
-      },
-      {
-        "file": "src/assets/logo.png",
-        "hash": "862528548240414972"
-      },
-      {
-        "file": "src/app/shared/components/navigation/navigation.component.html",
-        "hash": "3734457565966469193"
-      },
-      {
-        "file": "src/app/home/components/home.component.scss",
-        "hash": "17246131991647134774"
-      },
-      {
-        "file": "src/assets/flower_home_small_left.png",
-        "hash": "5808821347937112365"
-      },
-      {
-        "file": "src/assets/logo_home.png",
-        "hash": "17333851227444649102"
-      },
-      {
-        "file": "src/app/app.component.html",
-        "hash": "17385897758380840601"
-      },
-      {
-        "file": "src/app/product/components/product-page/product-page.component.html",
-        "hash": "16744375701498128644"
-      },
-      {
-        "file": "src/app/app.module.ts",
-        "hash": "16350475936997078703"
-      },
-      {
-        "file": "tailwind.config.js",
-        "hash": "13868511068861071744"
-      },
-      {
-        "file": "src/assets/telegram.svg",
-        "hash": "9806267593457082962"
-      },
-      {
         "file": "src/app/home/components/home.component.ts",
-        "hash": "7080625818916472695"
-      },
-      {
-        "file": "src/assets/insta.svg",
-        "hash": "13574278211904880764"
+        "hash": "10926223962925925368"
       },
       {
         "file": "src/app/home/components/home.component.html",
-        "hash": "7911810386579908002"
+        "hash": "8046253951633586135"
       },
       {
-        "file": "src/assets/mobile_home_left.png",
-        "hash": "4667546699881611861"
+        "file": "src/app/shared/components/social-media/social-media.component.scss",
+        "hash": "3244421341483603138"
       },
       {
-        "file": "src/app/home/home.module.ts",
-        "hash": "15075142467326444685"
+        "file": "src/app/shared/components/social-media/social-media.component.spec.ts",
+        "hash": "7180600860351724212"
       },
       {
-        "file": "src/app/product/products.module.ts",
-        "hash": "10060598672764116425"
+        "file": "src/app/shared/components/social-media/social-media.component.ts",
+        "hash": "13313758140599621953"
       },
       {
-        "file": "src/styles.scss",
-        "hash": "14994176262938074394"
+        "file": "src/app/shared/components/social-media/social-media.component.html",
+        "hash": "16890178105185407228"
+      },
+      {
+        "file": "src/app/shared/components/navigation/navigation.component.html",
+        "hash": "18235405278289571816"
       }
     ],
     "projectFileMap": {
@@ -386,15 +334,15 @@
         },
         {
           "file": ".nx/cache/d/daemon.log",
-          "hash": "18304914077823381005"
+          "hash": "65139034974024440"
         },
         {
           "file": ".nx/cache/d/server-process.json",
-          "hash": "8122615824284157680"
+          "hash": "14306935359271587609"
         },
         {
           "file": ".nx/cache/file-map.json",
-          "hash": "13450397861178652787"
+          "hash": "4353961857899010080"
         },
         {
           "file": ".nx/cache/lockfile.hash",
@@ -402,7 +350,7 @@
         },
         {
           "file": ".nx/cache/nx_files.nxt",
-          "hash": "9572461547284643380"
+          "hash": "16216679103758960393"
         },
         {
           "file": ".nx/cache/parsed-lock-file.json",
@@ -414,7 +362,7 @@
         },
         {
           "file": ".nx/cache/terminalOutputs/11247319961250920040",
-          "hash": "6612541774276096685"
+          "hash": "1275009403177923842"
         },
         {
           "file": ".nx/cache/terminalOutputs/12512454284412749058",
@@ -566,7 +514,7 @@
         },
         {
           "file": "src/app/app.component.html",
-          "hash": "3326233888905625893"
+          "hash": "17385897758380840601"
         },
         {
           "file": "src/app/app.component.scss",
@@ -589,11 +537,12 @@
         },
         {
           "file": "src/app/app.module.ts",
-          "hash": "6712578665526877418",
+          "hash": "16350475936997078703",
           "deps": [
             "npm:@angular/core",
             "npm:@angular/platform-browser",
-            "npm:@angular/fire"
+            "npm:@angular/fire",
+            "npm:@angular/router"
           ]
         },
         {
@@ -614,8 +563,42 @@
           ]
         },
         {
+          "file": "src/app/home/components/home.component.html",
+          "hash": "7911810386579908002"
+        },
+        {
+          "file": "src/app/home/components/home.component.scss",
+          "hash": "17246131991647134774"
+        },
+        {
+          "file": "src/app/home/components/home.component.spec.ts",
+          "hash": "2620641819347346630",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "src/app/home/components/home.component.ts",
+          "hash": "7080625818916472695",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/common",
+            "npm:@angular/router",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "src/app/home/home.module.ts",
+          "hash": "15075142467326444685",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/common",
+            "npm:@angular/router"
+          ]
+        },
+        {
           "file": "src/app/product/components/product-page/product-page.component.html",
-          "hash": "3556365898530073511"
+          "hash": "16744375701498128644"
         },
         {
           "file": "src/app/product/components/product-page/product-page.component.scss",
@@ -686,46 +669,12 @@
           ]
         },
         {
-          "file": "src/app/product/create-product/create-product-page.component.html",
-          "hash": "12809541836695706813"
-        },
-        {
-          "file": "src/app/product/create-product/create-product-page.component.scss",
-          "hash": "12686664527403310655"
-        },
-        {
-          "file": "src/app/product/create-product/create-product-page.component.spec.ts",
-          "hash": "11104990843831387891",
-          "deps": [
-            "npm:@angular/core"
-          ]
-        },
-        {
-          "file": "src/app/product/create-product/create-product-page.component.ts",
-          "hash": "5660099401441652450",
-          "deps": [
-            "npm:@angular/core",
-            "npm:@angular/forms"
-          ]
-        },
-        {
           "file": "src/app/product/models/product.inerface.ts",
           "hash": "13366230564299750094"
         },
         {
-          "file": "src/app/product/pipes/filter-products.pipe.spec.ts",
-          "hash": "2598134476323554784"
-        },
-        {
-          "file": "src/app/product/pipes/filter-products.pipe.ts",
-          "hash": "4980247586678549304",
-          "deps": [
-            "npm:@angular/core"
-          ]
-        },
-        {
           "file": "src/app/product/products.module.ts",
-          "hash": "270953710715115999",
+          "hash": "10060598672764116425",
           "deps": [
             "npm:@angular/core",
             "npm:@angular/common",
@@ -807,7 +756,7 @@
         },
         {
           "file": "src/app/shared/components/navigation/navigation.component.html",
-          "hash": "15265235919291662667"
+          "hash": "3734457565966469193"
         },
         {
           "file": "src/app/shared/components/navigation/navigation.component.scss",
@@ -822,9 +771,11 @@
         },
         {
           "file": "src/app/shared/components/navigation/navigation.component.ts",
-          "hash": "6777662676788239806",
+          "hash": "2008865980255463647",
           "deps": [
-            "npm:@angular/core"
+            "npm:@angular/core",
+            "npm:@angular/router",
+            "npm:rxjs"
           ]
         },
         {
@@ -973,6 +924,34 @@
           "hash": "3244421341483603138"
         },
         {
+          "file": "src/assets/flower_home_big_right.png",
+          "hash": "12800711320270500518"
+        },
+        {
+          "file": "src/assets/flower_home_small_left.png",
+          "hash": "5808821347937112365"
+        },
+        {
+          "file": "src/assets/insta.svg",
+          "hash": "13574278211904880764"
+        },
+        {
+          "file": "src/assets/logo.png",
+          "hash": "862528548240414972"
+        },
+        {
+          "file": "src/assets/logo_home.png",
+          "hash": "17333851227444649102"
+        },
+        {
+          "file": "src/assets/mobile_home_left.png",
+          "hash": "4667546699881611861"
+        },
+        {
+          "file": "src/assets/telegram.svg",
+          "hash": "9806267593457082962"
+        },
+        {
           "file": "src/favicon.ico",
           "hash": "3464744996580215640"
         },
@@ -989,11 +968,11 @@
         },
         {
           "file": "src/styles.scss",
-          "hash": "2546866465848982960"
+          "hash": "14994176262938074394"
         },
         {
           "file": "tailwind.config.js",
-          "hash": "4530218006267044246",
+          "hash": "13868511068861071744",
           "deps": [
             "npm:tailwindcss"
           ]

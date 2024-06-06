@@ -1,10 +1,10 @@
 <nav class="">
   <img *ngIf="!isHome" src="../../../../assets/logo.png" alt="">
 	<ul class="flex" [ngClass]="{'flex flex-col': !isHome}">
-		<li><a class="text-white mr-4" routerLink="/about" routerLinkActive="active">Про нас</a></li>
-		<li><a class="text-white mr-4" routerLink="/products" routerLinkActive="active">Магазин</a></li>
-		<li><a class="text-white mr-4" routerLink="/services" routerLinkActive="active">Послуги</a></li>
-		<li><a class="text-white mr-4" routerLink="/contacts" routerLinkActive="active">Контакти</a></li>
+		<li><a class="text-white mr-4 flex items-center" routerLink="/about" routerLinkActive="active"><span class="flex w-10 bg-munsell h-[3px] mr-5"></span>Про нас</a></li>
+		<li><a class="text-white mr-4 flex items-center" routerLink="/products" routerLinkActive="active"><span class="flex w-10 bg-munsell h-[3px] mr-5"></span>Магазин</a></li>
+		<li><a class="text-white mr-4 flex items-center" routerLink="/services" routerLinkActive="active"><span class="flex w-10 bg-munsell h-[3px] mr-5"></span>Послуги</a></li>
+		<li><a class="text-white mr-4 flex items-center" routerLink="/contacts" routerLinkActive="active"><span class="flex w-10 bg-munsell h-[3px] mr-5"></span>Контакти</a></li>
 		<!-- <li *ngIf="authService.isLoginSubject$ | async"><a class="text-white mr-4" routerLink="/create-product" routerLinkActive="active">Create product</a></li> -->
 		<!-- <li *ngIf="(authService.isLoginSubject$ | async) === false"><a class="text-white" routerLink="/signin" routerLinkActive="active">Увійти</a></li> -->
 		<!-- <li *ngIf="authService.isLoginSubject$ | async"><button (click)="authService.logout()" class="text-white">Вийти</button></li> -->
