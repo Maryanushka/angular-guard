@@ -1,8 +1,8 @@
 
-<section class="home bg-darkGreen w-full h-[100vh] flex items-center justify-between">
-  <img class="absolute bottom-0 left-0 mix-blend-multiply w-64" src="/assets/mobile_home_left.png" alt="">
-  <app-navigation class="relative z-10 "></app-navigation>
-  <h1 class="title text-[12vw] font-bold"><span class="text-munsell">O</span><span class="text-[#123f3b]">rising</span></h1>
-  <app-social-media></app-social-media>
-  <img class="absolute top-0 right-0 mix-blend-multiply w-96 scale-[-1]" src="/assets/mobile_home_left.png" alt="">
+<section class="home bg-darkGreen w-full h-[100vh] flex min-[600px]:items-center justify-between max-[600px]:flex-col">
+  <img class="absolute bottom-0 left-0 mix-blend-multiply w-64 max-[600px]:w-52" src="/assets/mobile_home_left.png" alt="">
+  <app-navigation class="relative z-10 max-[600px]:mt-10"></app-navigation>
+  <h1 class="title min-[600px]:text-[12vw] text-[5rem] font-bold absolute z-10 top-[50%] left-[50%]"><span class="text-munsell">O</span><span class="text-[#123f3b]">rising</span></h1>
+  <app-social-media class="mr-4 relative z-10 mt-16 max-[600px]:ml-auto max-[600px]:mb-10 max-[600px]:mr-[10rem]"></app-social-media>
+  <img class="absolute top-0 right-0 mix-blend-multiply w-96 scale-[-1] max-[600px]:w-56" src="/assets/mobile_home_left.png" alt="">
 </section>
