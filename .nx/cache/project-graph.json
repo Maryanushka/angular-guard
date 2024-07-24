@@ -13027,26 +13027,6 @@
     "angular-guard": [
       {
         "source": "angular-guard",
-        "target": "npm:buffer",
-        "type": "static"
-      },
-      {
-        "source": "angular-guard",
-        "target": "npm:events",
-        "type": "static"
-      },
-      {
-        "source": "angular-guard",
-        "target": "npm:events",
-        "type": "dynamic"
-      },
-      {
-        "source": "angular-guard",
-        "target": "npm:string_decoder",
-        "type": "dynamic"
-      },
-      {
-        "source": "angular-guard",
         "target": "npm:@angular/animations",
         "type": "static"
       },

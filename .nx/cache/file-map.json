@@ -55,32 +55,40 @@
   "fileMap": {
     "nonProjectFiles": [
       {
-        "file": "src/app/home/components/home.component.ts",
-        "hash": "10926223962925925368"
+        "file": "src/app/product/components/product-page/product/product.component.html",
+        "hash": "4224268427537847553"
       },
       {
-        "file": "src/app/home/components/home.component.html",
-        "hash": "8046253951633586135"
+        "file": "src/app/product/components/product-page/product-page.component.html",
+        "hash": "5996869979222726634"
       },
       {
-        "file": "src/app/shared/components/social-media/social-media.component.scss",
+        "file": "src/app/shared/components/breadcrumbs/breadcrumbs.component.scss",
         "hash": "3244421341483603138"
       },
       {
-        "file": "src/app/shared/components/social-media/social-media.component.spec.ts",
-        "hash": "7180600860351724212"
-      },
-      {
-        "file": "src/app/shared/components/social-media/social-media.component.ts",
-        "hash": "13313758140599621953"
-      },
-      {
-        "file": "src/app/shared/components/social-media/social-media.component.html",
-        "hash": "16890178105185407228"
-      },
-      {
         "file": "src/app/shared/components/navigation/navigation.component.html",
-        "hash": "18235405278289571816"
+        "hash": "163791717409420502"
+      },
+      {
+        "file": "src/app/product/components/product-page/product/product.component.scss",
+        "hash": "3238772718318633392"
+      },
+      {
+        "file": "src/app/shared/components/breadcrumbs/breadcrumbs.component.ts",
+        "hash": "7768162506973616693"
+      },
+      {
+        "file": "src/app/shared/components/breadcrumbs/breadcrumbs.component.html",
+        "hash": "16901217078341436351"
+      },
+      {
+        "file": "src/app/shared/components/navigation/navigation.component.scss",
+        "hash": "15076781246840052533"
+      },
+      {
+        "file": "src/app/shared/components/breadcrumbs/breadcrumbs.component.spec.ts",
+        "hash": "5171815652639336291"
       }
     ],
     "projectFileMap": {
@@ -99,290 +107,7 @@
         },
         {
           "file": ".gitignore",
-          "hash": "4689145951703824387"
-        },
-        {
-          "file": ".nx/cache/cloud/2312.01.6.hotfix4/index.js",
-          "hash": "17807890174160981006",
-          "deps": [
-            "npm:os",
-            "npm:assert",
-            "npm:buffer",
-            "npm:zlib",
-            "npm:events",
-            "npm:fs",
-            "npm:path",
-            [
-              "npm:fs",
-              "dynamic"
-            ],
-            [
-              "npm:path",
-              "dynamic"
-            ],
-            [
-              "npm:os",
-              "dynamic"
-            ],
-            [
-              "npm:child_process",
-              "dynamic"
-            ],
-            [
-              "npm:crypto",
-              "dynamic"
-            ],
-            [
-              "npm:tty",
-              "dynamic"
-            ],
-            [
-              "npm:util",
-              "dynamic"
-            ],
-            [
-              "npm:url",
-              "dynamic"
-            ],
-            [
-              "npm:http",
-              "dynamic"
-            ],
-            [
-              "npm:https",
-              "dynamic"
-            ],
-            [
-              "npm:stream",
-              "dynamic"
-            ],
-            [
-              "npm:assert",
-              "dynamic"
-            ],
-            [
-              "npm:zlib",
-              "dynamic"
-            ],
-            [
-              "npm:perf_hooks",
-              "dynamic"
-            ],
-            [
-              "npm:events",
-              "dynamic"
-            ],
-            [
-              "npm:string_decoder",
-              "dynamic"
-            ],
-            [
-              "npm:constants",
-              "dynamic"
-            ]
-          ]
-        },
-        {
-          "file": ".nx/cache/cloud/2312.01.6.hotfix4/lib/daemon/process-run-end.js",
-          "hash": "9178465496593350990",
-          "deps": [
-            "npm:path",
-            "npm:os",
-            "npm:assert",
-            "npm:buffer",
-            "npm:zlib",
-            "npm:events",
-            "npm:fs",
-            [
-              "npm:fs",
-              "dynamic"
-            ],
-            [
-              "npm:path",
-              "dynamic"
-            ],
-            [
-              "npm:os",
-              "dynamic"
-            ],
-            [
-              "npm:child_process",
-              "dynamic"
-            ],
-            [
-              "npm:crypto",
-              "dynamic"
-            ],
-            [
-              "npm:tty",
-              "dynamic"
-            ],
-            [
-              "npm:util",
-              "dynamic"
-            ],
-            [
-              "npm:url",
-              "dynamic"
-            ],
-            [
-              "npm:http",
-              "dynamic"
-            ],
-            [
-              "npm:https",
-              "dynamic"
-            ],
-            [
-              "npm:stream",
-              "dynamic"
-            ],
-            [
-              "npm:assert",
-              "dynamic"
-            ],
-            [
-              "npm:zlib",
-              "dynamic"
-            ],
-            [
-              "npm:perf_hooks",
-              "dynamic"
-            ],
-            [
-              "npm:events",
-              "dynamic"
-            ],
-            [
-              "npm:string_decoder",
-              "dynamic"
-            ]
-          ]
-        },
-        {
-          "file": ".nx/cache/cloud/2312.01.6.hotfix4/lib/heartbeat/heartbeat-process.js",
-          "hash": "12195602358968166578",
-          "deps": [
-            "npm:os",
-            "npm:fs",
-            "npm:path",
-            [
-              "npm:fs",
-              "dynamic"
-            ],
-            [
-              "npm:path",
-              "dynamic"
-            ],
-            [
-              "npm:os",
-              "dynamic"
-            ],
-            [
-              "npm:child_process",
-              "dynamic"
-            ],
-            [
-              "npm:crypto",
-              "dynamic"
-            ],
-            [
-              "npm:tty",
-              "dynamic"
-            ],
-            [
-              "npm:util",
-              "dynamic"
-            ],
-            [
-              "npm:url",
-              "dynamic"
-            ],
-            [
-              "npm:http",
-              "dynamic"
-            ],
-            [
-              "npm:https",
-              "dynamic"
-            ],
-            [
-              "npm:stream",
-              "dynamic"
-            ],
-            [
-              "npm:assert",
-              "dynamic"
-            ],
-            [
-              "npm:zlib",
-              "dynamic"
-            ],
-            [
-              "npm:perf_hooks",
-              "dynamic"
-            ]
-          ]
-        },
-        {
-          "file": ".nx/cache/cloud/2312.01.6.hotfix4/package.json",
-          "hash": "11687418979936424737"
-        },
-        {
-          "file": ".nx/cache/cloud/verify.lock",
-          "hash": "4073513066185483219"
-        },
-        {
-          "file": ".nx/cache/d/daemon.log",
-          "hash": "65139034974024440"
-        },
-        {
-          "file": ".nx/cache/d/server-process.json",
-          "hash": "14306935359271587609"
-        },
-        {
-          "file": ".nx/cache/file-map.json",
-          "hash": "4353961857899010080"
-        },
-        {
-          "file": ".nx/cache/lockfile.hash",
-          "hash": "7452241466688395012"
-        },
-        {
-          "file": ".nx/cache/nx_files.nxt",
-          "hash": "16216679103758960393"
-        },
-        {
-          "file": ".nx/cache/parsed-lock-file.json",
-          "hash": "11594367139052302445"
-        },
-        {
-          "file": ".nx/cache/project-graph.json",
-          "hash": "8631428282564180599"
-        },
-        {
-          "file": ".nx/cache/terminalOutputs/11247319961250920040",
-          "hash": "1275009403177923842"
-        },
-        {
-          "file": ".nx/cache/terminalOutputs/12512454284412749058",
-          "hash": "29485726161503048"
-        },
-        {
-          "file": ".nx/cache/terminalOutputs/15757174179650967001",
-          "hash": "15213028139692688828"
-        },
-        {
-          "file": ".nx/cache/terminalOutputs/16064018786536909765",
-          "hash": "7805548194919783722"
-        },
-        {
-          "file": ".nx/cache/terminalOutputs/4720286316414432962",
-          "hash": "8781043343852431822"
-        },
-        {
-          "file": ".nx/cache/terminalOutputs/491111323363284486",
-          "hash": "9394012608104894023"
+          "hash": "11105910742850995585"
         },
         {
           "file": ".vscode/extensions.json",
@@ -564,11 +289,11 @@
         },
         {
           "file": "src/app/home/components/home.component.html",
-          "hash": "7911810386579908002"
+          "hash": "12178460416488250195"
         },
         {
           "file": "src/app/home/components/home.component.scss",
-          "hash": "17246131991647134774"
+          "hash": "3814530388371027334"
         },
         {
           "file": "src/app/home/components/home.component.spec.ts",
@@ -579,7 +304,7 @@
         },
         {
           "file": "src/app/home/components/home.component.ts",
-          "hash": "7080625818916472695",
+          "hash": "10926223962925925368",
           "deps": [
             "npm:@angular/core",
             "npm:@angular/common",
@@ -756,7 +481,7 @@
         },
         {
           "file": "src/app/shared/components/navigation/navigation.component.html",
-          "hash": "3734457565966469193"
+          "hash": "13925577518245426887"
         },
         {
           "file": "src/app/shared/components/navigation/navigation.component.scss",
@@ -812,6 +537,29 @@
         {
           "file": "src/app/shared/components/notification/notification.module.ts",
           "hash": "10759927465966475966",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/common"
+          ]
+        },
+        {
+          "file": "src/app/shared/components/social-media/social-media.component.html",
+          "hash": "1566997040248446448"
+        },
+        {
+          "file": "src/app/shared/components/social-media/social-media.component.scss",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "src/app/shared/components/social-media/social-media.component.spec.ts",
+          "hash": "7180600860351724212",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "src/app/shared/components/social-media/social-media.component.ts",
+          "hash": "13313758140599621953",
           "deps": [
             "npm:@angular/core",
             "npm:@angular/common"

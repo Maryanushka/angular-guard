@@ -1,7 +1,6 @@
 <app-global-error></app-global-error>
 <app-navigation></app-navigation>
 
-	<h1 class="font-bold text-center text-3xl my-6">{{ title | titlecase}}</h1>
 
 	<!-- <label class="flex flex-col mb-3 mx-4">
 		<span class="font-bold">Filter products</span>
@@ -9,17 +8,18 @@
 	</label>
 	<span>{{ filter }}</span> -->
 
+
 	<p *ngIf="loading" class="loading text-center font-bold">
 		loading products..
 	</p>
 
-	<div *ngIf="products">
+	<div *ngIf="products" class="flex flex-wrap justify-around mt-16">
     @if(products.length === 0) {
       <p class="text-center font-bold">No products found</p>
     }
     @else {
       @for (item of products; track item.slug) {
-        <app-product [product]="item"></app-product>
+        <app-product class="flex w-64" [product]="item"></app-product>
       }
     }
 	</div>

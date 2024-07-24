@@ -1,0 +1,10 @@
+:host {
+  .menu-regular {
+    transform: translate(-50% , -50%);
+  }
+  nav {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+}
