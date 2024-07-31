@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IProduct } from '../../../models/product.inerface';
+import { IProduct } from '../../components/product-item/models/product.inteface';
 
 @Component({
   selector: 'app-product',

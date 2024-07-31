@@ -1,0 +1,21 @@
+ul {
+  margin-left: 2rem;
+  li {
+    a {
+      text-transform: lowercase;
+      margin-bottom: 1rem;
+      white-space: initial;
+      transition: all 0.3s linear;
+      @apply text-pesianGreen;
+      &::first-letter {
+        text-transform: uppercase;
+      }
+      &:hover,
+      &:focus,
+      &:active {
+        @apply text-darkGreen;
+      }
+
+    }
+  }
+}

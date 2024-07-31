@@ -4,7 +4,42 @@
   }
   nav {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     position: relative;
+    &.home {
+      ul {
+        @apply flex-col;
+        li a{
+          @apply text-white mr-4 flex items-center mb-4 hover:text-munsell transition-all ;
+          span {
+            @apply w-10 bg-munsell h-[3px] mr-5;
+          }
+          &:hover {
+            span {
+              @apply w-12;
+            }
+          }
+        }
+      }
+    }
+    &:not(.home){
+      @apply h-20;
+      ul {
+        @apply  absolute left-[50%] top-[50%];
+        li {
+          a {
+            @apply text-black mr-4 flex flex-col items-center transition-all  h-[5rem] justify-end hover:text-pesianGreen;
+            span {
+              @apply w-[3px] bg-pesianGreen h-10 mb-5 absolute top-0;
+            }
+            &:hover {
+              span {
+                @apply h-12;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }

@@ -1,8 +1,8 @@
 import { gql } from 'apollo-angular'
 
 export const GetAllProducts = gql`
-query GetProducts($limit: Int) {
-  Products(limit: $limit) {
+query GetProducts($limit: Int, $categories: [String]) {
+  Products(limit: $limit, where: { categories: { slug: $categories } }) {
     items {
       _slug
       categories {

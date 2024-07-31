@@ -13,16 +13,22 @@
 		loading products..
 	</p>
 
-	<div *ngIf="products" class="flex flex-wrap justify-around mt-16">
-    @if(products.length === 0) {
-      <p class="text-center font-bold">No products found</p>
-    }
-    @else {
-      @for (item of products; track item.slug) {
-        <app-product class="flex w-64" [product]="item"></app-product>
+  <div class="container flex max-w-[100%]">
+    <div class="w-4/12">
+      <product-categories></product-categories>
+    </div>
+    <div *ngIf="products" class="flex flex-wrap justify-around mt-16 w-8/12">
+      @if(products.length === 0) {
+        <p class="text-center font-bold">No products found</p>
       }
-    }
-	</div>
+      @else {
+        @for (item of products; track item.slug) {
+          <app-product class="flex w-60" [product]="item"></app-product>
+        }
+      }
+    </div>
+  </div>
+
 
 	<!-- <app-notification title="title" *ngIf="notificationService.isNotification$ | async"></app-notification> -->
 

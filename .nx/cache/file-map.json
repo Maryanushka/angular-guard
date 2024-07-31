@@ -55,40 +55,64 @@
   "fileMap": {
     "nonProjectFiles": [
       {
-        "file": "src/app/product/components/product-page/product/product.component.html",
-        "hash": "4224268427537847553"
-      },
-      {
         "file": "src/app/product/components/product-page/product-page.component.html",
-        "hash": "5996869979222726634"
+        "hash": "9344324288656593731"
       },
       {
-        "file": "src/app/shared/components/breadcrumbs/breadcrumbs.component.scss",
-        "hash": "3244421341483603138"
+        "file": "src/app/product/products.module.ts",
+        "hash": "13483502110720865873"
       },
       {
         "file": "src/app/shared/components/navigation/navigation.component.html",
-        "hash": "163791717409420502"
+        "hash": "2120181945189566270"
       },
       {
-        "file": "src/app/product/components/product-page/product/product.component.scss",
-        "hash": "3238772718318633392"
+        "file": "src/app/product/components/categories/categories.component.ts",
+        "hash": "1782844933062045542"
       },
       {
-        "file": "src/app/shared/components/breadcrumbs/breadcrumbs.component.ts",
-        "hash": "7768162506973616693"
+        "file": "src/app/product/components/product-item/product.component.ts",
+        "hash": "8779608443433691019"
       },
       {
-        "file": "src/app/shared/components/breadcrumbs/breadcrumbs.component.html",
-        "hash": "16901217078341436351"
+        "file": "src/app/product/components/categories/categories.component.scss",
+        "hash": "940289582582326387"
+      },
+      {
+        "file": "src/app/product/components/product-item/product.component.html",
+        "hash": "6469649990060670418"
+      },
+      {
+        "file": "src/app/product/components/categories/categories.component.html",
+        "hash": "13176186675191102248"
+      },
+      {
+        "file": "src/app/product/services/products.service.ts",
+        "hash": "16687675222769544888"
+      },
+      {
+        "file": "src/app/shared/queries/getCategory.ts",
+        "hash": "5704104396475192206"
+      },
+      {
+        "file": "src/app/shared/queries/getAllProducts.ts",
+        "hash": "1637355853695731291"
+      },
+      {
+        "file": "src/app/product/components/product-single/product-single.component.ts",
+        "hash": "7836432018075694591"
+      },
+      {
+        "file": "src/app/product/components/product-item/product.component.scss",
+        "hash": "15036214574332298676"
+      },
+      {
+        "file": "src/app/product/components/product-page/product-page.component.ts",
+        "hash": "8871689074432620139"
       },
       {
         "file": "src/app/shared/components/navigation/navigation.component.scss",
-        "hash": "15076781246840052533"
-      },
-      {
-        "file": "src/app/shared/components/breadcrumbs/breadcrumbs.component.spec.ts",
-        "hash": "5171815652639336291"
+        "hash": "2163625182467250272"
       }
     ],
     "projectFileMap": {
@@ -322,8 +346,56 @@
           ]
         },
         {
+          "file": "src/app/product/components/categories/categories.component.html",
+          "hash": "17720758711162908053"
+        },
+        {
+          "file": "src/app/product/components/categories/categories.component.scss",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "src/app/product/components/categories/categories.component.spec.ts",
+          "hash": "6027440310847854301",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "src/app/product/components/categories/categories.component.ts",
+          "hash": "15713551348198609504",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "src/app/product/components/product-item/models/product.inteface.ts",
+          "hash": "13366230564299750094"
+        },
+        {
+          "file": "src/app/product/components/product-item/product.component.html",
+          "hash": "4224268427537847553"
+        },
+        {
+          "file": "src/app/product/components/product-item/product.component.scss",
+          "hash": "3238772718318633392"
+        },
+        {
+          "file": "src/app/product/components/product-item/product.component.spec.ts",
+          "hash": "9013237116437657571",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "src/app/product/components/product-item/product.component.ts",
+          "hash": "15618698636104063097",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
           "file": "src/app/product/components/product-page/product-page.component.html",
-          "hash": "16744375701498128644"
+          "hash": "11859679875659326929"
         },
         {
           "file": "src/app/product/components/product-page/product-page.component.scss",
@@ -343,28 +415,6 @@
             "npm:@angular/core",
             "npm:rxjs",
             "npm:apollo-angular"
-          ]
-        },
-        {
-          "file": "src/app/product/components/product-page/product/product.component.html",
-          "hash": "17024892984183733645"
-        },
-        {
-          "file": "src/app/product/components/product-page/product/product.component.scss",
-          "hash": "3244421341483603138"
-        },
-        {
-          "file": "src/app/product/components/product-page/product/product.component.spec.ts",
-          "hash": "9013237116437657571",
-          "deps": [
-            "npm:@angular/core"
-          ]
-        },
-        {
-          "file": "src/app/product/components/product-page/product/product.component.ts",
-          "hash": "15967922003644522688",
-          "deps": [
-            "npm:@angular/core"
           ]
         },
         {
@@ -394,12 +444,8 @@
           ]
         },
         {
-          "file": "src/app/product/models/product.inerface.ts",
-          "hash": "13366230564299750094"
-        },
-        {
           "file": "src/app/product/products.module.ts",
-          "hash": "10060598672764116425",
+          "hash": "8893318097286787258",
           "deps": [
             "npm:@angular/core",
             "npm:@angular/common",
@@ -444,9 +490,34 @@
         },
         {
           "file": "src/app/product/services/products.service.ts",
-          "hash": "8804284034134489311",
+          "hash": "12448645671455479359",
           "deps": [
+            "npm:@angular/core",
+            "npm:@angular/common",
             "npm:rxjs"
+          ]
+        },
+        {
+          "file": "src/app/shared/components/breadcrumbs/breadcrumbs.component.html",
+          "hash": "16901217078341436351"
+        },
+        {
+          "file": "src/app/shared/components/breadcrumbs/breadcrumbs.component.scss",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "src/app/shared/components/breadcrumbs/breadcrumbs.component.spec.ts",
+          "hash": "5171815652639336291",
+          "deps": [
+            "npm:@angular/core"
+          ]
+        },
+        {
+          "file": "src/app/shared/components/breadcrumbs/breadcrumbs.component.ts",
+          "hash": "7768162506973616693",
+          "deps": [
+            "npm:@angular/core",
+            "npm:@angular/common"
           ]
         },
         {
@@ -481,11 +552,11 @@
         },
         {
           "file": "src/app/shared/components/navigation/navigation.component.html",
-          "hash": "13925577518245426887"
+          "hash": "163791717409420502"
         },
         {
           "file": "src/app/shared/components/navigation/navigation.component.scss",
-          "hash": "3244421341483603138"
+          "hash": "15076781246840052533"
         },
         {
           "file": "src/app/shared/components/navigation/navigation.component.spec.ts",
