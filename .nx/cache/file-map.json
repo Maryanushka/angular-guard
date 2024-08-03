@@ -55,64 +55,24 @@
   "fileMap": {
     "nonProjectFiles": [
       {
-        "file": "src/app/product/components/product-page/product-page.component.html",
-        "hash": "9344324288656593731"
-      },
-      {
-        "file": "src/app/product/products.module.ts",
-        "hash": "13483502110720865873"
-      },
-      {
-        "file": "src/app/shared/components/navigation/navigation.component.html",
-        "hash": "2120181945189566270"
-      },
-      {
-        "file": "src/app/product/components/categories/categories.component.ts",
-        "hash": "1782844933062045542"
-      },
-      {
-        "file": "src/app/product/components/product-item/product.component.ts",
-        "hash": "8779608443433691019"
-      },
-      {
-        "file": "src/app/product/components/categories/categories.component.scss",
-        "hash": "940289582582326387"
-      },
-      {
-        "file": "src/app/product/components/product-item/product.component.html",
-        "hash": "6469649990060670418"
-      },
-      {
         "file": "src/app/product/components/categories/categories.component.html",
-        "hash": "13176186675191102248"
-      },
-      {
-        "file": "src/app/product/services/products.service.ts",
-        "hash": "16687675222769544888"
-      },
-      {
-        "file": "src/app/shared/queries/getCategory.ts",
-        "hash": "5704104396475192206"
+        "hash": "13022406862358130689"
       },
       {
         "file": "src/app/shared/queries/getAllProducts.ts",
-        "hash": "1637355853695731291"
-      },
-      {
-        "file": "src/app/product/components/product-single/product-single.component.ts",
-        "hash": "7836432018075694591"
-      },
-      {
-        "file": "src/app/product/components/product-item/product.component.scss",
-        "hash": "15036214574332298676"
+        "hash": "12648155102040975519"
       },
       {
         "file": "src/app/product/components/product-page/product-page.component.ts",
-        "hash": "8871689074432620139"
+        "hash": "13970355469902348703"
       },
       {
-        "file": "src/app/shared/components/navigation/navigation.component.scss",
-        "hash": "2163625182467250272"
+        "file": "src/app/product/components/product-item/product.component.scss",
+        "hash": "15387356221512532201"
+      },
+      {
+        "file": "src/app/product/components/product-page/product-page.component.html",
+        "hash": "9344324288656593731"
       }
     ],
     "projectFileMap": {
@@ -347,11 +307,11 @@
         },
         {
           "file": "src/app/product/components/categories/categories.component.html",
-          "hash": "17720758711162908053"
+          "hash": "13176186675191102248"
         },
         {
           "file": "src/app/product/components/categories/categories.component.scss",
-          "hash": "3244421341483603138"
+          "hash": "940289582582326387"
         },
         {
           "file": "src/app/product/components/categories/categories.component.spec.ts",
@@ -362,9 +322,11 @@
         },
         {
           "file": "src/app/product/components/categories/categories.component.ts",
-          "hash": "15713551348198609504",
+          "hash": "1782844933062045542",
           "deps": [
-            "npm:@angular/core"
+            "npm:@angular/core",
+            "npm:rxjs",
+            "npm:apollo-angular"
           ]
         },
         {
@@ -373,11 +335,11 @@
         },
         {
           "file": "src/app/product/components/product-item/product.component.html",
-          "hash": "4224268427537847553"
+          "hash": "6469649990060670418"
         },
         {
           "file": "src/app/product/components/product-item/product.component.scss",
-          "hash": "3238772718318633392"
+          "hash": "15036214574332298676"
         },
         {
           "file": "src/app/product/components/product-item/product.component.spec.ts",
@@ -388,14 +350,14 @@
         },
         {
           "file": "src/app/product/components/product-item/product.component.ts",
-          "hash": "15618698636104063097",
+          "hash": "8779608443433691019",
           "deps": [
             "npm:@angular/core"
           ]
         },
         {
           "file": "src/app/product/components/product-page/product-page.component.html",
-          "hash": "11859679875659326929"
+          "hash": "9344324288656593731"
         },
         {
           "file": "src/app/product/components/product-page/product-page.component.scss",
@@ -410,7 +372,7 @@
         },
         {
           "file": "src/app/product/components/product-page/product-page.component.ts",
-          "hash": "8937101765607891509",
+          "hash": "8871689074432620139",
           "deps": [
             "npm:@angular/core",
             "npm:rxjs",
@@ -435,7 +397,7 @@
         },
         {
           "file": "src/app/product/components/product-single/product-single.component.ts",
-          "hash": "11518444442621498516",
+          "hash": "7836432018075694591",
           "deps": [
             "npm:@angular/core",
             "npm:apollo-angular",
@@ -445,7 +407,7 @@
         },
         {
           "file": "src/app/product/products.module.ts",
-          "hash": "8893318097286787258",
+          "hash": "13483502110720865873",
           "deps": [
             "npm:@angular/core",
             "npm:@angular/common",
@@ -490,7 +452,7 @@
         },
         {
           "file": "src/app/product/services/products.service.ts",
-          "hash": "12448645671455479359",
+          "hash": "16687675222769544888",
           "deps": [
             "npm:@angular/core",
             "npm:@angular/common",
@@ -552,11 +514,11 @@
         },
         {
           "file": "src/app/shared/components/navigation/navigation.component.html",
-          "hash": "163791717409420502"
+          "hash": "2120181945189566270"
         },
         {
           "file": "src/app/shared/components/navigation/navigation.component.scss",
-          "hash": "15076781246840052533"
+          "hash": "2163625182467250272"
         },
         {
           "file": "src/app/shared/components/navigation/navigation.component.spec.ts",
@@ -649,7 +611,14 @@
         },
         {
           "file": "src/app/shared/queries/getAllProducts.ts",
-          "hash": "12598701404559344187",
+          "hash": "1637355853695731291",
+          "deps": [
+            "npm:apollo-angular"
+          ]
+        },
+        {
+          "file": "src/app/shared/queries/getCategory.ts",
+          "hash": "5704104396475192206",
           "deps": [
             "npm:apollo-angular"
           ]
