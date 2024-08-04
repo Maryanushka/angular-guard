@@ -14,6 +14,7 @@ import { environment } from './environments/environment';
 import { GraphQLModule } from './graphql.module';
 import { HomeModule } from './home/home.module';
 import { Router, RouterModule } from '@angular/router';
+import { StoreModule } from '@ngrx/store';
 
 @NgModule({
   declarations: [
@@ -28,11 +29,14 @@ import { Router, RouterModule } from '@angular/router';
 		SigninModule,
     GraphQLModule,
     RouterModule.forRoot([]),
+
+    StoreModule.forRoot({}, {}),
+  ],
+  providers: [
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()),
   ],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

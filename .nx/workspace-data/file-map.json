@@ -1,24 +1,25 @@
 {
   "version": "6.0",
-  "nxVersion": "17.2.0",
+  "nxVersion": "19.5.6",
   "deps": {
     "@angular/animations": "18.1.3",
     "@angular/common": "18.1.3",
     "@angular/compiler": "18.1.3",
     "@angular/core": "18.1.3",
-    "@angular/fire": "^17.0.0",
+    "@angular/fire": "^18.0.1",
     "@angular/forms": "18.1.3",
     "@angular/platform-browser": "18.1.3",
     "@angular/platform-browser-dynamic": "18.1.3",
     "@angular/router": "18.1.3",
     "@apollo/client": "^3.8.8",
-    "apollo-angular": "^6.0.0",
+    "@ngrx/store": "^18.0.2",
+    "@nrwl/workspace": "^19.5.6",
+    "apollo-angular": "^7.0.2",
     "graphql": "^16.8.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "0.14.8",
-    "@ngrx/store": "18.0.1",
-    "@angular-devkit/build-angular": "18.1.3",
+    "@angular-devkit/build-angular": "^18.1.3",
     "@angular-devkit/core": "18.1.3",
     "@angular-devkit/schematics": "18.1.3",
     "@angular-eslint/eslint-plugin": "18.0.1",
@@ -26,6 +27,7 @@
     "@angular-eslint/template-parser": "18.0.1",
     "@angular/cli": "~17.0.6",
     "@angular/compiler-cli": "18.1.3",
+    "@ngrx/eslint-plugin": "^18.0.2",
     "@nx/angular": "19.5.6",
     "@nx/eslint-plugin": "19.5.6",
     "@nx/linter": "19.5.6",
@@ -49,22 +51,12 @@
     "postcss": "^8.4.27",
     "prettier": "3.1.0",
     "tailwindcss": "^3.3.3",
-    "typescript": "5.5.4",
-    "@ngrx/eslint-plugin": "^18.0.2"
+    "typescript": "5.5.4"
   },
   "pathMappings": {},
   "nxJsonPlugins": [],
   "fileMap": {
-    "nonProjectFiles": [
-      {
-        "file": "package.json",
-        "hash": "2988016356973756535"
-      },
-      {
-        "file": "migrations.json",
-        "hash": "2338023371408261809"
-      }
-    ],
+    "nonProjectFiles": [],
     "projectFileMap": {
       "angular-guard": [
         {
@@ -82,26 +74,6 @@
         {
           "file": ".gitignore",
           "hash": "11105910742850995585"
-        },
-        {
-          "file": ".nx/workspace-data/d/daemon.log",
-          "hash": "13468574270788383596"
-        },
-        {
-          "file": ".nx/workspace-data/file-map.json",
-          "hash": "10091240333571902215"
-        },
-        {
-          "file": ".nx/workspace-data/lockfile.hash",
-          "hash": "5208046188864278009"
-        },
-        {
-          "file": ".nx/workspace-data/parsed-lock-file.json",
-          "hash": "16013790293704425918"
-        },
-        {
-          "file": ".nx/workspace-data/project-graph.json",
-          "hash": "16068493160565701523"
         },
         {
           "file": ".vscode/extensions.json",
@@ -125,7 +97,7 @@
         },
         {
           "file": "migrations.json",
-          "hash": "18339107742350011290"
+          "hash": "2338023371408261809"
         },
         {
           "file": "nx.json",
@@ -133,23 +105,8 @@
         },
         {
           "file": "package.json",
-          "hash": "2720632082991427121",
+          "hash": "12041937632213837368",
           "deps": [
-            "npm:@angular/animations",
-            "npm:@angular/common",
-            "npm:@angular/compiler",
-            "npm:@angular/core",
-            "npm:@angular/fire",
-            "npm:@angular/forms",
-            "npm:@angular/platform-browser",
-            "npm:@angular/platform-browser-dynamic",
-            "npm:@angular/router",
-            "npm:@apollo/client",
-            "npm:apollo-angular",
-            "npm:graphql",
-            "npm:rxjs",
-            "npm:tslib",
-            "npm:zone.js",
             "npm:@angular-devkit/build-angular",
             "npm:@angular-devkit/core",
             "npm:@angular-devkit/schematics",
@@ -158,6 +115,7 @@
             "npm:@angular-eslint/template-parser",
             "npm:@angular/cli",
             "npm:@angular/compiler-cli",
+            "npm:@ngrx/eslint-plugin",
             "npm:@nx/angular",
             "npm:@nx/eslint-plugin",
             "npm:@nx/linter",
@@ -181,7 +139,24 @@
             "npm:postcss",
             "npm:prettier",
             "npm:tailwindcss",
-            "npm:typescript"
+            "npm:typescript",
+            "npm:@angular/animations",
+            "npm:@angular/common",
+            "npm:@angular/compiler",
+            "npm:@angular/core",
+            "npm:@angular/fire",
+            "npm:@angular/forms",
+            "npm:@angular/platform-browser",
+            "npm:@angular/platform-browser-dynamic",
+            "npm:@angular/router",
+            "npm:@apollo/client",
+            "npm:@ngrx/store",
+            "npm:@nrwl/workspace",
+            "npm:apollo-angular",
+            "npm:graphql",
+            "npm:rxjs",
+            "npm:tslib",
+            "npm:zone.js"
           ]
         },
         {
@@ -256,12 +231,13 @@
         },
         {
           "file": "src/app/app.module.ts",
-          "hash": "14127321060656125150",
+          "hash": "10327799557045212152",
           "deps": [
             "npm:@angular/core",
             "npm:@angular/platform-browser",
             "npm:@angular/fire",
-            "npm:@angular/router"
+            "npm:@angular/router",
+            "npm:@ngrx/store"
           ]
         },
         {
@@ -269,15 +245,10 @@
           "hash": "1704116517070919415"
         },
         {
-          "file": "src/app/environments/environment.ts",
-          "hash": "611369004140120182"
-        },
-        {
           "file": "src/app/graphql.module.ts",
           "hash": "7826344688865954687",
           "deps": [
             "npm:apollo-angular",
-            "npm:@angular/core",
             "npm:@apollo/client"
           ]
         },
@@ -300,9 +271,6 @@
           "file": "src/app/home/components/home.component.ts",
           "hash": "10926223962925925368",
           "deps": [
-            "npm:@angular/core",
-            "npm:@angular/common",
-            "npm:@angular/router",
             "npm:rxjs"
           ]
         },
@@ -334,7 +302,6 @@
           "file": "src/app/product/components/categories/categories.component.ts",
           "hash": "1782844933062045542",
           "deps": [
-            "npm:@angular/core",
             "npm:rxjs",
             "npm:apollo-angular"
           ]
@@ -384,10 +351,8 @@
           "file": "src/app/product/components/product-page/product-page.component.ts",
           "hash": "13970355469902348703",
           "deps": [
-            "npm:@angular/core",
             "npm:rxjs",
-            "npm:apollo-angular",
-            "npm:@angular/router"
+            "npm:apollo-angular"
           ]
         },
         {
@@ -410,10 +375,8 @@
           "file": "src/app/product/components/product-single/product-single.component.ts",
           "hash": "7836432018075694591",
           "deps": [
-            "npm:@angular/core",
             "npm:apollo-angular",
-            "npm:rxjs",
-            "npm:@angular/router"
+            "npm:rxjs"
           ]
         },
         {
@@ -465,8 +428,6 @@
           "file": "src/app/product/services/products.service.ts",
           "hash": "16687675222769544888",
           "deps": [
-            "npm:@angular/core",
-            "npm:@angular/common",
             "npm:rxjs"
           ]
         },
@@ -542,8 +503,6 @@
           "file": "src/app/shared/components/navigation/navigation.component.ts",
           "hash": "2008865980255463647",
           "deps": [
-            "npm:@angular/core",
-            "npm:@angular/router",
             "npm:rxjs"
           ]
         },
@@ -790,7 +749,7 @@
         },
         {
           "file": "yarn.lock",
-          "hash": "1656823513845733025"
+          "hash": "6511028997070974055"
         }
       ]
     }
