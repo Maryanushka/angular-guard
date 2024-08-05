@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { Subscription } from 'rxjs';
 import { GetSingleProduct } from '../../../shared/queries/getSingleProduct';
-import { ISingleProduct } from '../../components/product-item/models/product.inteface';
+import { ISingleProduct } from '../../../shared/types/product.inteface';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({

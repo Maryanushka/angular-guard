@@ -13,6 +13,8 @@ import { ErrorService } from '../shared/services/error.service';
 import { ProductSingleComponent } from './components/product-single/product-single.component';
 import { NavigationModule } from '../shared/components/navigation/navigation.module';
 import { CategoriesComponent } from './components/categories/categories.component';
+import { StoreModule } from '@ngrx/store';
+import { productKey, productReducer } from '../shared/state/main-state/main.reducer';
 
 const routes = [
 	// {
@@ -47,7 +49,8 @@ const routes = [
 		ReactiveFormsModule,
     NavigationModule,
 		NotificationModule,
-		RouterModule.forChild(routes)
+		RouterModule.forChild(routes),
+    StoreModule.forFeature(productKey, productReducer),
   ],
 	providers: [
 		ErrorService

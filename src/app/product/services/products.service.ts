@@ -6,7 +6,7 @@ import {
 } from '@angular/common/http';
 import { Observable, catchError, delay, retry, tap, throwError } from 'rxjs';
 import { ErrorService } from '../../shared/services/error.service';
-import { IProduct } from '../components/product-item/models/product.inteface';
+import { IProduct } from '../../shared/types/product.inteface';
 
 @Injectable({
 	providedIn: 'root',

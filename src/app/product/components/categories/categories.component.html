@@ -8,7 +8,7 @@
     <p class="text-center font-bold">No categories found found</p>
   }
   @else {
-    @for (item of list; track item.slug) {
+    @for (item of list; track item._slug) {
       <li class="flex w-60" >
         <a [routerLink]="['/products']" [queryParams]="{ category: item._slug } ">
           {{ item.title }}

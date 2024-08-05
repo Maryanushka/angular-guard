@@ -22,7 +22,7 @@
         <p class="text-center font-bold">No products found</p>
       }
       @else {
-        @for (item of products; track item.slug) {
+        @for (item of products; track item._slug) {
           <app-product class="flex w-60" [product]="item"></app-product>
         }
       }

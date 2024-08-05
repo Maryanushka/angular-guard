@@ -15,6 +15,7 @@ import { GraphQLModule } from './graphql.module';
 import { HomeModule } from './home/home.module';
 import { Router, RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
+import { productReducer } from './shared/state/main-state/main.reducer';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { StoreModule } from '@ngrx/store';
     GraphQLModule,
     RouterModule.forRoot([]),
 
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot({}),
   ],
   providers: [
     provideFirebaseApp(() => initializeApp(environment.firebase)),

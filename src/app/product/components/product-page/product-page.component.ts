@@ -1,7 +1,7 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
 import { NotificationService } from '../../../shared/services/notification.service';
-import { IProduct } from '../../components/product-item/models/product.inteface';
+import { IProduct } from '../../../shared/types/product.inteface';
 import { Observable, Subscription, tap } from 'rxjs';
 import { Apollo } from 'apollo-angular';
 import { GetAllProducts } from '../../../shared/queries/getAllProducts';

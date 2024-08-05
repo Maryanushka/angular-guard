@@ -231,7 +231,7 @@
         },
         {
           "file": "src/app/app.module.ts",
-          "hash": "10327799557045212152",
+          "hash": "2340443326003625825",
           "deps": [
             "npm:@angular/core",
             "npm:@angular/platform-browser",
@@ -285,7 +285,7 @@
         },
         {
           "file": "src/app/product/components/categories/categories.component.html",
-          "hash": "13022406862358130689"
+          "hash": "7900489215381729431"
         },
         {
           "file": "src/app/product/components/categories/categories.component.scss",
@@ -307,10 +307,6 @@
           ]
         },
         {
-          "file": "src/app/product/components/product-item/models/product.inteface.ts",
-          "hash": "13366230564299750094"
-        },
-        {
           "file": "src/app/product/components/product-item/product.component.html",
           "hash": "6469649990060670418"
         },
@@ -327,14 +323,14 @@
         },
         {
           "file": "src/app/product/components/product-item/product.component.ts",
-          "hash": "8779608443433691019",
+          "hash": "3972407564803673870",
           "deps": [
             "npm:@angular/core"
           ]
         },
         {
           "file": "src/app/product/components/product-page/product-page.component.html",
-          "hash": "9344324288656593731"
+          "hash": "16735170157541156747"
         },
         {
           "file": "src/app/product/components/product-page/product-page.component.scss",
@@ -349,10 +345,12 @@
         },
         {
           "file": "src/app/product/components/product-page/product-page.component.ts",
-          "hash": "13970355469902348703",
+          "hash": "487351157285127829",
           "deps": [
+            "npm:@angular/core",
             "npm:rxjs",
-            "npm:apollo-angular"
+            "npm:apollo-angular",
+            "npm:@angular/router"
           ]
         },
         {
@@ -373,20 +371,23 @@
         },
         {
           "file": "src/app/product/components/product-single/product-single.component.ts",
-          "hash": "7836432018075694591",
+          "hash": "9125987689303914800",
           "deps": [
+            "npm:@angular/core",
             "npm:apollo-angular",
-            "npm:rxjs"
+            "npm:rxjs",
+            "npm:@angular/router"
           ]
         },
         {
           "file": "src/app/product/products.module.ts",
-          "hash": "13483502110720865873",
+          "hash": "3693274053415681309",
           "deps": [
             "npm:@angular/core",
             "npm:@angular/common",
             "npm:@angular/router",
-            "npm:@angular/forms"
+            "npm:@angular/forms",
+            "npm:@ngrx/store"
           ]
         },
         {
@@ -426,8 +427,10 @@
         },
         {
           "file": "src/app/product/services/products.service.ts",
-          "hash": "16687675222769544888",
+          "hash": "14722554060456005526",
           "deps": [
+            "npm:@angular/core",
+            "npm:@angular/common",
             "npm:rxjs"
           ]
         },
@@ -750,6 +753,40 @@
         {
           "file": "yarn.lock",
           "hash": "6511028997070974055"
+        },
+        {
+          "file": "src/app/shared/state/main-state/main.reducer.ts",
+          "hash": "8505126912063738712",
+          "deps": [
+            "npm:@ngrx/store"
+          ]
+        },
+        {
+          "file": "src/app/shared/state/main-state/main.actions.ts",
+          "hash": "950311905206772008",
+          "deps": [
+            "npm:@ngrx/store"
+          ]
+        },
+        {
+          "file": "src/app/shared/types/product.inteface.ts",
+          "hash": "13366230564299750094"
+        },
+        {
+          "file": "src/app/shared/state/main-state/main.selectors.ts",
+          "hash": "11926388124317504032",
+          "deps": [
+            "npm:@ngrx/store"
+          ]
+        },
+        {
+          "file": "src/app/shared/state/requests/get-product.service.ts",
+          "hash": "1982409355999362062",
+          "deps": [
+            "npm:@angular/core",
+            "npm:apollo-angular",
+            "npm:rxjs"
+          ]
         }
       ]
     }
