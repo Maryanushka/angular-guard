@@ -15,6 +15,7 @@ import { NavigationModule } from '../shared/components/navigation/navigation.mod
 import { CategoriesComponent } from './components/categories/categories.component';
 import { StoreModule } from '@ngrx/store';
 import { productKey, productReducer } from '../shared/state/main-state/main.reducer';
+import { SocialMediaComponent } from "../shared/components/social-media/social-media.component";
 
 const routes = [
 	// {
@@ -43,15 +44,16 @@ const routes = [
 	],
   imports: [
     CommonModule,
-		GlobalErrorModule,
-		HttpClientModule,
-		FormsModule,
-		ReactiveFormsModule,
+    GlobalErrorModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     NavigationModule,
-		NotificationModule,
-		RouterModule.forChild(routes),
+    NotificationModule,
+    RouterModule.forChild(routes),
     StoreModule.forFeature(productKey, productReducer),
-  ],
+    SocialMediaComponent
+],
 	providers: [
 		ErrorService
 	]

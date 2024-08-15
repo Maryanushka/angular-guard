@@ -15,6 +15,7 @@ module.exports = {
         pesianGreen: '#00A194',
         transparent: "transparent",
         current: "currentColor",
+        battleshipGray: "#999999",
         black: colors.black,
         white: colors.white,
         emerald: colors.emerald,

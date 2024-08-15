@@ -27,6 +27,8 @@ query Product($slug: String) {
         body
       }
     }
+    price
+    title
   }
 }
 

@@ -1,9 +1,9 @@
-<a [routerLink]="'/products/' + product._slug" class="py-4 px-6 border border-slate-100 flex rounded items-center m-1 flex-col shadow-md hover:shadow-lg group">
+<a [routerLink]="'/products/' + product._slug" class="py-4 px-6 border border-slate-100 flex rounded items-center flex-col shadow-md hover:shadow-lg group max-h-[13rem]">
 	<div class="image w-24 h-24">
 		<img class="w-full h-full object-cover" [src]="product.cover[0].url" alt="">
 	</div>
-	<figcaption class="content flex">
-		<h2 class="text-sm font-bold mt-4 w-[90%] pr-2 text-center group-hover:text-pesianGreen transition-all">{{ product.title }}</h2>
+	<figcaption class="content flex justify-center">
+		<h2 class="text-sm font-bold mt-4 w-[90%] text-center group-hover:text-pesianGreen transition-all">{{ product.title }}</h2>
 		<!-- <p class="description my-4 max-h-[10rem] overflow-hidden">{{ product.description }}</p> -->
 	</figcaption>
 </a>

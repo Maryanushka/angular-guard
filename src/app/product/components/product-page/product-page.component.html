@@ -14,20 +14,22 @@
 	</p>
 
   <div class="container flex max-w-[100%]">
-    <div class="w-4/12">
+    <div class="w-4/12 md:w-3/12">
       <product-categories></product-categories>
     </div>
-    <div *ngIf="products" class="flex flex-wrap justify-around mt-16 w-8/12">
+    <div *ngIf="products" class="flex flex-wrap justify-start mt-16 w-8/12 md:w-9/12">
       @if(products.length === 0) {
         <p class="text-center font-bold">No products found</p>
       }
       @else {
         @for (item of products; track item._slug) {
-          <app-product class="flex w-60" [product]="item"></app-product>
+          <app-product class="flex w-60 m-2" [product]="item"></app-product>
         }
       }
     </div>
   </div>
+
+  <app-social-media class="flex fixed right-8 bottom-4"></app-social-media>
 
 
 	<!-- <app-notification title="title" *ngIf="notificationService.isNotification$ | async"></app-notification> -->

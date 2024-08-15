@@ -308,11 +308,11 @@
         },
         {
           "file": "src/app/product/components/product-item/product.component.html",
-          "hash": "6469649990060670418"
+          "hash": "3746436306568535450"
         },
         {
           "file": "src/app/product/components/product-item/product.component.scss",
-          "hash": "15387356221512532201"
+          "hash": "12724836385602680334"
         },
         {
           "file": "src/app/product/components/product-item/product.component.spec.ts",
@@ -330,7 +330,7 @@
         },
         {
           "file": "src/app/product/components/product-page/product-page.component.html",
-          "hash": "16735170157541156747"
+          "hash": "1777092288430197535"
         },
         {
           "file": "src/app/product/components/product-page/product-page.component.scss",
@@ -359,7 +359,7 @@
         },
         {
           "file": "src/app/product/components/product-single/product-single.component.html",
-          "hash": "13587763627207951917"
+          "hash": "5687489966260026423"
         },
         {
           "file": "src/app/product/components/product-single/product-single.component.spec.ts",
@@ -381,7 +381,7 @@
         },
         {
           "file": "src/app/product/products.module.ts",
-          "hash": "3693274053415681309",
+          "hash": "17809803058640530927",
           "deps": [
             "npm:@angular/core",
             "npm:@angular/common",
@@ -598,7 +598,7 @@
         },
         {
           "file": "src/app/shared/queries/getSingleProduct.ts",
-          "hash": "6360622046193020861",
+          "hash": "13284599224161709322",
           "deps": [
             "npm:apollo-angular"
           ]
@@ -637,6 +637,40 @@
           "deps": [
             "npm:rxjs"
           ]
+        },
+        {
+          "file": "src/app/shared/state/main-state/main.actions.ts",
+          "hash": "950311905206772008",
+          "deps": [
+            "npm:@ngrx/store"
+          ]
+        },
+        {
+          "file": "src/app/shared/state/main-state/main.reducer.ts",
+          "hash": "8505126912063738712",
+          "deps": [
+            "npm:@ngrx/store"
+          ]
+        },
+        {
+          "file": "src/app/shared/state/main-state/main.selectors.ts",
+          "hash": "11926388124317504032",
+          "deps": [
+            "npm:@ngrx/store"
+          ]
+        },
+        {
+          "file": "src/app/shared/state/requests/get-product.service.ts",
+          "hash": "1982409355999362062",
+          "deps": [
+            "npm:@angular/core",
+            "npm:apollo-angular",
+            "npm:rxjs"
+          ]
+        },
+        {
+          "file": "src/app/shared/types/product.inteface.ts",
+          "hash": "13366230564299750094"
         },
         {
           "file": "src/app/shared/types/token.interface.ts",
@@ -733,7 +767,7 @@
         },
         {
           "file": "tailwind.config.js",
-          "hash": "13868511068861071744",
+          "hash": "17547021807135955963",
           "deps": [
             "npm:tailwindcss"
           ]
@@ -753,40 +787,6 @@
         {
           "file": "yarn.lock",
           "hash": "6511028997070974055"
-        },
-        {
-          "file": "src/app/shared/state/main-state/main.reducer.ts",
-          "hash": "8505126912063738712",
-          "deps": [
-            "npm:@ngrx/store"
-          ]
-        },
-        {
-          "file": "src/app/shared/state/main-state/main.actions.ts",
-          "hash": "950311905206772008",
-          "deps": [
-            "npm:@ngrx/store"
-          ]
-        },
-        {
-          "file": "src/app/shared/types/product.inteface.ts",
-          "hash": "13366230564299750094"
-        },
-        {
-          "file": "src/app/shared/state/main-state/main.selectors.ts",
-          "hash": "11926388124317504032",
-          "deps": [
-            "npm:@ngrx/store"
-          ]
-        },
-        {
-          "file": "src/app/shared/state/requests/get-product.service.ts",
-          "hash": "1982409355999362062",
-          "deps": [
-            "npm:@angular/core",
-            "npm:apollo-angular",
-            "npm:rxjs"
-          ]
         }
       ]
     }
