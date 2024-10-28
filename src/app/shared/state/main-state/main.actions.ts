@@ -1,7 +1,23 @@
-import { IProduct } from './../../types/product.inteface';
-import { createAction, props } from '@ngrx/store';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ICategory, IProduct, ISingleProduct } from './../../types/product.inteface';
+import { createActionGroup, emptyProps, props } from '@ngrx/store';
 
-export const addProduct = createAction(
-  '[Products] Add Product',
-  props<{ product: IProduct }>()
-);
+export const ProductActions = createActionGroup({
+  source: 'Products',
+  events: {
+    'Add Product': props<{ product: IProduct }>(),
+    'Delete Product': props<{ product: IProduct }>(),
+    // all products
+    'Load Products': props<{ category: string | null; limit: number }>(),
+    'Load Products Success': props<{ products: IProduct[] }>(),
+    'Load Products Failure': props<{ error: HttpErrorResponse }>(),
+    // single product
+    'Load Product': props<{ slug: string }>(),
+    'Load Product Success': props<{ product: ISingleProduct }>(),
+    'Load Product Failure': props<{ error: HttpErrorResponse }>(),
+    // load categories
+    'Load Categories': emptyProps(),
+    'Load Categories Success': props<{ categories: ICategory[] }>(),
+    'Load Categories Failure': props<{ error: HttpErrorResponse }>(),
+  }
+})

@@ -1,6 +1,6 @@
 <app-navigation></app-navigation>
 
-<ng-container *ngIf="product">
+<ng-container *ngIf="(singleProduct$ | async) as product">
   <div class="flex container ml-auto mr-auto flex-wrap">
     <div class="breadcrumbs w-full my-16 flex items-center">
       <a routerLink="/products" class="text-battleshipGray hover:text-pesianGreen">Магазин</a>
@@ -19,7 +19,7 @@
     </div>
   </div>
 </ng-container>
-<ng-container *ngIf="!product">
+<ng-container *ngIf="singleProductError$ | async">
   <p class="text-center font-bold">No product found</p>
 </ng-container>
 

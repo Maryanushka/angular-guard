@@ -14,14 +14,4 @@ export class ProductComponent {
     cover: [],
     categories: [],
   };
-
-  isDetailsActive = false;
-  detailsButtonText = 'Show details';
-
-  toggleDetails() {
-    this.isDetailsActive = !this.isDetailsActive;
-    this.isDetailsActive
-      ? (this.detailsButtonText = 'Hide details')
-      : (this.detailsButtonText = 'Show details');
-  }
 }

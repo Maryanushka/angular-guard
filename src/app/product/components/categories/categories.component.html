@@ -1,4 +1,4 @@
-<ul *ngIf="list" class="mt-16">
+<ul *ngIf="(categories$ | async) as list" class="mt-16">
   <li class="flex w-60">
     <a [routerLink]="['/products']" [queryParams]="{ category: null }">
       Всі продукти

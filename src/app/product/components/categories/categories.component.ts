@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Apollo } from 'apollo-angular';
 import { GetCategories } from '../../../shared/queries/getCategory';
+import { MainFacade } from '../../../shared/state/main-state/main.facade';
 
 @Component({
   selector: 'product-categories',
@@ -9,24 +10,13 @@ import { GetCategories } from '../../../shared/queries/getCategory';
   styleUrl: './categories.component.scss',
 })
 export class CategoriesComponent {
-  private querySubscription = new Subscription;
-  private apollo: Apollo = inject(Apollo);
-  loading: boolean = false;
-  list: any;
+  private facade = inject(MainFacade);
+
+  categories$ = this.facade.categories$;
+  categoriesLoading$ = this.facade.categoriesLoading$;
+  categoriesError$ = this.facade.categoriesError$;
 
   ngOnInit() {
-    this.querySubscription = this.apollo
-      .watchQuery<any>({
-        query: GetCategories
-      })
-      .valueChanges.subscribe(({ data, loading }) => {
-        this.loading = loading;
-        this.list = data.Categories.items;
-      });
-  }
-
-
-  ngOnDestroy() {
-    this.querySubscription.unsubscribe();
+    this.facade.loadCategories();
   }
 }

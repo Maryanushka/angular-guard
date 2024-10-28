@@ -1,6 +1,4 @@
-<app-global-error></app-global-error>
 <app-navigation></app-navigation>
-
 
 	<!-- <label class="flex flex-col mb-3 mx-4">
 		<span class="font-bold">Filter products</span>
@@ -9,20 +7,23 @@
 	<span>{{ filter }}</span> -->
 
 
-	<p *ngIf="loading" class="loading text-center font-bold">
+	<p *ngIf="loading$ | async" class="loading text-center font-bold">
 		loading products..
+	</p>
+	<p *ngIf="error$ | async" class="loading text-center font-bold">
+    {{ error$ | async }}
 	</p>
 
   <div class="container flex max-w-[100%]">
     <div class="w-4/12 md:w-3/12">
       <product-categories></product-categories>
     </div>
-    <div *ngIf="products" class="flex flex-wrap justify-start mt-16 w-8/12 md:w-9/12">
-      @if(products.length === 0) {
+    <div *ngIf="products$ | async " class="flex flex-wrap justify-start mt-16 w-8/12 md:w-9/12">
+      @if((products$ | async)!.length === 0) {
         <p class="text-center font-bold">No products found</p>
       }
       @else {
-        @for (item of products; track item._slug) {
+        @for (item of products$ | async; track item._slug) {
           <app-product class="flex w-60 m-2" [product]="item"></app-product>
         }
       }

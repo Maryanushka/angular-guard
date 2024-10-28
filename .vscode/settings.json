@@ -1,7 +1,8 @@
 {
 	"editor.formatOnSave": true,
 	"[typescript]": {
-		"editor.formatOnSave": true
+		"editor.formatOnSave": true,
+		"editor.defaultFormatter": "vscode.typescript-language-features"
 	},
 	"editor.codeActionsOnSave": {
 		"source.fixAll.eslint": "explicit"

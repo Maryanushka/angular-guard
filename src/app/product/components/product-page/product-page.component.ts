@@ -6,6 +6,7 @@ import { Observable, Subscription, tap } from 'rxjs';
 import { Apollo } from 'apollo-angular';
 import { GetAllProducts } from '../../../shared/queries/getAllProducts';
 import { ActivatedRoute } from '@angular/router';
+import { MainFacade } from '../../../shared/state/main-state/main.facade';
 
 @Component({
   selector: 'app-product-page',
@@ -13,38 +14,19 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./product-page.component.scss'],
 })
 export class ProductPageComponent implements OnInit, OnDestroy {
-  title = 'angular guard';
-
-  loading: boolean = false;
-  products: any;
-  filter = '';
-  router = inject(ActivatedRoute);
+  private facade = inject(MainFacade);
+  private router = inject(ActivatedRoute);
   private querySubscription = new Subscription;
 
-  constructor(
-    // public productsService: ProductsService,
-    // public notificationService: NotificationService,
-    private apollo: Apollo
-  ) {}
+  products$ = this.facade.products$;
+  loading$ = this.facade.productsLoading$;
+  error$ = this.facade.productsError$;
+  filter = '';
 
   ngOnInit() {
-    this.router.queryParams.subscribe(params => {
-
+    this.querySubscription = this.router.queryParams.subscribe(params => {
       const category = params['category'] || null;
-      console.log(category);
-
-      this.querySubscription = this.apollo
-        .watchQuery<any>({
-          query: GetAllProducts,
-          variables: {
-            limit: 10,
-            category: category,
-          },
-        })
-        .valueChanges.subscribe(({ data, loading }) => {
-          this.loading = loading;
-          this.products = data.Products.items;
-        });
+      this.facade.loadProducts(category, 10);
     });
   }
 

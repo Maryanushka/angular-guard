@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { isDevMode, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,7 +15,10 @@ import { GraphQLModule } from './graphql.module';
 import { HomeModule } from './home/home.module';
 import { Router, RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
-import { productReducer } from './shared/state/main-state/main.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { MainEffects } from './shared/state/main-state/main.effects';
+import { APP_BASE_HREF } from '@angular/common';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -24,20 +27,26 @@ import { productReducer } from './shared/state/main-state/main.reducer';
   imports: [
     BrowserModule,
     AppRoutingModule,
-		ProductsModule,
+    ProductsModule,
     HomeModule,
-		AboutModule,
-		SigninModule,
+    AboutModule,
+    SigninModule,
     GraphQLModule,
     RouterModule.forRoot([]),
-
     StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
+    StoreDevtoolsModule.instrument({
+      logOnly: !isDevMode(),
+      maxAge: 25,
+      connectInZone: true,
+    }),
   ],
   providers: [
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()),
+    { provide: APP_BASE_HREF, useValue: './' }
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

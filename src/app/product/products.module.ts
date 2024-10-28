@@ -16,19 +16,21 @@ import { CategoriesComponent } from './components/categories/categories.componen
 import { StoreModule } from '@ngrx/store';
 import { productKey, productReducer } from '../shared/state/main-state/main.reducer';
 import { SocialMediaComponent } from "../shared/components/social-media/social-media.component";
+import { EffectsModule } from '@ngrx/effects';
+import { MainEffects } from '../shared/state/main-state/main.effects';
 
 const routes = [
-	// {
+  // {
   //   path: 'create-product',
   //   canActivate: [AuthenticaionGuard],
   //   component: CreateProductPageComponent,
   //   data: {roles: ['user']},
   // },
-	{
+  {
     path: 'products',
     component: ProductPageComponent,
   },
-	{
+  {
     path: 'products/:slug',
     component: ProductSingleComponent,
   },
@@ -36,12 +38,12 @@ const routes = [
 
 @NgModule({
   declarations: [
-		ProductComponent,
-		ProductPageComponent,
+    ProductComponent,
+    ProductPageComponent,
     ProductSingleComponent,
     CategoriesComponent,
-		FocusDirective
-	],
+    FocusDirective
+  ],
   imports: [
     CommonModule,
     GlobalErrorModule,
@@ -51,11 +53,12 @@ const routes = [
     NavigationModule,
     NotificationModule,
     RouterModule.forChild(routes),
-    StoreModule.forFeature(productKey, productReducer),
+    EffectsModule.forFeature([MainEffects]),
+    StoreModule.forFeature({ name: productKey, reducer: productReducer }),
     SocialMediaComponent
-],
-	providers: [
-		ErrorService
-	]
+  ],
+  providers: [
+    ErrorService
+  ]
 })
 export class ProductsModule { }
