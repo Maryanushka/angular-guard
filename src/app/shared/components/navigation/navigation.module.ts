@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NavigationComponent } from './navigation.component';
 import { AuthService } from '../../../product/services/auth.service';
 import { RouterModule } from '@angular/router';
+import { BasketComponent } from "../basket/basket.component";
 
 
 
@@ -12,8 +13,9 @@ import { RouterModule } from '@angular/router';
 	],
   imports: [
     CommonModule,
-		RouterModule,
-  ],
+    RouterModule,
+    BasketComponent
+],
 	exports: [
 		NavigationComponent
 	],

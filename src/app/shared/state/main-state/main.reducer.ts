@@ -10,6 +10,10 @@ export interface State {
     loading: boolean,
     error: any,
   };
+  basket: {
+    data: ISingleProduct[],
+    loading: boolean,
+  }
   singleProduct: {
     data: ISingleProduct | null,
     loading: boolean,
@@ -23,6 +27,10 @@ export interface State {
 }
 
 export const initialState: State = {
+  basket: {
+    data: [],
+    loading: false,
+  },
   products: {
     data: [],
     loading: false,
@@ -44,18 +52,16 @@ export const productReducer = createReducer(
   initialState,
   on(ProductActions.addProduct, (state, { product }) => ({
     ...state,
-    products: {
-      data: [...state.products.data, product],
+    basket: {
+      data: [...state.basket.data, product],
       loading: false,
-      error: null,
     }
   })),
   on(ProductActions.deleteProduct, (state, { product }) => ({
     ...state,
-    products: {
-      data: state.products.data.filter((p) => p._slug !== product._slug),
+    basket: {
+      data: state.basket.data.filter((p) => p._slug !== product._slug),
       loading: false,
-      error: null,
     },
   })),
   on(ProductActions.loadProducts, (state) => ({ ...state, loading: true })),

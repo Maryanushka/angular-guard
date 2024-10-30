@@ -18,7 +18,11 @@ export const selectProductsError = createSelector(
 );
 export const selectProductsCount = createSelector(
   selectState,
-  (state: State) => state.products.data.length
+  (state: State) => state.basket.data.length
+);
+export const selectBasket = createSelector(
+  selectState,
+  (state: State) => state.basket.data
 );
 
 export const selectSingleProduct = createSelector(

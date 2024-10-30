@@ -31,4 +31,8 @@ export class ProductSingleComponent implements OnInit {
     this.querySubscription.unsubscribe();
   }
 
+  addToBasket(product: ISingleProduct) {
+    this.facade.addToBasket(product);
+  }
+
 }

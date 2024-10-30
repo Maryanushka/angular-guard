@@ -36,5 +36,10 @@
         "{workspaceRoot}/.eslintignore"
       ]
     }
+  },
+  "generators": {
+    "@nx/angular:component": {
+      "style": "scss"
+    }
   }
 }

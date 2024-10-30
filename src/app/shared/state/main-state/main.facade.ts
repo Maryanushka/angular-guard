@@ -10,7 +10,8 @@ import {
   selectSingleProductLoading,
   selectCategories,
   selectCategoriesLoading,
-  selectCategoriesError
+  selectCategoriesError,
+  selectBasket
 } from './main.selectors';
 import { Observable } from 'rxjs';
 import { ICategory, IProduct, ISingleProduct } from '../../types/product.inteface';
@@ -28,6 +29,7 @@ export class MainFacade {
   productsError$: Observable<any> = this.store.pipe(select(selectProductsError));
 
   productsCount$: Observable<number> = this.store.pipe(select(selectProductsCount));
+  basket$: Observable<ISingleProduct[]> = this.store.pipe(select(selectBasket));
 
   singleProduct$: Observable<ISingleProduct | null> = this.store.pipe(select(selectSingleProduct));
   singleProductLoading$: Observable<boolean> = this.store.pipe(select(selectSingleProductLoading));
@@ -45,5 +47,8 @@ export class MainFacade {
   }
   loadCategories() {
     this.store.dispatch(ProductActions.loadCategories());
+  }
+  addToBasket(product: ISingleProduct) {
+    this.store.dispatch(ProductActions.addProduct({ product }));
   }
 }

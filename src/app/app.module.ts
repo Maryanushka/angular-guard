@@ -19,6 +19,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { MainEffects } from './shared/state/main-state/main.effects';
 import { APP_BASE_HREF } from '@angular/common';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { BasketPageModule } from './basket-page/basket-page.module';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     HomeModule,
     AboutModule,
     SigninModule,
+    BasketPageModule,
     GraphQLModule,
     RouterModule.forRoot([]),
     StoreModule.forRoot({}),
@@ -45,7 +47,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()),
-    { provide: APP_BASE_HREF, useValue: './' }
+    { provide: APP_BASE_HREF, useValue: '/' }
   ],
   bootstrap: [AppComponent],
 })

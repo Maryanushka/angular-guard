@@ -23,7 +23,8 @@
       }
     }
     &:not(.home){
-      @apply h-20;
+
+      @apply h-20 flex justify-between items-center;
       ul {
         @apply  absolute left-[50%] top-[50%];
         li {

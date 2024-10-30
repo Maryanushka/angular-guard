@@ -5,8 +5,8 @@ import { createActionGroup, emptyProps, props } from '@ngrx/store';
 export const ProductActions = createActionGroup({
   source: 'Products',
   events: {
-    'Add Product': props<{ product: IProduct }>(),
-    'Delete Product': props<{ product: IProduct }>(),
+    'Add Product': props<{ product: ISingleProduct }>(),
+    'Delete Product': props<{ product: ISingleProduct }>(),
     // all products
     'Load Products': props<{ category: string | null; limit: number }>(),
     'Load Products Success': props<{ products: IProduct[] }>(),

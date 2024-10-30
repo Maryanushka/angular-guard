@@ -46,4 +46,6 @@
 		<!-- <li *ngIf="(authService.isLoginSubject$ | async) === false"><a class="text-white" routerLink="/signin" routerLinkActive="active">Увійти</a></li> -->
 		<!-- <li *ngIf="authService.isLoginSubject$ | async"><button (click)="authService.logout()" class="text-white">Вийти</button></li> -->
 	</ul>
+
+  <app-basket *ngIf="!isHome"></app-basket>
 </nav>

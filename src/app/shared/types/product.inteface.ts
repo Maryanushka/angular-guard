@@ -9,6 +9,7 @@ export interface ISingleProduct {
   _slug: string;
   title: string;
   description: string;
+  price: string;
   cover: { url: string, width: number, height: number }[];
   categories: { _slug: string, title: string }[];
   content: { body: string }[];
