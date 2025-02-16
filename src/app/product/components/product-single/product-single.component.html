@@ -1,24 +1,38 @@
 <app-navigation></app-navigation>
 
-<ng-container *ngIf="(singleProduct$ | async) as product">
+<ng-container *ngIf="singleProduct$ | async as product">
   <div class="flex container ml-auto mr-auto flex-wrap px-8">
     <div class="breadcrumbs w-full my-16 flex items-center">
-      <a routerLink="/products" class="text-battleshipGray hover:text-pesianGreen">Магазин</a>
+      <a
+        routerLink="/products"
+        class="text-battleshipGray hover:text-pesianGreen"
+        >Магазин</a
+      >
       <span class="bg-battleshipGray flex w-8 h-[2px] mx-8"></span>
       <span class="text-pesianGreen">{{ product.title }}</span>
     </div>
     <div class="image w-4/12">
-      <img class="object-cover w-full h-full" [src]="product.cover[0].url" alt="">
+      <img
+        class="object-cover w-full h-full"
+        [src]="product.cover[0].url"
+        alt=""
+      />
     </div>
     <div class="content w-8/12 pl-8">
       <h2 class="text-pesianGreen inline-flex mb-5 text-xl font-medium">
         {{ product.title }}
       </h2>
-      <div class="description mb-8" [innerHTML]="product.content[0].body">
-      </div>
+      <div class="description mb-8" [innerHTML]="product.content[0].body"></div>
       <div class="add-to-basket flex">
-        <div class="price text-pesianGreen text-2xl font-bold mr-12">{{ product.price }} <span>₴</span></div>
-        <button class="btn btn-primary text-pesianGreen font-semibold" (click)="addToBasket(product)">Добавить в корзину</button>
+        <div class="price text-pesianGreen text-2xl font-bold mr-12">
+          {{ product.price }} <span>₴</span>
+        </div>
+        <button
+          class="btn btn-primary text-pesianGreen font-semibold"
+          (click)="addToBasket(product)"
+        >
+          Добавить в корзину
+        </button>
       </div>
     </div>
   </div>
@@ -26,4 +40,3 @@
 <ng-container *ngIf="singleProductError$ | async">
   <p class="text-center font-bold">No product found</p>
 </ng-container>
-

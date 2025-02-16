@@ -1,7 +1,7 @@
-:host  {
-	width: 100%;
-	display: grid;
-	align-self: center;
+:host {
+  width: 100%;
+  display: grid;
+  align-self: center;
   input {
     margin: 0;
     &.ng-invalid.ng-touched {
@@ -12,8 +12,4 @@
     display: flex;
     flex-direction: column;
   }
-
 }
-
-
-

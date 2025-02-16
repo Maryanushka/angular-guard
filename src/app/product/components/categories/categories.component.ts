@@ -1,15 +1,16 @@
-import { Component, inject } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { Apollo } from 'apollo-angular';
-import { GetCategories } from '../../../shared/queries/getCategory';
+import { Component, inject, OnInit } from '@angular/core';
 import { MainFacade } from '../../../shared/state/main-state/main.facade';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'product-categories',
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.scss',
+  standalone: true,
+  imports: [CommonModule, RouterModule],
 })
-export class CategoriesComponent {
+export class CategoriesComponent implements OnInit {
   private facade = inject(MainFacade);
 
   categories$ = this.facade.categories$;

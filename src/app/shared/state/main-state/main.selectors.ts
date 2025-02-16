@@ -6,47 +6,47 @@ export const selectState = createFeatureSelector<State>(productKey);
 
 export const selectProducts = createSelector(
   selectState,
-  (state: State) => state.products.data
+  (state: State) => state.products.data,
 );
 export const selectProductsLoading = createSelector(
   selectState,
-  (state: State) => state.products.loading
+  (state: State) => state.products.loading,
 );
 export const selectProductsError = createSelector(
   selectState,
-  (state: State) => state.products.error
+  (state: State) => state.products.error,
 );
 export const selectProductsCount = createSelector(
   selectState,
-  (state: State) => state.basket.data.length
+  (state: State) => state.basket.data.length,
 );
 export const selectBasket = createSelector(
   selectState,
-  (state: State) => state.basket.data
+  (state: State) => state.basket.data,
 );
 
 export const selectSingleProduct = createSelector(
   selectState,
-  (state: State) => state.singleProduct.data
+  (state: State) => state.singleProduct.data,
 );
 export const selectSingleProductLoading = createSelector(
   selectState,
-  (state: State) => state.singleProduct.loading
+  (state: State) => state.singleProduct.loading,
 );
 export const selectSingleProductError = createSelector(
   selectState,
-  (state: State) => state.singleProduct.error
+  (state: State) => state.singleProduct.error,
 );
 
 export const selectCategories = createSelector(
   selectState,
-  (state: State) => state.categories.data
+  (state: State) => state.categories.data,
 );
 export const selectCategoriesLoading = createSelector(
   selectState,
-  (state: State) => state.categories.loading
+  (state: State) => state.categories.loading,
 );
 export const selectCategoriesError = createSelector(
   selectState,
-  (state: State) => state.categories.error
+  (state: State) => state.categories.error,
 );

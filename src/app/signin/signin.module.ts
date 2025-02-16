@@ -12,15 +12,14 @@ const routes: Routes = [
   },
 ];
 
-
 @NgModule({
   declarations: [SigninPageComponent],
   imports: [
     CommonModule,
-		GlobalErrorModule,
-		FormsModule,
-		ReactiveFormsModule,
-		RouterModule.forChild(routes)
-  ]
+    GlobalErrorModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule.forChild(routes),
+  ],
 })
-export class SigninModule { }
+export class SigninModule {}

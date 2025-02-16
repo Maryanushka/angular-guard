@@ -15,14 +15,20 @@ export class AuthenticaionGuard {
   ) {}
 
   // state: RouterStateSnapshot
-  canActivate(route: ActivatedRouteSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-
-    if (route.data['roles'][0] === 'user' && this.authService.isLoginSubject$.getValue()) {
-      return  true
-    }
-    else {
-      return this.router.createUrlTree(['signin'])
+  canActivate(
+    route: ActivatedRouteSnapshot,
+  ):
+    | Observable<boolean | UrlTree>
+    | Promise<boolean | UrlTree>
+    | boolean
+    | UrlTree {
+    if (
+      route.data['roles'][0] === 'user' &&
+      this.authService.isLoginSubject$.getValue()
+    ) {
+      return true;
+    } else {
+      return this.router.createUrlTree(['signin']);
     }
   }
-
 }

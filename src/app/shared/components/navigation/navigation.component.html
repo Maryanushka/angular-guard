@@ -1,51 +1,47 @@
-<nav [ngClass]="{
-  '': !isHome,
-  'home': isHome,
-}">
-  <a  *ngIf="!isHome" [routerLink]="'/'">
-    <img src="../../../../assets/logo.png" alt="" class="w-24 mt-8 ml-8">
+<nav
+  [ngClass]="{
+    '': !isHome,
+    home: isHome
+  }"
+>
+  <a *ngIf="!isHome" [routerLink]="'/'">
+    <img src="../../../../assets/logo.png" alt="" class="w-24 mt-8 ml-8" />
   </a>
 
-	<ul class="flex"
+  <ul
+    class="flex"
     [ngClass]="{
-        'menu-regular': !isHome,
-      }"
-    >
-		<li><a
-      class="group"
-      routerLink="/about"
-      routerLinkActive="active">
-        <span
-        class="flex transition-all"></span>
+      'menu-regular': !isHome
+    }"
+  >
+    <li>
+      <a class="group" routerLink="/about" routerLinkActive="active">
+        <span class="flex transition-all"></span>
         Про нас
       </a>
     </li>
-		<li><a
-      routerLink="/products"
-      routerLinkActive="active">
+    <li>
+      <a routerLink="/products" routerLinkActive="active">
         <span class="flex transition-all"></span>
         Магазин
       </a>
     </li>
-		<li><a
-      routerLink="/services"
-      routerLinkActive="active">
-      <span class="flex transition-all"></span>
+    <li>
+      <a routerLink="/services" routerLinkActive="active">
+        <span class="flex transition-all"></span>
         Послуги
-    </a>
+      </a>
     </li>
-		<li><a
-      class="group"
-      routerLink="/contacts"
-      routerLinkActive="active">
-      <span class="flex transition-all"></span>
+    <li>
+      <a class="group" routerLink="/contacts" routerLinkActive="active">
+        <span class="flex transition-all"></span>
         Контакти
       </a>
     </li>
-		<!-- <li *ngIf="authService.isLoginSubject$ | async"><a class="text-white mr-4" routerLink="/create-product" routerLinkActive="active">Create product</a></li> -->
-		<!-- <li *ngIf="(authService.isLoginSubject$ | async) === false"><a class="text-white" routerLink="/signin" routerLinkActive="active">Увійти</a></li> -->
-		<!-- <li *ngIf="authService.isLoginSubject$ | async"><button (click)="authService.logout()" class="text-white">Вийти</button></li> -->
-	</ul>
+    <!-- <li *ngIf="authService.isLoginSubject$ | async"><a class="text-white mr-4" routerLink="/create-product" routerLinkActive="active">Create product</a></li> -->
+    <!-- <li *ngIf="(authService.isLoginSubject$ | async) === false"><a class="text-white" routerLink="/signin" routerLinkActive="active">Увійти</a></li> -->
+    <!-- <li *ngIf="authService.isLoginSubject$ | async"><button (click)="authService.logout()" class="text-white">Вийти</button></li> -->
+  </ul>
 
   <app-basket *ngIf="!isHome"></app-basket>
 </nav>

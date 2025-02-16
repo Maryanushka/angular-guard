@@ -3,7 +3,10 @@
     "default": {
       "runner": "nx-cloud",
       "options": {
-        "cacheableOperations": ["build", "test"],
+        "cacheableOperations": [
+          "build",
+          "test"
+        ],
         "accessToken": "NjgzZTI0YjgtYjg3My00NzRhLTgzYWQtNTg2NGJiMTg1NTA4fHJlYWQtd3JpdGU="
       }
     }
@@ -12,8 +15,13 @@
     "defaultBase": "main"
   },
   "namedInputs": {
-    "sharedGlobals": [],
-    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "sharedGlobals": [
+      "{workspaceRoot}/.github/workflows/ci.yml"
+    ],
+    "default": [
+      "{projectRoot}/**/*",
+      "sharedGlobals"
+    ],
     "production": [
       "default",
       "!{projectRoot}/tsconfig.spec.json",
@@ -23,11 +31,21 @@
   },
   "targetDefaults": {
     "build": {
-      "dependsOn": ["^build"],
-      "inputs": ["production", "^production"]
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "production",
+        "^production"
+      ],
+      "cache": true
     },
     "test": {
-      "inputs": ["default", "^production"]
+      "inputs": [
+        "default",
+        "^production"
+      ],
+      "cache": true
     },
     "lint": {
       "inputs": [
@@ -35,11 +53,16 @@
         "{workspaceRoot}/.eslintrc.json",
         "{workspaceRoot}/.eslintignore"
       ]
+    },
+    "watch": {
+      "cache": true
     }
   },
   "generators": {
     "@nx/angular:component": {
       "style": "scss"
     }
-  }
+  },
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "nxCloudId": "67b1fae379ed107f0f7f6bb3"
 }

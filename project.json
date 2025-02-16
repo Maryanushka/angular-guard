@@ -58,7 +58,7 @@
           "browserTarget": "angular-guard:build:production"
         },
         "development": {
-          "browserTarget": "angular-guard:build:development",
+          "browserTarget": "angular-guard:build:development"
         }
       },
       "defaultConfiguration": "development"

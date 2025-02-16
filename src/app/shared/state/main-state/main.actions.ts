@@ -1,5 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { ICategory, IProduct, ISingleProduct } from './../../types/product.inteface';
+import {
+  ICategory,
+  IProduct,
+  ISingleProduct,
+} from './../../types/product.inteface';
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
 
 export const ProductActions = createActionGroup({
@@ -19,5 +23,5 @@ export const ProductActions = createActionGroup({
     'Load Categories': emptyProps(),
     'Load Categories Success': props<{ categories: ICategory[] }>(),
     'Load Categories Failure': props<{ error: HttpErrorResponse }>(),
-  }
-})
+  },
+});

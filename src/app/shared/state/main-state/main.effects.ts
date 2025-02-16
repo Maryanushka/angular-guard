@@ -16,11 +16,15 @@ export class MainEffects {
       ofType(ProductActions.loadProducts),
       switchMap(({ category, limit }) =>
         this.service.getProducts(category, limit).pipe(
-          map((products: IProduct[]) => ProductActions.loadProductsSuccess({ products })),
-          catchError((error) => of(ProductActions.loadProductsFailure({ error })))
-        )
-      )
-    )
+          map((products: IProduct[]) =>
+            ProductActions.loadProductsSuccess({ products }),
+          ),
+          catchError((error) =>
+            of(ProductActions.loadProductsFailure({ error })),
+          ),
+        ),
+      ),
+    ),
   );
 
   loadSingleProduct$ = createEffect(() =>
@@ -28,11 +32,15 @@ export class MainEffects {
       ofType(ProductActions.loadProduct),
       mergeMap(({ slug }) =>
         this.service.getSingleProduct(slug).pipe(
-          map((product: ISingleProduct) => ProductActions.loadProductSuccess({ product })),
-          catchError((error) => of(ProductActions.loadProductFailure({ error })))
-        )
-      )
-    )
+          map((product: ISingleProduct) =>
+            ProductActions.loadProductSuccess({ product }),
+          ),
+          catchError((error) =>
+            of(ProductActions.loadProductFailure({ error })),
+          ),
+        ),
+      ),
+    ),
   );
 
   loadCategories$ = createEffect(() =>
@@ -40,11 +48,14 @@ export class MainEffects {
       ofType(ProductActions.loadCategories),
       switchMap(() =>
         this.service.getCategories().pipe(
-          map((categories) => ProductActions.loadCategoriesSuccess({ categories })),
-          catchError((error) => of(ProductActions.loadCategoriesFailure({ error })))
-        )
-      )
-    )
+          map((categories) =>
+            ProductActions.loadCategoriesSuccess({ categories }),
+          ),
+          catchError((error) =>
+            of(ProductActions.loadCategoriesFailure({ error })),
+          ),
+        ),
+      ),
+    ),
   );
-
 }

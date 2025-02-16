@@ -1,35 +1,34 @@
-import { gql } from 'apollo-angular'
+import { gql } from 'apollo-angular';
 
 export const GetSingleProduct = gql`
-query Product($slug: String) {
-  Product(slug: $slug) {
-    categories {
-      title
-      _slug
-    }
-    seo {
-      title
-      social_media_image {
+  query Product($slug: String) {
+    Product(slug: $slug) {
+      categories {
+        title
+        _slug
+      }
+      seo {
+        title
+        social_media_image {
+          url
+          width
+          height
+        }
+        description
+      }
+      description
+      cover {
         url
         width
         height
       }
-      description
-    }
-    description
-    cover {
-      url
-      width
-      height
-    }
-    content {
-      ... on Text {
-        body
+      content {
+        ... on Text {
+          body
+        }
       }
+      price
+      title
     }
-    price
-    title
   }
-}
-
-`
+`;

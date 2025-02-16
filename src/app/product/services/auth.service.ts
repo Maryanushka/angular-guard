@@ -7,8 +7,13 @@ import { ErrorService } from '../../shared/services/error.service';
 import { LocalStorageService } from '../../shared/services/localStorage.service';
 
 import { IUserCredentials } from '../../shared/types/userCredential.interface';
-import { Auth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, deleteUser, } from '@angular/fire/auth';
-
+import {
+  Auth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  createUserWithEmailAndPassword,
+  deleteUser,
+} from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -25,31 +30,34 @@ export class AuthService {
   ) {}
 
   async getToken(userc: IUserCredentials | null, type: string) {
-    if(type === 'form' && userc) {
-      createUserWithEmailAndPassword(this.authFirebase, userc.email, userc.password)
-      .then((userCredential:any) => {
-        const user = userCredential.user;
-        console.log(user.accessToken);
-        this.storage.storeToStorage("token", user.accessToken);
-        this.storage.storeToStorage("user", JSON.stringify(user));
-        this.isLoginSubject$.next(true);
-        this.router.navigate(['']);
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        this.handleError(errorMessage)
-      });
+    if (type === 'form' && userc) {
+      createUserWithEmailAndPassword(
+        this.authFirebase,
+        userc.email,
+        userc.password,
+      )
+        .then((userCredential: any) => {
+          const user = userCredential.user;
+          console.log(user.accessToken);
+          this.storage.storeToStorage('token', user.accessToken);
+          this.storage.storeToStorage('user', JSON.stringify(user));
+          this.isLoginSubject$.next(true);
+          this.router.navigate(['']);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          this.handleError(errorMessage);
+        });
+    } else if (type === 'google') {
+      const provider = new GoogleAuthProvider();
+      const user: any = await signInWithPopup(this.authFirebase, provider);
+      console.log(user);
+      this.storage.storeToStorage('token', user.accessToken);
+      this.storage.storeToStorage('user', JSON.stringify(user));
+      this.isLoginSubject$.next(true);
+      this.router.navigate(['']);
     }
-    else if (type === 'google') {
-        const provider = new GoogleAuthProvider();
-        const user: any = await signInWithPopup(this.authFirebase, provider);
-        console.log(user);
-        this.storage.storeToStorage("token", user.accessToken);
-        this.storage.storeToStorage("user", JSON.stringify(user));
-        this.isLoginSubject$.next(true);
-        this.router.navigate(['']);
-     }
   }
 
   private hasToken(): boolean {
@@ -59,13 +67,14 @@ export class AuthService {
   logout(): void {
     this.storage.removeFromStroage('token');
     const user = this.authFirebase.currentUser;
-    if(user) {
-
-      deleteUser(user).then(() => {
-        console.log('User deleted');
-      }).catch((error) => {
-        console.log(error);
-      });
+    if (user) {
+      deleteUser(user)
+        .then(() => {
+          console.log('User deleted');
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
     this.isLoginSubject$.next(false);
     this.router.navigate(['']);
