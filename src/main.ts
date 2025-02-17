@@ -15,14 +15,21 @@ import { environment } from './app/environments/environment';
 import { provideApollo } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
 import { provideHttpClient } from '@angular/common/http';
-import { inject } from '@angular/core';
+import { inject, isDevMode } from '@angular/core';
 import { InMemoryCache } from '@apollo/client/core';
+import {
+  productReducer,
+  productKey,
+} from './app/shared/state/main-state/main.reducer';
+import { MainEffects } from './app/shared/state/main-state/main.effects';
+import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 bootstrapApplication(AppComponent, {
   providers: [
-    provideEffects({}),
-    provideStore([]),
+    provideEffects([MainEffects]),
+    provideStore({ [productKey]: productReducer }),
     provideRouter(routes, withEnabledBlockingInitialNavigation()),
+    provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()),

@@ -68,7 +68,14 @@ export const productReducer = createReducer(
       loading: false,
     },
   })),
-  on(ProductActions.loadProducts, (state) => ({ ...state, loading: true })),
+  on(ProductActions.loadProducts, (state) => ({
+    ...state,
+    products: {
+      data: [],
+      loading: true,
+      error: null,
+    },
+  })),
   on(ProductActions.loadProductsSuccess, (state, { products }) => ({
     ...state,
     products: {
@@ -79,8 +86,11 @@ export const productReducer = createReducer(
   })),
   on(ProductActions.loadProductsFailure, (state, { error }) => ({
     ...state,
-    loading: false,
-    error,
+    products: {
+      data: [],
+      loading: false,
+      error: error,
+    },
   })),
   on(ProductActions.loadProduct, (state) => ({
     ...state,
@@ -104,7 +114,11 @@ export const productReducer = createReducer(
   })),
   on(ProductActions.loadCategories, (state) => ({
     ...state,
-    loading: true,
+    categories: {
+      data: [],
+      loading: true,
+      error: null,
+    },
   })),
   on(ProductActions.loadCategoriesSuccess, (state, { categories }) => ({
     ...state,
@@ -116,7 +130,10 @@ export const productReducer = createReducer(
   })),
   on(ProductActions.loadCategoriesFailure, (state, { error }) => ({
     ...state,
-    loading: false,
-    error,
+    categories: {
+      data: [],
+      loading: false,
+      error: error,
+    },
   })),
 );
