@@ -1,0 +1,5 @@
+export { default as seo } from './seo'
+export { default as hero } from './hero'
+export { default as features } from './features'
+export { default as content } from './content'
+export { default as richText } from './richText'

@@ -48,6 +48,106 @@
           "hash": "9728748561378597900"
         },
         {
+          "file": "blackfox/.gitignore",
+          "hash": "16296968890606805579"
+        },
+        {
+          "file": "blackfox/README.md",
+          "hash": "9277728763202028698"
+        },
+        {
+          "file": "blackfox/eslint.config.mjs",
+          "hash": "5072095640892056098"
+        },
+        {
+          "file": "blackfox/package-lock.json",
+          "hash": "14467456382778336200"
+        },
+        {
+          "file": "blackfox/package.json",
+          "hash": "18408653802867364467"
+        },
+        {
+          "file": "blackfox/sample-content.md",
+          "hash": "906389269634275554"
+        },
+        {
+          "file": "blackfox/sanity.cli.ts",
+          "hash": "6368901138627999408"
+        },
+        {
+          "file": "blackfox/sanity.config.ts",
+          "hash": "13506061099917621548"
+        },
+        {
+          "file": "blackfox/schemaTypes/index.ts",
+          "hash": "4582441727562850809"
+        },
+        {
+          "file": "blackfox/schemaTypes/pages/categories.ts",
+          "hash": "12363865192825890755"
+        },
+        {
+          "file": "blackfox/schemaTypes/pages/contentPage.ts",
+          "hash": "9968114836920277956"
+        },
+        {
+          "file": "blackfox/schemaTypes/pages/homePage.ts",
+          "hash": "12144515940145268758"
+        },
+        {
+          "file": "blackfox/schemaTypes/pages/index.ts",
+          "hash": "13396806570546304780"
+        },
+        {
+          "file": "blackfox/schemaTypes/pages/menu.ts",
+          "hash": "9757773172920311808"
+        },
+        {
+          "file": "blackfox/schemaTypes/pages/page.ts",
+          "hash": "15364001320167379207"
+        },
+        {
+          "file": "blackfox/schemaTypes/pages/product.ts",
+          "hash": "10657799333099377729"
+        },
+        {
+          "file": "blackfox/schemaTypes/sections/content.ts",
+          "hash": "13455949124771802300"
+        },
+        {
+          "file": "blackfox/schemaTypes/sections/features.ts",
+          "hash": "1185400315031670728"
+        },
+        {
+          "file": "blackfox/schemaTypes/sections/hero.ts",
+          "hash": "8835978677917623239"
+        },
+        {
+          "file": "blackfox/schemaTypes/sections/index.ts",
+          "hash": "14596404917951340105"
+        },
+        {
+          "file": "blackfox/schemaTypes/sections/product-card.ts",
+          "hash": "7076158627857183454"
+        },
+        {
+          "file": "blackfox/schemaTypes/sections/richText.ts",
+          "hash": "1540407464823026900"
+        },
+        {
+          "file": "blackfox/schemaTypes/sections/seo.ts",
+          "hash": "15966302008565758468"
+        },
+        {
+          "file": "blackfox/static/.gitkeep",
+          "hash": "5458914229412634645"
+        },
+        {
+          "file": "blackfox/tsconfig.json",
+          "hash": "13445128604194394570"
+        },
+        {
           "file": "migrations.json",
           "hash": "515286254796242874"
         },
@@ -260,12 +360,11 @@
         },
         {
           "file": "src/app/product/components/categories/categories.component.ts",
-          "hash": "1328864226367414013",
+          "hash": "15044791526964118525",
           "deps": [
             "npm:@angular/core",
             "npm:@angular/common",
-            "npm:@angular/router",
-            "npm:rxjs"
+            "npm:@angular/router"
           ]
         },
         {
