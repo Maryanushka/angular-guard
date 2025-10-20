@@ -19,6 +19,8 @@ export default defineType({
       of: [
         {
           type: 'object',
+          name: 'categoryItem',
+          title: 'Category Item',
           fields: [
             {
               name: 'title',
@@ -31,22 +33,22 @@ export default defineType({
               type: 'string',
             },
           ],
+          preview: {
+            select: {
+              title: 'title',
+              subtitle: 'tag',
+            },
+          },
         },
       ],
     }),
 
   ],
   preview: {
-    select: {
-      title: 'title',
-      heroHeading: 'hero.heading',
-      media: 'hero.heroImage',
-    },
-    prepare({ title, heroHeading, media }) {
+    prepare() {
       return {
-        title: title || 'Home Page',
-        subtitle: heroHeading || 'No hero heading',
-        media,
+        title: 'Categories',
+        subtitle: 'Manage the list of categories',
       }
     },
   },

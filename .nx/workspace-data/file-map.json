@@ -77,15 +77,15 @@
         },
         {
           "file": "blackfox/sanity.config.ts",
-          "hash": "13506061099917621548"
+          "hash": "6768906729985030221"
         },
         {
           "file": "blackfox/schemaTypes/index.ts",
-          "hash": "4582441727562850809"
+          "hash": "16826585345706576871"
         },
         {
           "file": "blackfox/schemaTypes/pages/categories.ts",
-          "hash": "12363865192825890755"
+          "hash": "12647432682949349389"
         },
         {
           "file": "blackfox/schemaTypes/pages/contentPage.ts",
@@ -109,7 +109,7 @@
         },
         {
           "file": "blackfox/schemaTypes/pages/product.ts",
-          "hash": "75367393017395471"
+          "hash": "1251072241843613348"
         },
         {
           "file": "blackfox/schemaTypes/sections/content.ts",
@@ -125,7 +125,7 @@
         },
         {
           "file": "blackfox/schemaTypes/sections/index.ts",
-          "hash": "14596404917951340105"
+          "hash": "8625125289817635991"
         },
         {
           "file": "blackfox/schemaTypes/sections/product-card.ts",
@@ -138,6 +138,10 @@
         {
           "file": "blackfox/schemaTypes/sections/seo.ts",
           "hash": "15966302008565758468"
+        },
+        {
+          "file": "blackfox/schemaTypes/sections/youtube.ts",
+          "hash": "9682886754617365335"
         },
         {
           "file": "blackfox/static/.gitkeep",
@@ -827,6 +831,10 @@
         {
           "file": "src/assets/.gitkeep",
           "hash": "3244421341483603138"
+        },
+        {
+          "file": "src/assets/1-13.jpg",
+          "hash": "3332747917907168472"
         },
         {
           "file": "src/assets/IMG_1690.png",

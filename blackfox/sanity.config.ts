@@ -51,10 +51,36 @@ export default defineConfig({
                       ),
                   ])
               ),
+            // Divider
+            S.divider(),
 
-            // Simple Pages
+            // Product Pages
             S.listItem()
-              .title('Simple Pages')
+              .title('Products')
+              .child(
+                S.list()
+                  .title('Products Pages')
+                  .items([
+                    S.listItem()
+                      .title('Al Product Pages')
+                      .child(
+                        S.documentList()
+                          .title('All Product Pages')
+                          .filter('_type == "product"')
+                      ),
+                    S.listItem()
+                      .title('Create New Product Page')
+                      .child(
+                        S.document()
+                          .schemaType('product')
+                      ),
+                  ])
+              ),
+            // Divider
+            S.divider(),
+            // Pages
+            S.listItem()
+              .title('Simple pages')
               .child(
                 S.list()
                   .title('Simple Pages')
@@ -74,6 +100,56 @@ export default defineConfig({
                       ),
                   ])
               ),
+            // Divider
+            S.divider(),
+            // Menu
+            S.listItem()
+              .title('Menu')
+              .child(
+                S.list()
+                  .title('Menu')
+                  .items([
+                    S.listItem()
+                      .title('Menu List')
+                      .child(
+                        S.documentList()
+                          .title('Menu List')
+                          .filter('_type == "menu"')
+                      ),
+                    S.listItem()
+                      .title('Create New Menu')
+                      .child(
+                        S.document()
+                          .schemaType('menu')
+                      ),
+                  ])
+              ),
+
+            // Divider
+            S.divider(),
+            // Categories
+            S.listItem()
+              .title('Categories')
+              .child(
+                S.list()
+                  .title('Categories')
+                  .items([
+                    S.listItem()
+                      .title('Categories List')
+                      .child(
+                        S.documentList()
+                          .title('Categories List')
+                          .filter('_type == "categories"')
+                      ),
+                    S.listItem()
+                      .title('Create New Categories')
+                      .child(
+                        S.document()
+                          .schemaType('categories')
+                      ),
+                  ])
+              ),
+
           ]),
     }),
     visionTool()

@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import { seo, hero, features, content, richText } from '../sections'
+import { seo, hero, features, content, richText, youtube } from '../sections'
 
 export default defineType({
   name: 'product',
@@ -28,11 +28,10 @@ export default defineType({
       type: 'string',
     }),
     defineField({
-      name: 'youtube_id',
-      title: 'Youtube Video ID',
-      type: 'string',
-      description: 'Enter only the video ID (e.g., BKdb1xNEGoY from https://www.youtube.com/watch?v=BKdb1xNEGoY)',
-      validation: (Rule) => Rule.regex(/^[a-zA-Z0-9_-]{11}$/),
+      name: 'metaImage',
+      title: 'Meta Image',
+      type: 'image',
+      description: 'Image for social media sharing.',
     }),
     defineField({
       name: 'price',
@@ -53,6 +52,7 @@ export default defineType({
         { type: hero.name },
         { type: features.name },
         { type: content.name },
+        { type: youtube.name },
       ],
       description: 'Add and reorder sections for this page.',
     }),
@@ -66,12 +66,12 @@ export default defineType({
     select: {
       title: 'title',
       slug: 'slug.current',
-      description: 'description',
+      tag: 'tag',
     },
-    prepare({ title, slug, description }) {
+    prepare({ title, slug, tag }) {
       return {
         title,
-        subtitle: description || (slug ? `/${slug}` : 'No slug'),
+        subtitle: tag || (slug ? `/${slug}` : 'No slug'),
       }
     },
   },
