@@ -1,19 +1,15 @@
 export const GetSingleProduct = `
-  query Product($slug: String) {
-    Product(slug: $slug) {
-      description
-      cover {
-        url
-        width
-        height
-      }
-      content {
-        ... on Text {
-          body
-        }
-      }
-      price
-      title
-    }
-  }
-`;
+  *[_type == "product" && slug.current == $slug] {
+    price,
+    "metaImage": metaImage.asset->url,
+    price,
+    tag,
+    title,
+    "seo": {
+      "metaImage": metaImage.asset->url,
+      metaDescription,
+      metaTitle
+    },
+    "slug": slug.current,
+    description,
+  }`;
