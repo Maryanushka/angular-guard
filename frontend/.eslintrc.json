@@ -1,7 +1,6 @@
 {
   "root": true,
   "ignorePatterns": ["!**/*"],
-  "plugins": ["@nx", "prettier"],
   "overrides": [
     {
       "files": ["*.ts"],
@@ -11,29 +10,19 @@
         "plugin:@angular-eslint/template/process-inline-templates",
         "plugin:prettier/recommended"
       ],
+      "parserOptions": {
+        "sourceType": "module"
+      },
       "rules": {
         "prettier/prettier": "error",
-        "@angular-eslint/directive-selector": [
-          "error",
-          {
-            "type": "attribute",
-            "prefix": ["app", "product", "home", "about", "shared", "auth", "basket"],
-            "style": "camelCase"
-          }
-        ],
-        "@angular-eslint/component-selector": [
-          "error",
-          {
-            "type": "element",
-            "prefix": ["app", "product", "home", "about", "shared", "auth", "basket"],
-            "style": "kebab-case"
-          }
-        ]
+        "indent": "off",
+        "@typescript-eslint/indent": "off",
+        "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }]
       }
     },
     {
       "files": ["*.html"],
-      "extends": ["plugin:@nx/angular-template"],
+      "extends": ["plugin:@nx/angular-template", "prettier"],
       "rules": {}
     }
   ]

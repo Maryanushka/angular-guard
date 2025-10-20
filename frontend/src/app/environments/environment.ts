@@ -9,6 +9,9 @@ export const environment = {
     appId: '1:945887749507:web:498a9dcc1b12bd2de042b6',
     measurementId: 'G-4WGVKM156R',
   },
-  qraphql:
-    'https://graphql.prepr.io/ec5758c6b9c92bbf9656e7a6a78f2dc5761c536cf1272f42931b050e0b620b88',
+  qraphql: 'https://32ywkl0n.api.sanity.io/v2025-10-20/data/query/production',
+  projectId: '32ywkl0n',
+  dataset: 'production',
+  apiVersion: '2025-01-01',
+  useCdn: true,
 };

@@ -85,7 +85,7 @@
       "outputs": ["{options.outputFile}"],
       "options": {
         "eslintConfig": "./.eslintrc.json",
-        "lintFilePatterns": ["./frontend/src/**/*.ts", "./frontend/src/**/*.html"]
+        "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
       }
     }
   }

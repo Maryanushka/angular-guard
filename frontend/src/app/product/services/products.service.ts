@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import {
-  HttpClient,
-  HttpErrorResponse,
-  HttpParams,
-} from '@angular/common/http';
-import { Observable, catchError, delay, retry, tap, throwError } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, from, throwError, retry, delay, tap, catchError } from 'rxjs';
 import { ErrorService } from '../../shared/services/error.service';
 import { IProduct } from '../../shared/types/product.inteface';
+import type { SanityClient } from '@sanity/client';
+import { SANITY_CLIENT } from '../../shared/services/sanity-client.token';
+import { Inject } from '@angular/core';
+import groq from 'groq';
 
 @Injectable({
   providedIn: 'root',
@@ -16,35 +16,17 @@ export class ProductsService {
   products: IProduct[] = [];
 
   constructor(
-    private http: HttpClient,
-    private errorService: ErrorService,
-  ) {}
+    @Inject(SANITY_CLIENT) private sanity: SanityClient,
+  ) { }
 
   getAll(): Observable<IProduct[]> {
-    return this.http
-      .get<IProduct[]>(`https://fakestoreapi.com/products`, {
-        params: new HttpParams({
-          fromObject: { limit: this.limit },
-        }),
-      })
-      .pipe(
-        delay(200),
-        retry(3),
-        tap((products) => (this.products = products)),
-        catchError(this.handleError.bind(this)),
-      );
-  }
-
-  createProduct(product: IProduct): Observable<IProduct> {
-    return this.http.post<IProduct>(
-      `https://fakestoreapi.com/products`,
-      product,
+    const query = groq`*[_type == "product"] | order(publishedAt desc)[0...20]{
+      uid
+    }`;
+    return from(this.sanity.fetch<IProduct[]>(query)).pipe(
+      retry(2),
+      delay(200),
     );
-    // .pipe(tap((prod) => this.products.push(prod)));
   }
 
-  private handleError(error: HttpErrorResponse) {
-    this.errorService.handle(error.message);
-    return throwError(() => error.message);
-  }
 }
