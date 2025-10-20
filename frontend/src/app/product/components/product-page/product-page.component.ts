@@ -9,36 +9,30 @@ import { CategoriesComponent } from '../categories/categories.component';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-product-page',
-  templateUrl: './product-page.component.html',
-  styleUrls: ['./product-page.component.scss'],
-  standalone: true,
-  imports: [
-    CommonModule,
-    NavigationComponent,
-    SocialMediaComponent,
-    ProductComponent,
-    CategoriesComponent,
-  ],
+	selector: 'app-product-page',
+	templateUrl: './product-page.component.html',
+	styleUrls: ['./product-page.component.scss'],
+	standalone: true,
+	imports: [CommonModule, NavigationComponent, SocialMediaComponent, ProductComponent, CategoriesComponent],
 })
 export class ProductPageComponent implements OnInit, OnDestroy {
-  private facade = inject(MainFacade);
-  private router = inject(ActivatedRoute);
-  private querySubscription = new Subscription();
+	private facade = inject(MainFacade);
+	private router = inject(ActivatedRoute);
+	private querySubscription = new Subscription();
 
-  products$ = this.facade.products$;
-  loading$ = this.facade.productsLoading$;
-  error$ = this.facade.productsError$;
-  filter = '';
+	products$ = this.facade.products$;
+	loading$ = this.facade.productsLoading$;
+	error$ = this.facade.productsError$;
+	filter = '';
 
-  ngOnInit() {
-    this.querySubscription = this.router.queryParams.subscribe((params) => {
-      const category = params['category'] || null;
-      this.facade.loadProducts(category, 10);
-    });
-  }
+	ngOnInit() {
+		this.querySubscription = this.router.queryParams.subscribe((params) => {
+			const category = params['category'] || null;
+			this.facade.loadProducts(category, 10);
+		});
+	}
 
-  ngOnDestroy() {
-    this.querySubscription.unsubscribe();
-  }
+	ngOnDestroy() {
+		this.querySubscription.unsubscribe();
+	}
 }

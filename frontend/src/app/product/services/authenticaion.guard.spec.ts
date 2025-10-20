@@ -3,14 +3,14 @@ import { TestBed } from '@angular/core/testing';
 import { AuthenticaionGuard } from './authenticaion.guard';
 
 describe('AuthenticaionGuard', () => {
-  let guard: AuthenticaionGuard;
+	let guard: AuthenticaionGuard;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    guard = TestBed.inject(AuthenticaionGuard);
-  });
+	beforeEach(() => {
+		TestBed.configureTestingModule({});
+		guard = TestBed.inject(AuthenticaionGuard);
+	});
 
-  it('should be created', () => {
-    expect(guard).toBeTruthy();
-  });
+	it('should be created', () => {
+		expect(guard).toBeTruthy();
+	});
 });

@@ -6,29 +6,20 @@ import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 
 @Injectable({
-  providedIn: 'root',
+	providedIn: 'root',
 })
 export class AuthenticaionGuard {
-  constructor(
-    private authService: AuthService,
-    private router: Router,
-  ) {}
+	constructor(
+		private authService: AuthService,
+		private router: Router
+	) {}
 
-  // state: RouterStateSnapshot
-  canActivate(
-    route: ActivatedRouteSnapshot,
-  ):
-    | Observable<boolean | UrlTree>
-    | Promise<boolean | UrlTree>
-    | boolean
-    | UrlTree {
-    if (
-      route.data['roles'][0] === 'user' &&
-      this.authService.isLoginSubject$.getValue()
-    ) {
-      return true;
-    } else {
-      return this.router.createUrlTree(['signin']);
-    }
-  }
+	// state: RouterStateSnapshot
+	canActivate(route: ActivatedRouteSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+		if (route.data['roles'][0] === 'user' && this.authService.isLoginSubject$.getValue()) {
+			return true;
+		} else {
+			return this.router.createUrlTree(['signin']);
+		}
+	}
 }

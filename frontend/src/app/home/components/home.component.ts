@@ -4,10 +4,10 @@ import { SocialMediaComponent } from '../../shared/components/social-media/socia
 import { NavigationComponent } from '../../shared/components/navigation/navigation.component';
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [CommonModule, NavigationComponent, SocialMediaComponent],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss',
+	selector: 'app-home',
+	standalone: true,
+	imports: [CommonModule, NavigationComponent, SocialMediaComponent],
+	templateUrl: './home.component.html',
+	styleUrl: './home.component.scss',
 })
-export class HomeComponent { }
+export class HomeComponent {}

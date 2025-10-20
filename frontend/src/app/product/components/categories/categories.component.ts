@@ -4,20 +4,20 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'product-categories',
-  templateUrl: './categories.component.html',
-  styleUrl: './categories.component.scss',
-  standalone: true,
-  imports: [CommonModule, RouterModule],
+	selector: 'product-categories',
+	templateUrl: './categories.component.html',
+	styleUrl: './categories.component.scss',
+	standalone: true,
+	imports: [CommonModule, RouterModule],
 })
 export class CategoriesComponent implements OnInit {
-  private facade = inject(MainFacade);
+	private facade = inject(MainFacade);
 
-  categories$ = this.facade.categories$;
-  categoriesLoading$ = this.facade.categoriesLoading$;
-  categoriesError$ = this.facade.categoriesError$;
+	categories$ = this.facade.categories$;
+	categoriesLoading$ = this.facade.categoriesLoading$;
+	categoriesError$ = this.facade.categoriesError$;
 
-  ngOnInit() {
-    this.facade.loadCategories();
-  }
+	ngOnInit() {
+		this.facade.loadCategories();
+	}
 }

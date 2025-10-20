@@ -7,32 +7,32 @@ import { NavigationComponent } from '../../../shared/components/navigation/navig
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-product-single',
-  templateUrl: './product-single.component.html',
-  styleUrls: ['./product-single.component.css'],
-  standalone: true,
-  imports: [CommonModule, NavigationComponent],
+	selector: 'app-product-single',
+	templateUrl: './product-single.component.html',
+	styleUrls: ['./product-single.component.css'],
+	standalone: true,
+	imports: [CommonModule, NavigationComponent],
 })
 export class ProductSingleComponent implements OnInit, OnDestroy {
-  private facade = inject(MainFacade);
-  private activatedRoute = inject(ActivatedRoute);
-  private querySubscription = new Subscription();
+	private facade = inject(MainFacade);
+	private activatedRoute = inject(ActivatedRoute);
+	private querySubscription = new Subscription();
 
-  singleProduct$ = this.facade.singleProduct$;
-  singleProductLoading$ = this.facade.singleProductLoading$;
-  singleProductError$ = this.facade.singleProductError$;
+	singleProduct$ = this.facade.singleProduct$;
+	singleProductLoading$ = this.facade.singleProductLoading$;
+	singleProductError$ = this.facade.singleProductError$;
 
-  ngOnInit() {
-    this.querySubscription = this.activatedRoute.params.subscribe((params) => {
-      this.facade.loadSingleProduct(params['slug']);
-    });
-  }
+	ngOnInit() {
+		this.querySubscription = this.activatedRoute.params.subscribe((params) => {
+			this.facade.loadSingleProduct(params['slug']);
+		});
+	}
 
-  ngOnDestroy() {
-    this.querySubscription.unsubscribe();
-  }
+	ngOnDestroy() {
+		this.querySubscription.unsubscribe();
+	}
 
-  addToBasket(product: ISingleProduct) {
-    this.facade.addToBasket(product);
-  }
+	addToBasket(product: ISingleProduct) {
+		this.facade.addToBasket(product);
+	}
 }

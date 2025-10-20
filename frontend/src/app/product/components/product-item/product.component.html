@@ -1,19 +1,12 @@
 <a
-  [routerLink]="'/products/' + product._slug"
-  class="py-4 px-6 border border-slate-100 flex rounded items-center flex-col shadow-md hover:shadow-lg group max-h-[13rem]"
->
-  <div class="image w-24 h-24">
-    <img
-      class="w-full h-full object-cover"
-      [src]="product.cover[0].url"
-      alt=""
-    />
-  </div>
-  <figcaption class="content flex justify-center">
-    <h2
-      class="text-sm font-bold mt-4 w-[90%] text-center group-hover:text-pesianGreen transition-all"
-    >
-      {{ product.title }}
-    </h2>
-  </figcaption>
+	[routerLink]="'/products/' + product._slug"
+	class="py-4 px-6 border border-slate-100 flex rounded items-center flex-col shadow-md hover:shadow-lg group max-h-[13rem]">
+	<div class="image w-24 h-24">
+		<img class="w-full h-full object-cover" [src]="product.cover[0].url" alt="" />
+	</div>
+	<figcaption class="content flex justify-center">
+		<h2 class="text-sm font-bold mt-4 w-[90%] text-center group-hover:text-pesianGreen transition-all">
+			{{ product.title }}
+		</h2>
+	</figcaption>
 </a>

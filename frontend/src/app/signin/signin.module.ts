@@ -6,20 +6,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 const routes: Routes = [
-  {
-    path: 'signin',
-    component: SigninPageComponent,
-  },
+	{
+		path: 'signin',
+		component: SigninPageComponent,
+	},
 ];
 
 @NgModule({
-  declarations: [SigninPageComponent],
-  imports: [
-    CommonModule,
-    GlobalErrorModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule.forChild(routes),
-  ],
+	declarations: [SigninPageComponent],
+	imports: [CommonModule, GlobalErrorModule, FormsModule, ReactiveFormsModule, RouterModule.forChild(routes)],
 })
 export class SigninModule {}

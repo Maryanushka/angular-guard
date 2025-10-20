@@ -1,15 +1,15 @@
 :host {
-  width: 100%;
-  display: grid;
-  align-self: center;
-  input {
-    margin: 0;
-    &.ng-invalid.ng-touched {
-      border: 1px solid red;
-    }
-  }
-  label {
-    display: flex;
-    flex-direction: column;
-  }
+	width: 100%;
+	display: grid;
+	align-self: center;
+	input {
+		margin: 0;
+		&.ng-invalid.ng-touched {
+			border: 1px solid red;
+		}
+	}
+	label {
+		display: flex;
+		flex-direction: column;
+	}
 }

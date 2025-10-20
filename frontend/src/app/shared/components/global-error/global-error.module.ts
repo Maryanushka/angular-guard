@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { GlobalErrorComponent } from './global-error.component';
 
 @NgModule({
-  declarations: [GlobalErrorComponent],
-  imports: [CommonModule],
-  exports: [GlobalErrorComponent],
+	declarations: [GlobalErrorComponent],
+	imports: [CommonModule],
+	exports: [GlobalErrorComponent],
 })
 export class GlobalErrorModule {}

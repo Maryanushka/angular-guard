@@ -5,15 +5,15 @@ import { environment } from '../../environments/environment';
 export const SANITY_CLIENT = new InjectionToken<SanityClient>('SANITY_CLIENT');
 
 export function sanityClientFactory(): SanityClient {
-  return createClient({
-    projectId: environment.projectId,
-    dataset: environment.dataset,
-    apiVersion: environment.apiVersion,
-    useCdn: environment.useCdn,
-  });
+	return createClient({
+		projectId: environment.projectId,
+		dataset: environment.dataset,
+		apiVersion: environment.apiVersion,
+		useCdn: environment.useCdn,
+	});
 }
 
 export const provideSanityClient = {
-  provide: SANITY_CLIENT,
-  useFactory: sanityClientFactory,
+	provide: SANITY_CLIENT,
+	useFactory: sanityClientFactory,
 };

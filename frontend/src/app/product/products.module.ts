@@ -14,33 +14,24 @@ import { ProductSingleComponent } from './components/product-single/product-sing
 import { NavigationModule } from '../shared/components/navigation/navigation.module';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { StoreModule } from '@ngrx/store';
-import {
-  productKey,
-  productReducer,
-} from '../shared/state/main-state/main.reducer';
+import { productKey, productReducer } from '../shared/state/main-state/main.reducer';
 import { SocialMediaComponent } from '../shared/components/social-media/social-media.component';
 import { EffectsModule } from '@ngrx/effects';
 import { MainEffects } from '../shared/state/main-state/main.effects';
 
 @NgModule({
-  declarations: [
-    ProductComponent,
-    ProductPageComponent,
-    ProductSingleComponent,
-    CategoriesComponent,
-    FocusDirective,
-  ],
-  imports: [
-    CommonModule,
-    GlobalErrorModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NavigationModule,
-    NotificationModule,
-    EffectsModule.forFeature([MainEffects]),
-    StoreModule.forFeature({ name: productKey, reducer: productReducer }),
-    SocialMediaComponent,
-  ],
-  providers: [ErrorService],
+	declarations: [ProductComponent, ProductPageComponent, ProductSingleComponent, CategoriesComponent, FocusDirective],
+	imports: [
+		CommonModule,
+		GlobalErrorModule,
+		FormsModule,
+		ReactiveFormsModule,
+		NavigationModule,
+		NotificationModule,
+		EffectsModule.forFeature([MainEffects]),
+		StoreModule.forFeature({ name: productKey, reducer: productReducer }),
+		SocialMediaComponent,
+	],
+	providers: [ErrorService],
 })
-export class ProductsModule { }
+export class ProductsModule {}
