@@ -1,9 +1,7 @@
 import { Component, inject, OnInit, OnDestroy } from '@angular/core';
-import { Apollo } from 'apollo-angular';
 import { Subscription } from 'rxjs';
-import { GetSingleProduct } from '../../../shared/queries/getSingleProduct';
 import { ISingleProduct } from '../../../shared/types/product.inteface';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { MainFacade } from '../../../shared/state/main-state/main.facade';
 import { NavigationComponent } from '../../../shared/components/navigation/navigation.component';
 import { CommonModule } from '@angular/common';

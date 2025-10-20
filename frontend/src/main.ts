@@ -12,17 +12,16 @@ import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { environment } from './app/environments/environment';
-import { provideApollo } from 'apollo-angular';
-import { HttpLink } from 'apollo-angular/http';
 import { provideHttpClient } from '@angular/common/http';
 import { inject, isDevMode } from '@angular/core';
-import { InMemoryCache } from '@apollo/client/core';
 import {
   productReducer,
   productKey,
 } from './app/shared/state/main-state/main.reducer';
 import { MainEffects } from './app/shared/state/main-state/main.effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+
+// https://calendar.google.com/calendar/render?action=TEMPLATE&text=Analysis%20for%20{UserName}&details=Please%20review%20uploads...&dates={START_UTC}/{END_UTC}
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -35,12 +34,5 @@ bootstrapApplication(AppComponent, {
     provideAuth(() => getAuth()),
     { provide: APP_BASE_HREF, useValue: '/' },
     provideHttpClient(),
-    provideApollo(() => {
-      const httpLink = inject(HttpLink);
-      return {
-        link: httpLink.create({ uri: environment.qraphql }),
-        cache: new InMemoryCache(),
-      };
-    }),
   ],
 }).catch((err) => console.error(err));

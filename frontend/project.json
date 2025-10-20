@@ -55,10 +55,10 @@
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "buildTarget": "angular-guard:build:production"
+        "buildTarget": "angular-guard:build:production"
         },
         "development": {
-          "buildTarget": "angular-guard:build:development"
+        "buildTarget": "angular-guard:build:development"
         }
       },
       "defaultConfiguration": "development"
@@ -85,7 +85,7 @@
       "outputs": ["{options.outputFile}"],
       "options": {
         "eslintConfig": "./.eslintrc.json",
-        "lintFilePatterns": ["./src/**/*.ts", "./src/**/*.html"]
+        "lintFilePatterns": ["./frontend/src/**/*.ts", "./frontend/src/**/*.html"]
       }
     }
   }

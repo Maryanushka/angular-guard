@@ -4,9 +4,9 @@
 Create a new "Home Page" document with the following sample content:
 
 ### Basic Information
-- **Page Title**: "Welcome to Blackfox"
+- **Page Title**: "Welcome to Sanity Admin"
 - **Hero Section**:
-  - **Hero Heading**: "Transform Your Business with Blackfox"
+  - **Hero Heading**: "Transform Your Business with Sanity Admin"
   - **Hero Subheading**: "We help companies innovate and grow with cutting-edge solutions and expert guidance."
   - **Hero Image**: Upload a professional business image
   - **CTA Text**: "Get Started Today"
@@ -33,8 +33,8 @@ Add 3-4 features:
 Add some rich text content about your company, mission, and values.
 
 ### SEO
-- **Meta Title**: "Blackfox - Transform Your Business with Innovation"
-- **Meta Description**: "Blackfox helps companies innovate and grow with cutting-edge solutions and expert guidance. Get started today!"
+- **Meta Title**: "Sanity Admin - Transform Your Business with Innovation"
+- **Meta Description**: "Sanity Admin helps companies innovate and grow with cutting-edge solutions and expert guidance. Get started today!"
 
 ## Regular Page Document
 Create a new "Page" document for additional content:
@@ -42,13 +42,13 @@ Create a new "Page" document for additional content:
 ### Sample About Page
 - **Title**: "About Us"
 - **Slug**: "about-us"
-- **Excerpt**: "Learn about Blackfox's mission, values, and the team behind our success."
+- **Excerpt**: "Learn about Sanity Admin's mission, values, and the team behind our success."
 - **Content**: Rich text content about your company
 - **Published At**: Set to current date/time
 - **SEO**: Custom meta information for the about page
 
 ## Getting Started
-1. Run `npm run dev` in the blackfox directory
+1. Run `npm run dev` in the Sanity Admin directory
 2. Open your Sanity Studio at the provided URL
 3. Create your first documents using the schemas above
 4. Use the Vision tool to query your content with GROQ
