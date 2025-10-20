@@ -11,9 +11,6 @@
       }
     }
   },
-  "affected": {
-    "defaultBase": "main"
-  },
   "namedInputs": {
     "sharedGlobals": [
       "{workspaceRoot}/.github/workflows/ci.yml"
@@ -60,6 +57,24 @@
   },
   "generators": {
     "@nx/angular:component": {
+      "style": "scss"
+    },
+    "@schematics/angular:component": {
+      "style": "scss"
+    },
+    "@schematics/angular:module": {
+      "style": "scss"
+    },
+    "@schematics/angular:service": {
+      "style": "scss"
+    },
+    "@schematics/angular:guard": {
+      "style": "scss"
+    },
+    "@schematics/angular:directive": {
+      "style": "scss"
+    },
+    "@schematics/angular:pipe": {
       "style": "scss"
     }
   },

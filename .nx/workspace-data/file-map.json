@@ -17,7 +17,7 @@
         },
         {
           "file": ".eslintrc.json",
-          "hash": "15911016446238788205"
+          "hash": "9473612402281833836"
         },
         {
           "file": ".github/workflows/ci.yml",
@@ -61,11 +61,11 @@
         },
         {
           "file": "blackfox/package-lock.json",
-          "hash": "14467456382778336200"
+          "hash": "11305449895625795244"
         },
         {
           "file": "blackfox/package.json",
-          "hash": "18408653802867364467"
+          "hash": "7985898516275867530"
         },
         {
           "file": "blackfox/sample-content.md",
@@ -93,7 +93,7 @@
         },
         {
           "file": "blackfox/schemaTypes/pages/homePage.ts",
-          "hash": "12144515940145268758"
+          "hash": "13038487269954378114"
         },
         {
           "file": "blackfox/schemaTypes/pages/index.ts",
@@ -109,15 +109,15 @@
         },
         {
           "file": "blackfox/schemaTypes/pages/product.ts",
-          "hash": "10657799333099377729"
+          "hash": "75367393017395471"
         },
         {
           "file": "blackfox/schemaTypes/sections/content.ts",
-          "hash": "13455949124771802300"
+          "hash": "17946280566297975624"
         },
         {
           "file": "blackfox/schemaTypes/sections/features.ts",
-          "hash": "1185400315031670728"
+          "hash": "13407879436997062945"
         },
         {
           "file": "blackfox/schemaTypes/sections/hero.ts",
@@ -153,7 +153,7 @@
         },
         {
           "file": "nx.json",
-          "hash": "9378873033712381584"
+          "hash": "6003962630518580749"
         },
         {
           "file": "package-lock.json",
@@ -827,6 +827,14 @@
         {
           "file": "src/assets/.gitkeep",
           "hash": "3244421341483603138"
+        },
+        {
+          "file": "src/assets/IMG_1690.png",
+          "hash": "14918988396247205148"
+        },
+        {
+          "file": "src/assets/IMG_3486.png",
+          "hash": "277446464815067419"
         },
         {
           "file": "src/assets/flower_home_big_right.png",

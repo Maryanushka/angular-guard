@@ -32,12 +32,12 @@ export default defineType({
       title: 'Youtube Video ID',
       type: 'string',
       description: 'Enter only the video ID (e.g., BKdb1xNEGoY from https://www.youtube.com/watch?v=BKdb1xNEGoY)',
-      validation: (Rule) => Rule.required().regex(/^[a-zA-Z0-9_-]{11}$/),
+      validation: (Rule) => Rule.regex(/^[a-zA-Z0-9_-]{11}$/),
     }),
     defineField({
       name: 'price',
       title: 'Price',
-      type: 'number',
+      type: 'string',
     }),
     defineField({
       name: 'description',

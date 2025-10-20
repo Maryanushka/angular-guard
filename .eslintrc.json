@@ -17,7 +17,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "app",
+            "prefix": ["app", "product", "home", "about", "shared", "auth", "basket"],
             "style": "camelCase"
           }
         ],
@@ -25,7 +25,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "app",
+            "prefix": ["app", "product", "home", "about", "shared", "auth", "basket"],
             "style": "kebab-case"
           }
         ]

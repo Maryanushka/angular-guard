@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import { seo, hero, features, content } from '../sections'
+import { seo } from '../sections'
 
 export default defineType({
   name: 'homePage',
