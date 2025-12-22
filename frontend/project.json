@@ -2,13 +2,13 @@
 	"name": "angular-guard",
 	"$schema": "node_modules/nx/schemas/project-schema.json",
 	"projectType": "application",
+	"sourceRoot": "src",
+	"prefix": "app",
 	"generators": {
 		"@schematics/angular:component": {
 			"style": "scss"
 		}
 	},
-	"sourceRoot": "src",
-	"prefix": "app",
 	"targets": {
 		"build": {
 			"executor": "@angular-devkit/build-angular:browser",
@@ -61,7 +61,8 @@
 					"buildTarget": "angular-guard:build:development"
 				}
 			},
-			"defaultConfiguration": "development"
+			"defaultConfiguration": "development",
+			"continuous": true
 		},
 		"extract-i18n": {
 			"executor": "@angular-devkit/build-angular:extract-i18n",

@@ -1,26 +1,63 @@
 {
 	"migrations": [
 		{
-			"version": "19.0.0",
-			"description": "Updates non-standalone Directives, Component and Pipes to 'standalone:false' and removes 'standalone:true' from those who are standalone",
-			"factory": "./bundles/explicit-standalone-flag#migrate",
-			"package": "@angular/core",
-			"name": "explicit-standalone-flag"
+			"version": "21.0.0-beta.8",
+			"description": "Removes the legacy cache configuration from nx.json",
+			"implementation": "./src/migrations/update-21-0-0/remove-legacy-cache",
+			"package": "nx",
+			"name": "remove-legacy-cache"
 		},
 		{
-			"version": "19.0.0",
-			"description": "Updates ExperimentalPendingTasks to PendingTasks",
-			"factory": "./bundles/pending-tasks#migrate",
-			"package": "@angular/core",
-			"name": "pending-tasks"
+			"version": "21.0.0-beta.8",
+			"description": "Removes the legacy cache configuration from nx.json",
+			"implementation": "./src/migrations/update-21-0-0/remove-custom-tasks-runner",
+			"package": "nx",
+			"name": "remove-custom-tasks-runner"
 		},
 		{
-			"version": "19.0.0",
-			"description": "Replaces `APP_INITIALIZER`, `ENVIRONMENT_INITIALIZER` & `PLATFORM_INITIALIZER` respectively with `provideAppInitializer`, `provideEnvironmentInitializer` & `providePlatformInitializer`.",
-			"factory": "./bundles/provide-initializer#migrate",
-			"optional": true,
-			"package": "@angular/core",
-			"name": "provide-initializer"
+			"version": "21.0.0-beta.11",
+			"description": "Updates release version config based on the breaking changes in Nx v21",
+			"implementation": "./src/migrations/update-21-0-0/release-version-config-changes",
+			"package": "nx",
+			"name": "release-version-config-changes"
+		},
+		{
+			"version": "21.0.0-beta.11",
+			"description": "Updates release changelog config based on the breaking changes in Nx v21",
+			"implementation": "./src/migrations/update-21-0-0/release-changelog-config-changes",
+			"package": "nx",
+			"name": "release-changelog-config-changes"
+		},
+		{
+			"version": "21.1.0-beta.2",
+			"description": "Adds **/nx-rules.mdc and **/nx.instructions.md to .gitignore if not present",
+			"implementation": "./src/migrations/update-21-1-0/add-gitignore-entry",
+			"package": "nx",
+			"name": "21-1-0-add-ignore-entries-for-nx-rule-files"
+		},
+		{
+			"cli": "nx",
+			"version": "21.0.0-beta.3",
+			"description": "Set the `continuous` option to `true` for continuous tasks.",
+			"factory": "./src/migrations/update-21-0-0/set-continuous-option",
+			"package": "@nx/angular",
+			"name": "set-continuous-option"
+		},
+		{
+			"cli": "nx",
+			"version": "21.0.0-beta.5",
+			"requires": { "@ngrx/store": ">=16.0.0" },
+			"description": "Change the data persistence operator imports to '@ngrx/router-store/data-persistence'.",
+			"factory": "./src/migrations/update-21-0-0/change-data-persistence-operators-imports-to-ngrx-router-store-data-persistence",
+			"package": "@nx/angular",
+			"name": "change-data-persistence-operators-imports-to-ngrx-router-store-data-persistence"
+		},
+		{
+			"version": "21.5.0-beta.0",
+			"description": "Set the 'tsConfig' option to build and test targets to help with Angular migration issues.",
+			"factory": "./src/migrations/update-21-5-0/set-tsconfig-option",
+			"package": "@nx/angular",
+			"name": "set-tsconfig-option"
 		}
 	]
 }
