@@ -5,29 +5,30 @@
 		<input [(ngModel)]="filter" class="border mt-2 rounded-sm px-3 py-1 focus:border-gray-500" type="text" name="filter">
 	</label>
 	<span>{{ filter }}</span> -->
-
-<p *ngIf="loading$ | async" class="loading text-center font-bold">loading products..</p>
-<p *ngIf="error$ | async" class="loading text-center font-bold">
-	{{ error$ | async }}
-</p>
+@if (loading$ | async) {
+	<p class="loading text-center font-bold">loading products..</p>
+}
+@if (error$ | async) {
+	<p class="loading text-center font-bold">
+		{{ error$ | async }}
+	</p>
+}
 
 <div class="container flex max-w-[100%]">
 	<div class="w-4/12 md:w-3/12">
 		<product-categories></product-categories>
 	</div>
-	<div *ngIf="products$ | async" class="flex flex-wrap justify-start mt-16 w-8/12 md:w-9/12">
-		@if ((products$ | async)!.length === 0) {
-			<p class="text-center font-bold">No products found</p>
-		} @else {
-			@for (item of products$ | async; track item._slug) {
-				<app-product class="flex w-60 m-2" [product]="item"></app-product>
+	@if (products$ | async; as products) {
+		<div *ngIf="products$ | async" class="flex flex-wrap justify-start mt-16 w-8/12 md:w-9/12">
+			@if (products.length === 0) {
+				<p class="text-center font-bold">No products found</p>
+			} @else {
+				@for (item of products; track item._slug) {
+					<app-product class="flex w-60 m-2" [product]="item"></app-product>
+				}
 			}
-		}
-	</div>
+		</div>
+	}
 </div>
 
 <app-social-media class="flex fixed right-8 bottom-4"></app-social-media>
-
-<!-- <app-notification title="title" *ngIf="notificationService.isNotification$ | async"></app-notification> -->
-
-<!-- <button (click)="notificationService.open()" class="rounded-full bg-red-500 text-white fixed bottom-2 right-2 h-12 w-12">+</button> -->

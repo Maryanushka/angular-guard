@@ -7,12 +7,14 @@ import { SocialMediaComponent } from '../../../shared/components/social-media/so
 import { ProductComponent } from '../product-item/product.component';
 import { CategoriesComponent } from '../categories/categories.component';
 import { CommonModule } from '@angular/common';
+import { MessageService } from 'primeng/api';
 
 @Component({
 	selector: 'app-product-page',
 	templateUrl: './product-page.component.html',
 	styleUrls: ['./product-page.component.scss'],
 	standalone: true,
+	providers: [MessageService],
 	imports: [CommonModule, NavigationComponent, SocialMediaComponent, ProductComponent, CategoriesComponent],
 })
 export class ProductPageComponent implements OnInit, OnDestroy {

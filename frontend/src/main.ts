@@ -1,7 +1,9 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter, withEnabledBlockingInitialNavigation } from '@angular/router';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideEffects } from '@ngrx/effects';
 import { provideStore } from '@ngrx/store';
+import { providePrimeNG } from 'primeng/config';
 import { AppComponent } from './app/app.component';
 import { routes } from './app/app.routes';
 import { APP_BASE_HREF } from '@angular/common';
@@ -15,11 +17,25 @@ import { productReducer, productKey } from './app/shared/state/main-state/main.r
 import { MainEffects } from './app/shared/state/main-state/main.effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideSanityClient } from './app/shared/services/sanity-client.token';
-
-// https://calendar.google.com/calendar/render?action=TEMPLATE&text=Analysis%20for%20{UserName}&details=Please%20review%20uploads...&dates={START_UTC}/{END_UTC}
+import { appThemePreset } from './app/theme/primeng-preset';
 
 bootstrapApplication(AppComponent, {
 	providers: [
+		provideAnimationsAsync(),
+		providePrimeNG({
+			ripple: true,
+			overlayAppendTo: 'body',
+			theme: {
+				preset: appThemePreset,
+				options: {
+					darkModeSelector: '[data-theme="light"]',
+					cssLayer: {
+						name: 'primeng',
+						order: 'theme',
+					},
+				},
+			},
+		}),
 		provideEffects([MainEffects]),
 		provideStore({ [productKey]: productReducer }),
 		provideRouter(routes, withEnabledBlockingInitialNavigation()),

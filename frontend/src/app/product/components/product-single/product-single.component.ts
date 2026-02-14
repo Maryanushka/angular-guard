@@ -1,6 +1,7 @@
 import { Component, inject, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { ISingleProduct } from '../../../shared/types/product.inteface';
+import { toIProduct } from '../../../shared/types/product.inteface';
+import type { ISingleProduct } from '../../../shared/types/product.inteface';
 import { ActivatedRoute } from '@angular/router';
 import { MainFacade } from '../../../shared/state/main-state/main.facade';
 import { NavigationComponent } from '../../../shared/components/navigation/navigation.component';
@@ -37,7 +38,7 @@ export class ProductSingleComponent implements OnInit, OnDestroy {
 		this.querySubscription.unsubscribe();
 	}
 
-	addToBasket(product: ISingleProduct) {
-		this.facade.addToBasket(product);
+	addToBasket(product: ISingleProduct): void {
+		this.facade.addToBasket(toIProduct(product));
 	}
 }

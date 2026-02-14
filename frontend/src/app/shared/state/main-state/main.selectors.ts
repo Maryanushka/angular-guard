@@ -1,5 +1,4 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { IProduct } from '../../types/product.inteface';
 import { productKey, State } from './main.reducer';
 
 export const selectState = createFeatureSelector<State>(productKey);
@@ -7,7 +6,8 @@ export const selectState = createFeatureSelector<State>(productKey);
 export const selectProducts = createSelector(selectState, (state: State) => state.products.data);
 export const selectProductsLoading = createSelector(selectState, (state: State) => state.products.loading);
 export const selectProductsError = createSelector(selectState, (state: State) => state.products.error);
-export const selectProductsCount = createSelector(selectState, (state: State) => state.basket.data.length);
+export const selectBasketCount = createSelector(selectState, (state: State) => state.basket.data.reduce((sum, line) => sum + line.quantity, 0));
+/** Basket as stored: one entry per product with quantity (separate from products list). */
 export const selectBasket = createSelector(selectState, (state: State) => state.basket.data);
 
 export const selectSingleProduct = createSelector(selectState, (state: State) => state.singleProduct.data);

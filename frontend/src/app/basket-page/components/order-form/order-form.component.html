@@ -1,0 +1,99 @@
+<form [formGroup]="orderForm" class="order-form flex flex-col gap-4" (ngSubmit)="onSubmit()">
+	<h2 class="text-lg font-semibold text-pesianGreen mb-2">Заполните данные</h2>
+
+	<div class="field flex flex-col gap-1 w-full">
+		<label for="order-firstName" class="text-sm font-medium text-gray-700">Имя</label>
+		<input
+			pInputText
+			formControlName="firstName"
+			id="order-firstName"
+			type="text"
+			class="w-full"
+			[class.ng-invalid]="orderForm.get('firstName')?.invalid && orderForm.get('firstName')?.touched" />
+		@if (orderForm.get('firstName')?.touched && orderForm.get('firstName')?.errors) {
+			<small class="text-red-600 text-xs" role="alert">Обязательное поле</small>
+		}
+	</div>
+
+	<div class="field flex flex-col gap-1 w-full">
+		<label for="order-lastName" class="text-sm font-medium text-gray-700">Фамилия</label>
+		<input
+			pInputText
+			formControlName="lastName"
+			id="order-lastName"
+			type="text"
+			class="w-full"
+			[class.ng-invalid]="orderForm.get('lastName')?.invalid && orderForm.get('lastName')?.touched" />
+		@if (orderForm.get('lastName')?.touched && orderForm.get('lastName')?.errors) {
+			<small class="text-red-600 text-xs" role="alert">Обязательное поле</small>
+		}
+	</div>
+
+	<div class="field flex flex-col gap-1 w-full">
+		<label for="order-phone" class="text-sm font-medium text-gray-700">Телефон</label>
+		<input
+			pInputText
+			formControlName="phone"
+			id="order-phone"
+			type="tel"
+			class="w-full"
+			[class.ng-invalid]="orderForm.get('phone')?.invalid && orderForm.get('phone')?.touched" />
+		@if (orderForm.get('phone')?.touched && orderForm.get('phone')?.errors) {
+			<small class="text-red-600 text-xs" role="alert">Обязательное поле</small>
+		}
+	</div>
+
+	<div class="field flex flex-col gap-1 w-full">
+		<label for="order-email" class="text-sm font-medium text-gray-700">Email</label>
+		<input
+			pInputText
+			formControlName="email"
+			id="order-email"
+			type="email"
+			class="w-full"
+			[class.ng-invalid]="orderForm.get('email')?.invalid && orderForm.get('email')?.touched" />
+		@if (orderForm.get('email')?.touched && orderForm.get('email')?.errors) {
+			<small class="text-red-600 text-xs" role="alert">
+				{{ orderForm.get('email')?.hasError('email') ? 'Некорректный email' : 'Обязательное поле' }}
+			</small>
+		}
+	</div>
+
+	<div class="field flex flex-col gap-1 w-full">
+		<label for="order-city" class="text-sm font-medium text-gray-700">Город</label>
+		<input
+			pInputText
+			formControlName="city"
+			id="order-city"
+			type="text"
+			class="w-full"
+			[class.ng-invalid]="orderForm.get('city')?.invalid && orderForm.get('city')?.touched" />
+		@if (orderForm.get('city')?.touched && orderForm.get('city')?.errors) {
+			<small class="text-red-600 text-xs" role="alert">Обязательное поле</small>
+		}
+	</div>
+
+	<div class="field flex flex-col gap-1 w-full">
+		<label for="order-novaPoshtaBranch" class="text-sm font-medium text-gray-700">Отделение Новой Почты</label>
+		<input
+			pInputText
+			formControlName="novaPoshtaBranch"
+			id="order-novaPoshtaBranch"
+			type="text"
+			class="w-full"
+			[class.ng-invalid]="orderForm.get('novaPoshtaBranch')?.invalid && orderForm.get('novaPoshtaBranch')?.touched" />
+		@if (orderForm.get('novaPoshtaBranch')?.touched && orderForm.get('novaPoshtaBranch')?.errors) {
+			<small class="text-red-600 text-xs" role="alert">Обязательное поле</small>
+		}
+	</div>
+
+	<button
+		pButton
+		type="submit"
+		[icon]="'pi pi-check'"
+		class="w-full mt-2 border-pesianGreen/50 text-white bg-pesianGreen hover:bg-pesianGreen/10 hover:text-darkGreen rounded-md py-2"
+		severity="success"
+		[label]="'Заказать'"></button>
+</form>
+
+<p-toast />

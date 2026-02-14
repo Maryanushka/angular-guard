@@ -1,1 +1,9 @@
 /* Optional: paragraph spacing for CMS description content (Tailwind handles via [&_p]:mb-3 in template) */
+/* Description content from CMS: paragraph spacing */
+.product-single__description p {
+	margin: 0 0 0.75rem;
+}
+
+.product-single__description p:last-child {
+	margin-bottom: 0;
+}

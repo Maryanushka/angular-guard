@@ -1,0 +1,36 @@
+:host {
+	display: block;
+	width: 100%;
+	min-width: 0;
+}
+
+.order-form {
+	width: 100%;
+	min-width: 0;
+
+	.field input {
+		width: 100%;
+		box-sizing: border-box;
+		padding: 0.5rem 0.75rem;
+		border: 1px solid rgba(0, 161, 148, 0.4);
+		border-radius: 0.375rem;
+		font-size: 1rem;
+		transition:
+			border-color 0.2s,
+			box-shadow 0.2s;
+	}
+
+	.field input::placeholder {
+		color: #9ca3af;
+	}
+
+	.field input:focus {
+		outline: none;
+		border-color: var(--pesianGreen, #00a194);
+		box-shadow: 0 0 0 2px rgba(0, 161, 148, 0.2);
+	}
+
+	.field input.ng-invalid.ng-touched {
+		border-color: #dc2626;
+	}
+}

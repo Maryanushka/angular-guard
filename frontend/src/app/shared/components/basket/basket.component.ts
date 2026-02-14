@@ -13,6 +13,6 @@ import { toSignal } from '@angular/core/rxjs-interop';
 export class BasketComponent {
 	private facade = inject(MainFacade);
 
-	$count = toSignal(this.facade.productsCount$, { initialValue: 0 });
+	$count = toSignal(this.facade.basketCount$, { initialValue: 0 });
 	$basket = toSignal(this.facade.basket$, { initialValue: [] });
 }

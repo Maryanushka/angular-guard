@@ -1,0 +1,53 @@
+<section class="flex flex-col gap-4" aria-label="Товари в корзині">
+	@for (line of $basket(); track line.product._slug) {
+		<p-card class="basket-card border shadow-darkGreen/60 shadow-sm">
+			<div class="flex flex-col sm:flex-row gap-4">
+				@if (line.product.cover) {
+					<img
+						class="w-full sm:w-24 h-24 object-cover rounded border flex-shrink-0"
+						[src]="line.product.cover.url"
+						[alt]="line.product.title"
+						width="96"
+						height="96" />
+				}
+				<div class="flex-1 min-w-0 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+					<h2 class="font-medium text-gray-900 text-sm sm:text-base leading-tight m-0">{{ line.product.title }}</h2>
+					<div class="flex flex-col items-center gap-2 flex-shrink-0">
+						<p-button
+							[text]="true"
+							[icon]="'pi pi-times'"
+							severity="secondary"
+							class="self-end text-battleshipGray hover:text-munsell text-sm p-0 min-w-0 rounded-md w-8 h-8"
+							(onClick)="removeProduct(line)"
+							[attr.aria-label]="'Видалити ' + line.product.title" />
+
+						<p class="self-end price text-md font-bold text-pesianGreen">{{ lineTotal(line) }} ₴</p>
+
+						<div class="flex items-center gap-2">
+							<p-button
+								[rounded]="true"
+								[icon]="'pi pi-minus'"
+								[outlined]="true"
+								severity="secondary"
+								class="basket-btn w-8 h-8 min-w-0 border-pesianGreen/50 text-pesianGreen hover:bg-pesianGreen/10 rounded-md"
+								(onClick)="removeOne(line.product)"
+								[attr.aria-label]="'Зменшити кількість ' + line.product.title" />
+							<span class="w-12 text-center text-sm font-medium text-gray-700" [attr.aria-label]="'Кількість ' + line.product.title">
+								{{ line.quantity }}
+							</span>
+							<p-button
+								[icon]="'pi pi-plus'"
+								[rounded]="true"
+								[outlined]="true"
+								severity="secondary"
+								class="basket-btn w-8 h-8 min-w-0 border-pesianGreen/50 text-pesianGreen hover:bg-pesianGreen/10 rounded-md"
+								(onClick)="addOne(line.product)"
+								[attr.aria-label]="'Збільшити кількість ' + line.product.title" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</p-card>
+	}
+</section>
+<p-toast />

@@ -17,7 +17,8 @@ export class GetProductService {
       description,
       "cover": metaImage.asset->{url, "width": metadata.dimensions.width, "height": metadata.dimensions.height},
       "categories": coalesce(categories[]->{"_slug": slug.current, title}, []),
-      tag
+      tag,
+      price
     }`;
 		const params = { limit: limit ?? 20, category: category ?? null };
 		return from(this.sanity.fetch<IProduct[]>(query, params)).pipe(retry(2), delay(200));

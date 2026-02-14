@@ -3,6 +3,10 @@
 	"compileOnSave": false,
 	"compilerOptions": {
 		"baseUrl": "./",
+		"paths": {
+			"@primeuix/themes/aura": ["node_modules/@primeuix/themes/dist/aura/index.mjs"],
+			"@primeuix/themes/aura/*": ["node_modules/@primeuix/themes/dist/aura/*"]
+		},
 		"outDir": "./dist/out-tsc",
 		"forceConsistentCasingInFileNames": true,
 		"strict": true,
@@ -14,7 +18,7 @@
 		"declaration": false,
 		"downlevelIteration": true,
 		"experimentalDecorators": true,
-		"moduleResolution": "node",
+		"moduleResolution": "bundler",
 		"importHelpers": true,
 		"target": "ES2022",
 		"module": "ES2022",

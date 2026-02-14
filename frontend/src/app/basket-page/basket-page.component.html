@@ -10,133 +10,13 @@
 		} @else {
 			<div class="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-8 lg:gap-12">
 				<!-- Left: editable product list -->
-				<section class="flex flex-col gap-4" aria-label="Товари в корзині">
-					@for (product of basket(); track $index) {
-						<article class="flex flex-col sm:flex-row gap-4 p-4 border border-pesianGreen/30 rounded-lg bg-white shadow-sm">
-							@if (product.cover && product.cover.length) {
-								<img
-									class="w-full sm:w-24 h-24 object-cover rounded border border-pesianGreen/30 flex-shrink-0"
-									[src]="product.cover[0].url"
-									[alt]="product.title"
-									width="96"
-									height="96" />
-							}
-							<div class="flex-1 min-w-0 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-								<h2 class="font-medium text-gray-900 text-sm sm:text-base leading-tight">{{ product.title }}</h2>
-								<div class="flex items-center gap-2 flex-shrink-0">
-									<button
-										type="button"
-										class="w-9 h-9 flex items-center justify-center rounded border border-pesianGreen/50 text-pesianGreen hover:bg-pesianGreen/10 focus-visible:outline-2 focus-visible:outline-pesianGreen focus-visible:outline-offset-1 disabled:opacity-50"
-										(click)="removeOne(product)"
-										[attr.aria-label]="'Зменшити кількість ' + product.title">
-										<span aria-hidden="true">−</span>
-									</button>
-									<input
-										type="text"
-										class="w-12 h-9 text-center border border-pesianGreen/50 rounded text-sm font-medium read-only:bg-gray-50"
-										value="1"
-										readonly
-										[attr.aria-label]="'Кількість ' + product.title" />
-									<button
-										type="button"
-										class="w-9 h-9 flex items-center justify-center rounded border border-pesianGreen/50 text-pesianGreen hover:bg-pesianGreen/10 focus-visible:outline-2 focus-visible:outline-pesianGreen focus-visible:outline-offset-1"
-										(click)="addOne(product)"
-										[attr.aria-label]="'Збільшити кількість ' + product.title">
-										<span aria-hidden="true">+</span>
-									</button>
-									<button
-										type="button"
-										class="text-battleshipGray hover:text-munsell text-sm underline ml-2 focus-visible:outline-2 focus-visible:outline-pesianGreen rounded"
-										(click)="removeAll(product)"
-										[attr.aria-label]="'Видалити ' + product.title">
-										Видалити
-									</button>
-								</div>
-							</div>
-						</article>
-					}
-				</section>
+				<app-basket-list />
 
 				<!-- Right: customer form -->
-				<aside class="lg:sticky lg:top-8 h-fit">
-					<form
-						[formGroup]="orderForm"
-						class="flex flex-col gap-4 p-6 border border-pesianGreen/30 rounded-lg bg-white shadow-sm"
-						(ngSubmit)="onSubmit()">
-						<h2 class="text-lg font-semibold text-pesianGreen mb-2">Заполните данные</h2>
-
-						<label class="flex flex-col gap-1">
-							<span class="text-sm font-medium text-gray-700">Имя</span>
-							<input
-								formControlName="firstName"
-								type="text"
-								class="w-full px-3 py-2 border border-pesianGreen/50 rounded focus:outline-2 focus:outline-pesianGreen focus:border-transparent" />
-							@if (orderForm.controls.firstName.touched && orderForm.controls.firstName.errors) {
-								<span class="text-xs text-munsell">Обязательное поле</span>
-							}
-						</label>
-
-						<label class="flex flex-col gap-1">
-							<span class="text-sm font-medium text-gray-700">Фамилия</span>
-							<input
-								formControlName="lastName"
-								type="text"
-								class="w-full px-3 py-2 border border-pesianGreen/50 rounded focus:outline-2 focus:outline-pesianGreen focus:border-transparent" />
-							@if (orderForm.controls.lastName.touched && orderForm.controls.lastName.errors) {
-								<span class="text-xs text-munsell">Обязательное поле</span>
-							}
-						</label>
-
-						<label class="flex flex-col gap-1">
-							<span class="text-sm font-medium text-gray-700">Телефон</span>
-							<input
-								formControlName="phone"
-								type="tel"
-								class="w-full px-3 py-2 border border-pesianGreen/50 rounded focus:outline-2 focus:outline-pesianGreen focus:border-transparent" />
-							@if (orderForm.controls.phone.touched && orderForm.controls.phone.errors) {
-								<span class="text-xs text-munsell">Обязательное поле</span>
-							}
-						</label>
-
-						<label class="flex flex-col gap-1">
-							<span class="text-sm font-medium text-gray-700">Емаил</span>
-							<input
-								formControlName="email"
-								type="email"
-								class="w-full px-3 py-2 border border-pesianGreen/50 rounded focus:outline-2 focus:outline-pesianGreen focus:border-transparent" />
-							@if (orderForm.controls.email.touched && orderForm.controls.email.errors) {
-								<span class="text-xs text-munsell">{{ orderForm.controls.email.hasError('email') ? 'Некорректный email' : 'Обязательное поле' }}</span>
-							}
-						</label>
-
-						<label class="flex flex-col gap-1">
-							<span class="text-sm font-medium text-gray-700">Город</span>
-							<input
-								formControlName="city"
-								type="text"
-								class="w-full px-3 py-2 border border-pesianGreen/50 rounded focus:outline-2 focus:outline-pesianGreen focus:border-transparent" />
-							@if (orderForm.controls.city.touched && orderForm.controls.city.errors) {
-								<span class="text-xs text-munsell">Обязательное поле</span>
-							}
-						</label>
-
-						<label class="flex flex-col gap-1">
-							<span class="text-sm font-medium text-gray-700">Отделение Новой Почты</span>
-							<input
-								formControlName="novaPoshtaBranch"
-								type="text"
-								class="w-full px-3 py-2 border border-pesianGreen/50 rounded focus:outline-2 focus:outline-pesianGreen focus:border-transparent" />
-							@if (orderForm.controls.novaPoshtaBranch.touched && orderForm.controls.novaPoshtaBranch.errors) {
-								<span class="text-xs text-munsell">Обязательное поле</span>
-							}
-						</label>
-
-						<button
-							type="submit"
-							class="w-full py-3 px-4 bg-pesianGreen text-white font-semibold rounded-lg hover:opacity-90 focus-visible:outline-2 focus-visible:outline-pesianGreen focus-visible:outline-offset-2 disabled:opacity-60 mt-2">
-							Заказать
-						</button>
-					</form>
+				<aside class="lg:sticky lg:top-8 h-fit w-full min-w-0">
+					<div class="p-6 border border-pesianGreen/30 rounded-lg bg-white shadow-sm w-full min-w-0">
+						<app-order-form />
+					</div>
 				</aside>
 			</div>
 		}

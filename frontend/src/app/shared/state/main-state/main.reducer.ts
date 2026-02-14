@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { ProductActions } from './main.actions';
-import { ICategory, IProduct, ISingleProduct } from '../../types/product.inteface';
+import { BasketLine, ICategory, IProduct, ISingleProduct } from '../../types/product.inteface';
+import { HttpErrorResponse } from '@angular/common/http';
 
 export const productKey = 'PRODUCT';
 
@@ -8,21 +9,21 @@ export interface State {
 	products: {
 		data: IProduct[];
 		loading: boolean;
-		error: any;
+		error: HttpErrorResponse | null;
 	};
 	basket: {
-		data: ISingleProduct[];
+		data: BasketLine[];
 		loading: boolean;
 	};
 	singleProduct: {
 		data: ISingleProduct | null;
 		loading: boolean;
-		error: any;
+		error: HttpErrorResponse | null;
 	};
 	categories: {
 		data: ICategory[];
 		loading: boolean;
-		error: any;
+		error: HttpErrorResponse | null;
 	};
 }
 
@@ -50,30 +51,53 @@ export const initialState: State = {
 
 export const productReducer = createReducer(
 	initialState,
-	on(ProductActions.addProduct, (state, { product }) => ({
-		...state,
-		basket: {
-			data: [...state.basket.data, product],
-			loading: false,
-		},
-	})),
-	on(ProductActions.deleteProduct, (state, { product }) => ({
-		...state,
-		basket: {
-			data: state.basket.data.filter((p) => p._slug !== product._slug),
-			loading: false,
-		},
-	})),
-	on(ProductActions.removeOneFromBasket, (state, { product }) => {
-		const idx = state.basket.data.findIndex((p) => p._slug === product._slug);
-		if (idx === -1) return state;
-		const data = [...state.basket.data];
-		data.splice(idx, 1);
+	on(ProductActions.addProduct, (state, { product }) => {
+		const isProductInBasket = state.basket.data.some((p) => p.product._slug === product._slug);
+		if (isProductInBasket) {
+			return {
+				...state,
+				basket: {
+					data: state.basket.data.map((p) => (p.product._slug === product._slug ? { ...p, quantity: p.quantity + 1 } : p)),
+					loading: false,
+				},
+			};
+		}
 		return {
 			...state,
-			basket: { data, loading: false },
+			basket: {
+				data: [...state.basket.data, { product, quantity: 1 }],
+				loading: false,
+			},
 		};
 	}),
+	on(ProductActions.remove1FromBasket, (state, { product }) => {
+		const idx = state.basket.data.findIndex((p) => p.product._slug === product._slug);
+		if (idx === -1) return state;
+
+		const data = [...state.basket.data];
+		const line = data[idx];
+
+		if (line.quantity > 1) {
+			data[idx] = { ...line, quantity: line.quantity - 1 };
+		} else {
+			data.splice(idx, 1);
+		}
+
+		return {
+			...state,
+			basket: { ...state.basket, data, loading: false },
+		};
+	}),
+	on(ProductActions.removeProduct, (state, { product }) => {
+		return {
+			...state,
+			basket: { data: state.basket.data.filter((p) => p.product._slug !== product.product._slug), loading: false },
+		};
+	}),
+	on(ProductActions.setBasket, (state, { items }) => ({
+		...state,
+		basket: { data: items.map((p) => ({ product: p, quantity: 1 })), loading: false },
+	})),
 	on(ProductActions.loadProducts, (state) => ({
 		...state,
 		products: {
