@@ -3,6 +3,8 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
+import emailjs, { type EmailJSResponseStatus } from '@emailjs/browser';
+import { environment } from '../environments/environment';
 import { MainFacade } from '../shared/state/main-state/main.facade';
 import { ISingleProduct } from '../shared/types/product.inteface';
 import { NavigationComponent } from '../shared/components/navigation/navigation.component';
@@ -47,14 +49,31 @@ export class BasketPageComponent {
 		}
 	}
 
-	onSubmit() {
+	async onSubmit() {
 		if (this.orderForm.invalid) {
 			this.orderForm.markAllAsTouched();
 			return;
 		}
 		const value = this.orderForm.getRawValue();
-		// TODO: send to mail/order service
-		console.log('Order form value:', value);
-		this.orderForm.reset();
+		const items = this.basket() ?? [];
+		const basketTotals = items.reduce((sum, p) => sum + (parseFloat(p.price) || 0), 0);
+
+		const { emailjs: config } = environment;
+		const templateParams = {
+			FirstName: value.firstName,
+			LastName: value.lastName,
+			Email: value.email,
+			Phone: value.phone,
+			City: value.city,
+			NovaPoshtaBranch: value.novaPoshtaBranch,
+			BasketTotals: basketTotals.toFixed(2),
+		};
+
+		try {
+			await emailjs.send(config.serviceId, config.templateId, templateParams, { publicKey: config.publicKey });
+			this.orderForm.reset();
+		} catch (err) {
+			console.error('EmailJS failed:', (err as EmailJSResponseStatus).text);
+		}
 	}
 }

@@ -14,4 +14,9 @@ export const environment = {
 	dataset: 'production',
 	apiVersion: '2025-01-01',
 	useCdn: true,
+	emailjs: {
+		publicKey: 'GZRxMdaQHDQviRqgt',
+		serviceId: 'service_wda5h3j',
+		templateId: 'template_contactForm',
+	},
 };
