@@ -4,14 +4,18 @@ import { ISingleProduct } from '../../../shared/types/product.inteface';
 import { ActivatedRoute } from '@angular/router';
 import { MainFacade } from '../../../shared/state/main-state/main.facade';
 import { NavigationComponent } from '../../../shared/components/navigation/navigation.component';
+import { TabsComponent } from '../../../shared/components/tabs/tabs.component';
+import { VideoPlayerComponent } from '../../../shared/components/video-player/video-player.component';
+import { SocialMediaComponent } from '../../../shared/components/social-media/social-media.component';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
 	selector: 'app-product-single',
 	templateUrl: './product-single.component.html',
 	styleUrls: ['./product-single.component.css'],
 	standalone: true,
-	imports: [CommonModule, NavigationComponent],
+	imports: [CommonModule, RouterModule, NavigationComponent, TabsComponent, VideoPlayerComponent, SocialMediaComponent],
 })
 export class ProductSingleComponent implements OnInit, OnDestroy {
 	private facade = inject(MainFacade);

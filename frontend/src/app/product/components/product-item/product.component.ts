@@ -14,7 +14,7 @@ export class ProductComponent {
 		_slug: '',
 		title: '',
 		description: '',
-		cover: [],
+		cover: null,
 		categories: [],
 	};
 }

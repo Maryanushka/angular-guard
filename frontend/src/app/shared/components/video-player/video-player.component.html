@@ -1,0 +1,33 @@
+<div class="video-player relative w-full aspect-video bg-slate-100 rounded overflow-hidden" role="region" [attr.aria-label]="alt()">
+	@if (playing() && safeEmbedUrl()) {
+		<iframe
+			class="absolute inset-0 w-full h-full"
+			[src]="safeEmbedUrl()"
+			[title]="alt()"
+			allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+			allowfullscreen
+			loading="lazy">
+		</iframe>
+	} @else {
+		<img
+			class="absolute inset-0 w-full h-full object-cover"
+			[src]="posterUrl()"
+			[alt]="alt()"
+			loading="lazy"
+			width="700"
+			height="400" />
+		@if (embedUrl()) {
+			<button
+				type="button"
+				class="absolute inset-0 w-full h-full flex items-center justify-center bg-slate-900/20 hover:bg-slate-900/30 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-pesianGreen focus-visible:ring-offset-2"
+				(click)="play()"
+				[attr.aria-label]="'Play ' + alt()">
+				<span class="relative z-10 w-20 h-20 flex items-center justify-center rounded-full bg-white/90 hover:bg-white transition-colors" aria-hidden="true">
+					<svg class="w-10 h-10 text-pesianGreen ml-1" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+						<path d="M8 5v14l11-7z" />
+					</svg>
+				</span>
+			</button>
+		}
+	}
+</div>

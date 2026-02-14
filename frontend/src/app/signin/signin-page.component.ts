@@ -1,19 +1,20 @@
-import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../product/services/auth.service';
 import { IUserCredentials } from '../shared/types/userCredential.interface';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
 	selector: 'app-signin-page',
 	templateUrl: './signin-page.component.html',
 	styleUrls: ['./signin-page.component.scss'],
+	standalone: true,
+	imports: [CommonModule, FormsModule, ReactiveFormsModule],
 })
 export class SigninPageComponent {
-	constructor(
-		private auth: AuthService,
-		private router: Router
-	) {}
+	auth = inject(AuthService);
+	router = inject(Router);
 
 	form = new FormGroup({
 		email: new FormControl<string>('', [Validators.required, Validators.minLength(6)]),

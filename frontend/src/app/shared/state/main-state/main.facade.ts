@@ -26,7 +26,7 @@ export class MainFacade {
 
 	products$: Observable<IProduct[]> = this.store.pipe(select(selectProducts));
 	productsLoading$: Observable<boolean> = this.store.pipe(select(selectProductsLoading));
-	productsError$: Observable<any> = this.store.pipe(select(selectProductsError));
+	productsError$: Observable<HttpErrorResponse> = this.store.pipe(select(selectProductsError));
 
 	productsCount$: Observable<number> = this.store.pipe(select(selectProductsCount));
 	basket$: Observable<ISingleProduct[]> = this.store.pipe(select(selectBasket));

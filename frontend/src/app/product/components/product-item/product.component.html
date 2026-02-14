@@ -2,7 +2,11 @@
 	[routerLink]="'/products/' + product._slug"
 	class="py-4 px-6 border border-slate-100 flex rounded items-center flex-col shadow-md hover:shadow-lg group max-h-[13rem]">
 	<div class="image w-24 h-24">
-		<img class="w-full h-full object-cover" [src]="product.cover[0].url" alt="" />
+		@if (product.cover) {
+			<img class="w-full h-full object-cover" [src]="product.cover.url" [alt]="product.title" />
+		} @else {
+			<div class="w-full h-full bg-gray-200 flex items-center justify-center text-gray-400">No image</div>
+		}
 	</div>
 	<figcaption class="content flex justify-center">
 		<h2 class="text-sm font-bold mt-4 w-[90%] text-center group-hover:text-pesianGreen transition-all">

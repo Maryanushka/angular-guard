@@ -1,5 +1,5 @@
 import { defineField, defineType } from 'sanity'
-import { seo, hero, features, content, richText, youtube } from '../sections'
+import { seo, hero, features, content, richText, youtube, productTabs } from '../sections'
 
 export default defineType({
   name: 'product',
@@ -10,7 +10,7 @@ export default defineType({
       name: 'title',
       title: 'Title',
       type: 'string',
-      validation: (Rule) => Rule.required(),
+      validation: Rule => Rule.required()
     }),
     defineField({
       name: 'slug',
@@ -18,31 +18,31 @@ export default defineType({
       type: 'slug',
       options: {
         source: 'title',
-        maxLength: 96,
+        maxLength: 96
       },
-      validation: (Rule) => Rule.required(),
+      validation: Rule => Rule.required()
     }),
     defineField({
       name: 'tag',
       title: 'Tag',
-      type: 'string',
+      type: 'string'
     }),
     defineField({
       name: 'metaImage',
       title: 'Meta Image',
       type: 'image',
-      description: 'Image for social media sharing.',
+      description: 'Image for social media sharing.'
     }),
     defineField({
       name: 'price',
       title: 'Price',
-      type: 'string',
+      type: 'string'
     }),
     defineField({
       name: 'description',
       title: 'Description',
       type: richText.name,
-      description: 'Rich text content with formatting, images, and more.',
+      description: 'Rich text content with formatting, images, and more.'
     }),
     defineField({
       name: 'sections',
@@ -53,26 +53,27 @@ export default defineType({
         { type: features.name },
         { type: content.name },
         { type: youtube.name },
+        { type: productTabs.name }
       ],
-      description: 'Add and reorder sections for this page.',
+      description: 'Add and reorder sections for this page (e.g. Product Tabs, Product Video).'
     }),
     defineField({
       name: 'seo',
       title: 'SEO',
-      type: seo.name,
-    }),
+      type: seo.name
+    })
   ],
   preview: {
     select: {
       title: 'title',
       slug: 'slug.current',
-      tag: 'tag',
+      tag: 'tag'
     },
     prepare({ title, slug, tag }) {
       return {
         title,
-        subtitle: tag || (slug ? `/${slug}` : 'No slug'),
+        subtitle: tag || (slug ? `/${slug}` : 'No slug')
       }
-    },
-  },
+    }
+  }
 })

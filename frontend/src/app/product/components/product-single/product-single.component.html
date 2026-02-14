@@ -1,27 +1,51 @@
 <app-navigation></app-navigation>
 
-<ng-container *ngIf="singleProduct$ | async as product">
+@if (singleProduct$ | async; as product) {
 	<div class="flex container ml-auto mr-auto flex-wrap px-8">
 		<div class="breadcrumbs w-full my-16 flex items-center">
 			<a routerLink="/products" class="text-battleshipGray hover:text-pesianGreen">Магазин</a>
-			<span class="bg-battleshipGray flex w-8 h-[2px] mx-8"></span>
+			<span class="bg-battleshipGray flex w-8 h-[2px] mx-8" aria-hidden="true"></span>
 			<span class="text-pesianGreen">{{ product.title }}</span>
 		</div>
 		<div class="image w-4/12">
-			<img class="object-cover w-full h-full" [src]="product.cover[0].url" alt="" />
+			@if (product.cover.length) {
+				<img class="object-cover w-full h-full" [src]="product.cover[0].url" [alt]="product.title" />
+			}
 		</div>
 		<div class="content w-8/12 pl-8">
-			<h2 class="text-pesianGreen inline-flex mb-5 text-xl font-medium">
+			<h1 class="text-pesianGreen inline-flex mb-5 text-xl font-medium">
 				{{ product.title }}
-			</h2>
-			<div class="description mb-8" [innerHTML]="product.content[0].body"></div>
+			</h1>
+			@if (product.content.length && product.content[0].body) {
+				<div class="description mb-8" [innerHTML]="product.content[0].body"></div>
+			}
 			<div class="add-to-basket flex">
 				<div class="price text-pesianGreen text-2xl font-bold mr-12">{{ product.price }} <span>₴</span></div>
-				<button class="btn btn-primary text-pesianGreen font-semibold" (click)="addToBasket(product)">Добавить в корзину</button>
+				<button type="button" class="btn btn-primary text-pesianGreen font-semibold" (click)="addToBasket(product)">
+					Добавить в корзину
+				</button>
 			</div>
 		</div>
 	</div>
-</ng-container>
-<ng-container *ngIf="singleProductError$ | async">
+
+	@if (product.video?.embedUrl && (product.video?.posterUrl || product.cover.length)) {
+		<div class="container ml-auto mr-auto px-8 mt-12 mb-12">
+			<app-video-player
+				[posterUrl]="product.video?.posterUrl ?? product.cover[0]?.url ?? ''"
+				[embedUrl]="product.video?.embedUrl ?? null"
+				[alt]="product.title + ' video'" />
+		</div>
+	}
+
+	@if (product.tabs && product.tabs.length > 0) {
+		<div class="container ml-auto mr-auto px-8 mb-16">
+			<app-tabs [tabs]="product.tabs" />
+		</div>
+	}
+
+	<app-social-media class="flex fixed right-8 bottom-4"></app-social-media>
+}
+
+@if (singleProductError$ | async) {
 	<p class="text-center font-bold">No product found</p>
-</ng-container>
+}

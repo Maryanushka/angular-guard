@@ -1,0 +1,6 @@
+node_modules
+dist
+.sanity
+*.lock
+package-lock.json
+schemaTypes/index.ts

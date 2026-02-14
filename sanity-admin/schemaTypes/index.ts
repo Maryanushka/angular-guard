@@ -6,7 +6,7 @@ export * from './pages'
 
 // Import specific schemas for Sanity config
 import { page, homePage, contentPage, product, menu, categories } from './pages'
-import { seo, hero, features, content, richText, youtube } from './sections'
+import { seo, hero, features, content, richText, youtube, productTabs } from './sections'
 
 export const schemaTypes = [
   // Page types
@@ -23,5 +23,6 @@ export const schemaTypes = [
   features,
   content,
   richText,
-  youtube
+  youtube,
+  productTabs
 ]
