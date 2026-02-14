@@ -64,6 +64,16 @@ export const productReducer = createReducer(
 			loading: false,
 		},
 	})),
+	on(ProductActions.removeOneFromBasket, (state, { product }) => {
+		const idx = state.basket.data.findIndex((p) => p._slug === product._slug);
+		if (idx === -1) return state;
+		const data = [...state.basket.data];
+		data.splice(idx, 1);
+		return {
+			...state,
+			basket: { data, loading: false },
+		};
+	}),
 	on(ProductActions.loadProducts, (state) => ({
 		...state,
 		products: {

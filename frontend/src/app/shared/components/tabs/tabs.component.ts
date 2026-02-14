@@ -8,7 +8,7 @@ export interface TabItem {
 @Component({
 	selector: 'app-tabs',
 	templateUrl: './tabs.component.html',
-	styleUrls: ['./tabs.component.css'],
+	styleUrls: ['./tabs.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TabsComponent {

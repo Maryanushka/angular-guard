@@ -3,10 +3,11 @@
 		'': !isHome,
 		home: isHome
 	}">
-	<a *ngIf="!isHome" [routerLink]="'/'">
-		<img src="../../../../assets/logo.png" alt="" class="w-24 mt-8 ml-8" />
-	</a>
-
+  @if (!isHome) {
+    <a [routerLink]="'/'">
+      <img src="../../../../assets/logo.png" alt="" class="w-24 mt-8 ml-8" />
+    </a>
+  }
 	<ul
 		class="flex"
 		[ngClass]="{
@@ -41,5 +42,7 @@
 		<!-- <li *ngIf="authService.isLoginSubject$ | async"><button (click)="authService.logout()" class="text-white">Вийти</button></li> -->
 	</ul>
 
-	<app-basket *ngIf="!isHome"></app-basket>
+	@if (!isHome) {
+		<app-basket></app-basket>
+	}
 </nav>

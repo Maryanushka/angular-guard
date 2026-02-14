@@ -7,6 +7,7 @@ export const ProductActions = createActionGroup({
 	events: {
 		'Add Product': props<{ product: ISingleProduct }>(),
 		'Delete Product': props<{ product: ISingleProduct }>(),
+		'Remove One From Basket': props<{ product: ISingleProduct }>(),
 		// all products
 		'Load Products': props<{ category: string | null; limit: number }>(),
 		'Load Products Success': props<{ products: IProduct[] }>(),

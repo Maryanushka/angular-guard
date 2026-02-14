@@ -5,21 +5,23 @@
 				d="M253.3 35.1c6.1-11.8 1.5-26.3-10.2-32.4s-26.3-1.5-32.4 10.2L117.6 192 32 192c-17.7 0-32 14.3-32 32s14.3 32 32 32L83.9 463.5C91 492 116.6 512 146 512L430 512c29.4 0 55-20 62.1-48.5L544 256c17.7 0 32-14.3 32-32s-14.3-32-32-32l-85.6 0L365.3 12.9C359.2 1.2 344.7-3.4 332.9 2.7s-16.3 20.6-10.2 32.4L404.3 192l-232.6 0L253.3 35.1zM192 304l0 96c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-96c0-8.8 7.2-16 16-16s16 7.2 16 16zm96-16c8.8 0 16 7.2 16 16l0 96c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-96c0-8.8 7.2-16 16-16zm128 16l0 96c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-96c0-8.8 7.2-16 16-16s16 7.2 16 16z" />
 		</svg>
 	</a>
-	<div
-		*ngIf="(count$ | async)! > 0"
-		class="count absolute top-[7px] right-0 p-[3px] text-[10px] w-4 h-4 rounded-full border border-munsell border-solid text-munsell font-bold z-10 flex justify-center items-center">
-		{{ count$ | async }}
-	</div>
-	<div *ngIf="(count$ | async)! > 0" class="drop-down absolute right-0 top-full w-72 bg-white shadow-lg rounded-md p-4 hidden group-hover:block">
-		<ul class="flex flex-col gap-4">
-			@for (item of basket$ | async; track item._slug) {
-				<li class="border-b border-gray-200 last:border-none p-3 flex justify-between items-center">
-					<div class="image w-40 h-16 mr-4">
-						<img class="object-cover w-full h-full" [src]="item.cover[0].url" alt="" />
-					</div>
-					<span class="font-medium text-gray-900 leading-none text-sm">{{ item.title }}</span>
-				</li>
-			}
-		</ul>
-	</div>
+  @let count = $count();
+  @if (count > 0) {
+    <div
+      class="count absolute top-[7px] right-0 p-[3px] text-[10px] w-4 h-4 rounded-full border border-munsell border-solid text-munsell font-bold z-10 flex justify-center items-center">
+      {{ count }}
+    </div>
+    <div class="drop-down absolute right-0 top-full w-72 bg-white shadow-lg rounded-md p-4 hidden group-hover:block">
+      <ul class="flex flex-col gap-4">
+        @for (item of $basket(); track item._slug) {
+          <li class="border-b border-gray-200 last:border-none p-3 flex justify-between items-center">
+            <div class="image w-40 h-16 mr-4">
+              <img class="object-cover w-full h-full" [src]="item.cover[0].url" alt="" />
+            </div>
+            <span class="font-medium text-gray-900 leading-none text-sm">{{ item.title }}</span>
+          </li>
+        }
+      </ul>
+    </div>
+  }
 </div>

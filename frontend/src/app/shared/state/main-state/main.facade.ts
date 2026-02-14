@@ -51,4 +51,12 @@ export class MainFacade {
 	addToBasket(product: ISingleProduct) {
 		this.store.dispatch(ProductActions.addProduct({ product }));
 	}
+
+	removeFromBasket(product: ISingleProduct) {
+		this.store.dispatch(ProductActions.deleteProduct({ product }));
+	}
+
+	removeOneFromBasket(product: ISingleProduct) {
+		this.store.dispatch(ProductActions.removeOneFromBasket({ product }));
+	}
 }

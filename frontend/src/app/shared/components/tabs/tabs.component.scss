@@ -1,0 +1,11 @@
+.tab-button:hover {
+  @apply text-pesianGreen;
+}
+
+.tab-button[aria-selected="true"] {
+  @apply font-bold;
+}
+
+.tab-panel {
+  @apply text-gray-700 text-sm leading-relaxed;
+}
