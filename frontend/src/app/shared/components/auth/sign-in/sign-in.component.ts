@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, inject, signal } from '@angular/core';
+import { Component, EventEmitter, Output, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
@@ -7,6 +7,7 @@ import { DividerModule } from 'primeng/divider';
 import { AuthService } from '../../../../product/services/auth.service';
 import { RecaptchaVerifier } from '@angular/fire/auth';
 import { Auth } from '@angular/fire/auth';
+import { MainFacade } from '../../../state/main-state/main.facade';
 
 @Component({
 	selector: 'app-sign-in',
@@ -17,6 +18,7 @@ import { Auth } from '@angular/fire/auth';
 export class SignInComponent {
 	@Output() switchToRegister = new EventEmitter<void>();
 	
+	private facade = inject(MainFacade);
 	private authService = inject(AuthService);
 	private auth = inject(Auth);
 	private fb = inject(FormBuilder);
@@ -33,12 +35,13 @@ export class SignInComponent {
 	});
 
 	loginGoogle() {
-		this.authService.getToken(null, 'google');
+		this.facade.loginGoogle();
 	}
 
 	loginEmail() {
 		if (this.loginForm.valid) {
-			this.authService.getToken(this.loginForm.value as any, 'form');
+			const { email, password } = this.loginForm.value;
+			this.facade.loginEmail(email!, password!);
 		}
 	}
 
@@ -59,7 +62,7 @@ export class SignInComponent {
 
 	async sendCode() {
 		try {
-			await this.authService.signInWithPhoneNumber(this.phoneNumber, this.recaptchaVerifier);
+			await this.authService.startPhoneSignIn(this.phoneNumber, this.recaptchaVerifier);
 			this.verificationCodeSent = true;
 		} catch (error) {
 			console.error(error);
@@ -69,6 +72,7 @@ export class SignInComponent {
 	async verifyCode() {
 		try {
 			await this.authService.verifyOtp(this.otp);
+			this.facade.closeAuthModal();
 		} catch (error) {
 			console.error(error);
 		}

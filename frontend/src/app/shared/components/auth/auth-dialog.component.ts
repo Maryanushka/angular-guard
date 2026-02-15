@@ -1,9 +1,10 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, effect, inject, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
 import { DialogModule } from 'primeng/dialog';
-import { AuthService } from '../../../product/services/auth.service';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { RegisterComponent } from './register/register.component';
+import { MainFacade } from '../../state/main-state/main.facade';
 
 @Component({
 	selector: 'app-auth-dialog',
@@ -11,7 +12,7 @@ import { RegisterComponent } from './register/register.component';
 	imports: [CommonModule, DialogModule, SignInComponent, RegisterComponent],
 	template: `
 		<p-dialog 
-			[(visible)]="isVisible" 
+			[visible]="isVisible()" 
 			[modal]="true" 
 			[draggable]="false" 
 			[resizable]="false" 
@@ -19,11 +20,11 @@ import { RegisterComponent } from './register/register.component';
 			[style]="{ width: '450px' }"
 			(onHide)="close()">
 			<ng-template pTemplate="header">
-				<div class="text-xl font-bold">{{ isLoginMode ? 'Sign In' : 'Register' }}</div>
+				<div class="text-xl font-bold">{{ isLoginMode() ? 'Sign In' : 'Register' }}</div>
 			</ng-template>
 			
 			<div class="flex flex-col gap-4">
-				@if (isLoginMode) {
+				@if (isLoginMode()) {
 					<app-sign-in (switchToRegister)="switchMode()"></app-sign-in>
 				} @else {
 					<app-register (switchToLogin)="switchMode()"></app-register>
@@ -32,26 +33,28 @@ import { RegisterComponent } from './register/register.component';
 		</p-dialog>
 	`
 })
-export class AuthDialogComponent implements OnInit {
-	private authService = inject(AuthService);
-	
-	isVisible = false;
-	isLoginMode = true;
+export class AuthDialogComponent {
+	private facade = inject(MainFacade);
 
-	ngOnInit() {
-		this.authService.showAuthModal$.subscribe(visible => {
-			this.isVisible = visible;
+	private showModal = toSignal(this.facade.showAuthModal$, { initialValue: false });
+	isVisible = signal(false);
+	isLoginMode = signal(true);
+
+	constructor() {
+		effect(() => {
+			const visible = this.showModal();
+			this.isVisible.set(visible);
 			if (visible) {
-				this.isLoginMode = true; // Reset to login when opening
+				this.isLoginMode.set(true);
 			}
 		});
 	}
 
 	close() {
-		this.authService.closeAuthModal();
+		this.facade.closeAuthModal();
 	}
 
 	switchMode() {
-		this.isLoginMode = !this.isLoginMode;
+		this.isLoginMode.update(v => !v);
 	}
 }

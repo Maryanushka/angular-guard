@@ -13,6 +13,9 @@ import {
 	selectCategoriesLoading,
 	selectCategoriesError,
 	selectBasket,
+	selectIsLoggedIn,
+	selectUser,
+	selectShowAuthModal,
 } from './main.selectors';
 import { Observable } from 'rxjs';
 import { BasketLine, ICategory, IProduct, ISingleProduct } from '../../types/product.inteface';
@@ -42,6 +45,11 @@ export class MainFacade {
 	categoriesLoading$: Observable<boolean> = this.store.pipe(select(selectCategoriesLoading));
 	categoriesError$: Observable<HttpErrorResponse | null> = this.store.pipe(select(selectCategoriesError));
 
+	// Auth
+	isLoggedIn$: Observable<boolean> = this.store.pipe(select(selectIsLoggedIn));
+	user$ = this.store.pipe(select(selectUser));
+	showAuthModal$: Observable<boolean> = this.store.pipe(select(selectShowAuthModal));
+
 	loadProducts(category: string | null, limit: number, offset: number) {
 		this.store.dispatch(AppActions.loadProducts({ category, limit, offset }));
 	}
@@ -62,4 +70,30 @@ export class MainFacade {
 	removeProduct(line: BasketLine) {
 		this.store.dispatch(AppActions.removeProduct({ product: line }));
 	}
+
+	// Auth actions
+	openAuthModal() {
+		this.store.dispatch(AppActions.openAuthModal());
+	}
+
+	closeAuthModal() {
+		this.store.dispatch(AppActions.closeAuthModal());
+	}
+
+	logout() {
+		this.store.dispatch(AppActions.logout());
+	}
+
+	register(name: string, email: string, password: string) {
+		this.store.dispatch(AppActions.register({ name, email, password }));
+	}
+
+	loginGoogle() {
+		this.store.dispatch(AppActions.loginGoogle());
+	}
+
+	loginEmail(email: string, password: string) {
+		this.store.dispatch(AppActions.loginEmail({ email, password }));
+	}
 }
+

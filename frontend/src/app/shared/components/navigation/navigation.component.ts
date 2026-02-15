@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { AuthService } from '../../../product/services/auth.service';
+import { MainFacade } from '../../state/main-state/main.facade';
 import { BasketComponent } from '../basket/basket.component';
 import { ButtonModule } from 'primeng/button';
+import { take } from 'rxjs';
 
 @Component({
 	selector: 'app-navigation',
@@ -16,7 +17,7 @@ export class NavigationComponent implements OnInit {
 	isHome = false;
 	isMenuOpen = false;
 	router = inject(Router);
-	authService = inject(AuthService);
+	private facade = inject(MainFacade);
 
 	ngOnInit() {
 		this.isHome = this.router.url === '/';
@@ -37,19 +38,14 @@ export class NavigationComponent implements OnInit {
 	}
 
 	onUserIconClick() {
-		// We can subscribe to isLoggedIn check or check current value if it's behavior subject
-		// For now simple check via service
-		// In AuthService we have isLoggedIn observable. 
-		// Let's modify logic: if generic user -> modal.
-		
-		// The isLoginSubject$ is public in AuthService.
-		const isLoggedIn = this.authService.isLoginSubject$.value;
-		if (isLoggedIn) {
-			this.router.navigate(['/profile']); // Navigate to profile if logged in
-			this.closeMenu();
-		} else {
-			this.authService.openAuthModal();
-			this.closeMenu();
-		}
+		this.facade.isLoggedIn$.pipe(take(1)).subscribe(isLoggedIn => {
+			if (isLoggedIn) {
+				this.router.navigate(['/profile']);
+				this.closeMenu();
+			} else {
+				this.facade.openAuthModal();
+				this.closeMenu();
+			}
+		});
 	}
 }

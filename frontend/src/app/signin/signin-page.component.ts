@@ -1,11 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AuthService } from '../product/services/auth.service';
-import { IUserCredentials } from '../shared/types/userCredential.interface';
-import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NavigationComponent } from '../shared/components/navigation/navigation.component';
 import { FooterComponent } from '../shared/components/footer/footer.component';
+import { MainFacade } from '../shared/state/main-state/main.facade';
 
 @Component({
 	selector: 'app-signin-page',
@@ -15,8 +13,7 @@ import { FooterComponent } from '../shared/components/footer/footer.component';
 	imports: [CommonModule, FormsModule, ReactiveFormsModule, NavigationComponent, FooterComponent],
 })
 export class SigninPageComponent {
-	auth = inject(AuthService);
-	router = inject(Router);
+	private facade = inject(MainFacade);
 
 	form = new FormGroup({
 		email: new FormControl<string>('', [Validators.required, Validators.minLength(6)]),
@@ -31,11 +28,12 @@ export class SigninPageComponent {
 	}
 
 	submit() {
-		console.log(this.form.value);
-		this.auth.getToken(this.form.value as IUserCredentials, 'form');
+		if (this.form.valid) {
+			this.facade.loginEmail(this.form.value.email!, this.form.value.password!);
+		}
 	}
 
 	loginWithGoogle() {
-		this.auth.getToken(null, 'google');
+		this.facade.loginGoogle();
 	}
 }

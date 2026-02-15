@@ -18,3 +18,9 @@ export const selectSingleProductError = createSelector(selectState, (state: Stat
 export const selectCategories = createSelector(selectState, (state: State) => state.categories.data);
 export const selectCategoriesLoading = createSelector(selectState, (state: State) => state.categories.loading);
 export const selectCategoriesError = createSelector(selectState, (state: State) => state.categories.error);
+
+// Auth
+export const selectIsLoggedIn = createSelector(selectState, (state: State) => state.auth.isLoggedIn);
+export const selectUser = createSelector(selectState, (state: State) => state.auth.user);
+export const selectShowAuthModal = createSelector(selectState, (state: State) => state.auth.showAuthModal);
+
