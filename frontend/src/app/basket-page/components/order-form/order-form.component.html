@@ -1,3 +1,14 @@
+@if (!(isLoggedIn$ | async)) {
+	<div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6 flex items-start gap-4">
+		<i class="pi pi-info-circle text-blue-600 mt-1 text-xl"></i>
+		<div class="flex-1">
+			<h3 class="text-blue-900 font-semibold mb-1">Зберігайте історію замовлень</h3>
+			<p class="text-blue-700 text-sm mb-3">Увійдіть або зареєструйтеся, щоб бачити ваші замовлення в особистому кабінеті пізніше.</p>
+			<button pButton label="Увійти / Зареєструватися" class="p-button-sm p-button-primary" (click)="login()"></button>
+		</div>
+	</div>
+}
+
 <form [formGroup]="orderForm" class="order-form flex flex-col gap-4" (ngSubmit)="onSubmit()">
 	<h2 class="text-lg font-semibold text-pesianGreen mb-2">Заполните данные</h2>
 

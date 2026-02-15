@@ -1,18 +1,16 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TabsModule } from 'primeng/tabs';
-import { AuthFacade } from '../shared/state/auth-state/auth.facade';
-import { UserFacade } from '../shared/state/user-state/user.facade';
+import { AuthFacade, UserFacade, NavigationComponent, FooterComponent } from '@shared';
 import { PersonalInfoComponent } from './components/personal-info/personal-info.component';
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
-import { NavigationComponent } from '../shared/components/navigation/navigation.component';
-import { FooterComponent } from '../shared/components/footer/footer.component';
+import { ButtonModule } from 'primeng/button';
 import { take } from 'rxjs';
 
 @Component({
 	selector: 'app-profile-page',
 	standalone: true,
-	imports: [CommonModule, TabsModule, PersonalInfoComponent, OrderHistoryComponent, NavigationComponent, FooterComponent],
+	imports: [CommonModule, TabsModule, PersonalInfoComponent, OrderHistoryComponent, NavigationComponent, FooterComponent, ButtonModule],
 	templateUrl: './profile-page.component.html',
 	styles: [
 		`
@@ -34,5 +32,9 @@ export class ProfilePageComponent implements OnInit {
 				this.userFacade.loadProfile(user.uid);
 			}
 		});
+	}
+
+	logout() {
+		this.authFacade.logout();
 	}
 }

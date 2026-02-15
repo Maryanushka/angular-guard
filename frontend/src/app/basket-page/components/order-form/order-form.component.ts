@@ -10,10 +10,12 @@ import { environment } from '@env/environment';
 import { MainFacade, AuthFacade, UserFacade, IOrder, IOrderItem, BasketLine } from '@shared';
 import { take } from 'rxjs';
 
+import { CommonModule, AsyncPipe } from '@angular/common';
+
 @Component({
 	selector: 'app-order-form',
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	imports: [ReactiveFormsModule, InputTextModule, ButtonModule, ToastModule],
+	imports: [CommonModule, AsyncPipe, ReactiveFormsModule, InputTextModule, ButtonModule, ToastModule],
 	templateUrl: './order-form.component.html',
 	styleUrl: './order-form.component.scss',
 	providers: [MessageService],
@@ -26,6 +28,7 @@ export class OrderFormComponent {
 	private userFacade = inject(UserFacade);
 
 	basket = toSignal(this.facade.basket$, { initialValue: [] as BasketLine[] });
+	isLoggedIn$ = this.authFacade.isLoggedIn$;
 
 	orderForm = this.fb.nonNullable.group({
 		firstName: ['', Validators.required],
@@ -35,6 +38,10 @@ export class OrderFormComponent {
 		city: ['', Validators.required],
 		novaPoshtaBranch: ['', Validators.required],
 	});
+
+	login() {
+		this.authFacade.openAuthModal();
+	}
 
 	async onSubmit() {
 		const form = this.orderForm;

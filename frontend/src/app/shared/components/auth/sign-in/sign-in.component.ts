@@ -4,20 +4,19 @@ import { FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angu
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { DividerModule } from 'primeng/divider';
+import { AuthFacade } from '@shared';
 import { AuthService } from '../../../../product/services/auth.service';
-import { RecaptchaVerifier } from '@angular/fire/auth';
-import { Auth } from '@angular/fire/auth';
-import { AuthFacade } from '../../../state/auth-state/auth.facade';
+import { Auth, RecaptchaVerifier } from '@angular/fire/auth';
 
 @Component({
 	selector: 'app-sign-in',
 	standalone: true,
 	imports: [CommonModule, FormsModule, ReactiveFormsModule, ButtonModule, InputTextModule, DividerModule],
-	templateUrl: './sign-in.component.html'
+	templateUrl: './sign-in.component.html',
 })
 export class SignInComponent {
 	@Output() switchToRegister = new EventEmitter<void>();
-	
+
 	private authFacade = inject(AuthFacade);
 	private authService = inject(AuthService);
 	private auth = inject(Auth);
@@ -31,7 +30,7 @@ export class SignInComponent {
 
 	loginForm = this.fb.group({
 		email: ['', [Validators.required, Validators.email]],
-		password: ['', Validators.required]
+		password: ['', Validators.required],
 	});
 
 	loginGoogle() {
@@ -50,10 +49,10 @@ export class SignInComponent {
 		setTimeout(() => {
 			if (!this.recaptchaVerifier) {
 				this.recaptchaVerifier = new RecaptchaVerifier(this.auth, 'recaptcha-container', {
-					'size': 'normal',
-					'callback': (response: any) => {
+					size: 'normal',
+					callback: (response: any) => {
 						// reCAPTCHA solved
-					}
+					},
 				});
 				this.recaptchaVerifier.render();
 			}

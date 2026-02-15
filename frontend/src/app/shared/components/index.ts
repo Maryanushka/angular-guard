@@ -4,3 +4,6 @@ export * from './footer/footer.component';
 export * from './breadcrumbs/breadcrumbs.component';
 export * from './tabs/tabs.component';
 export * from './video-player/video-player.component';
+export * from './auth/sign-in/sign-in.component';
+export * from './auth/register/register.component';
+export * from './auth/auth-dialog.component';

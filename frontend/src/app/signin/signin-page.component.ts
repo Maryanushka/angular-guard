@@ -1,39 +1,18 @@
-import { Component, inject } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavigationComponent } from '../shared/components/navigation/navigation.component';
-import { FooterComponent } from '../shared/components/footer/footer.component';
-import { AuthFacade } from '../shared/state/auth-state/auth.facade';
+import { CardModule } from 'primeng/card';
+import { SignInComponent, RegisterComponent, NavigationComponent, FooterComponent } from '@shared';
 
 @Component({
 	selector: 'app-signin-page',
-	templateUrl: './signin-page.component.html',
-	styleUrls: ['./signin-page.component.scss'],
 	standalone: true,
-	imports: [CommonModule, FormsModule, ReactiveFormsModule, NavigationComponent, FooterComponent],
+	imports: [CommonModule, CardModule, SignInComponent, RegisterComponent, NavigationComponent, FooterComponent],
+	templateUrl: './signin-page.component.html',
 })
 export class SigninPageComponent {
-	private authFacade = inject(AuthFacade);
+	isLoginMode = signal(true);
 
-	form = new FormGroup({
-		email: new FormControl<string>('', [Validators.required, Validators.minLength(6)]),
-		password: new FormControl<string>('', [Validators.required, Validators.minLength(6)]),
-	});
-
-	get email() {
-		return this.form.controls.email as FormControl;
-	}
-	get password() {
-		return this.form.controls.password as FormControl;
-	}
-
-	submit() {
-		if (this.form.valid) {
-			this.authFacade.loginEmail(this.form.value.email!, this.form.value.password!);
-		}
-	}
-
-	loginWithGoogle() {
-		this.authFacade.loginGoogle();
+	switchMode() {
+		this.isLoginMode.update((v) => !v);
 	}
 }

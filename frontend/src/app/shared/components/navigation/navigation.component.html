@@ -1,9 +1,13 @@
 <nav
 	class="flex items-center justify-between py-4 relative"
-	[ngClass]="{
-		'bg-white': !isHome,
-		'absolute top-0 left-0 w-full z-10 bg-transparent home': isHome
-	}">
+	[class.bg-white]="!isHome"
+	[class.absolute]="isHome"
+	[class.top-0]="isHome"
+	[class.left-0]="isHome"
+	[class.w-full]="isHome"
+	[class.z-10]="isHome"
+	[class.bg-transparent]="isHome"
+	[class.home]="isHome">
 	<!-- Logo (Hidden on home desktop, visible on mobile and non-home) -->
 	@if (!isHome) {
 		<a [routerLink]="'/'" class="z-20 relative pl-6">
@@ -15,74 +19,72 @@
 	<button
 		class="md:hidden z-[1000] transform-3d p-2 text-pesianGreen focus:outline-none flex flex-col justify-center gap-2 w-14 h-14 right-4 absolute"
 		(click)="toggleMenu()"
-		[ngClass]="{
-			hidden: isHome
-		}"
+		[class.hidden]="isHome"
 		aria-label="Toggle menu">
 		<span
 			class="block w-full h-[3px] bg-pesianGreen transition-[rotate, translateY] duration-300 origin-center"
-			[ngClass]="{
-				'rotate-45 translate-y-[5px]': isMenuOpen
-			}">
+			[class.rotate-45]="isMenuOpen"
+			[class.translate-y-[5px]]="isMenuOpen">
 		</span>
 		<span
 			class="block w-full h-[3px] bg-pesianGreen transition-[rotate, translateY] duration-300 origin-center"
-			[ngClass]="{
-				'-rotate-45 -translate-y-[5px]': isMenuOpen
-			}">
+			[class.-rotate-45]="isMenuOpen"
+			[class.-translate-y-[5px]]="isMenuOpen">
 		</span>
 	</button>
 
 	<!-- Mobile Menu Sidebar Start -->
-	<aside class="fixed inset-0 z-40 bg-white flex flex-col md:hidden mobile-sidebad" [class.hidden]="!isMenuOpen">
-		<!-- Menu Header -->
-		<div class="flex items-center justify-between p-4 pl-6">
-			<a [routerLink]="'/'" (click)="closeMenu()">
-				<img src="../../../../assets/logo.png" alt="Logo" class="w-32" />
-			</a>
-		</div>
+	@if (isMenuOpen) {
+		<aside class="fixed inset-0 z-40 bg-white flex flex-col md:hidden mobile-sidebad">
+			<!-- Menu Header -->
+			<div class="flex items-center justify-between p-4 pl-6">
+				<a [routerLink]="'/'" (click)="closeMenu()">
+					<img src="../../../../assets/logo.png" alt="Logo" class="w-32" />
+				</a>
+			</div>
 
-		<!-- Menu Links -->
-		<div class="flex-1 flex flex-col justify-center space-y-10">
-			<a
-				routerLink="/about"
-				routerLinkActive="text-pesianGreen"
-				(click)="closeMenu()"
-				class="group flex items-center text-xl font-medium text-gray-500 hover:text-pesianGreen transition-colors">
-				<span class="w-12 h-[2px] bg-pesianGreen mr-6 opacity-100"></span>
-				Про нас
-			</a>
+			<!-- Menu Links -->
+			<div class="flex-1 flex flex-col justify-center space-y-10">
+				<a
+					routerLink="/about"
+					routerLinkActive="text-pesianGreen"
+					(click)="closeMenu()"
+					class="group flex items-center text-xl font-medium text-gray-500 hover:text-pesianGreen transition-colors">
+					<span class="w-12 h-[2px] bg-pesianGreen mr-6 opacity-100"></span>
+					Про нас
+				</a>
 
-			<a
-				routerLink="/services"
-				routerLinkActive="text-pesianGreen"
-				(click)="closeMenu()"
-				class="group flex items-center text-xl font-medium text-gray-500 hover:text-pesianGreen transition-colors">
-				<span class="w-12 h-[2px] bg-pesianGreen mr-6 opacity-100"></span>
-				Послуги
-			</a>
+				<a
+					routerLink="/services"
+					routerLinkActive="text-pesianGreen"
+					(click)="closeMenu()"
+					class="group flex items-center text-xl font-medium text-gray-500 hover:text-pesianGreen transition-colors">
+					<span class="w-12 h-[2px] bg-pesianGreen mr-6 opacity-100"></span>
+					Послуги
+				</a>
 
-			<a
-				routerLink="/products"
-				routerLinkActive="text-pesianGreen font-bold"
-				(click)="closeMenu()"
-				class="group flex items-center text-xl font-medium text-gray-500 hover:text-pesianGreen transition-colors">
-				<span class="w-12 h-[2px] bg-pesianGreen mr-6 opacity-100"></span>
-				Магазин
-			</a>
+				<a
+					routerLink="/products"
+					routerLinkActive="text-pesianGreen font-bold"
+					(click)="closeMenu()"
+					class="group flex items-center text-xl font-medium text-gray-500 hover:text-pesianGreen transition-colors">
+					<span class="w-12 h-[2px] bg-pesianGreen mr-6 opacity-100"></span>
+					Магазин
+				</a>
 
-			<a routerLink="/contacts" routerLinkActive="text-pesianGreen" (click)="closeMenu()" class="group flex items-center text-xl font-medium transition-colors">
-				<span class="w-12 h-[2px] bg-pesianGreen mr-6 opacity-100"></span>
-				Контакти
-			</a>
-		</div>
+				<a routerLink="/contacts" routerLinkActive="text-pesianGreen" (click)="closeMenu()" class="group flex items-center text-xl font-medium transition-colors">
+					<span class="w-12 h-[2px] bg-pesianGreen mr-6 opacity-100"></span>
+					Контакти
+				</a>
+			</div>
 
-		<!-- Menu Footer (Icons) -->
-		<div class="p-8 pb-12 flex justify-start gap-8 pr-8 items-center relative z-10">
-			<p-button [icon]="'pi pi-user'" [text]="true" (onClick)="onUserIconClick()" />
-			<app-basket class="text-pesianGreen scale-125 origin-right"></app-basket>
-		</div>
-	</aside>
+			<!-- Menu Footer (Icons) -->
+			<div class="p-8 pb-12 flex justify-start gap-8 pr-8 items-center relative z-10">
+				<p-button [icon]="'pi pi-user'" [text]="true" (onClick)="onUserIconClick()" />
+				<app-basket class="text-pesianGreen scale-125 origin-right"></app-basket>
+			</div>
+		</aside>
+	}
 	<!-- Mobile Menu Sidebar End -->
 
 	<!-- Desktop Navigation Links -->

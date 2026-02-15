@@ -3,14 +3,14 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
-import { AuthFacade } from '../../../state/auth-state/auth.facade';
+import { AuthFacade } from '@shared';
 import { MessageService } from 'primeng/api';
 
 @Component({
 	selector: 'app-register',
 	standalone: true,
 	imports: [CommonModule, ReactiveFormsModule, ButtonModule, InputTextModule],
-	templateUrl: './register.component.html'
+	templateUrl: './register.component.html',
 })
 export class RegisterComponent {
 	@Output() switchToLogin = new EventEmitter<void>();
@@ -22,7 +22,7 @@ export class RegisterComponent {
 		name: ['', Validators.required],
 		email: ['', [Validators.required, Validators.email]],
 		password: ['', [Validators.required, Validators.minLength(6)]],
-		confirmPassword: ['', Validators.required]
+		confirmPassword: ['', Validators.required],
 	});
 
 	register() {
@@ -34,7 +34,7 @@ export class RegisterComponent {
 			this.messageService.add({
 				severity: 'error',
 				summary: 'Error',
-				detail: 'Passwords do not match'
+				detail: 'Passwords do not match',
 			});
 			return;
 		}

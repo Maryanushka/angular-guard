@@ -2,7 +2,7 @@
 	<app-navigation></app-navigation>
 	<div class="flex items-center justify-between mt-24">
 		<h1 class="text-3xl font-bold">Hey there, {{ (user$ | async)?.displayName || 'User' }}</h1>
-		<button pButton label="Logout" icon="pi pi-sign-out" class="p-button-outlined p-button-danger p-button-sm" (click)="logout()"></button>
+		<button pButton label="Logout" icon="pi pi-sign-out" [text]="true" (click)="logout()"></button>
 	</div>
 
 	<p-tabs value="0" class="mt-8">
