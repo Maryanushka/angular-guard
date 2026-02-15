@@ -43,5 +43,10 @@ export const userReducer = createReducer(
 		data: state.data ? { ...state.data, profile } : null,
 		loading: false,
 	})),
+	on(UserActions.submitOrderSuccess, (state, { order }) => ({
+		...state,
+		data: state.data ? { ...state.data, orders: [...state.data.orders, order] } : null,
+		loading: false,
+	})),
 	on(UserActions.clearUserData, () => initialUserState)
 );

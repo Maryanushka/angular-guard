@@ -1,10 +1,8 @@
 import { Component, inject, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { MainFacade } from '../../../shared/state/main-state/main.facade';
-import { GetProductService } from '../../../shared/state/requests/get-product.service';
-import { SanityImageService } from '../../../shared/services/sanity-image.service';
-import type { IProduct } from '../../../shared/types/product.inteface';
+import { MainFacade, SanityImageService, IProduct } from '@shared';
+import { GetProductService } from '@shared/state/requests/get-product.service';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 @Component({

@@ -3,17 +3,11 @@ import { ActivatedRoute } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { distinctUntilChanged, map } from 'rxjs';
-import { MainFacade } from '../../../shared/state/main-state/main.facade';
-import { NavigationComponent } from '../../../shared/components/navigation/navigation.component';
-import { SocialMediaComponent } from '../../../shared/components/social-media/social-media.component';
+import { MainFacade, NavigationComponent, SocialMediaComponent, ObserveInViewDirective, FooterComponent } from '@shared';
 import { ProductComponent } from '../product-item/product.component';
 import { CategoriesComponent } from '../categories/categories.component';
 import { CommonModule } from '@angular/common';
-import { MessageService } from 'primeng/api';
-import { ObserveInViewDirective } from '../../../shared/directives/observe-in-view.directive';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { ToastModule } from 'primeng/toast';
-import { FooterComponent } from '../../../shared/components/footer/footer.component';
 
 const PAGE_SIZE = 10;
 
@@ -30,7 +24,7 @@ const PAGE_SIZE = 10;
 		CategoriesComponent,
 		ObserveInViewDirective,
 		ProgressSpinnerModule,
-    FooterComponent,
+		FooterComponent,
 	],
 })
 export class ProductPageComponent implements OnInit {

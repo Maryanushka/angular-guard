@@ -6,9 +6,9 @@ import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import emailjs, { type EmailJSResponseStatus } from '@emailjs/browser';
-import { environment } from '../../../environments/environment';
-import { MainFacade } from '../../../shared/state/main-state/main.facade';
-import type { BasketLine } from '../../../shared/types/product.inteface';
+import { environment } from '@env/environment';
+import { MainFacade, AuthFacade, UserFacade, IOrder, IOrderItem, BasketLine } from '@shared';
+import { take } from 'rxjs';
 
 @Component({
 	selector: 'app-order-form',
@@ -22,6 +22,8 @@ export class OrderFormComponent {
 	private messageService = inject(MessageService);
 	private fb = inject(FormBuilder);
 	private facade = inject(MainFacade);
+	private authFacade = inject(AuthFacade);
+	private userFacade = inject(UserFacade);
 
 	basket = toSignal(this.facade.basket$, { initialValue: [] as BasketLine[] });
 
@@ -61,6 +63,25 @@ export class OrderFormComponent {
 
 		try {
 			await emailjs.send(config.serviceId, config.templateId, templateParams, { publicKey: config.publicKey });
+
+			// Store order in user profile if logged in
+			this.authFacade.user$.pipe(take(1)).subscribe((user) => {
+				if (user?.uid) {
+					const items: IOrderItem[] = lines.map((line) => ({
+						productSlug: line.product._slug,
+						productTitle: line.product.title,
+						quantity: line.quantity,
+						price: parseFloat(line.product.price ?? '0') || 0,
+					}));
+
+					this.userFacade.submitOrder(user.uid, {
+						date: new Date().toISOString(),
+						total: basketTotal,
+						items: items,
+					});
+				}
+			});
+
 			form.reset();
 			this.messageService.add({ severity: 'success', summary: 'Заказ отправлен', detail: 'Мы свяжемся с вами.' });
 		} catch (err) {

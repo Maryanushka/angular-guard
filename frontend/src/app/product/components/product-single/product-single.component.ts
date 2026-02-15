@@ -1,18 +1,19 @@
 import { Component, inject, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { toIProduct } from '../../../shared/types/product.inteface';
-import type { ISingleProduct } from '../../../shared/types/product.inteface';
-import { SanityImageService } from '../../../shared/services/sanity-image.service';
-import { ActivatedRoute } from '@angular/router';
-import { MainFacade } from '../../../shared/state/main-state/main.facade';
-import { NavigationComponent } from '../../../shared/components/navigation/navigation.component';
-import { TabsComponent } from '../../../shared/components/tabs/tabs.component';
-import { VideoPlayerComponent } from '../../../shared/components/video-player/video-player.component';
-import { SocialMediaComponent } from '../../../shared/components/social-media/social-media.component';
-import { FooterComponent } from '../../../shared/components/footer/footer.component';
-import { BreadcrumbsComponent } from '../../../shared/components/breadcrumbs/breadcrumbs.component';
+import {
+	toIProduct,
+	ISingleProduct,
+	SanityImageService,
+	MainFacade,
+	NavigationComponent,
+	TabsComponent,
+	VideoPlayerComponent,
+	SocialMediaComponent,
+	FooterComponent,
+	BreadcrumbsComponent,
+} from '@shared';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
@@ -32,7 +33,7 @@ import { MessageService } from 'primeng/api';
 		RouterModule,
 		ButtonModule,
 		BreadcrumbsComponent,
-		ToastModule
+		ToastModule,
 	],
 })
 export class ProductSingleComponent implements OnInit, OnDestroy {

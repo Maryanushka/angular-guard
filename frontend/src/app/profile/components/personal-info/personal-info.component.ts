@@ -4,10 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
-import { UserFacade } from '../../../shared/state/user-state/user.facade';
-import { AuthFacade } from '../../../shared/state/auth-state/auth.facade';
+import { UserFacade, AuthFacade } from '@shared';
 import { combineLatest } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 
 @Component({
 	selector: 'app-personal-info',
@@ -37,9 +36,11 @@ export class PersonalInfoComponent implements OnInit {
 	onEditComplete(event: any) {
 		if (event.field === 'value' && event.data.field === 'email') {
 			const newEmail = event.data.value;
-			if (newEmail) {
-				this.authFacade.updateEmail(newEmail);
-			}
+			this.user$.pipe(take(1)).subscribe((user) => {
+				if (newEmail && newEmail !== user?.email) {
+					this.authFacade.updateEmail(newEmail);
+				}
+			});
 		}
 	}
 }

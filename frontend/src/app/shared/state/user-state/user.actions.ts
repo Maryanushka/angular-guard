@@ -10,6 +10,9 @@ export const UserActions = createActionGroup({
 		'Update Profile': props<{ uid: string; profile: IUserProfile }>(),
 		'Update Profile Success': props<{ profile: IUserProfile }>(),
 		'Update Profile Failure': props<{ error: string }>(),
+		'Submit Order': props<{ uid: string; order: Omit<IOrder, 'id'> }>(),
+		'Submit Order Success': props<{ order: IOrder }>(),
+		'Submit Order Failure': props<{ error: string }>(),
 		'Clear User Data': emptyProps(),
 	},
 });

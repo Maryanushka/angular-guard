@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { selectUserProfile, selectUserOrders, selectUserLoading, selectUserError } from './user.selectors';
 import { UserActions } from './user.actions';
-import { IUserProfile } from '../../types/user.interface';
+import { IUserProfile, IOrder } from '../../types/user.interface';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -22,6 +22,10 @@ export class UserFacade {
 
 	updateProfile(uid: string, profile: IUserProfile) {
 		this.store.dispatch(UserActions.updateProfile({ uid, profile }));
+	}
+
+	submitOrder(uid: string, order: Omit<IOrder, 'id'>) {
+		this.store.dispatch(UserActions.submitOrder({ uid, order }));
 	}
 
 	clearUserData() {

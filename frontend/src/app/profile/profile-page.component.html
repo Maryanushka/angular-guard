@@ -1,6 +1,9 @@
 <div class="container mx-auto min-h-screen">
 	<app-navigation></app-navigation>
-	<h1 class="text-3xl font-bold mt-24">Hey there, {{ (user$ | async)?.displayName || '' }}</h1>
+	<div class="flex items-center justify-between mt-24">
+		<h1 class="text-3xl font-bold">Hey there, {{ (user$ | async)?.displayName || 'User' }}</h1>
+		<button pButton label="Logout" icon="pi pi-sign-out" class="p-button-outlined p-button-danger p-button-sm" (click)="logout()"></button>
+	</div>
 
 	<p-tabs value="0" class="mt-8">
 		<p-tablist>
@@ -16,5 +19,5 @@
 			</p-tabpanel>
 		</p-tabpanels>
 	</p-tabs>
+	<app-footer></app-footer>
 </div>
-<app-footer></app-footer>

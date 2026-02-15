@@ -4,9 +4,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { InputNumberModule } from 'primeng/inputnumber';
-import { MainFacade } from '../../../shared/state/main-state/main.facade';
-import { SanityImageService } from '../../../shared/services/sanity-image.service';
-import type { BasketLine, IProduct } from '../../../shared/types/product.inteface';
+import { MainFacade, SanityImageService, BasketLine, IProduct } from '@shared';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 
@@ -27,7 +25,7 @@ export class BasketListComponent {
 	}
 
 	$basket = toSignal(this.facade.basket$, { initialValue: [] as BasketLine[], equal: () => false });
-  $total = computed(() => this.$basket().reduce((sum, line) => sum + this.lineTotal(line), 0));
+	$total = computed(() => this.$basket().reduce((sum, line) => sum + this.lineTotal(line), 0));
 
 	lineTotal(line: BasketLine): number {
 		const price = parseFloat(line.product.price ?? '0');

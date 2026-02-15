@@ -1,49 +1,44 @@
-import { NgModule } from '@angular/core';
-import { Route, RouterModule } from '@angular/router';
-import { BasketPageComponent } from './basket-page/basket-page.component';
-import { HomeComponent } from './home/components/home.component';
-import { ProductPageComponent } from './product/components/product-page/product-page.component';
-import { ProductSingleComponent } from './product/components/product-single/product-single.component';
-import { ProfilePageComponent } from './profile/profile-page.component';
+import { Route } from '@angular/router';
 import { AuthenticaionGuard } from './product/services/authenticaion.guard';
-import { AboutPageComponent } from './about/components/about-page.component';
-import { SigninPageComponent } from './signin/signin-page.component';
 
 export const routes: Route[] = [
 	{
 		path: '',
-		component: HomeComponent,
+		loadComponent: () => import('./home/components/home.component').then((m) => m.HomeComponent),
 	},
 	{
 		path: 'signin',
-		component: SigninPageComponent,
+		loadComponent: () => import('./signin/signin-page.component').then((m) => m.SigninPageComponent),
 	},
 	{
 		path: 'basket',
-		component: BasketPageComponent,
+		loadComponent: () => import('./basket-page/basket-page.component').then((m) => m.BasketPageComponent),
 	},
 	{
 		path: 'products',
 		children: [
-			{ path: '', component: ProductPageComponent },
-			{ path: 'category/:category', component: ProductPageComponent },
-			{ path: ':slug', component: ProductSingleComponent },
+			{
+				path: '',
+				loadComponent: () => import('./product/components/product-page/product-page.component').then((m) => m.ProductPageComponent),
+			},
+			{
+				path: 'category/:category',
+				loadComponent: () => import('./product/components/product-page/product-page.component').then((m) => m.ProductPageComponent),
+			},
+			{
+				path: ':slug',
+				loadComponent: () => import('./product/components/product-single/product-single.component').then((m) => m.ProductSingleComponent),
+			},
 		],
 	},
 	{
 		path: 'about',
-		component: AboutPageComponent,
+		loadComponent: () => import('./about/components/about-page.component').then((m) => m.AboutPageComponent),
 	},
 	{
 		path: 'profile',
-		component: ProfilePageComponent,
+		loadComponent: () => import('./profile/profile-page.component').then((m) => m.ProfilePageComponent),
 		canActivate: [AuthenticaionGuard],
 		data: { roles: ['user'] },
 	},
 ];
-
-@NgModule({
-	imports: [RouterModule.forRoot(routes, { initialNavigation: 'enabledBlocking' })],
-	exports: [RouterModule],
-})
-export class AppRoutingModule {}

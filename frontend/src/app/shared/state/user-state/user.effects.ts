@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { from, of } from 'rxjs';
 import { catchError, map, switchMap, tap, mergeMap, concatMap } from 'rxjs/operators';
 import { UserActions } from './user.actions';
-import { Firestore, collection, query, where, getDocs, doc, updateDoc, collectionGroup } from '@angular/fire/firestore';
+import { Firestore, collection, query, where, getDocs, doc, updateDoc, collectionGroup, addDoc } from '@angular/fire/firestore';
 import { MessageService } from 'primeng/api';
 import { QuerySnapshot } from '@angular/fire/firestore';
 import { IUserData, IOrder, IUserProfile } from '../../types/user.interface';
@@ -38,13 +38,10 @@ export class UserEffects {
 												},
 											});
 										}),
-										catchError(() =>
+										catchError((error) =>
 											of(
-												UserActions.loadProfileSuccess({
-													userData: {
-														profile: userData.profile,
-														orders: [],
-													},
+												UserActions.loadProfileFailure({
+													error: error.message || 'Failed to load user orders',
 												})
 											)
 										)
@@ -95,6 +92,31 @@ export class UserEffects {
 							});
 							return of(UserActions.updateProfileFailure({ error: error.message }));
 						})
+					);
+				});
+			})
+		)
+	);
+
+	submitOrder$ = createEffect(() =>
+		this.actions$.pipe(
+			ofType(UserActions.submitOrder),
+			switchMap(({ uid, order }) => {
+				return runInInjectionContext(this.injector, () => {
+					const q = query(collection(this.firestore, 'users'), where('uid', '==', uid));
+					return from(getDocs(q)).pipe(
+						switchMap((snapshot) => {
+							if (!snapshot.empty) {
+								const userDocId = snapshot.docs[0].id;
+								return from(addDoc(collection(this.firestore, 'users', userDocId, 'orders'), order)).pipe(
+									map((docRef) => UserActions.submitOrderSuccess({ order: { ...order, id: docRef.id } })),
+									catchError((error) => of(UserActions.submitOrderFailure({ error: error.message })))
+								);
+							} else {
+								return of(UserActions.submitOrderFailure({ error: 'User document not found' }));
+							}
+						}),
+						catchError((error) => of(UserActions.submitOrderFailure({ error: error.message })))
 					);
 				});
 			})

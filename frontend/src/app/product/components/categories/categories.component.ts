@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { MainFacade } from '../../../shared/state/main-state/main.facade';
+import { MainFacade } from '@shared';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
