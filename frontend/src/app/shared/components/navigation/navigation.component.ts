@@ -3,20 +3,36 @@ import { Component, OnInit, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../../product/services/auth.service';
 import { BasketComponent } from '../basket/basket.component';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
 	selector: 'app-navigation',
 	templateUrl: './navigation.component.html',
 	styleUrls: ['./navigation.component.scss'],
 	standalone: true,
-	imports: [CommonModule, RouterModule, BasketComponent],
+	imports: [CommonModule, RouterModule, BasketComponent, ButtonModule],
 	providers: [AuthService],
 })
 export class NavigationComponent implements OnInit {
 	isHome = false;
+	isMenuOpen = false;
 	router = inject(Router);
 
 	ngOnInit() {
 		this.isHome = this.router.url === '/';
+	}
+
+	toggleMenu() {
+		this.isMenuOpen = !this.isMenuOpen;
+		if (this.isMenuOpen) {
+			document.body.style.overflow = 'hidden';
+		} else {
+			document.body.style.overflow = '';
+		}
+	}
+
+	closeMenu() {
+		this.isMenuOpen = false;
+		document.body.style.overflow = '';
 	}
 }

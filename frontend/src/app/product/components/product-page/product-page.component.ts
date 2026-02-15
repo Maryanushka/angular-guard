@@ -13,6 +13,7 @@ import { MessageService } from 'primeng/api';
 import { ObserveInViewDirective } from '../../../shared/directives/observe-in-view.directive';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ToastModule } from 'primeng/toast';
+import { FooterComponent } from '../../../shared/components/footer/footer.component';
 
 const PAGE_SIZE = 10;
 
@@ -30,6 +31,7 @@ const PAGE_SIZE = 10;
 		CategoriesComponent,
 		ObserveInViewDirective,
 		ProgressSpinnerModule,
+    FooterComponent,
 		ToastModule,
 	],
 })

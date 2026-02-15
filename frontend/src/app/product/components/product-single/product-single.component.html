@@ -1,51 +1,61 @@
-<app-navigation></app-navigation>
+<div class="min-h-screen flex flex-col container">
+	<app-navigation></app-navigation>
 
-@if (singleProduct$ | async; as product) {
-	<div class="flex container ml-auto mr-auto flex-wrap px-8">
-		<div class="breadcrumbs w-full my-16 flex items-center">
-			<a routerLink="/products" class="text-battleshipGray hover:text-pesianGreen">Магазин</a>
-			<span class="bg-battleshipGray flex w-8 h-[2px] mx-8" aria-hidden="true"></span>
-			<span class="text-pesianGreen">{{ product.title }}</span>
-		</div>
-		<div class="image w-4/12">
-			@if (product.cover.length) {
-				<img class="object-cover w-full h-full" [src]="product.cover[0].url" [alt]="product.title" />
-			}
-		</div>
-		<div class="content w-8/12 pl-8">
-			<h1 class="text-pesianGreen inline-flex mb-5 text-xl font-medium">
-				{{ product.title }}
-			</h1>
-			@if (product.content.length && product.content[0].body) {
-				<div class="description mb-8" [innerHTML]="product.content[0].body"></div>
-			}
-			<div class="add-to-basket flex">
-				<div class="price text-pesianGreen text-2xl font-bold mr-12">{{ product.price }} <span>₴</span></div>
-				<p-button label="Додати в корзину" type="button" class="btn btn-primary text-pesianGreen font-semibold" (click)="addToBasket(product)" />
+	<div class="flex-1">
+		@if (singleProduct$ | async; as product) {
+			<div class="flex container ml-auto mr-auto flex-wrap px-8">
+				<app-breadcrumbs [title]="product.title" class="w-full flex"></app-breadcrumbs>
+				<div class="image w-full sm:w-4/12 mb-8 sm:mb-0">
+					@if (product.cover.length) {
+						<img class="object-cover w-full h-auto rounded-lg shadow-sm" [src]="product.cover[0].url" [alt]="product.title" />
+					}
+				</div>
+				<div class="content w-full sm:w-8/12 sm:pl-8">
+					<h1 class="text-pesianGreen inline-flex mb-5 text-2xl font-bold leading-tight">
+						{{ product.title }}
+					</h1>
+					@if (product.content.length && product.content[0].body) {
+						<div class="description mb-8 prose max-w-none text-gray-700 leading-relaxed" [innerHTML]="product.content[0].body"></div>
+					}
+					<div class="add-to-basket flex items-center mt-6">
+						<div class="price text-pesianGreen text-3xl font-bold mr-8">{{ product.price }} <span class="text-xl">₴</span></div>
+						<p-button
+							label="Додати в корзину"
+							type="button"
+							icon="pi pi-shopping-cart"
+							class="btn btn-primary"
+							severity="success"
+							[raised]="true"
+							(click)="addToBasket(product)" />
+					</div>
+				</div>
 			</div>
-		</div>
+
+			@if (product.video?.embedUrl && (product.video?.posterUrl || product.cover.length)) {
+				<div class="container ml-auto mr-auto px-8 mt-16 mb-12">
+					<app-video-player
+						[posterUrl]="product.video?.posterUrl ?? product.cover[0]?.url ?? ''"
+						[embedUrl]="product.video?.embedUrl ?? null"
+						[alt]="product.title + ' video'" />
+				</div>
+			}
+
+			@if (product.tabs && product.tabs.length > 0) {
+				<div class="container ml-auto mr-auto px-8 mb-16 mt-12">
+					<app-tabs [tabs]="product.tabs" />
+				</div>
+			}
+		}
+
+		@if (singleProductError$ | async) {
+			<div class="flex flex-col items-center justify-center py-20">
+				<p class="text-center font-bold text-xl text-gray-600">Product not found</p>
+				<a routerLink="/products" class="text-pesianGreen hover:underline mt-4">Return to Store</a>
+			</div>
+		}
 	</div>
 
-	@if (product.video?.embedUrl && (product.video?.posterUrl || product.cover.length)) {
-		<div class="container ml-auto mr-auto px-8 mt-12 mb-12">
-			<app-video-player
-				[posterUrl]="product.video?.posterUrl ?? product.cover[0]?.url ?? ''"
-				[embedUrl]="product.video?.embedUrl ?? null"
-				[alt]="product.title + ' video'" />
-		</div>
-	}
+	<app-footer></app-footer>
+</div>
 
-	@if (product.tabs && product.tabs.length > 0) {
-		<div class="container ml-auto mr-auto px-8 mb-16">
-			<app-tabs [tabs]="product.tabs" />
-		</div>
-	}
-
-	<app-social-media class="flex fixed right-8 bottom-4"></app-social-media>
-
-	<app-footer />
-}
-
-@if (singleProductError$ | async) {
-	<p class="text-center font-bold">No product found</p>
-}
+<app-social-media class="fixed right-6 bottom-6 z-50"></app-social-media>

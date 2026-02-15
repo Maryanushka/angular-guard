@@ -3,10 +3,11 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MainFacade } from '../../state/main-state/main.facade';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { ButtonModule } from 'primeng/button';
 @Component({
 	selector: 'app-basket',
 	standalone: true,
-	imports: [CommonModule, RouterModule],
+	imports: [CommonModule, RouterModule, ButtonModule],
 	templateUrl: './basket.component.html',
 	styleUrl: './basket.component.scss',
 })

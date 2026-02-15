@@ -9,6 +9,7 @@ import { TabsComponent } from '../../../shared/components/tabs/tabs.component';
 import { VideoPlayerComponent } from '../../../shared/components/video-player/video-player.component';
 import { SocialMediaComponent } from '../../../shared/components/social-media/social-media.component';
 import { FooterComponent } from '../../../shared/components/footer/footer.component';
+import { BreadcrumbsComponent } from '../../../shared/components/breadcrumbs/breadcrumbs.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
@@ -18,7 +19,17 @@ import { ButtonModule } from 'primeng/button';
 	templateUrl: './product-single.component.html',
 	styleUrls: ['./product-single.component.scss'],
 	standalone: true,
-	imports: [CommonModule, RouterModule, NavigationComponent, TabsComponent, VideoPlayerComponent, SocialMediaComponent, FooterComponent, ButtonModule],
+	imports: [
+		CommonModule,
+		VideoPlayerComponent,
+		TabsComponent,
+		SocialMediaComponent,
+		NavigationComponent,
+		FooterComponent,
+		RouterModule,
+		ButtonModule,
+		BreadcrumbsComponent,
+	],
 })
 export class ProductSingleComponent implements OnInit, OnDestroy {
 	private facade = inject(MainFacade);

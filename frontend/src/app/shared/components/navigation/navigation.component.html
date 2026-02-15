@@ -1,20 +1,94 @@
 <nav
+	class="flex items-center justify-between p-4 relative"
 	[ngClass]="{
-		'': !isHome,
-		home: isHome
+		'bg-white shadow-sm': !isHome,
+		'absolute top-0 left-0 w-full z-10 bg-transparent': isHome
 	}">
-  @if (!isHome) {
-    <a [routerLink]="'/'">
-      <img src="../../../../assets/logo.png" alt="" class="w-24 mt-8 ml-8" />
-    </a>
-  }
-	<ul
-		class="flex"
-		[ngClass]="{
-			'menu-regular': !isHome
-		}">
+	
+	<!-- Logo (Visible on non-home pages or mobile) -->
+	<a [routerLink]="'/'" class="z-20 relative" *ngIf="!isHome || true">
+		<img src="../../../../assets/logo.png" alt="Logo" class="w-36 md:w-32" />
+	</a>
+
+	<!-- Mobile Menu Button (Hamburger/Cross) -->
+	<button 
+		class="md:hidden z-[1000] transform-3d p-2 text-pesianGreen focus:outline-none flex flex-col justify-center gap-2 w-14 h-14 right-4 absolute" 
+		(click)="toggleMenu()"
+		aria-label="Toggle menu">
+		<span 
+			class="block w-full h-[3px] bg-pesianGreen transition-[rotate, translateY] duration-300 origin-center"
+      [ngClass]="{
+        'rotate-45 translate-y-[5px]': isMenuOpen,
+      }">
+		</span>
+		<span 
+			class="block w-full h-[3px] bg-pesianGreen transition-[rotate, translateY] duration-300 origin-center"
+      [ngClass]="{
+        '-rotate-45 -translate-y-[5px]': isMenuOpen,
+      }"> 
+		</span>
+	</button>
+
+	<!-- Mobile Menu Sidebar Start -->
+	<aside
+		class="fixed inset-0 z-40 bg-white flex flex-col md:hidden mobile-sidebad"
+		[class.hidden]="!isMenuOpen">
+		
+		<!-- Menu Header -->
+		<div class="flex items-center justify-between p-4 pl-6">
+			<a [routerLink]="'/'" (click)="closeMenu()">
+				<!-- Logo bigger 1.35x -> w-32 is 8rem. w-24 is 6rem. 1.35 * 6 = 8.1. So w-32 is good. -->
+				<img src="../../../../assets/logo.png" alt="Logo" class="w-40" />
+			</a>
+		</div>
+
+		<!-- Menu Links -->
+		<div class="flex-1 flex flex-col justify-center space-y-10">
+			<a routerLink="/about" 
+			   routerLinkActive="text-pesianGreen" 
+			   (click)="closeMenu()"
+			   class="group flex items-center text-xl font-medium text-gray-500 hover:text-pesianGreen transition-colors">
+				<span class="w-12 h-[2px] bg-pesianGreen mr-6 opacity-100"></span>
+				Про нас
+			</a>
+			
+			<a routerLink="/services" 
+			   routerLinkActive="text-pesianGreen" 
+			   (click)="closeMenu()"
+			   class="group flex items-center text-xl font-medium text-gray-500 hover:text-pesianGreen transition-colors">
+				<span class="w-12 h-[2px] bg-pesianGreen mr-6 opacity-100"></span>
+				Послуги
+			</a>
+
+			<a routerLink="/products" 
+			   routerLinkActive="text-pesianGreen font-bold" 
+			   (click)="closeMenu()"
+			   class="group flex items-center text-xl font-medium text-gray-500 hover:text-pesianGreen transition-colors">
+				<span class="w-12 h-[2px] bg-pesianGreen mr-6 opacity-100"></span>
+				Магазин
+			</a>
+
+			<a routerLink="/contacts" 
+			   routerLinkActive="text-pesianGreen" 
+			   (click)="closeMenu()"
+			   class="group flex items-center text-xl font-medium  transition-colors">
+				<span class="w-12 h-[2px] bg-pesianGreen mr-6 opacity-100"></span>
+				Контакти
+			</a>
+		</div>
+
+		<!-- Menu Footer (Icons) - Aligned RIGHT -->
+		<div class="p-8 pb-12 flex justify-start gap-8 pr-8 items-center relative z-10">
+			<p-button [icon]="'pi pi-user'" [text]="true"/>
+			<app-basket class="text-pesianGreen scale-125 origin-right"></app-basket>
+		</div>
+	</aside>
+  <!-- Mobile Menu Sidebar End -->
+
+	<!-- Desktop Navigation Links Start -->
+	<ul class="hidden md:flex items-center gap-8 desktop-menu">
 		<li>
-			<a class="group" routerLink="/about" routerLinkActive="active">
+			<a routerLink="/about" routerLinkActive="active">
 				<span class="flex transition-all"></span>
 				Про нас
 			</a>
@@ -32,17 +106,18 @@
 			</a>
 		</li>
 		<li>
-			<a class="group" routerLink="/contacts" routerLinkActive="active">
+			<a routerLink="/contacts" routerLinkActive="active">
 				<span class="flex transition-all"></span>
 				Контакти
 			</a>
 		</li>
-		<!-- <li *ngIf="authService.isLoginSubject$ | async"><a class="text-white mr-4" routerLink="/create-product" routerLinkActive="active">Create product</a></li> -->
-		<!-- <li *ngIf="(authService.isLoginSubject$ | async) === false"><a class="text-white" routerLink="/signin" routerLinkActive="active">Увійти</a></li> -->
-		<!-- <li *ngIf="authService.isLoginSubject$ | async"><button (click)="authService.logout()" class="text-white">Вийти</button></li> -->
 	</ul>
+  <!-- Desktop Navigation Links End -->
 
-	@if (!isHome) {
-		<app-basket></app-basket>
-	}
+	<!-- Desktop Basket -->
+	<div class="hidden md:block">
+		@if (!isHome) {
+			<app-basket class="md:block hidden"></app-basket>
+		}
+	</div>
 </nav>

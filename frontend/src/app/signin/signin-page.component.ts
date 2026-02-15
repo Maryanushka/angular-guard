@@ -4,13 +4,15 @@ import { AuthService } from '../product/services/auth.service';
 import { IUserCredentials } from '../shared/types/userCredential.interface';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { NavigationComponent } from '../shared/components/navigation/navigation.component';
+import { FooterComponent } from '../shared/components/footer/footer.component';
 
 @Component({
 	selector: 'app-signin-page',
 	templateUrl: './signin-page.component.html',
 	styleUrls: ['./signin-page.component.scss'],
 	standalone: true,
-	imports: [CommonModule, FormsModule, ReactiveFormsModule],
+	imports: [CommonModule, FormsModule, ReactiveFormsModule, NavigationComponent, FooterComponent],
 })
 export class SigninPageComponent {
 	auth = inject(AuthService);

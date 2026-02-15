@@ -1,14 +1,27 @@
-<ul *ngIf="categories$ | async as list" class="mt-16 pt-4 sticky top-32">
-	<li class="flex w-60">
-		<a routerLink="/products">Всі продукти</a>
-	</li>
-	@if (list.length !== 0) {
-		@for (item of list; track item.tag) {
-			<li class="flex w-60">
-				<a [routerLink]="['/products', 'category', item.tag]">
-					{{ item.title }}
-				</a>
-			</li>
+@if (categories$ | async; as list) {
+	<ul
+		class="flex flex-row md:flex-col overflow-x-auto md:overflow-visible gap-2 md:gap-0 pb-4 md:pb-0 mt-3
+         md:mt-16 md:pt-4 md:sticky md:top-32 no-scrollbar">
+		<li class="flex-shrink-0">
+			<a
+				routerLink="/products"
+				routerLinkActive="text-darkGreen font-bold bg-pesianGreen/10 md:bg-transparent rounded-full md:rounded-none px-4 py-2 md:px-0 md:py-0"
+				[routerLinkActiveOptions]="{ exact: true }"
+				class="whitespace-nowrap flex h-full items-center text-pesianGreen hover:text-darkGreen transition-colors md:mb-4">
+				Всі продукти
+			</a>
+		</li>
+		@if (list.length !== 0) {
+			@for (item of list; track item.tag) {
+				<li class="flex-shrink-0">
+					<a
+						[routerLink]="['/products', 'category', item.tag]"
+						routerLinkActive="text-darkGreen font-bold bg-pesianGreen/10 md:bg-transparent rounded-full md:rounded-none"
+						class="whitespace-nowrap flex h-full items-center text-pesianGreen hover:text-darkGreen transition-colors md:mb-4 px-4 py-2 md:px-0 md:py-0">
+						{{ item.title }}
+					</a>
+				</li>
+			}
 		}
-	}
-</ul>
+	</ul>
+}

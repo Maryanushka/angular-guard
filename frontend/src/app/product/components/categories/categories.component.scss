@@ -1,19 +1,20 @@
 ul {
-	margin-left: 2rem;
+	@apply md:ml-8;
+
+	/* Hide scrollbar for Chrome, Safari and Opera */
+	&::-webkit-scrollbar {
+		display: none;
+	}
+
+	/* Hide scrollbar for IE, Edge and Firefox */
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
+
 	li {
 		a {
 			text-transform: lowercase;
-			margin-bottom: 1rem;
-			white-space: initial;
-			transition: all 0.3s linear;
-			@apply text-pesianGreen;
 			&::first-letter {
 				text-transform: uppercase;
-			}
-			&:hover,
-			&:focus,
-			&:active {
-				@apply text-darkGreen;
 			}
 		}
 	}

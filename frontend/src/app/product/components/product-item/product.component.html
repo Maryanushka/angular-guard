@@ -1,17 +1,32 @@
-<div class="relative py-4 px-6 flex rounded items-center flex-col sm hover:shadow-lg group min-w-[14rem] min-h-[12rem] md:min-w-[16rem] md:min-h-[15rem]">
-	<a [routerLink]="'/products/' + product._slug" class="flex flex-col items-center w-full">
-		<div class="image w-24 h-24">
+<div
+	class="relative p-4 flex flex-col items-center rounded-lg transition-all duration-300 group bg-white
+         hover:shadow-xl hover:shadow-pesianGreen/20 border border-transparent hover:border-pesianGreen/10
+         w-full sm:w-auto sm:min-w-[14rem] sm:min-h-[22rem]">
+	<a [routerLink]="'/products/' + product._slug" class="flex flex-col items-center w-full h-full">
+		<div class="image w-full aspect-square mb-4 overflow-hidden rounded-md bg-gray-50">
 			@if (product.cover) {
-				<img class="w-full h-full object-cover" [src]="product.cover.url" [alt]="product.title" />
+				<img class="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-300" [src]="product.cover.url" [alt]="product.title" />
 			} @else {
-				<div class="w-full h-full bg-gray-200 flex items-center justify-center text-gray-400">No image</div>
+				<div class="w-full h-full flex items-center justify-center text-gray-400">
+					<i class="pi pi-image text-4xl opacity-20"></i>
+				</div>
 			}
 		</div>
-		<figcaption class="content flex justify-center">
-			<h2 class="text-sm font-bold mt-4 w-[90%] text-center group-hover:text-pesianGreen transition-all min-h-[4rem]">
+		<figcaption class="content flex flex-col items-center flex-1 w-full relative min-h-[7rem]">
+			<h2 class="text-base font-bold text-center text-gray-800 group-hover:text-pesianGreen transition-colors line-clamp-2 mb-2">
 				{{ product.title }}
 			</h2>
+			<div class="price text-lg font-bold text-pesianGreen mt-auto mb-4">
+				{{ product.price }} <span class="text-sm font-normal">₴</span>
+			</div>
 		</figcaption>
 	</a>
-	<p-button [outlined]="true" severity="contrast" class="add-to-cart w-auto h-[3rem] mt-2" (click)="addToCart($event)">Додати в корзину</p-button>
+	<p-button
+		[outlined]="true"
+		severity="secondary"
+		styleClass="w-full border-pesianGreen text-pesianGreen hover:bg-pesianGreen hover:text-white"
+		class="w-full mt-2"
+		(click)="addToCart($event)">
+		Додати в корзину
+	</p-button>
 </div>
