@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
@@ -14,7 +14,6 @@ import { MessageService } from 'primeng/api';
 	standalone: true,
 	imports: [CommonModule, CardModule, ButtonModule, InputNumberModule, ToastModule],
 	templateUrl: './basket-list.component.html',
-	styleUrl: './basket-list.component.scss',
 	providers: [MessageService],
 })
 export class BasketListComponent {
@@ -22,9 +21,10 @@ export class BasketListComponent {
 	private messageService = inject(MessageService);
 
 	$basket = toSignal(this.facade.basket$, { initialValue: [] as BasketLine[], equal: () => false });
+  $total = computed(() => this.$basket().reduce((sum, line) => sum + this.lineTotal(line), 0));
 
 	lineTotal(line: BasketLine): number {
-		const price = parseFloat(line.product.price?.slice(1) ?? '0');
+		const price = parseFloat(line.product.price ?? '0');
 		return price * line.quantity;
 	}
 

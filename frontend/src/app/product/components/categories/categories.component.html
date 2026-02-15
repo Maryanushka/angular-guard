@@ -1,10 +1,8 @@
-<ul *ngIf="categories$ | async as list" class="mt-16">
+<ul *ngIf="categories$ | async as list" class="mt-16 pt-4 sticky top-32">
 	<li class="flex w-60">
 		<a routerLink="/products">Всі продукти</a>
 	</li>
-	@if (list.length === 0) {
-		<p class="text-center font-bold">No categories found found</p>
-	} @else {
+	@if (list.length !== 0) {
 		@for (item of list; track item.tag) {
 			<li class="flex w-60">
 				<a [routerLink]="['/products', 'category', item.tag]">

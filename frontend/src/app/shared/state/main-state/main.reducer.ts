@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { ProductActions } from './main.actions';
+import { AppActions } from './main.actions';
 import { BasketLine, ICategory, IProduct, ISingleProduct } from '../../types/product.inteface';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -53,7 +53,7 @@ export const initialState: State = {
 
 export const productReducer = createReducer(
 	initialState,
-	on(ProductActions.addProduct, (state, { product }) => {
+	on(AppActions.addProduct, (state, { product }) => {
 		const isProductInBasket = state.basket.data.some((p) => p.product._slug === product._slug);
 		if (isProductInBasket) {
 			return {
@@ -72,7 +72,7 @@ export const productReducer = createReducer(
 			},
 		};
 	}),
-	on(ProductActions.remove1FromBasket, (state, { product }) => {
+	on(AppActions.remove1FromBasket, (state, { product }) => {
 		const idx = state.basket.data.findIndex((p) => p.product._slug === product._slug);
 		if (idx === -1) return state;
 
@@ -90,17 +90,17 @@ export const productReducer = createReducer(
 			basket: { ...state.basket, data, loading: false },
 		};
 	}),
-	on(ProductActions.removeProduct, (state, { product }) => {
+	on(AppActions.removeProduct, (state, { product }) => {
 		return {
 			...state,
 			basket: { data: state.basket.data.filter((p) => p.product._slug !== product.product._slug), loading: false },
 		};
 	}),
-	on(ProductActions.setBasket, (state, { items }) => ({
+	on(AppActions.setBasket, (state, { items }) => ({
 		...state,
 		basket: { data: items.map((p) => ({ product: p, quantity: 1 })), loading: false },
 	})),
-	on(ProductActions.loadProducts, (state, { offset }) => ({
+	on(AppActions.loadProducts, (state, { offset }) => ({
 		...state,
 		products: {
 			...state.products,
@@ -109,7 +109,7 @@ export const productReducer = createReducer(
 			error: null,
 		},
 	})),
-	on(ProductActions.loadProductsSuccess, (state, { products, total, offset }) => ({
+	on(AppActions.loadProductsSuccess, (state, { products, total, offset }) => ({
 		...state,
 		products: {
 			data: offset === 0 ? products : [...state.products.data, ...products],
@@ -118,7 +118,7 @@ export const productReducer = createReducer(
 			error: null,
 		},
 	})),
-	on(ProductActions.loadProductsFailure, (state, { error }) => ({
+	on(AppActions.loadProductsFailure, (state, { error }) => ({
 		...state,
 		products: {
 			data: [],
@@ -127,11 +127,11 @@ export const productReducer = createReducer(
 			error: error,
 		},
 	})),
-	on(ProductActions.loadProduct, (state) => ({
+	on(AppActions.loadProduct, (state) => ({
 		...state,
 		loading: true,
 	})),
-	on(ProductActions.loadProductSuccess, (state, { product }) => ({
+	on(AppActions.loadProductSuccess, (state, { product }) => ({
 		...state,
 		singleProduct: {
 			data: product,
@@ -139,7 +139,7 @@ export const productReducer = createReducer(
 			error: null,
 		},
 	})),
-	on(ProductActions.loadProductFailure, (state, { error }) => ({
+	on(AppActions.loadProductFailure, (state, { error }) => ({
 		...state,
 		singleProduct: {
 			data: null,
@@ -147,7 +147,7 @@ export const productReducer = createReducer(
 			error: error,
 		},
 	})),
-	on(ProductActions.loadCategories, (state) => ({
+	on(AppActions.loadCategories, (state) => ({
 		...state,
 		categories: {
 			...state.categories,
@@ -155,7 +155,7 @@ export const productReducer = createReducer(
 			error: null,
 		},
 	})),
-	on(ProductActions.loadCategoriesSuccess, (state, { categories }) => ({
+	on(AppActions.loadCategoriesSuccess, (state, { categories }) => ({
 		...state,
 		categories: {
 			data: categories,
@@ -163,7 +163,7 @@ export const productReducer = createReducer(
 			error: null,
 		},
 	})),
-	on(ProductActions.loadCategoriesFailure, (state, { error }) => ({
+	on(AppActions.loadCategoriesFailure, (state, { error }) => ({
 		...state,
 		categories: {
 			data: [],

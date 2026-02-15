@@ -16,7 +16,7 @@ import {
 } from './main.selectors';
 import { Observable } from 'rxjs';
 import { BasketLine, ICategory, IProduct, ISingleProduct } from '../../types/product.inteface';
-import { ProductActions } from './main.actions';
+import { AppActions } from './main.actions';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
@@ -43,23 +43,23 @@ export class MainFacade {
 	categoriesError$: Observable<HttpErrorResponse | null> = this.store.pipe(select(selectCategoriesError));
 
 	loadProducts(category: string | null, limit: number, offset: number) {
-		this.store.dispatch(ProductActions.loadProducts({ category, limit, offset }));
+		this.store.dispatch(AppActions.loadProducts({ category, limit, offset }));
 	}
 	loadSingleProduct(slug: string) {
-		this.store.dispatch(ProductActions.loadProduct({ slug }));
+		this.store.dispatch(AppActions.loadProduct({ slug }));
 	}
 	loadCategories() {
-		this.store.dispatch(ProductActions.loadCategories());
+		this.store.dispatch(AppActions.loadCategories());
 	}
 	addToBasket(product: IProduct) {
-		this.store.dispatch(ProductActions.addProduct({ product }));
+		this.store.dispatch(AppActions.addProduct({ product }));
 	}
 
 	removeFromBasket(product: IProduct) {
-		this.store.dispatch(ProductActions.remove1FromBasket({ product }));
+		this.store.dispatch(AppActions.remove1FromBasket({ product }));
 	}
 
 	removeProduct(line: BasketLine) {
-		this.store.dispatch(ProductActions.removeProduct({ product: line }));
+		this.store.dispatch(AppActions.removeProduct({ product: line }));
 	}
 }

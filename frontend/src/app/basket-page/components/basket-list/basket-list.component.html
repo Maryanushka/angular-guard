@@ -17,7 +17,7 @@
 							[text]="true"
 							[icon]="'pi pi-times'"
 							severity="secondary"
-							class="self-end text-battleshipGray hover:text-munsell text-sm p-0 min-w-0 rounded-md w-8 h-8"
+							class="self-end w-8 h-8"
 							(onClick)="removeProduct(line)"
 							[attr.aria-label]="'Видалити ' + line.product.title" />
 
@@ -29,7 +29,7 @@
 								[icon]="'pi pi-minus'"
 								[outlined]="true"
 								severity="secondary"
-								class="basket-btn w-8 h-8 min-w-0 border-pesianGreen/50 text-pesianGreen hover:bg-pesianGreen/10 rounded-md"
+								class="basket-btn w-8 h-8"
 								(onClick)="removeOne(line.product)"
 								[attr.aria-label]="'Зменшити кількість ' + line.product.title" />
 							<span class="w-12 text-center text-sm font-medium text-gray-700" [attr.aria-label]="'Кількість ' + line.product.title">
@@ -40,7 +40,7 @@
 								[rounded]="true"
 								[outlined]="true"
 								severity="secondary"
-								class="basket-btn w-8 h-8 min-w-0 border-pesianGreen/50 text-pesianGreen hover:bg-pesianGreen/10 rounded-md"
+								class="basket-btn w-8 h-8"
 								(onClick)="addOne(line.product)"
 								[attr.aria-label]="'Збільшити кількість ' + line.product.title" />
 						</div>
@@ -49,5 +49,9 @@
 			</div>
 		</p-card>
 	}
+  
+  <div class="totals w-full flex mt-4">
+    <h3 class="text-l font-bold text-pesianGreen">Total: <span class="text-xl">{{ $total() }}</span> ₴</h3>
+  </div>
 </section>
 <p-toast />

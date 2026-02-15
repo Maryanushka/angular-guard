@@ -1,5 +1,5 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { distinctUntilChanged, map } from 'rxjs';
@@ -36,7 +36,6 @@ const PAGE_SIZE = 10;
 export class ProductPageComponent implements OnInit {
 	private facade = inject(MainFacade);
 	private route = inject(ActivatedRoute);
-	private router = inject(Router);
 	private destroyRef = inject(DestroyRef);
 
 	private category: string | null = null;

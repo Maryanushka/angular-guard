@@ -2,8 +2,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { BasketLine, ICategory, IProduct, ISingleProduct } from './../../types/product.inteface';
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
 
-export const ProductActions = createActionGroup({
-	source: 'Products',
+export const AppActions = createActionGroup({
+	source: 'App',
 	events: {
 		'Add Product': props<{ product: IProduct }>(),
 		'Remove 1 From Basket': props<{ product: IProduct }>(),

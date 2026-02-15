@@ -39,7 +39,7 @@ export default defineType({
     defineField({
       name: 'price',
       title: 'Price',
-      type: 'string',
+      type: 'number',
       validation: Rule =>
         Rule.required().error('Price is required so the product can be added to the basket.')
     }),

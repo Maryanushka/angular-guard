@@ -8,10 +8,10 @@
 			}
 		</div>
 		<figcaption class="content flex justify-center">
-			<h2 class="text-sm font-bold mt-4 w-[90%] text-center group-hover:text-pesianGreen transition-all">
+			<h2 class="text-sm font-bold mt-4 w-[90%] text-center group-hover:text-pesianGreen transition-all min-h-[4rem]">
 				{{ product.title }}
 			</h2>
 		</figcaption>
 	</a>
-	<p-button severity="contrast" class="add-to-cart w-auto h-[3rem]" (click)="addToCart($event)">Додати в корзину</p-button>
+	<p-button [outlined]="true" severity="contrast" class="add-to-cart w-auto h-[3rem] mt-2" (click)="addToCart($event)">Додати в корзину</p-button>
 </div>
