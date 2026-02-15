@@ -10,7 +10,7 @@ import { APP_BASE_HREF } from '@angular/common';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
-import { environment } from './app/environments/environment';
+import { environment } from '@env/environment';
 import { provideHttpClient } from '@angular/common/http';
 import { isDevMode } from '@angular/core';
 import { authReducer, authKey } from './app/shared/state/auth-state/auth.reducer';
@@ -20,8 +20,8 @@ import { UserEffects } from './app/shared/state/user-state/user.effects';
 import { productReducer, productKey } from './app/shared/state/main-state/main.reducer';
 import { MainEffects } from './app/shared/state/main-state/main.effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
-import { provideSanityClient } from './app/shared/services/sanity-client.token';
-import { appThemePreset } from './app/theme/primeng-preset';
+import { provideSanityClient } from '@shared';
+import { appThemePreset } from './primeng-preset';
 import { MessageService } from 'primeng/api';
 
 bootstrapApplication(AppComponent, {

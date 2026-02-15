@@ -1,15 +1,16 @@
 import { inject, Injectable } from '@angular/core';
+import type { SanityClient } from '@sanity/client';
 import { ICategory, IProduct, ISingleProduct } from '../../types/product.inteface';
 import { delay, from, Observable, retry } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { SANITY_CLIENT } from '../../services/sanity-client.token';
+import { SANITY_CLIENT } from '@shared';
 import { getCategoriesQuery, getProductCountQuery, getProductsQuery, getSingleProductQuery } from './product.queries';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class GetProductService {
-	private sanity = inject(SANITY_CLIENT);
+	private sanity: SanityClient = inject(SANITY_CLIENT);
 
 	getProducts(category?: string | null, limit?: number, offset = 0, end = 0): Observable<IProduct[]> {
 		const limitVal = limit ?? 20;

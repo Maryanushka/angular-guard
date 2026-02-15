@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import imageUrlBuilder from '@sanity/image-url';
-import { SANITY_CLIENT } from './sanity-client.token';
+import { SANITY_CLIENT } from '../sanity-client-token/sanity-client.token';
 
 @Injectable({
 	providedIn: 'root',

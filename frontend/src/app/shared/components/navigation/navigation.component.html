@@ -10,7 +10,7 @@
 	[class.home]="isHome">
 	<!-- Logo (Hidden on home desktop, visible on mobile and non-home) -->
 	@if (!isHome) {
-		<a [routerLink]="'/'" class="z-20 relative pl-6">
+		<a [routerLink]="'/'" class="z-20 relative pl-6 md:pl-0">
 			<img src="../../../../assets/logo.png" alt="Logo" class="w-32" />
 		</a>
 	}

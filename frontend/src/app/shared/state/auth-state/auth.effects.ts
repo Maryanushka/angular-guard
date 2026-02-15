@@ -4,7 +4,7 @@ import { from, of } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { AuthActions } from './auth.actions';
 import { Auth, authState, User } from '@angular/fire/auth';
-import { AuthService } from '../../../product/services/auth.service';
+import { AuthService } from '@shared';
 import { MessageService } from 'primeng/api';
 
 @Injectable()
@@ -79,17 +79,18 @@ export class AuthEffects {
 		)
 	);
 
-	authFailure$ = createEffect(() =>
-		this.actions$.pipe(
-			ofType(AuthActions.authFailure),
-			tap(({ error }) => {
-				this.messageService.add({
-					severity: 'error',
-					summary: 'Authentication Error',
-					detail: error,
-				});
-			})
-		),
+	authFailure$ = createEffect(
+		() =>
+			this.actions$.pipe(
+				ofType(AuthActions.authFailure),
+				tap(({ error }) => {
+					this.messageService.add({
+						severity: 'error',
+						summary: 'Authentication Error',
+						detail: error,
+					});
+				})
+			),
 		{ dispatch: false }
 	);
 
@@ -113,31 +114,33 @@ export class AuthEffects {
 		)
 	);
 
-	updateEmailSuccess$ = createEffect(() =>
-		this.actions$.pipe(
-			ofType(AuthActions.updateEmailSuccess),
-			tap(() => {
-				this.messageService.add({
-					severity: 'success',
-					summary: 'Verification Sent',
-					detail: 'A verification link has been sent to your new email address. Please confirm it to complete the update.',
-				});
-			})
-		),
+	updateEmailSuccess$ = createEffect(
+		() =>
+			this.actions$.pipe(
+				ofType(AuthActions.updateEmailSuccess),
+				tap(() => {
+					this.messageService.add({
+						severity: 'success',
+						summary: 'Verification Sent',
+						detail: 'A verification link has been sent to your new email address. Please confirm it to complete the update.',
+					});
+				})
+			),
 		{ dispatch: false }
 	);
 
-	updateEmailFailure$ = createEffect(() =>
-		this.actions$.pipe(
-			ofType(AuthActions.updateEmailFailure),
-			tap(({ error }) => {
-				this.messageService.add({
-					severity: 'error',
-					summary: 'Update Failed',
-					detail: error,
-				});
-			})
-		),
+	updateEmailFailure$ = createEffect(
+		() =>
+			this.actions$.pipe(
+				ofType(AuthActions.updateEmailFailure),
+				tap(({ error }) => {
+					this.messageService.add({
+						severity: 'error',
+						summary: 'Update Failed',
+						detail: error,
+					});
+				})
+			),
 		{ dispatch: false }
 	);
 }

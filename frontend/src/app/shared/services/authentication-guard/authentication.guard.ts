@@ -2,12 +2,12 @@ import { Injectable, inject } from '@angular/core';
 import { ActivatedRouteSnapshot, Router, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
-import { AuthFacade } from '../../shared/state/auth-state/auth.facade';
+import { AuthFacade } from '@shared';
 
 @Injectable({
 	providedIn: 'root',
 })
-export class AuthenticaionGuard {
+export class AuthenticationGuard {
 	private authFacade = inject(AuthFacade);
 	private router = inject(Router);
 

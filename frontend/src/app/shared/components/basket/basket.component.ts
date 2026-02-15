@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MainFacade } from '../../state/main-state/main.facade';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ButtonModule } from 'primeng/button';
-import { SanityImageService } from '../../services/sanity-image.service';
+import { SanityImageService } from '@shared';
 
 @Component({
 	selector: 'app-basket',

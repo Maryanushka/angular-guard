@@ -6,6 +6,7 @@
 		"paths": {
 			"@shared": ["src/app/shared/index.ts"],
 			"@shared/*": ["src/app/shared/*"],
+			"@pages/*": ["src/app/pages/*"],
 			"@env/*": ["src/app/environments/*"],
 			"@primeuix/themes/aura": ["node_modules/@primeuix/themes/dist/aura/index.mjs"],
 			"@primeuix/themes/aura/*": ["node_modules/@primeuix/themes/dist/aura/*"]

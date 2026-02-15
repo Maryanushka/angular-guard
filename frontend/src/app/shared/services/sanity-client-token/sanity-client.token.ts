@@ -1,6 +1,6 @@
 import { InjectionToken } from '@angular/core';
 import { createClient, type SanityClient } from '@sanity/client';
-import { environment } from '../../environments/environment';
+import { environment } from '@env/environment';
 
 export const SANITY_CLIENT = new InjectionToken<SanityClient>('SANITY_CLIENT');
 

@@ -1,4 +1,4 @@
-<div class="container mx-auto min-h-screen">
+<div class="container mx-auto min-h-screen flex flex-col">
 	<app-navigation></app-navigation>
 	<div class="flex items-center justify-between mt-24">
 		<h1 class="text-3xl font-bold">Hey there, {{ (user$ | async)?.displayName || 'User' }}</h1>
@@ -19,5 +19,5 @@
 			</p-tabpanel>
 		</p-tabpanels>
 	</p-tabs>
-	<app-footer></app-footer>
+	<app-footer class="mt-auto"></app-footer>
 </div>

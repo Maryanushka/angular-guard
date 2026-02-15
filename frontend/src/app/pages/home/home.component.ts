@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SocialMediaComponent } from '../../shared/components/social-media/social-media.component';
-import { NavigationComponent } from '../../shared/components/navigation/navigation.component';
+import { SocialMediaComponent, NavigationComponent } from '@shared';
 
 @Component({
 	selector: 'app-home',

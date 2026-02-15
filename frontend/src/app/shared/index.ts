@@ -2,4 +2,4 @@ export * from './state';
 export * from './types';
 export * from './components';
 export * from './directives';
-export * from './services/sanity-image.service';
+export * from './services';

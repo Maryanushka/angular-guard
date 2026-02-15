@@ -5,7 +5,7 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { DividerModule } from 'primeng/divider';
 import { AuthFacade } from '@shared';
-import { AuthService } from '../../../../product/services/auth.service';
+import { AuthService } from '@shared';
 import { Auth, RecaptchaVerifier } from '@angular/fire/auth';
 
 @Component({

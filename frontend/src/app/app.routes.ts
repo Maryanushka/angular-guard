@@ -1,44 +1,44 @@
 import { Route } from '@angular/router';
-import { AuthenticaionGuard } from './product/services/authenticaion.guard';
+import { AuthenticationGuard } from '@shared';
 
 export const routes: Route[] = [
 	{
 		path: '',
-		loadComponent: () => import('./home/components/home.component').then((m) => m.HomeComponent),
+		loadComponent: () => import('./pages/home/home.component').then((m) => m.HomeComponent),
 	},
 	{
 		path: 'signin',
-		loadComponent: () => import('./signin/signin-page.component').then((m) => m.SigninPageComponent),
+		loadComponent: () => import('./pages/signin/signin-page.component').then((m) => m.SigninPageComponent),
 	},
 	{
 		path: 'basket',
-		loadComponent: () => import('./basket-page/basket-page.component').then((m) => m.BasketPageComponent),
+		loadComponent: () => import('./pages/basket-page/basket-page.component').then((m) => m.BasketPageComponent),
 	},
 	{
 		path: 'products',
 		children: [
 			{
 				path: '',
-				loadComponent: () => import('./product/components/product-page/product-page.component').then((m) => m.ProductPageComponent),
+				loadComponent: () => import('./pages/product/product-page/product-page.component').then((m) => m.ProductPageComponent),
 			},
 			{
 				path: 'category/:category',
-				loadComponent: () => import('./product/components/product-page/product-page.component').then((m) => m.ProductPageComponent),
+				loadComponent: () => import('./pages/product/product-page/product-page.component').then((m) => m.ProductPageComponent),
 			},
 			{
 				path: ':slug',
-				loadComponent: () => import('./product/components/product-single/product-single.component').then((m) => m.ProductSingleComponent),
+				loadComponent: () => import('./pages/product/product-single/product-single.component').then((m) => m.ProductSingleComponent),
 			},
 		],
 	},
 	{
 		path: 'about',
-		loadComponent: () => import('./about/components/about-page.component').then((m) => m.AboutPageComponent),
+		loadComponent: () => import('./pages/about/about-page.component').then((m) => m.AboutPageComponent),
 	},
 	{
 		path: 'profile',
-		loadComponent: () => import('./profile/profile-page.component').then((m) => m.ProfilePageComponent),
-		canActivate: [AuthenticaionGuard],
+		loadComponent: () => import('./pages/profile/profile-page.component').then((m) => m.ProfilePageComponent),
+		canActivate: [AuthenticationGuard],
 		data: { roles: ['user'] },
 	},
 ];
