@@ -42,9 +42,9 @@ export class OrderFormComponent {
 		}
 		const value = form.getRawValue();
 		const lines = this.basket();
-		const orderLines = lines.map(({ product, quantity }) => `${product.title} × ${quantity} — ${(parseFloat(product.price ?? '0') || 0).toFixed(2)}`);
+		const orderLines = lines.map(({ product, quantity }) => `${product.title} × ${quantity} — ${(parseFloat(product.price?.slice(1) ?? '0') || 0).toFixed(2)}`);
 		const orderItems = orderLines.join('\n');
-		const basketTotal = lines.reduce((sum, { product, quantity }) => sum + (parseFloat(product.price ?? '0') || 0) * quantity, 0);
+		const basketTotal = lines.reduce((sum, { product, quantity }) => sum + (parseFloat(product.price?.slice(1) ?? '0') || 0) * quantity, 0);
 
 		const { emailjs: config } = environment;
 		const templateParams = {

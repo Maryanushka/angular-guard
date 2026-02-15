@@ -8,6 +8,7 @@ export const productKey = 'PRODUCT';
 export interface State {
 	products: {
 		data: IProduct[];
+		total: number;
 		loading: boolean;
 		error: HttpErrorResponse | null;
 	};
@@ -34,6 +35,7 @@ export const initialState: State = {
 	},
 	products: {
 		data: [],
+		total: 0,
 		loading: false,
 		error: null,
 	},
@@ -98,18 +100,20 @@ export const productReducer = createReducer(
 		...state,
 		basket: { data: items.map((p) => ({ product: p, quantity: 1 })), loading: false },
 	})),
-	on(ProductActions.loadProducts, (state) => ({
+	on(ProductActions.loadProducts, (state, { offset }) => ({
 		...state,
 		products: {
-			data: [],
+			...state.products,
+			data: offset === 0 ? [] : state.products.data,
 			loading: true,
 			error: null,
 		},
 	})),
-	on(ProductActions.loadProductsSuccess, (state, { products }) => ({
+	on(ProductActions.loadProductsSuccess, (state, { products, total, offset }) => ({
 		...state,
 		products: {
-			data: products,
+			data: offset === 0 ? products : [...state.products.data, ...products],
+			total,
 			loading: false,
 			error: null,
 		},
@@ -118,6 +122,7 @@ export const productReducer = createReducer(
 		...state,
 		products: {
 			data: [],
+			total: 0,
 			loading: false,
 			error: error,
 		},
@@ -145,7 +150,7 @@ export const productReducer = createReducer(
 	on(ProductActions.loadCategories, (state) => ({
 		...state,
 		categories: {
-			data: [],
+			...state.categories,
 			loading: true,
 			error: null,
 		},

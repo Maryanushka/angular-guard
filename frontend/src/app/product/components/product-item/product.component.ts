@@ -5,12 +5,13 @@ import { MainFacade } from '../../../shared/state/main-state/main.facade';
 import { GetProductService } from '../../../shared/state/requests/get-product.service';
 import type { IProduct } from '../../../shared/types/product.inteface';
 import { ToastModule } from 'primeng/toast';
+import { ButtonModule } from 'primeng/button';
 @Component({
 	selector: 'app-product',
 	templateUrl: './product.component.html',
 	styleUrls: ['./product.component.scss'],
 	standalone: true,
-	imports: [RouterModule, ToastModule],
+	imports: [RouterModule, ToastModule, ButtonModule],
 	providers: [MessageService],
 })
 export class ProductComponent {

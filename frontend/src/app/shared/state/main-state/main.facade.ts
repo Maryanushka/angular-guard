@@ -2,6 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import {
 	selectProducts,
+	selectProductsTotal,
 	selectProductsError,
 	selectProductsLoading,
 	selectBasketCount,
@@ -25,6 +26,7 @@ export class MainFacade {
 	private store = inject(Store);
 
 	products$: Observable<IProduct[]> = this.store.pipe(select(selectProducts));
+	productsTotal$: Observable<number> = this.store.pipe(select(selectProductsTotal));
 	productsLoading$: Observable<boolean> = this.store.pipe(select(selectProductsLoading));
 	productsError$: Observable<HttpErrorResponse | null> = this.store.pipe(select(selectProductsError));
 
@@ -40,8 +42,8 @@ export class MainFacade {
 	categoriesLoading$: Observable<boolean> = this.store.pipe(select(selectCategoriesLoading));
 	categoriesError$: Observable<HttpErrorResponse | null> = this.store.pipe(select(selectCategoriesError));
 
-	loadProducts(category: string | null, limit: number) {
-		this.store.dispatch(ProductActions.loadProducts({ category, limit }));
+	loadProducts(category: string | null, limit: number, offset: number) {
+		this.store.dispatch(ProductActions.loadProducts({ category, limit, offset }));
 	}
 	loadSingleProduct(slug: string) {
 		this.store.dispatch(ProductActions.loadProduct({ slug }));

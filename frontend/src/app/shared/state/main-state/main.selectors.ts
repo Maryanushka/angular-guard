@@ -4,6 +4,7 @@ import { productKey, State } from './main.reducer';
 export const selectState = createFeatureSelector<State>(productKey);
 
 export const selectProducts = createSelector(selectState, (state: State) => state.products.data);
+export const selectProductsTotal = createSelector(selectState, (state: State) => state.products.total);
 export const selectProductsLoading = createSelector(selectState, (state: State) => state.products.loading);
 export const selectProductsError = createSelector(selectState, (state: State) => state.products.error);
 export const selectBasketCount = createSelector(selectState, (state: State) => state.basket.data.reduce((sum, line) => sum + line.quantity, 0));

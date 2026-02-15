@@ -4,8 +4,10 @@ export interface IProduct {
 	description: string;
 	cover: { url: string; width: number; height: number } | null;
 	categories: { _slug: string; title: string }[];
-	tag?: string;
-	price: string;
+	/** Category slugs (e.g. ["hair", "blonde", "set"]). Product appears in each category. */
+	tag?: string[];
+	/** May be missing if product was created before price was required. */
+	price?: string | null;
 }
 
 export interface BasketLine {
@@ -21,7 +23,7 @@ export function toIProduct(single: ISingleProduct): IProduct {
 		description: single.description,
 		cover: single.cover?.[0] ?? null,
 		categories: single.categories,
-		price: single.price,
+		price: single.price ?? '',
 	};
 }
 
@@ -44,5 +46,5 @@ export interface ISingleProduct {
 
 export interface ICategory {
 	title: string;
-	_slug: string;
+	tag: string;
 }

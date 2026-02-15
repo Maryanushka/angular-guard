@@ -1,22 +1,27 @@
-import { IProduct, ISingleProduct } from './../../types/product.inteface';
+import { ISingleProduct } from './../../types/product.inteface';
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { of } from 'rxjs';
-import { catchError, map, mergeMap, switchMap } from 'rxjs/operators';
+import { forkJoin, of } from 'rxjs';
+import { catchError, filter, map, mergeMap, switchMap, withLatestFrom } from 'rxjs/operators';
 import { GetProductService } from '../requests/get-product.service';
 import { ProductActions } from './main.actions';
+import { MainFacade } from './main.facade';
 
 @Injectable()
 export class MainEffects {
 	private service = inject(GetProductService);
 	private actions$ = inject(Actions);
+	private facade = inject(MainFacade);
 
 	loadProducts$ = createEffect(() =>
 		this.actions$.pipe(
 			ofType(ProductActions.loadProducts),
-			switchMap(({ category, limit }) =>
-				this.service.getProducts(category, limit).pipe(
-					map((products: IProduct[]) => ProductActions.loadProductsSuccess({ products })),
+			switchMap(({ category, limit, offset }) =>
+				forkJoin({
+					products: this.service.getProducts(category, limit, offset),
+					total: this.service.getProductCount(category),
+				}).pipe(
+					map(({ products, total }) => ProductActions.loadProductsSuccess({ products, total, offset })),
 					catchError((error) => of(ProductActions.loadProductsFailure({ error })))
 				)
 			)
@@ -38,6 +43,8 @@ export class MainEffects {
 	loadCategories$ = createEffect(() =>
 		this.actions$.pipe(
 			ofType(ProductActions.loadCategories),
+			withLatestFrom(this.facade.categories$),
+			filter(([_, categories]) => categories.length === 0),
 			switchMap(() =>
 				this.service.getCategories().pipe(
 					map((categories) => ProductActions.loadCategoriesSuccess({ categories })),

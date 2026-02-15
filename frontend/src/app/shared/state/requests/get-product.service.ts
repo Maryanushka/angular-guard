@@ -10,8 +10,8 @@ import groq from 'groq';
 export class GetProductService {
 	private sanity = inject(SANITY_CLIENT);
 
-	getProducts(category?: string | null, limit?: number): Observable<IProduct[]> {
-		const query = groq`*[_type == "product" && select(defined($category) && $category != "" => tag == $category, true)] | order(_createdAt desc)[0...$limit]{
+	getProducts(category?: string | null, limit?: number, offset = 0, end = 0): Observable<IProduct[]> {
+		const query = groq`*[_type == "product" && (!defined($category) || $category == "" || (defined(tag) && $category in tag))] | order(_createdAt desc)[$offset...$end]{
       "_slug": slug.current,
       title,
       description,
@@ -20,8 +20,15 @@ export class GetProductService {
       tag,
       price
     }`;
-		const params = { limit: limit ?? 20, category: category ?? null };
+		const limitVal = limit ?? 20;
+		const params = { category: category ?? null, offset, end: offset + limitVal };
 		return from(this.sanity.fetch<IProduct[]>(query, params)).pipe(retry(2), delay(200));
+	}
+
+	getProductCount(category?: string | null): Observable<number> {
+		const query = groq`count(*[_type == "product" && (!defined($category) || $category == "" || (defined(tag) && $category in tag))])`;
+		const params = { category: category ?? null };
+		return from(this.sanity.fetch<number>(query, params)).pipe(retry(2), delay(100));
 	}
 
 	getSingleProduct(slug: string): Observable<ISingleProduct> {
@@ -54,7 +61,7 @@ export class GetProductService {
 	getCategories(): Observable<ICategory[]> {
 		const query = groq`*[_type == "categories"][0].category_list[]{
       title,
-      "_slug": tag
+      tag
     }`;
 		return from(this.sanity.fetch<ICategory[]>(query)).pipe(retry(2), delay(200));
 	}

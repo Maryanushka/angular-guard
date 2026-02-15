@@ -1,5 +1,5 @@
-<div class="relative py-4 px-6 border border-slate-100 flex rounded items-center flex-col shadow-md hover:shadow-lg group max-h-[13rem]">
-	<a [routerLink]="'/products/' + product._slug" class="flex flex-col items-center w-full contents">
+<div class="relative py-4 px-6 flex rounded items-center flex-col sm hover:shadow-lg group min-w-[14rem] min-h-[12rem] md:min-w-[16rem] md:min-h-[15rem]">
+	<a [routerLink]="'/products/' + product._slug" class="flex flex-col items-center w-full">
 		<div class="image w-24 h-24">
 			@if (product.cover) {
 				<img class="w-full h-full object-cover" [src]="product.cover.url" [alt]="product.title" />
@@ -13,12 +13,5 @@
 			</h2>
 		</figcaption>
 	</a>
-	<button
-		type="button"
-		class="add-to-cart absolute bottom-3 left-1/2 -translate-x-1/2 px-3 py-1.5 rounded bg-pesianGreen text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity hover:bg-pesianGreen/90 focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-pesianGreen focus:ring-offset-2"
-		(click)="addToCart($event)"
-		[attr.aria-label]="'Додати в корзину: ' + product.title">
-		Додати в корзину
-	</button>
+	<p-button severity="contrast" class="add-to-cart w-auto h-[3rem]" (click)="addToCart($event)">Додати в корзину</p-button>
 </div>
-<p-toast />

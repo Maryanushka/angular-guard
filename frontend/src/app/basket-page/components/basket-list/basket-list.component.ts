@@ -24,7 +24,7 @@ export class BasketListComponent {
 	$basket = toSignal(this.facade.basket$, { initialValue: [] as BasketLine[], equal: () => false });
 
 	lineTotal(line: BasketLine): number {
-		const price = parseFloat(line.product.price.slice(1));
+		const price = parseFloat(line.product.price?.slice(1) ?? '0');
 		return price * line.quantity;
 	}
 
@@ -48,10 +48,10 @@ export class BasketListComponent {
 
 	removeProduct(line: BasketLine): void {
 		this.messageService.add({
-			severity: 'danger',
+			severity: 'warn',
 			summary: 'Видалено товар з корзини',
 			detail: line.product.title,
 		});
-		this.facade.removeFromBasket(line.product);
+		this.facade.removeProduct(line);
 	}
 }

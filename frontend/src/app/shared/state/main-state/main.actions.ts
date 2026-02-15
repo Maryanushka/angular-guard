@@ -9,9 +9,9 @@ export const ProductActions = createActionGroup({
 		'Remove 1 From Basket': props<{ product: IProduct }>(),
 		'Remove Product': props<{ product: BasketLine }>(),
 		'Set Basket': props<{ items: IProduct[] }>(),
-		// all products
-		'Load Products': props<{ category: string | null; limit: number }>(),
-		'Load Products Success': props<{ products: IProduct[] }>(),
+		// all products (offset 0 = replace list, offset > 0 = append for load more)
+		'Load Products': props<{ category: string | null; limit: number; offset: number }>(),
+		'Load Products Success': props<{ products: IProduct[]; total: number; offset: number }>(),
 		'Load Products Failure': props<{ error: HttpErrorResponse }>(),
 		// single product
 		'Load Product': props<{ slug: string }>(),

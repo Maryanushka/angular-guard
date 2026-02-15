@@ -15,19 +15,13 @@ export const routes: Route[] = [
 		path: 'basket',
 		component: BasketPageComponent,
 	},
-	// {
-	//   path: 'create-product',
-	//   canActivate: [AuthenticaionGuard],
-	//   component: CreateProductPageComponent,
-	//   data: {roles: ['user']},
-	// },
 	{
 		path: 'products',
-		component: ProductPageComponent,
-	},
-	{
-		path: 'products/:slug',
-		component: ProductSingleComponent,
+		children: [
+			{ path: '', component: ProductPageComponent },
+			{ path: 'category/:category', component: ProductPageComponent },
+			{ path: ':slug', component: ProductSingleComponent },
+		],
 	},
 	{
 		path: 'about',

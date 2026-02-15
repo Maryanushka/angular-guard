@@ -11,13 +11,14 @@ import { SocialMediaComponent } from '../../../shared/components/social-media/so
 import { FooterComponent } from '../../../shared/components/footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
 	selector: 'app-product-single',
 	templateUrl: './product-single.component.html',
 	styleUrls: ['./product-single.component.scss'],
 	standalone: true,
-	imports: [CommonModule, RouterModule, NavigationComponent, TabsComponent, VideoPlayerComponent, SocialMediaComponent, FooterComponent],
+	imports: [CommonModule, RouterModule, NavigationComponent, TabsComponent, VideoPlayerComponent, SocialMediaComponent, FooterComponent, ButtonModule],
 })
 export class ProductSingleComponent implements OnInit, OnDestroy {
 	private facade = inject(MainFacade);

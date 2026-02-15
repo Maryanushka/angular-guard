@@ -24,8 +24,11 @@ export default defineType({
     }),
     defineField({
       name: 'tag',
-      title: 'Tag',
-      type: 'string'
+      title: 'Tags / Categories',
+      type: 'array',
+      of: [{ type: 'string' }],
+      description:
+        'Select one or more category slugs (e.g. hair, blonde, set). Product will appear in each chosen category.'
     }),
     defineField({
       name: 'metaImage',
@@ -36,7 +39,9 @@ export default defineType({
     defineField({
       name: 'price',
       title: 'Price',
-      type: 'string'
+      type: 'string',
+      validation: Rule =>
+        Rule.required().error('Price is required so the product can be added to the basket.')
     }),
     defineField({
       name: 'description',
@@ -70,9 +75,10 @@ export default defineType({
       tag: 'tag'
     },
     prepare({ title, slug, tag }) {
+      const tagLabel = Array.isArray(tag) ? tag.join(', ') : tag
       return {
         title,
-        subtitle: tag || (slug ? `/${slug}` : 'No slug')
+        subtitle: tagLabel || (slug ? `/${slug}` : 'No slug')
       }
     }
   }

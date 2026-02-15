@@ -1,6 +1,8 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { distinctUntilChanged, map } from 'rxjs';
 import { MainFacade } from '../../../shared/state/main-state/main.facade';
 import { NavigationComponent } from '../../../shared/components/navigation/navigation.component';
 import { SocialMediaComponent } from '../../../shared/components/social-media/social-media.component';
@@ -8,6 +10,11 @@ import { ProductComponent } from '../product-item/product.component';
 import { CategoriesComponent } from '../categories/categories.component';
 import { CommonModule } from '@angular/common';
 import { MessageService } from 'primeng/api';
+import { ObserveInViewDirective } from '../../../shared/directives/observe-in-view.directive';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { ToastModule } from 'primeng/toast';
+
+const PAGE_SIZE = 10;
 
 @Component({
 	selector: 'app-product-page',
@@ -15,26 +22,52 @@ import { MessageService } from 'primeng/api';
 	styleUrls: ['./product-page.component.scss'],
 	standalone: true,
 	providers: [MessageService],
-	imports: [CommonModule, NavigationComponent, SocialMediaComponent, ProductComponent, CategoriesComponent],
+	imports: [
+		CommonModule,
+		NavigationComponent,
+		SocialMediaComponent,
+		ProductComponent,
+		CategoriesComponent,
+		ObserveInViewDirective,
+		ProgressSpinnerModule,
+		ToastModule,
+	],
 })
-export class ProductPageComponent implements OnInit, OnDestroy {
+export class ProductPageComponent implements OnInit {
 	private facade = inject(MainFacade);
-	private router = inject(ActivatedRoute);
-	private querySubscription = new Subscription();
+	private route = inject(ActivatedRoute);
+	private router = inject(Router);
+	private destroyRef = inject(DestroyRef);
+
+	private category: string | null = null;
 
 	products$ = this.facade.products$;
+	$products = toSignal(this.facade.products$, { initialValue: [] });
+	$total = toSignal(this.facade.productsTotal$, { initialValue: 0 });
+	$loading = toSignal(this.facade.productsLoading$, { initialValue: false });
 	loading$ = this.facade.productsLoading$;
 	error$ = this.facade.productsError$;
-	filter = '';
 
-	ngOnInit() {
-		this.querySubscription = this.router.queryParams.subscribe((params) => {
-			const category = params['category'] || null;
-			this.facade.loadProducts(category, 10);
-		});
+	readonly pageSize = PAGE_SIZE;
+
+	ngOnInit(): void {
+		this.route.paramMap
+			.pipe(
+				map((params) => params.get('category')),
+				distinctUntilChanged(),
+				takeUntilDestroyed(this.destroyRef)
+			)
+			.subscribe((category) => {
+				this.category = category;
+				this.facade.loadProducts(this.category, PAGE_SIZE, 0);
+			});
 	}
 
-	ngOnDestroy() {
-		this.querySubscription.unsubscribe();
+	loadMore(): void {
+		const products = this.$products();
+		const total = this.$total();
+		const loading = this.$loading();
+		if (loading || products.length >= total || total === 0) return;
+		this.facade.loadProducts(this.category, PAGE_SIZE, products.length);
 	}
 }

@@ -1,13 +1,13 @@
 <ul *ngIf="categories$ | async as list" class="mt-16">
 	<li class="flex w-60">
-		<a [routerLink]="['/products']" [queryParams]="{ category: null }"> Всі продукти </a>
+		<a routerLink="/products">Всі продукти</a>
 	</li>
 	@if (list.length === 0) {
 		<p class="text-center font-bold">No categories found found</p>
 	} @else {
-		@for (item of list; track item._slug) {
+		@for (item of list; track item.tag) {
 			<li class="flex w-60">
-				<a [routerLink]="['/products']" [queryParams]="{ category: item._slug }">
+				<a [routerLink]="['/products', 'category', item.tag]">
 					{{ item.title }}
 				</a>
 			</li>

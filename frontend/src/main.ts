@@ -31,7 +31,7 @@ bootstrapApplication(AppComponent, {
 					darkModeSelector: '[data-theme="light"]',
 					cssLayer: {
 						name: 'primeng',
-						order: 'theme',
+						order: 'tailwind-base, primeng, tailwind-utilities',
 					},
 				},
 			},
