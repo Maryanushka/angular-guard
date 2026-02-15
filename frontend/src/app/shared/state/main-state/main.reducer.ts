@@ -26,11 +26,6 @@ export interface State {
 		loading: boolean;
 		error: HttpErrorResponse | null;
 	};
-	auth: {
-		isLoggedIn: boolean;
-		user: { uid: string; displayName: string | null; email: string | null } | null;
-		showAuthModal: boolean;
-	};
 }
 
 export const initialState: State = {
@@ -53,11 +48,6 @@ export const initialState: State = {
 		data: [],
 		loading: false,
 		error: null,
-	},
-	auth: {
-		isLoggedIn: false,
-		user: null,
-		showAuthModal: false,
 	},
 };
 
@@ -180,26 +170,5 @@ export const productReducer = createReducer(
 			loading: false,
 			error: error,
 		},
-	})),
-	// Auth
-	on(AppActions.openAuthModal, (state) => ({
-		...state,
-		auth: { ...state.auth, showAuthModal: true },
-	})),
-	on(AppActions.closeAuthModal, (state) => ({
-		...state,
-		auth: { ...state.auth, showAuthModal: false },
-	})),
-	on(AppActions.setAuthState, (state, { user }) => ({
-		...state,
-		auth: {
-			...state.auth,
-			isLoggedIn: !!user,
-			user,
-		},
-	})),
-	on(AppActions.logout, (state) => ({
-		...state,
-		auth: { isLoggedIn: false, user: null, showAuthModal: false },
 	}))
 );

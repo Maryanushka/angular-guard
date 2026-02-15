@@ -5,7 +5,7 @@
 				@if (line.product.cover) {
 					<img
 						class="w-full sm:w-24 h-24 object-cover rounded border flex-shrink-0"
-						[src]="line.product.cover.url"
+						[src]="getImageUrl(line.product.cover)"
 						[alt]="line.product.title"
 						width="96"
 						height="96" />

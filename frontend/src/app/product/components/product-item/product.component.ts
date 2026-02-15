@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { MainFacade } from '../../../shared/state/main-state/main.facade';
 import { GetProductService } from '../../../shared/state/requests/get-product.service';
+import { SanityImageService } from '../../../shared/services/sanity-image.service';
 import type { IProduct } from '../../../shared/types/product.inteface';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
@@ -18,6 +19,13 @@ export class ProductComponent {
 
 	private facade = inject(MainFacade);
 	private messageService = inject(MessageService);
+	private sanityImage = inject(SanityImageService);
+
+	get imageUrl(): string | null {
+		if (!this.product?.cover) return null;
+		// Requesting 400px width for listing thumbnails
+		return this.sanityImage.getResizedUrl(this.product.cover, 400);
+	}
 
 	addToCart(event: Event): void {
 		event.preventDefault();

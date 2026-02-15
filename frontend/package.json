@@ -30,6 +30,7 @@
 		"@primeuix/styles": "^2.0.3",
 		"@primeuix/themes": "^2.0.3",
 		"@sanity/client": "^7.12.0",
+		"@sanity/image-url": "^1.2.0",
 		"groq": "^4.10.3",
 		"primeicons": "^7.0.0",
 		"primeng": "^20.4.0",

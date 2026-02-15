@@ -4,8 +4,8 @@
          w-full sm:w-auto sm:min-w-[14rem] sm:min-h-[22rem]">
 	<a [routerLink]="'/products/' + product._slug" class="flex flex-col items-center w-full h-full">
 		<div class="image w-full aspect-square mb-4 overflow-hidden rounded-md bg-gray-50">
-			@if (product.cover) {
-				<img class="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-300" [src]="product.cover.url" [alt]="product.title" />
+			@if (imageUrl) {
+				<img class="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-300" [src]="imageUrl" [alt]="product.title" />
 			} @else {
 				<div class="w-full h-full flex items-center justify-center text-gray-400">
 					<i class="pi pi-image text-4xl opacity-20"></i>

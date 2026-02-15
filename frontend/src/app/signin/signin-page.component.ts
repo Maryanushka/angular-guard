@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } 
 import { CommonModule } from '@angular/common';
 import { NavigationComponent } from '../shared/components/navigation/navigation.component';
 import { FooterComponent } from '../shared/components/footer/footer.component';
-import { MainFacade } from '../shared/state/main-state/main.facade';
+import { AuthFacade } from '../shared/state/auth-state/auth.facade';
 
 @Component({
 	selector: 'app-signin-page',
@@ -13,7 +13,7 @@ import { MainFacade } from '../shared/state/main-state/main.facade';
 	imports: [CommonModule, FormsModule, ReactiveFormsModule, NavigationComponent, FooterComponent],
 })
 export class SigninPageComponent {
-	private facade = inject(MainFacade);
+	private authFacade = inject(AuthFacade);
 
 	form = new FormGroup({
 		email: new FormControl<string>('', [Validators.required, Validators.minLength(6)]),
@@ -29,11 +29,11 @@ export class SigninPageComponent {
 
 	submit() {
 		if (this.form.valid) {
-			this.facade.loginEmail(this.form.value.email!, this.form.value.password!);
+			this.authFacade.loginEmail(this.form.value.email!, this.form.value.password!);
 		}
 	}
 
 	loginWithGoogle() {
-		this.facade.loginGoogle();
+		this.authFacade.loginGoogle();
 	}
 }

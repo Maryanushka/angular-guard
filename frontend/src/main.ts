@@ -13,6 +13,10 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { environment } from './app/environments/environment';
 import { provideHttpClient } from '@angular/common/http';
 import { isDevMode } from '@angular/core';
+import { authReducer, authKey } from './app/shared/state/auth-state/auth.reducer';
+import { AuthEffects } from './app/shared/state/auth-state/auth.effects';
+import { userReducer, userKey } from './app/shared/state/user-state/user.reducer';
+import { UserEffects } from './app/shared/state/user-state/user.effects';
 import { productReducer, productKey } from './app/shared/state/main-state/main.reducer';
 import { MainEffects } from './app/shared/state/main-state/main.effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
@@ -37,8 +41,12 @@ bootstrapApplication(AppComponent, {
 				},
 			},
 		}),
-		provideEffects([MainEffects]),
-		provideStore({ [productKey]: productReducer }),
+		provideEffects([MainEffects, AuthEffects, UserEffects]),
+		provideStore({
+			[productKey]: productReducer,
+			[authKey]: authReducer,
+			[userKey]: userReducer,
+		}),
 		provideRouter(routes, withEnabledBlockingInitialNavigation()),
 		provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
 		provideFirebaseApp(() => initializeApp(environment.firebase)),

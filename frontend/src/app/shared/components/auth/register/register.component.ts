@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
-import { MainFacade } from '../../../state/main-state/main.facade';
+import { AuthFacade } from '../../../state/auth-state/auth.facade';
 import { MessageService } from 'primeng/api';
 
 @Component({
@@ -15,7 +15,7 @@ import { MessageService } from 'primeng/api';
 export class RegisterComponent {
 	@Output() switchToLogin = new EventEmitter<void>();
 	private fb = inject(FormBuilder);
-	private facade = inject(MainFacade);
+	private authFacade = inject(AuthFacade);
 	private messageService = inject(MessageService);
 
 	registerForm = this.fb.group({
@@ -39,6 +39,6 @@ export class RegisterComponent {
 			return;
 		}
 
-		this.facade.register(name!, email!, password!);
+		this.authFacade.register(name!, email!, password!);
 	}
 }

@@ -4,7 +4,7 @@ export const getProductsQuery = groq`*[_type == "product" && (!defined($category
   "_slug": slug.current,
   title,
   description,
-  "cover": metaImage.asset->{url, "width": metadata.dimensions.width, "height": metadata.dimensions.height},
+  "cover": metaImage,
   "categories": coalesce(categories[]->{"_slug": slug.current, title}, []),
   tag,
   price
@@ -17,13 +17,13 @@ export const getSingleProductQuery = groq`*[_type == "product" && slug.current =
   title,
   "description": pt::text(description),
   price,
-  "cover": select(defined(metaImage.asset) => [metaImage.asset->{url, "width": metadata.dimensions.width, "height": metadata.dimensions.height}], []),
+  "cover": select(defined(metaImage.asset) => [metaImage], []),
   "categories": coalesce(categories[]->{"_slug": slug.current, title}, []),
   "content": [{"body": pt::text(description)}],
   "seo": select(defined(seo) => {
     "title": seo.metaTitle,
     "description": seo.metaDescription,
-    "social_media_image": seo.metaImage.asset->{url, "width": metadata.dimensions.width, "height": metadata.dimensions.height}
+    "social_media_image": seo.metaImage
   }, null),
   "tabs": coalesce(sections[_type == "productTabs"][0].tabs[] { label, "content": pt::text(content) }, []),
   "video": select(defined(sections[_type == "youtube"][0].youtube_id) => {

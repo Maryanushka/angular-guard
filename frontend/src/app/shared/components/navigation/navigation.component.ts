@@ -1,7 +1,8 @@
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { MainFacade } from '../../state/main-state/main.facade';
+import { AuthFacade } from '../../state/auth-state/auth.facade';
 import { BasketComponent } from '../basket/basket.component';
 import { ButtonModule } from 'primeng/button';
 import { take } from 'rxjs';
@@ -16,8 +17,9 @@ import { take } from 'rxjs';
 export class NavigationComponent implements OnInit {
 	isHome = false;
 	isMenuOpen = false;
-	router = inject(Router);
+	private router = inject(Router);
 	private facade = inject(MainFacade);
+	private authFacade = inject(AuthFacade);
 
 	ngOnInit() {
 		this.isHome = this.router.url === '/';
@@ -38,13 +40,11 @@ export class NavigationComponent implements OnInit {
 	}
 
 	onUserIconClick() {
-		this.facade.isLoggedIn$.pipe(take(1)).subscribe(isLoggedIn => {
+		this.authFacade.isLoggedIn$.pipe(take(1)).subscribe((isLoggedIn) => {
 			if (isLoggedIn) {
 				this.router.navigate(['/profile']);
-				this.closeMenu();
 			} else {
-				this.facade.openAuthModal();
-				this.closeMenu();
+				this.authFacade.openAuthModal();
 			}
 		});
 	}

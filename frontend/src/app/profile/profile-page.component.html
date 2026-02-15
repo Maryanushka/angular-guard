@@ -1,0 +1,20 @@
+<div class="container mx-auto min-h-screen">
+	<app-navigation></app-navigation>
+	<h1 class="text-3xl font-bold mt-24">Hey there, {{ (user$ | async)?.displayName || '' }}</h1>
+
+	<p-tabs value="0" class="mt-8">
+		<p-tablist>
+			<p-tab value="0">Personal Info</p-tab>
+			<p-tab value="1">Order History</p-tab>
+		</p-tablist>
+		<p-tabpanels>
+			<p-tabpanel value="0">
+				<app-personal-info></app-personal-info>
+			</p-tabpanel>
+			<p-tabpanel value="1">
+				<app-order-history></app-order-history>
+			</p-tabpanel>
+		</p-tabpanels>
+	</p-tabs>
+</div>
+<app-footer></app-footer>

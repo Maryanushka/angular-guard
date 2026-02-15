@@ -2,7 +2,7 @@ export interface IProduct {
 	_slug: string;
 	title: string;
 	description: string;
-	cover: { url: string; width: number; height: number } | null;
+	cover: any | null;
 	categories: { _slug: string; title: string }[];
 	/** Category slugs (e.g. ["hair", "blonde", "set"]). Product appears in each category. */
 	tag?: string[];
@@ -32,7 +32,7 @@ export interface ISingleProduct {
 	title: string;
 	description: string;
 	price: string;
-	cover: { url: string; width: number; height: number }[];
+	cover: any[];
 	categories: { _slug: string; title: string }[];
 	content: { body: string }[];
 	seo: {

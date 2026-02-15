@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { DialogModule } from 'primeng/dialog';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { RegisterComponent } from './register/register.component';
-import { MainFacade } from '../../state/main-state/main.facade';
+import { AuthFacade } from '../../state/auth-state/auth.facade';
 
 @Component({
 	selector: 'app-auth-dialog',
@@ -34,9 +34,9 @@ import { MainFacade } from '../../state/main-state/main.facade';
 	`
 })
 export class AuthDialogComponent {
-	private facade = inject(MainFacade);
+	private authFacade = inject(AuthFacade);
 
-	private showModal = toSignal(this.facade.showAuthModal$, { initialValue: false });
+	private showModal = toSignal(this.authFacade.showAuthModal$, { initialValue: false });
 	isVisible = signal(false);
 	isLoginMode = signal(true);
 
@@ -51,7 +51,7 @@ export class AuthDialogComponent {
 	}
 
 	close() {
-		this.facade.closeAuthModal();
+		this.authFacade.closeAuthModal();
 	}
 
 	switchMode() {

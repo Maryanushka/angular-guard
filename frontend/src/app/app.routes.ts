@@ -4,12 +4,19 @@ import { BasketPageComponent } from './basket-page/basket-page.component';
 import { HomeComponent } from './home/components/home.component';
 import { ProductPageComponent } from './product/components/product-page/product-page.component';
 import { ProductSingleComponent } from './product/components/product-single/product-single.component';
+import { ProfilePageComponent } from './profile/profile-page.component';
+import { AuthenticaionGuard } from './product/services/authenticaion.guard';
 import { AboutPageComponent } from './about/components/about-page.component';
+import { SigninPageComponent } from './signin/signin-page.component';
 
 export const routes: Route[] = [
 	{
 		path: '',
 		component: HomeComponent,
+	},
+	{
+		path: 'signin',
+		component: SigninPageComponent,
 	},
 	{
 		path: 'basket',
@@ -26,6 +33,12 @@ export const routes: Route[] = [
 	{
 		path: 'about',
 		component: AboutPageComponent,
+	},
+	{
+		path: 'profile',
+		component: ProfilePageComponent,
+		canActivate: [AuthenticaionGuard],
+		data: { roles: ['user'] },
 	},
 ];
 

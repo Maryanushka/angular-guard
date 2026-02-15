@@ -21,15 +21,5 @@ export const AppActions = createActionGroup({
 		'Load Categories': emptyProps(),
 		'Load Categories Success': props<{ categories: ICategory[] }>(),
 		'Load Categories Failure': props<{ error: HttpErrorResponse }>(),
-		// auth
-		'Open Auth Modal': emptyProps(),
-		'Close Auth Modal': emptyProps(),
-		'Set Auth State': props<{ user: { uid: string; displayName: string | null; email: string | null } | null }>(),
-		'Logout': emptyProps(),
-		'Register': props<{ name: string; email: string; password: string }>(),
-		'Login Google': emptyProps(),
-		'Login Email': props<{ email: string; password: string }>(),
-		'Auth Success': emptyProps(),
-		'Auth Failure': props<{ error: string }>(),
 	},
 });

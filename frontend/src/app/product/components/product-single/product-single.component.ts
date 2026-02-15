@@ -2,6 +2,7 @@ import { Component, inject, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { toIProduct } from '../../../shared/types/product.inteface';
 import type { ISingleProduct } from '../../../shared/types/product.inteface';
+import { SanityImageService } from '../../../shared/services/sanity-image.service';
 import { ActivatedRoute } from '@angular/router';
 import { MainFacade } from '../../../shared/state/main-state/main.facade';
 import { NavigationComponent } from '../../../shared/components/navigation/navigation.component';
@@ -52,6 +53,12 @@ export class ProductSingleComponent implements OnInit, OnDestroy {
 
 	ngOnDestroy() {
 		this.querySubscription.unsubscribe();
+	}
+
+	private sanityImage = inject(SanityImageService);
+
+	getImageUrl(cover: any): string {
+		return this.sanityImage.getResizedUrl(cover, 800);
 	}
 
 	addToBasket(product: ISingleProduct): void {

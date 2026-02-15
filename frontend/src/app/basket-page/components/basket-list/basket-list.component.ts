@@ -5,6 +5,7 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { MainFacade } from '../../../shared/state/main-state/main.facade';
+import { SanityImageService } from '../../../shared/services/sanity-image.service';
 import type { BasketLine, IProduct } from '../../../shared/types/product.inteface';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
@@ -19,6 +20,11 @@ import { MessageService } from 'primeng/api';
 export class BasketListComponent {
 	private facade = inject(MainFacade);
 	private messageService = inject(MessageService);
+	private sanityImage = inject(SanityImageService);
+
+	getImageUrl(cover: any): string {
+		return this.sanityImage.getResizedUrl(cover, 200);
+	}
 
 	$basket = toSignal(this.facade.basket$, { initialValue: [] as BasketLine[], equal: () => false });
   $total = computed(() => this.$basket().reduce((sum, line) => sum + this.lineTotal(line), 0));

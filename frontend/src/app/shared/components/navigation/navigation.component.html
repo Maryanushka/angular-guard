@@ -4,41 +4,37 @@
 		'bg-white': !isHome,
 		'absolute top-0 left-0 w-full z-10 bg-transparent home': isHome
 	}">
-	
 	<!-- Logo (Hidden on home desktop, visible on mobile and non-home) -->
 	@if (!isHome) {
-		<a [routerLink]="'/'" class="z-20 relative pl-6 md:pl-0">
+		<a [routerLink]="'/'" class="z-20 relative pl-6">
 			<img src="../../../../assets/logo.png" alt="Logo" class="w-32" />
 		</a>
-	} 
+	}
 
 	<!-- Mobile Menu Button (Hamburger/Cross) -->
-	<button 
-		class="md:hidden z-[1000] transform-3d p-2 text-pesianGreen focus:outline-none flex flex-col justify-center gap-2 w-14 h-14 right-4 absolute" 
+	<button
+		class="md:hidden z-[1000] transform-3d p-2 text-pesianGreen focus:outline-none flex flex-col justify-center gap-2 w-14 h-14 right-4 absolute"
 		(click)="toggleMenu()"
-    [ngClass]="{
-      'hidden': isHome
-    }"
+		[ngClass]="{
+			hidden: isHome
+		}"
 		aria-label="Toggle menu">
-		<span 
+		<span
 			class="block w-full h-[3px] bg-pesianGreen transition-[rotate, translateY] duration-300 origin-center"
-      [ngClass]="{
-        'rotate-45 translate-y-[5px]': isMenuOpen,
-      }">
+			[ngClass]="{
+				'rotate-45 translate-y-[5px]': isMenuOpen
+			}">
 		</span>
-		<span 
+		<span
 			class="block w-full h-[3px] bg-pesianGreen transition-[rotate, translateY] duration-300 origin-center"
-      [ngClass]="{
-        '-rotate-45 -translate-y-[5px]': isMenuOpen,
-      }"> 
+			[ngClass]="{
+				'-rotate-45 -translate-y-[5px]': isMenuOpen
+			}">
 		</span>
 	</button>
 
 	<!-- Mobile Menu Sidebar Start -->
-	<aside
-		class="fixed inset-0 z-40 bg-white flex flex-col md:hidden mobile-sidebad"
-		[class.hidden]="!isMenuOpen">
-		
+	<aside class="fixed inset-0 z-40 bg-white flex flex-col md:hidden mobile-sidebad" [class.hidden]="!isMenuOpen">
 		<!-- Menu Header -->
 		<div class="flex items-center justify-between p-4 pl-6">
 			<a [routerLink]="'/'" (click)="closeMenu()">
@@ -48,34 +44,34 @@
 
 		<!-- Menu Links -->
 		<div class="flex-1 flex flex-col justify-center space-y-10">
-			<a routerLink="/about" 
-			   routerLinkActive="text-pesianGreen" 
-			   (click)="closeMenu()"
-			   class="group flex items-center text-xl font-medium text-gray-500 hover:text-pesianGreen transition-colors">
+			<a
+				routerLink="/about"
+				routerLinkActive="text-pesianGreen"
+				(click)="closeMenu()"
+				class="group flex items-center text-xl font-medium text-gray-500 hover:text-pesianGreen transition-colors">
 				<span class="w-12 h-[2px] bg-pesianGreen mr-6 opacity-100"></span>
 				Про нас
 			</a>
-			
-			<a routerLink="/services" 
-			   routerLinkActive="text-pesianGreen" 
-			   (click)="closeMenu()"
-			   class="group flex items-center text-xl font-medium text-gray-500 hover:text-pesianGreen transition-colors">
+
+			<a
+				routerLink="/services"
+				routerLinkActive="text-pesianGreen"
+				(click)="closeMenu()"
+				class="group flex items-center text-xl font-medium text-gray-500 hover:text-pesianGreen transition-colors">
 				<span class="w-12 h-[2px] bg-pesianGreen mr-6 opacity-100"></span>
 				Послуги
 			</a>
 
-			<a routerLink="/products" 
-			   routerLinkActive="text-pesianGreen font-bold" 
-			   (click)="closeMenu()"
-			   class="group flex items-center text-xl font-medium text-gray-500 hover:text-pesianGreen transition-colors">
+			<a
+				routerLink="/products"
+				routerLinkActive="text-pesianGreen font-bold"
+				(click)="closeMenu()"
+				class="group flex items-center text-xl font-medium text-gray-500 hover:text-pesianGreen transition-colors">
 				<span class="w-12 h-[2px] bg-pesianGreen mr-6 opacity-100"></span>
 				Магазин
 			</a>
 
-			<a routerLink="/contacts" 
-			   routerLinkActive="text-pesianGreen" 
-			   (click)="closeMenu()"
-			   class="group flex items-center text-xl font-medium  transition-colors">
+			<a routerLink="/contacts" routerLinkActive="text-pesianGreen" (click)="closeMenu()" class="group flex items-center text-xl font-medium transition-colors">
 				<span class="w-12 h-[2px] bg-pesianGreen mr-6 opacity-100"></span>
 				Контакти
 			</a>
@@ -87,7 +83,7 @@
 			<app-basket class="text-pesianGreen scale-125 origin-right"></app-basket>
 		</div>
 	</aside>
-  <!-- Mobile Menu Sidebar End -->
+	<!-- Mobile Menu Sidebar End -->
 
 	<!-- Desktop Navigation Links -->
 	@if (!isHome) {
@@ -149,11 +145,10 @@
 	}
 
 	<!-- Desktop Buttons (User + Basket) -->
-  @if (!isHome) {
-    <div class="desktop-buttons hidden md:flex gap-1">
-      <p-button [outlined]="true" class="icon inline-flex items-center" [icon]="'pi pi-user'" [text]="true" (onClick)="onUserIconClick()" />
-      <app-basket></app-basket>
-    </div>
-  }
+	@if (!isHome) {
+		<div class="desktop-buttons hidden md:flex gap-1">
+			<p-button [outlined]="true" class="icon inline-flex items-center" [icon]="'pi pi-user'" [text]="true" (onClick)="onUserIconClick()" />
+			<app-basket></app-basket>
+		</div>
+	}
 </nav>
-

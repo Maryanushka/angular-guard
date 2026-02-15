@@ -3,7 +3,7 @@
   @let count = $count();
   @if (count > 0) {
     <div
-      class="count absolute top-[7px] right-0 p-[3px] text-[10px] w-4 h-4 rounded-full border border-munsell border-solid text-munsell font-bold z-10 flex justify-center items-center">
+      class="count absolute top-[10px] right-[10px] p-[3px] text-[10px] w-4 h-4 rounded-full border border-munsell border-solid text-munsell font-bold z-10 flex justify-center items-center">
       {{ count }}
     </div>
     <div class="drop-down absolute right-0 top-full w-72 bg-white shadow-lg rounded-md p-4 hidden group-hover:block z-50">
@@ -12,7 +12,7 @@
           <li class="border-b border-gray-200 last:border-none p-3 flex justify-between items-center">
             <div class="image w-40 h-16 mr-4">
               @if (line.product.cover) {
-                <img class="object-cover w-full h-full" [src]="line.product.cover.url" [alt]="line.product.title" />
+                <img class="object-cover w-full h-full" [src]="getImageUrl(line.product.cover)" [alt]="line.product.title" />
               }
             </div>
             <span class="font-medium text-gray-900 leading-none text-sm">{{ line.product.title }}{{ line.quantity > 1 ? ' × ' + line.quantity : '' }}</span>

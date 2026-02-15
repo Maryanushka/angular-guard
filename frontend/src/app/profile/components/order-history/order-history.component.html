@@ -1,0 +1,37 @@
+<div class="mt-6">
+	@if (loading$ | async) {
+		<div class="flex justify-center py-8">
+			<i class="pi pi-spin pi-spinner text-4xl text-primary"></i>
+		</div>
+	} @else {
+		@if ((orders$ | async)?.length === 0) {
+			<div class="bg-gray-50 rounded-xl p-12 text-center">
+				<i class="pi pi-box text-6xl text-gray-300 mb-4 block"></i>
+				<p class="text-xl text-gray-500">You haven't placed any orders yet.</p>
+			</div>
+		} @else {
+			<p-table [value]="(orders$ | async) || []" class="p-datatable-sm">
+				<ng-template pTemplate="header">
+					<tr>
+						<th>Order ID</th>
+						<th>Date</th>
+						<th>Total</th>
+						<th>Items</th>
+						<th style="width: 100px"></th>
+					</tr>
+				</ng-template>
+				<ng-template pTemplate="body" let-order>
+					<tr>
+						<td class="font-mono text-sm">{{ order.id }}</td>
+						<td>{{ order.date?.toDate ? (order.date.toDate() | date: 'mediumDate') : (order.date | date: 'mediumDate') }}</td>
+						<td class="font-bold">${{ order.total }}</td>
+						<td>{{ order.items.length }} items</td>
+						<td>
+							<button class="text-primary hover:underline text-sm font-semibold">View Details</button>
+						</td>
+					</tr>
+				</ng-template>
+			</p-table>
+		}
+	}
+</div>
