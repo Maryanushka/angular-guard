@@ -18,6 +18,7 @@ import { MainEffects } from './app/shared/state/main-state/main.effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideSanityClient } from './app/shared/services/sanity-client.token';
 import { appThemePreset } from './app/theme/primeng-preset';
+import { MessageService } from 'primeng/api';
 
 bootstrapApplication(AppComponent, {
 	providers: [
@@ -46,5 +47,6 @@ bootstrapApplication(AppComponent, {
 		{ provide: APP_BASE_HREF, useValue: '/' },
 		provideHttpClient(),
 		provideSanityClient,
+		MessageService,
 	],
 }).catch((err) => console.error(err));

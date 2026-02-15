@@ -1,7 +1,4 @@
 :host {
-	// .menu-regular {
-	// 	transform: translate(-50%, -50%);
-	// }
 	nav {
 		display: flex;
 		align-items: flex-start;
@@ -30,7 +27,7 @@
 					a {
 						@apply text-black mr-4 flex flex-col items-center transition-all  h-[5rem] justify-end hover:text-pesianGreen pb-2;
 						span {
-							@apply w-[3px] bg-pesianGreen h-10 mb-5 absolute top-0;
+							@apply w-[3px] bg-pesianGreen h-10 mb-5 absolute top-[-5px];
 						}
 						&:hover {
 							span {

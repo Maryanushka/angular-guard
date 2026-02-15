@@ -13,6 +13,8 @@ import { BreadcrumbsComponent } from '../../../shared/components/breadcrumbs/bre
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @Component({
 	selector: 'app-product-single',
@@ -29,11 +31,13 @@ import { ButtonModule } from 'primeng/button';
 		RouterModule,
 		ButtonModule,
 		BreadcrumbsComponent,
+		ToastModule
 	],
 })
 export class ProductSingleComponent implements OnInit, OnDestroy {
 	private facade = inject(MainFacade);
 	private activatedRoute = inject(ActivatedRoute);
+	private messageService = inject(MessageService);
 	private querySubscription = new Subscription();
 
 	singleProduct$ = this.facade.singleProduct$;
@@ -52,5 +56,10 @@ export class ProductSingleComponent implements OnInit, OnDestroy {
 
 	addToBasket(product: ISingleProduct): void {
 		this.facade.addToBasket(toIProduct(product));
+		this.messageService.add({
+			severity: 'success',
+			summary: 'Додано в корзину',
+			detail: product.title,
+		});
 	}
 }

@@ -22,7 +22,6 @@ const PAGE_SIZE = 10;
 	templateUrl: './product-page.component.html',
 	styleUrls: ['./product-page.component.scss'],
 	standalone: true,
-	providers: [MessageService],
 	imports: [
 		CommonModule,
 		NavigationComponent,
@@ -32,7 +31,6 @@ const PAGE_SIZE = 10;
 		ObserveInViewDirective,
 		ProgressSpinnerModule,
     FooterComponent,
-		ToastModule,
 	],
 })
 export class ProductPageComponent implements OnInit {

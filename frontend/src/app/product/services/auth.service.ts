@@ -7,7 +7,7 @@ import { ErrorService } from '../../shared/services/error.service';
 import { LocalStorageService } from '../../shared/services/localStorage.service';
 
 import { IUserCredentials } from '../../shared/types/userCredential.interface';
-import { Auth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, deleteUser } from '@angular/fire/auth';
+import { Auth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, deleteUser, signInWithPhoneNumber } from '@angular/fire/auth';
 
 @Injectable({
 	providedIn: 'root',
@@ -17,11 +17,51 @@ export class AuthService {
 	private authFirebase = inject(Auth);
 	private storage = inject(LocalStorageService);
 
+	// Modal State
+	private _itemsInBasket = new BehaviorSubject<boolean>(false); // Reusing BehaviorSubject logic
+	showAuthModal$ = new BehaviorSubject<boolean>(false);
+
+	// Phone Auth
+	confirmationResult: any;
+
 	constructor(
 		private http: HttpClient,
 		private errorService: ErrorService,
 		private router: Router
 	) {}
+
+	openAuthModal() {
+		this.showAuthModal$.next(true);
+	}
+
+	closeAuthModal() {
+		this.showAuthModal$.next(false);
+	}
+
+	async signInWithPhoneNumber(phoneNumber: string, appVerifier: any) {
+		try {
+			const result = await signInWithPhoneNumber(this.authFirebase, phoneNumber, appVerifier);
+			this.confirmationResult = result;
+			return result;
+		} catch (error: any) {
+			this.handleError(error.message);
+			throw error;
+		}
+	}
+
+	async verifyOtp(otp: string) {
+		try {
+			const result = await this.confirmationResult.confirm(otp);
+			const user = result.user;
+			this.storage.storeToStorage('token', user.accessToken);
+			this.storage.storeToStorage('user', JSON.stringify(user));
+			this.isLoginSubject$.next(true);
+			this.closeAuthModal();
+		} catch (error: any) {
+			this.handleError(error.message);
+			throw error;
+		}
+	}
 
 	async getToken(userc: IUserCredentials | null, type: string) {
 		if (type === 'form' && userc) {
@@ -32,6 +72,7 @@ export class AuthService {
 					this.storage.storeToStorage('token', user.accessToken);
 					this.storage.storeToStorage('user', JSON.stringify(user));
 					this.isLoginSubject$.next(true);
+					this.closeAuthModal();
 					this.router.navigate(['']);
 				})
 				.catch((error) => {
@@ -46,6 +87,7 @@ export class AuthService {
 			this.storage.storeToStorage('token', user.accessToken);
 			this.storage.storeToStorage('user', JSON.stringify(user));
 			this.isLoginSubject$.next(true);
+			this.closeAuthModal();
 			this.router.navigate(['']);
 		}
 	}
@@ -74,8 +116,9 @@ export class AuthService {
 		return this.isLoginSubject$.asObservable();
 	}
 
-	private handleError(error: HttpErrorResponse) {
-		this.errorService.handle(error.message);
-		return throwError(() => error.message);
+	private handleError(error: any) { // loosened type to handle firebase errors string/obj
+		const message = error.message || error;
+		this.errorService.handle(message);
+		return throwError(() => message);
 	}
 }

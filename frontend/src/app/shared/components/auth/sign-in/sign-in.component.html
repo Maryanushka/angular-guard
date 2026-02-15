@@ -1,0 +1,51 @@
+<div class="flex flex-col gap-4">
+	<!-- Social Login -->
+	<p-button label="Continue with Google" icon="pi pi-google" [outlined]="true" styleClass="w-full" (onClick)="loginGoogle()" />
+	
+	<div class="flex items-center gap-2">
+		<p-divider class="flex-1"></p-divider>
+		<span class="text-gray-500 text-sm">OR</span>
+		<p-divider class="flex-1"></p-divider>
+	</div>
+
+	<!-- Phone Auth Toggle -->
+	<div *ngIf="isPhoneAuth" class="flex flex-col gap-3">
+		<div *ngIf="!verificationCodeSent">
+			<label class="block text-sm font-medium mb-1">Phone Number</label>
+			<input pInputText type="tel" [(ngModel)]="phoneNumber" placeholder="+380..." class="w-full" />
+			<div id="recaptcha-container" class="mt-2"></div>
+			<p-button label="Send Code" styleClass="w-full mt-2" [disabled]="!phoneNumber" (onClick)="sendCode()" />
+		</div>
+		
+		<div *ngIf="verificationCodeSent">
+			<label class="block text-sm font-medium mb-1">Verification Code</label>
+			<input pInputText type="text" [(ngModel)]="otp" placeholder="123456" class="w-full" />
+			<p-button label="Verify" styleClass="w-full mt-2" [disabled]="!otp" (onClick)="verifyCode()" />
+		</div>
+		
+		<p-button label="Use Email instead" [link]="true" (onClick)="isPhoneAuth = false" styleClass="p-0 text-sm" />
+	</div>
+
+	<!-- Email Auth -->
+	<form *ngIf="!isPhoneAuth" [formGroup]="loginForm" (ngSubmit)="loginEmail()" class="flex flex-col gap-3">
+		<div>
+			<label class="block text-sm font-medium mb-1">Email</label>
+			<input pInputText formControlName="email" class="w-full" />
+		</div>
+		<div>
+			<label class="block text-sm font-medium mb-1">Password</label>
+			<input pInputText type="password" formControlName="password" class="w-full" />
+		</div>
+		
+		<p-button type="submit" label="Sign In" styleClass="w-full" [disabled]="loginForm.invalid" />
+		
+		<div class="flex justify-between items-center mt-2">
+			<p-button label="Use Phone Number" [link]="true" (onClick)="togglePhoneAuth()" styleClass="p-0 text-sm" />
+			<p-button label="Forgot Password?" [link]="true" styleClass="p-0 text-sm text-gray-500" />
+		</div>
+	</form>
+
+	<div class="text-center mt-2 text-sm">
+		Don't have an account? <a (click)="switchToRegister.emit()" class="text-pesianGreen font-bold cursor-pointer hover:underline">Register</a>
+	</div>
+</div>

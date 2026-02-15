@@ -12,7 +12,6 @@ import { ButtonModule } from 'primeng/button';
 	styleUrls: ['./product.component.scss'],
 	standalone: true,
 	imports: [RouterModule, ToastModule, ButtonModule],
-	providers: [MessageService],
 })
 export class ProductComponent {
 	@Input() product!: IProduct;
