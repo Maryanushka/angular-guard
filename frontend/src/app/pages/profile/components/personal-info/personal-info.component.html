@@ -4,7 +4,7 @@
 			<ng-template pTemplate="body" let-rowData>
 				<tr class="border-b border-gray-200 last:border-0 hover:bg-gray-50 transition-colors">
 					<th class="px-6 py-4 bg-gray-50 text-gray-600 font-semibold w-1/3 text-sm uppercase tracking-wider align-middle">
-						{{ rowData.label }}
+						{{ rowData.label | translate }}
 					</th>
 
 					<td class="px-6 py-4 text-gray-900" [pEditableColumn]="rowData" [pEditableColumnField]="'value'" [pEditableColumnDisabled]="!rowData.editable">
@@ -23,7 +23,7 @@
 							</ng-template>
 							<ng-template pTemplate="output">
 								<div class="flex items-center justify-between group">
-									<span [class.font-medium]="rowData.label === 'Full Name'">
+									<span [class.font-medium]="rowData.label === 'COMMON.LABELS.FULL_NAME'">
 										{{ rowData.value }}
 									</span>
 									@if (rowData.editable) {
@@ -40,6 +40,6 @@
 
 	<p class="text-sm text-gray-500 mt-4 px-2">
 		<i class="pi pi-info-circle text-xs mr-1"></i>
-		Click on the email address to edit it. Press Enter to save.
+		{{ 'PROFILE.PERSONAL_INFO.EDIT_HINT' | translate }}
 	</p>
 </div>

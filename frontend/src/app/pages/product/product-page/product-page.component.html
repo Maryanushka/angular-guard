@@ -19,11 +19,11 @@
 				@if (loading && products.length === 0) {
 					<div class="products-column__loading flex justify-center py-20" aria-live="polite" aria-busy="true">
 						<p-progressSpinner aria-hidden="true"></p-progressSpinner>
-						<span class="visually-hidden">Loading products</span>
+						<span class="visually-hidden">{{ 'PRODUCT.LOADING' | translate }}</span>
 					</div>
 				} @else if (products.length === 0) {
 					<div class="flex flex-col items-center justify-center py-20 text-center">
-						<p class="font-bold text-gray-600 text-lg">No products found</p>
+						<p class="font-bold text-gray-600 text-lg">{{ 'PRODUCT.NO_PRODUCTS_FOUND' | translate }}</p>
 					</div>
 				} @else {
 					<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
@@ -42,7 +42,7 @@
 
 				@if (loading && products.length > 0) {
 					<p class="loading-more text-center text-sm text-gray-500 py-4 flex items-center justify-center gap-2">
-						Loading more…
+						{{ 'PRODUCT.LOADING_MORE' | translate }}
 						<i class="pi pi-spin pi-spinner"></i>
 					</p>
 				}

@@ -10,7 +10,7 @@ import { APP_BASE_HREF } from '@angular/common';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
-import { environment } from '@env/environment';
+import { environment } from 'src/environments/environment';
 import { provideHttpClient } from '@angular/common/http';
 import { isDevMode } from '@angular/core';
 import { authReducer, authKey } from './app/shared/state/auth-state/auth.reducer';

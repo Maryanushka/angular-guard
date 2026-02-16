@@ -1,4 +1,4 @@
-<section class="flex flex-col gap-4" aria-label="Товари в корзині">
+<section class="flex flex-col gap-4" [attr.aria-label]="'BASKET.TITLE' | translate">
 	@for (line of $basket(); track line.product._slug) {
 		<p-card class="basket-card border shadow-darkGreen/60 shadow-sm">
 			<div class="flex flex-col sm:flex-row gap-4">
@@ -19,7 +19,7 @@
 							severity="secondary"
 							class="self-end w-8 h-8"
 							(onClick)="removeProduct(line)"
-							[attr.aria-label]="'Видалити ' + line.product.title" />
+							[attr.aria-label]="('BASKET.BUTTONS.REMOVE' | translate) + ' ' + line.product.title" />
 
 						<p class="self-end price text-md font-bold text-pesianGreen">{{ lineTotal(line) }} ₴</p>
 
@@ -31,8 +31,10 @@
 								severity="secondary"
 								class="basket-btn w-8 h-8"
 								(onClick)="removeOne(line.product)"
-								[attr.aria-label]="'Зменшити кількість ' + line.product.title" />
-							<span class="w-12 text-center text-sm font-medium text-gray-700" [attr.aria-label]="'Кількість ' + line.product.title">
+								[attr.aria-label]="('BASKET.BUTTONS.DECREASE' | translate) + ' ' + line.product.title" />
+							<span
+								class="w-12 text-center text-sm font-medium text-gray-700"
+								[attr.aria-label]="('COMMON.LABELS.ITEMS_COUNT' | translate) + ' ' + line.product.title">
 								{{ line.quantity }}
 							</span>
 							<p-button
@@ -42,16 +44,18 @@
 								severity="secondary"
 								class="basket-btn w-8 h-8"
 								(onClick)="addOne(line.product)"
-								[attr.aria-label]="'Збільшити кількість ' + line.product.title" />
+								[attr.aria-label]="('BASKET.BUTTONS.INCREASE' | translate) + ' ' + line.product.title" />
 						</div>
 					</div>
 				</div>
 			</div>
 		</p-card>
 	}
-  
-  <div class="totals w-full flex mt-4">
-    <h3 class="text-l font-bold text-pesianGreen">Total: <span class="text-xl">{{ $total() }}</span> ₴</h3>
-  </div>
+
+	<div class="totals w-full flex mt-4">
+		<h3 class="text-l font-bold text-pesianGreen">
+			{{ 'BASKET.TOTAL' | translate }} <span class="text-xl">{{ $total() }}</span> ₴
+		</h3>
+	</div>
 </section>
 <p-toast />

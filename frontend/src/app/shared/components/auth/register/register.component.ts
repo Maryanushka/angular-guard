@@ -3,13 +3,16 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
+import { DividerModule } from 'primeng/divider';
 import { AuthFacade } from '@shared';
 import { MessageService } from 'primeng/api';
+
+import { TranslatePipe } from '../../../pipes/translate.pipe';
 
 @Component({
 	selector: 'app-register',
 	standalone: true,
-	imports: [CommonModule, ReactiveFormsModule, ButtonModule, InputTextModule],
+	imports: [CommonModule, ReactiveFormsModule, ButtonModule, InputTextModule, DividerModule, TranslatePipe],
 	templateUrl: './register.component.html',
 })
 export class RegisterComponent {
@@ -40,5 +43,9 @@ export class RegisterComponent {
 		}
 
 		this.authFacade.register(name!, email!, password!);
+	}
+
+	loginGoogle() {
+		this.authFacade.loginGoogle();
 	}
 }

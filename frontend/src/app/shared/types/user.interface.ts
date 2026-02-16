@@ -10,6 +10,7 @@ export interface IOrderItem {
 	productTitle: string;
 	quantity: number;
 	price: number;
+	cover?: any;
 }
 
 export interface IOrder {

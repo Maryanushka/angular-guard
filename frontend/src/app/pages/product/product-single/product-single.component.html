@@ -25,7 +25,7 @@
 					<div class="add-to-basket flex items-center mt-6">
 						<div class="price text-pesianGreen text-3xl font-bold mr-8">{{ product.price }} <span class="text-xl">₴</span></div>
 						<p-button
-							label="Додати в корзину"
+							[label]="'PRODUCT.ADD_TO_BASKET' | translate"
 							type="button"
 							icon="pi pi-shopping-cart"
 							class="btn btn-primary"
@@ -54,8 +54,8 @@
 
 		@if (singleProductError$ | async) {
 			<div class="flex flex-col items-center justify-center py-20">
-				<p class="text-center font-bold text-xl text-gray-600">Product not found</p>
-				<a routerLink="/products" class="text-pesianGreen hover:underline mt-4">Return to Store</a>
+				<p class="text-center font-bold text-xl text-gray-600">{{ 'PRODUCT.NOT_FOUND' | translate }}</p>
+				<a routerLink="/products" class="text-pesianGreen hover:underline mt-4">{{ 'PRODUCT.RETURN_TO_STORE' | translate }}</a>
 			</div>
 		}
 	</div>

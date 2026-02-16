@@ -1,7 +1,7 @@
 import { Component, inject, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { MainFacade, SanityImageService, IProduct } from '@shared';
+import { MainFacade, SanityImageService, IProduct, TranslateService, TranslatePipe } from '@shared';
 import { GetProductService } from '@shared/state/requests/get-product.service';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
@@ -10,7 +10,7 @@ import { ButtonModule } from 'primeng/button';
 	templateUrl: './product.component.html',
 	styleUrls: ['./product.component.scss'],
 	standalone: true,
-	imports: [RouterModule, ToastModule, ButtonModule],
+	imports: [RouterModule, ToastModule, ButtonModule, TranslatePipe],
 })
 export class ProductComponent {
 	@Input() product!: IProduct;
@@ -18,6 +18,7 @@ export class ProductComponent {
 	private facade = inject(MainFacade);
 	private messageService = inject(MessageService);
 	private sanityImage = inject(SanityImageService);
+	private translate = inject(TranslateService);
 
 	get imageUrl(): string | null {
 		if (!this.product?.cover) return null;
@@ -32,7 +33,7 @@ export class ProductComponent {
 		this.facade.addToBasket(this.product);
 		this.messageService.add({
 			severity: 'success',
-			summary: 'Додано в корзину',
+			summary: this.translate.get('BASKET.TOAST.ADDED'),
 			detail: this.product.title,
 		});
 	}

@@ -7,7 +7,7 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import emailjs, { type EmailJSResponseStatus } from '@emailjs/browser';
 import { environment } from '@env/environment';
-import { MainFacade, AuthFacade, UserFacade, IOrder, IOrderItem, BasketLine } from '@shared';
+import { MainFacade, AuthFacade, UserFacade, IOrder, IOrderItem, BasketLine, TranslatePipe } from '@shared';
 import { take } from 'rxjs';
 
 import { CommonModule, AsyncPipe } from '@angular/common';
@@ -15,7 +15,7 @@ import { CommonModule, AsyncPipe } from '@angular/common';
 @Component({
 	selector: 'app-order-form',
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	imports: [CommonModule, AsyncPipe, ReactiveFormsModule, InputTextModule, ButtonModule, ToastModule],
+	imports: [CommonModule, AsyncPipe, ReactiveFormsModule, InputTextModule, ButtonModule, ToastModule, TranslatePipe],
 	templateUrl: './order-form.component.html',
 	styleUrl: './order-form.component.scss',
 	providers: [MessageService],
@@ -79,6 +79,7 @@ export class OrderFormComponent {
 						productTitle: line.product.title,
 						quantity: line.quantity,
 						price: parseFloat(line.product.price ?? '0') || 0,
+						cover: line.product.cover,
 					}));
 
 					this.userFacade.submitOrder(user.uid, {

@@ -7,27 +7,27 @@
 		@if ((orders$ | async)?.length === 0) {
 			<div class="bg-gray-50 rounded-xl p-12 text-center">
 				<i class="pi pi-box text-6xl text-gray-300 mb-4 block"></i>
-				<p class="text-xl text-gray-500">You haven't placed any orders yet.</p>
+				<p class="text-xl text-gray-500">{{ 'PROFILE.ORDER_HISTORY.NO_ORDERS' | translate }}</p>
 			</div>
 		} @else {
 			<p-table [value]="(orders$ | async) || []" class="p-datatable-sm">
 				<ng-template pTemplate="header">
 					<tr>
-						<th>Order ID</th>
-						<th>Date</th>
-						<th>Total</th>
-						<th>Items</th>
-						<th style="width: 100px"></th>
+						<th>{{ 'COMMON.LABELS.ITEMS' | translate }}</th>
+						<th>{{ 'COMMON.LABELS.DATE' | translate }}</th>
+						<th>{{ 'COMMON.LABELS.TOTAL' | translate }}</th>
+						<th>{{ 'COMMON.LABELS.ITEMS_COUNT' | translate }}</th>
+						<th style="width: 140px">{{ 'COMMON.LABELS.ACTIONS' | translate }}</th>
 					</tr>
 				</ng-template>
 				<ng-template pTemplate="body" let-order>
 					<tr>
-						<td class="font-mono text-sm">{{ order.id }}</td>
+						<td class="text-sm font-medium">{{ getItemsText(order) }}</td>
 						<td>{{ order.date?.toDate ? (order.date.toDate() | date: 'mediumDate') : (order.date | date: 'mediumDate') }}</td>
-						<td class="font-bold">${{ order.total }}</td>
-						<td>{{ order.items.length }} items</td>
+						<td class="font-bold">${{ order.total | number: '1.2-2' }}</td>
+						<td>{{ order.items.length }}</td>
 						<td>
-							<button class="text-primary hover:underline text-sm font-semibold">View Details</button>
+							<p-button [label]="'COMMON.BUTTONS.RE_ORDER' | translate" icon="pi pi-refresh" [outlined]="true" size="small" (onClick)="reOrder(order)"></p-button>
 						</td>
 					</tr>
 				</ng-template>

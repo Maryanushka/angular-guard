@@ -8,10 +8,12 @@ import { AuthFacade } from '@shared';
 import { AuthService } from '@shared';
 import { Auth, RecaptchaVerifier } from '@angular/fire/auth';
 
+import { TranslatePipe } from '../../../pipes/translate.pipe';
+
 @Component({
 	selector: 'app-sign-in',
 	standalone: true,
-	imports: [CommonModule, FormsModule, ReactiveFormsModule, ButtonModule, InputTextModule, DividerModule],
+	imports: [CommonModule, FormsModule, ReactiveFormsModule, ButtonModule, InputTextModule, DividerModule, TranslatePipe],
 	templateUrl: './sign-in.component.html',
 })
 export class SignInComponent {

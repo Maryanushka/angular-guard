@@ -51,7 +51,7 @@
 					(click)="closeMenu()"
 					class="group flex items-center text-xl font-medium text-gray-500 hover:text-pesianGreen transition-colors">
 					<span class="w-12 h-[2px] bg-pesianGreen mr-6 opacity-100"></span>
-					Про нас
+					{{ 'NAV.ABOUT' | translate }}
 				</a>
 
 				<a
@@ -60,7 +60,7 @@
 					(click)="closeMenu()"
 					class="group flex items-center text-xl font-medium text-gray-500 hover:text-pesianGreen transition-colors">
 					<span class="w-12 h-[2px] bg-pesianGreen mr-6 opacity-100"></span>
-					Послуги
+					{{ 'NAV.SERVICES' | translate }}
 				</a>
 
 				<a
@@ -69,12 +69,12 @@
 					(click)="closeMenu()"
 					class="group flex items-center text-xl font-medium text-gray-500 hover:text-pesianGreen transition-colors">
 					<span class="w-12 h-[2px] bg-pesianGreen mr-6 opacity-100"></span>
-					Магазин
+					{{ 'NAV.SHOP' | translate }}
 				</a>
 
 				<a routerLink="/contacts" routerLinkActive="text-pesianGreen" (click)="closeMenu()" class="group flex items-center text-xl font-medium transition-colors">
 					<span class="w-12 h-[2px] bg-pesianGreen mr-6 opacity-100"></span>
-					Контакти
+					{{ 'NAV.CONTACTS' | translate }}
 				</a>
 			</div>
 
@@ -94,25 +94,25 @@
 			<li>
 				<a routerLink="/about" routerLinkActive="active">
 					<span class="flex transition-all"></span>
-					Про нас
+					{{ 'NAV.ABOUT' | translate }}
 				</a>
 			</li>
 			<li>
 				<a routerLink="/products" routerLinkActive="active">
 					<span class="flex transition-all"></span>
-					Магазин
+					{{ 'NAV.SHOP' | translate }}
 				</a>
 			</li>
 			<li>
 				<a routerLink="/services" routerLinkActive="active">
 					<span class="flex transition-all"></span>
-					Послуги
+					{{ 'NAV.SERVICES' | translate }}
 				</a>
 			</li>
 			<li>
 				<a routerLink="/contacts" routerLinkActive="active">
 					<span class="flex transition-all"></span>
-					Контакти
+					{{ 'NAV.CONTACTS' | translate }}
 				</a>
 			</li>
 		</ul>
@@ -122,25 +122,25 @@
 			<li>
 				<a class="group" routerLink="/about" routerLinkActive="active">
 					<span class="flex transition-all"></span>
-					Про нас
+					{{ 'NAV.ABOUT' | translate }}
 				</a>
 			</li>
 			<li>
 				<a routerLink="/products" routerLinkActive="active">
 					<span class="flex transition-all"></span>
-					Магазин
+					{{ 'NAV.SHOP' | translate }}
 				</a>
 			</li>
 			<li>
 				<a routerLink="/services" routerLinkActive="active">
 					<span class="flex transition-all"></span>
-					Послуги
+					{{ 'NAV.SERVICES' | translate }}
 				</a>
 			</li>
 			<li>
 				<a class="group" routerLink="/contacts" routerLinkActive="active">
 					<span class="flex transition-all"></span>
-					Контакти
+					{{ 'NAV.CONTACTS' | translate }}
 				</a>
 			</li>
 		</ul>

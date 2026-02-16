@@ -1,11 +1,11 @@
 <main class="min-h-screen flex flex-col container mx-auto">
 	<app-navigation></app-navigation>
 	<div class="max-w-[1200px] mx-auto w-full pt-16 pb-8 flex-1">
-		<h1 class="text-2xl font-semibold text-pesianGreen mb-8">Корзина</h1>
+		<h1 class="text-2xl font-semibold text-pesianGreen mb-8">{{ 'BASKET_PAGE.TITLE' | translate }}</h1>
 
 		@if (basket().length === 0) {
-			<p class="text-battleshipGray">Ваша корзина порожня</p>
-			<a routerLink="/products" class="text-pesianGreen hover:underline">Перейти до каталогу</a>
+			<p class="text-battleshipGray">{{ 'BASKET_PAGE.EMPTY' | translate }}</p>
+			<a routerLink="/products" class="text-pesianGreen hover:underline">{{ 'BASKET_PAGE.GO_TO_CATALOG' | translate }}</a>
 		} @else {
 			<div class="grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-8 lg:gap-12">
 				<!-- Left: editable product list -->

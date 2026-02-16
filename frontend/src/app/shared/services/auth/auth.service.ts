@@ -1,6 +1,16 @@
 import { Injectable, inject } from '@angular/core';
-import { Auth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signInWithPhoneNumber, updateProfile, signOut, verifyBeforeUpdateEmail } from '@angular/fire/auth';
-import { Firestore, collection, addDoc } from '@angular/fire/firestore';
+import {
+	Auth,
+	GoogleAuthProvider,
+	signInWithPopup,
+	createUserWithEmailAndPassword,
+	signInWithPhoneNumber,
+	updateProfile,
+	signOut,
+	verifyBeforeUpdateEmail,
+} from '@angular/fire/auth';
+import { Firestore } from '@angular/fire/firestore';
+import { collection, addDoc, query, where, getDocs } from 'firebase/firestore';
 
 @Injectable({
 	providedIn: 'root',
@@ -15,7 +25,27 @@ export class AuthService {
 	async signInWithGoogle() {
 		const provider = new GoogleAuthProvider();
 		const result = await signInWithPopup(this.authFirebase, provider);
-		// Check if user document exists, if not create it (this part could also be in an effect)
+
+		// Check if user document exists, if not create it
+		const user = result.user;
+		const q = query(collection(this.firestore, 'users'), where('uid', '==', user.uid));
+		const snapshot = await getDocs(q);
+
+		if (snapshot.empty) {
+			await addDoc(collection(this.firestore, 'users'), {
+				uid: user.uid,
+				name: user.displayName || 'User',
+				email: user.email,
+				profile: {
+					name: user.displayName || 'User',
+					email: user.email,
+					phone: '',
+					pdfUrls: [],
+				},
+				createdAt: new Date(),
+			});
+		}
+
 		return result;
 	}
 

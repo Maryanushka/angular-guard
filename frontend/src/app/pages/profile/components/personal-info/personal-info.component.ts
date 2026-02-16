@@ -8,10 +8,12 @@ import { UserFacade, AuthFacade } from '@shared';
 import { combineLatest } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 
+import { TranslatePipe, TRANSLATIONS } from '@shared';
+
 @Component({
 	selector: 'app-personal-info',
 	standalone: true,
-	imports: [CommonModule, FormsModule, InputTextModule, ButtonModule, TableModule],
+	imports: [CommonModule, FormsModule, InputTextModule, ButtonModule, TableModule, TranslatePipe],
 	templateUrl: './personal-info.component.html',
 })
 export class PersonalInfoComponent implements OnInit {
@@ -25,20 +27,40 @@ export class PersonalInfoComponent implements OnInit {
 	// Combine data for p-table
 	fields$ = combineLatest([this.user$, this.profile$]).pipe(
 		map(([user, profile]) => [
-			{ label: 'Full Name', value: user?.displayName || 'N/A', editable: false },
-			{ label: 'Email Address', value: user?.email || '', editable: true, field: 'email' },
-			{ label: 'Phone Number', value: profile?.phone || 'Not provided', editable: false },
+			{ label: 'COMMON.LABELS.FULL_NAME', value: profile?.name || user?.displayName || TRANSLATIONS.COMMON.MESSAGES.NA, editable: true, field: 'name' },
+			{ label: 'COMMON.LABELS.EMAIL', value: user?.email || '', editable: true, field: 'email' },
+			{ label: 'COMMON.LABELS.PHONE', value: profile?.phone || TRANSLATIONS.COMMON.MESSAGES.NOT_PROVIDED, editable: true, field: 'phone' },
 		])
 	);
 
 	ngOnInit() {}
 
 	onEditComplete(event: any) {
-		if (event.field === 'value' && event.data.field === 'email') {
-			const newEmail = event.data.value;
+		const field = event.data.field;
+		const newValue = event.data.value;
+
+		if (field === 'email') {
 			this.user$.pipe(take(1)).subscribe((user) => {
-				if (newEmail && newEmail !== user?.email) {
-					this.authFacade.updateEmail(newEmail);
+				if (newValue && newValue !== user?.email) {
+					this.authFacade.updateEmail(newValue);
+				}
+			});
+		} else if (field === 'name' || field === 'phone') {
+			this.user$.pipe(take(1)).subscribe((user) => {
+				if (user?.uid) {
+					this.profile$.pipe(take(1)).subscribe((currentProfile) => {
+						const update: any = {};
+						if (field === 'name') update.name = newValue;
+						if (field === 'phone') update.phone = newValue;
+
+						const updatedProfile = {
+							...(currentProfile || {}),
+							...update,
+							email: user.email || currentProfile?.email || '',
+						};
+
+						this.userFacade.updateProfile(user.uid, updatedProfile);
+					});
 				}
 			});
 		}

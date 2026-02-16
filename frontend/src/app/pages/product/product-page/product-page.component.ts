@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { distinctUntilChanged, map } from 'rxjs';
-import { MainFacade, NavigationComponent, SocialMediaComponent, ObserveInViewDirective, FooterComponent } from '@shared';
+import { MainFacade, NavigationComponent, SocialMediaComponent, ObserveInViewDirective, FooterComponent, TranslatePipe } from '@shared';
 import { ProductComponent } from '../product-item/product.component';
 import { CategoriesComponent } from '../categories/categories.component';
 import { CommonModule } from '@angular/common';
@@ -25,6 +25,7 @@ const PAGE_SIZE = 10;
 		ObserveInViewDirective,
 		ProgressSpinnerModule,
 		FooterComponent,
+		TranslatePipe,
 	],
 })
 export class ProductPageComponent implements OnInit {

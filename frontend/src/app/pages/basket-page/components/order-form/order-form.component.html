@@ -2,18 +2,18 @@
 	<div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6 flex items-start gap-4">
 		<i class="pi pi-info-circle text-blue-600 mt-1 text-xl"></i>
 		<div class="flex-1">
-			<h3 class="text-blue-900 font-semibold mb-1">Зберігайте історію замовлень</h3>
-			<p class="text-blue-700 text-sm mb-3">Увійдіть або зареєструйтеся, щоб бачити ваші замовлення в особистому кабінеті пізніше.</p>
-			<button pButton label="Увійти / Зареєструватися" class="p-button-sm p-button-primary" (click)="login()"></button>
+			<h3 class="text-blue-900 font-semibold mb-1">{{ 'ORDER_FORM.LOGIN_HINT.TITLE' | translate }}</h3>
+			<p class="text-blue-700 text-sm mb-3">{{ 'ORDER_FORM.LOGIN_HINT.TEXT' | translate }}</p>
+			<button pButton [label]="'ORDER_FORM.BUTTONS.LOGIN_REGISTER' | translate" class="p-button-sm p-button-primary" (click)="login()"></button>
 		</div>
 	</div>
 }
 
 <form [formGroup]="orderForm" class="order-form flex flex-col gap-4" (ngSubmit)="onSubmit()">
-	<h2 class="text-lg font-semibold text-pesianGreen mb-2">Заполните данные</h2>
+	<h2 class="text-lg font-semibold text-pesianGreen mb-2">{{ 'ORDER_FORM.TITLE' | translate }}</h2>
 
 	<div class="field flex flex-col gap-1 w-full">
-		<label for="order-firstName" class="text-sm font-medium text-gray-700">Имя</label>
+		<label for="order-firstName" class="text-sm font-medium text-gray-700">{{ 'ORDER_FORM.LABELS.FIRST_NAME' | translate }}</label>
 		<input
 			pInputText
 			formControlName="firstName"
@@ -22,12 +22,12 @@
 			class="w-full"
 			[class.ng-invalid]="orderForm.get('firstName')?.invalid && orderForm.get('firstName')?.touched" />
 		@if (orderForm.get('firstName')?.touched && orderForm.get('firstName')?.errors) {
-			<small class="text-red-600 text-xs" role="alert">Обязательное поле</small>
+			<small class="text-red-600 text-xs" role="alert">{{ 'ORDER_FORM.ERRORS.REQUIRED' | translate }}</small>
 		}
 	</div>
 
 	<div class="field flex flex-col gap-1 w-full">
-		<label for="order-lastName" class="text-sm font-medium text-gray-700">Фамилия</label>
+		<label for="order-lastName" class="text-sm font-medium text-gray-700">{{ 'ORDER_FORM.LABELS.LAST_NAME' | translate }}</label>
 		<input
 			pInputText
 			formControlName="lastName"
@@ -36,12 +36,12 @@
 			class="w-full"
 			[class.ng-invalid]="orderForm.get('lastName')?.invalid && orderForm.get('lastName')?.touched" />
 		@if (orderForm.get('lastName')?.touched && orderForm.get('lastName')?.errors) {
-			<small class="text-red-600 text-xs" role="alert">Обязательное поле</small>
+			<small class="text-red-600 text-xs" role="alert">{{ 'ORDER_FORM.ERRORS.REQUIRED' | translate }}</small>
 		}
 	</div>
 
 	<div class="field flex flex-col gap-1 w-full">
-		<label for="order-phone" class="text-sm font-medium text-gray-700">Телефон</label>
+		<label for="order-phone" class="text-sm font-medium text-gray-700">{{ 'ORDER_FORM.LABELS.PHONE' | translate }}</label>
 		<input
 			pInputText
 			formControlName="phone"
@@ -50,12 +50,12 @@
 			class="w-full"
 			[class.ng-invalid]="orderForm.get('phone')?.invalid && orderForm.get('phone')?.touched" />
 		@if (orderForm.get('phone')?.touched && orderForm.get('phone')?.errors) {
-			<small class="text-red-600 text-xs" role="alert">Обязательное поле</small>
+			<small class="text-red-600 text-xs" role="alert">{{ 'ORDER_FORM.ERRORS.REQUIRED' | translate }}</small>
 		}
 	</div>
 
 	<div class="field flex flex-col gap-1 w-full">
-		<label for="order-email" class="text-sm font-medium text-gray-700">Email</label>
+		<label for="order-email" class="text-sm font-medium text-gray-700">{{ 'ORDER_FORM.LABELS.EMAIL' | translate }}</label>
 		<input
 			pInputText
 			formControlName="email"
@@ -65,13 +65,13 @@
 			[class.ng-invalid]="orderForm.get('email')?.invalid && orderForm.get('email')?.touched" />
 		@if (orderForm.get('email')?.touched && orderForm.get('email')?.errors) {
 			<small class="text-red-600 text-xs" role="alert">
-				{{ orderForm.get('email')?.hasError('email') ? 'Некорректный email' : 'Обязательное поле' }}
+				{{ (orderForm.get('email')?.hasError('email') ? 'ORDER_FORM.ERRORS.INVALID_EMAIL' : 'ORDER_FORM.ERRORS.REQUIRED') | translate }}
 			</small>
 		}
 	</div>
 
 	<div class="field flex flex-col gap-1 w-full">
-		<label for="order-city" class="text-sm font-medium text-gray-700">Город</label>
+		<label for="order-city" class="text-sm font-medium text-gray-700">{{ 'ORDER_FORM.LABELS.CITY' | translate }}</label>
 		<input
 			pInputText
 			formControlName="city"
@@ -80,12 +80,12 @@
 			class="w-full"
 			[class.ng-invalid]="orderForm.get('city')?.invalid && orderForm.get('city')?.touched" />
 		@if (orderForm.get('city')?.touched && orderForm.get('city')?.errors) {
-			<small class="text-red-600 text-xs" role="alert">Обязательное поле</small>
+			<small class="text-red-600 text-xs" role="alert">{{ 'ORDER_FORM.ERRORS.REQUIRED' | translate }}</small>
 		}
 	</div>
 
 	<div class="field flex flex-col gap-1 w-full">
-		<label for="order-novaPoshtaBranch" class="text-sm font-medium text-gray-700">Отделение Новой Почты</label>
+		<label for="order-novaPoshtaBranch" class="text-sm font-medium text-gray-700">{{ 'ORDER_FORM.LABELS.NOVA_POSHTA' | translate }}</label>
 		<input
 			pInputText
 			formControlName="novaPoshtaBranch"
@@ -94,7 +94,7 @@
 			class="w-full"
 			[class.ng-invalid]="orderForm.get('novaPoshtaBranch')?.invalid && orderForm.get('novaPoshtaBranch')?.touched" />
 		@if (orderForm.get('novaPoshtaBranch')?.touched && orderForm.get('novaPoshtaBranch')?.errors) {
-			<small class="text-red-600 text-xs" role="alert">Обязательное поле</small>
+			<small class="text-red-600 text-xs" role="alert">{{ 'ORDER_FORM.ERRORS.REQUIRED' | translate }}</small>
 		}
 	</div>
 
@@ -104,7 +104,7 @@
 		[icon]="'pi pi-check'"
 		class="w-full mt-2 border-pesianGreen/50 text-white bg-pesianGreen hover:bg-pesianGreen/10 hover:text-darkGreen rounded-md py-2"
 		severity="success"
-		[label]="'Заказать'"></button>
+		[label]="'ORDER_FORM.BUTTONS.SUBMIT' | translate"></button>
 </form>
 
 <p-toast />

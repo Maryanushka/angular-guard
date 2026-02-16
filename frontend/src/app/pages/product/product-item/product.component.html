@@ -1,7 +1,5 @@
 <div
-	class="relative p-4 flex flex-col items-center rounded-lg transition-all duration-300 group bg-white
-         hover:shadow-xl hover:shadow-pesianGreen/20 border border-transparent hover:border-pesianGreen/10
-         w-full sm:w-auto sm:min-w-[14rem] sm:min-h-[22rem]">
+	class="relative p-4 flex flex-col items-center rounded-lg transition-all duration-300 group bg-white hover:shadow-xl hover:shadow-pesianGreen/20 border border-transparent hover:border-pesianGreen/10 w-full sm:w-auto sm:min-w-[14rem] sm:min-h-[22rem]">
 	<a [routerLink]="'/products/' + product._slug" class="flex flex-col items-center w-full h-full">
 		<div class="image w-full aspect-square mb-4 overflow-hidden rounded-md bg-gray-50">
 			@if (imageUrl) {
@@ -16,9 +14,7 @@
 			<h2 class="text-base font-bold text-center text-gray-800 group-hover:text-pesianGreen transition-colors line-clamp-2 mb-2">
 				{{ product.title }}
 			</h2>
-			<div class="price text-lg font-bold text-pesianGreen mt-auto mb-4">
-				{{ product.price }} <span class="text-sm font-normal">₴</span>
-			</div>
+			<div class="price text-lg font-bold text-pesianGreen mt-auto mb-4">{{ product.price }} <span class="text-sm font-normal">₴</span></div>
 		</figcaption>
 	</a>
 	<p-button
@@ -27,6 +23,6 @@
 		styleClass="w-full border-pesianGreen text-pesianGreen hover:bg-pesianGreen hover:text-white"
 		class="w-full mt-2"
 		(click)="addToCart($event)">
-		Додати в корзину
+		{{ 'PRODUCT.ADD_TO_BASKET' | translate }}
 	</p-button>
 </div>

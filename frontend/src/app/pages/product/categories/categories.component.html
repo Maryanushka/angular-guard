@@ -1,14 +1,12 @@
 @if (categories$ | async; as list) {
-	<ul
-		class="flex flex-row md:flex-col overflow-x-auto md:overflow-visible gap-2 md:gap-0 pb-4 md:pb-0 mt-3
-         md:mt-0 md:sticky">
+	<ul class="flex flex-row md:flex-col overflow-x-auto md:overflow-visible gap-2 md:gap-0 pb-4 md:pb-0 mt-3 md:mt-0 md:sticky">
 		<li class="flex-shrink-0">
 			<a
 				routerLink="/products"
 				routerLinkActive="text-darkGreen font-bold bg-pesianGreen/10 md:bg-transparent rounded-full md:rounded-none px-4 py-2 md:px-0 md:py-0"
 				[routerLinkActiveOptions]="{ exact: true }"
 				class="whitespace-nowrap flex h-full items-center text-pesianGreen hover:text-darkGreen transition-colors md:mb-4">
-				Всі продукти
+				{{ 'CATEGORIES.ALL_PRODUCTS' | translate }}
 			</a>
 		</li>
 		@if (list.length !== 0) {

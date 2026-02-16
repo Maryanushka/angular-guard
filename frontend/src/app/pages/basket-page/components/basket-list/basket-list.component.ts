@@ -4,14 +4,14 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { InputNumberModule } from 'primeng/inputnumber';
-import { MainFacade, SanityImageService, BasketLine, IProduct } from '@shared';
+import { MainFacade, SanityImageService, BasketLine, IProduct, TranslateService, TranslatePipe } from '@shared';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 
 @Component({
 	selector: 'app-basket-list',
 	standalone: true,
-	imports: [CommonModule, CardModule, ButtonModule, InputNumberModule, ToastModule],
+	imports: [CommonModule, CardModule, ButtonModule, InputNumberModule, ToastModule, TranslatePipe],
 	templateUrl: './basket-list.component.html',
 	providers: [MessageService],
 })
@@ -19,6 +19,7 @@ export class BasketListComponent {
 	private facade = inject(MainFacade);
 	private messageService = inject(MessageService);
 	private sanityImage = inject(SanityImageService);
+	private translate = inject(TranslateService);
 
 	getImageUrl(cover: any): string {
 		return this.sanityImage.getResizedUrl(cover, 200);
@@ -35,7 +36,7 @@ export class BasketListComponent {
 	removeOne(product: IProduct): void {
 		this.messageService.add({
 			severity: 'info',
-			summary: 'Видалено з корзини',
+			summary: this.translate.get('BASKET.TOAST.REMOVED'),
 			detail: product.title,
 		});
 		this.facade.removeFromBasket(product);
@@ -44,7 +45,7 @@ export class BasketListComponent {
 	addOne(product: IProduct): void {
 		this.messageService.add({
 			severity: 'success',
-			summary: 'Додано в корзину',
+			summary: this.translate.get('BASKET.TOAST.ADDED'),
 			detail: product.title,
 		});
 		this.facade.addToBasket(product);
@@ -53,7 +54,7 @@ export class BasketListComponent {
 	removeProduct(line: BasketLine): void {
 		this.messageService.add({
 			severity: 'warn',
-			summary: 'Видалено товар з корзини',
+			summary: this.translate.get('BASKET.TOAST.REMOVED_ITEM'),
 			detail: line.product.title,
 		});
 		this.facade.removeProduct(line);

@@ -6,13 +6,14 @@ import { AuthFacade } from '../../state/auth-state/auth.facade';
 import { BasketComponent } from '../basket/basket.component';
 import { ButtonModule } from 'primeng/button';
 import { take } from 'rxjs';
+import { TranslatePipe } from '../../pipes/translate.pipe';
 
 @Component({
 	selector: 'app-navigation',
 	templateUrl: './navigation.component.html',
 	styleUrls: ['./navigation.component.scss'],
 	standalone: true,
-	imports: [CommonModule, RouterModule, BasketComponent, ButtonModule],
+	imports: [CommonModule, RouterModule, BasketComponent, ButtonModule, TranslatePipe],
 })
 export class NavigationComponent implements OnInit {
 	isHome = false;

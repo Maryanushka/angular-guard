@@ -6,11 +6,13 @@ import { MainFacade, NavigationComponent, FooterComponent, SocialMediaComponent 
 import { OrderFormComponent } from './components/order-form/order-form.component';
 import { BasketListComponent } from './components/basket-list/basket-list.component';
 
+import { TranslatePipe } from '@shared';
+
 @Component({
 	selector: 'app-basket-page',
 	standalone: true,
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	imports: [CommonModule, RouterModule, NavigationComponent, FooterComponent, SocialMediaComponent, BasketListComponent, OrderFormComponent],
+	imports: [CommonModule, RouterModule, NavigationComponent, FooterComponent, SocialMediaComponent, BasketListComponent, OrderFormComponent, TranslatePipe],
 	templateUrl: './basket-page.component.html',
 	styleUrl: './basket-page.component.scss',
 })

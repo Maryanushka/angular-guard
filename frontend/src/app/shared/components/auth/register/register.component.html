@@ -1,27 +1,37 @@
-<form [formGroup]="registerForm" (ngSubmit)="register()" class="flex flex-col gap-4">
-	<div class="flex flex-col gap-1">
-		<label for="reg-name" class="text-sm font-medium text-gray-700">Full Name</label>
-		<input pInputText id="reg-name" formControlName="name" placeholder="John Doe" class="w-full" />
-	</div>
+<div class="flex flex-col gap-4">
+	<!-- Social Login -->
+	<p-button [label]="'COMMON.BUTTONS.CONTINUE_GOOGLE' | translate" icon="pi pi-google" [outlined]="true" styleClass="w-full" (onClick)="loginGoogle()" />
 
-	<div class="flex flex-col gap-1">
-		<label for="reg-email" class="text-sm font-medium text-gray-700">Email Address</label>
-		<input pInputText id="reg-email" formControlName="email" placeholder="john@example.com" class="w-full" />
-	</div>
+	<p-divider align="center">
+		<span class="text-gray-400 text-xs font-semibold uppercase tracking-wider">{{ 'COMMON.OR' | translate }}</span>
+	</p-divider>
 
-	<div class="flex flex-col gap-1">
-		<label for="reg-password" class="text-sm font-medium text-gray-700">Password</label>
-		<input pInputText id="reg-password" type="password" formControlName="password" placeholder="••••••••" class="w-full" />
-	</div>
+	<form [formGroup]="registerForm" (ngSubmit)="register()" class="flex flex-col gap-4">
+		<div class="flex flex-col gap-1">
+			<label for="reg-name" class="text-sm font-medium text-gray-700">{{ 'COMMON.LABELS.FULL_NAME' | translate }}</label>
+			<input pInputText id="reg-name" formControlName="name" placeholder="John Doe" class="w-full" />
+		</div>
 
-	<div class="flex flex-col gap-1">
-		<label for="reg-confirm" class="text-sm font-medium text-gray-700">Confirm Password</label>
-		<input pInputText id="reg-confirm" type="password" formControlName="confirmPassword" placeholder="••••••••" class="w-full" />
-	</div>
+		<div class="flex flex-col gap-1">
+			<label for="reg-email" class="text-sm font-medium text-gray-700">{{ 'COMMON.LABELS.EMAIL' | translate }}</label>
+			<input pInputText id="reg-email" formControlName="email" placeholder="john@example.com" class="w-full" />
+		</div>
 
-	<p-button type="submit" label="Create Account" styleClass="w-full mt-2" [disabled]="registerForm.invalid" />
+		<div class="flex flex-col gap-1">
+			<label for="reg-password" class="text-sm font-medium text-gray-700">{{ 'COMMON.LABELS.PASSWORD' | translate }}</label>
+			<input pInputText id="reg-password" type="password" formControlName="password" placeholder="••••••••" class="w-full" />
+		</div>
 
-	<div class="text-center mt-2 text-sm text-gray-600">
-		Already have an account? <a (click)="switchToLogin.emit()" class="text-pesianGreen font-semibold cursor-pointer hover:underline">Sign In</a>
-	</div>
-</form>
+		<div class="flex flex-col gap-1">
+			<label for="reg-confirm" class="text-sm font-medium text-gray-700">{{ 'COMMON.LABELS.CONFIRM_PASSWORD' | translate }}</label>
+			<input pInputText id="reg-confirm" type="password" formControlName="confirmPassword" placeholder="••••••••" class="w-full" />
+		</div>
+
+		<p-button type="submit" [label]="'COMMON.BUTTONS.CREATE_ACCOUNT' | translate" styleClass="w-full mt-2" [disabled]="registerForm.invalid" />
+
+		<div class="text-center mt-2 text-sm text-gray-600">
+			{{ 'AUTH.REGISTER.ALREADY_HAVE_ACCOUNT' | translate }}
+			<a (click)="switchToLogin.emit()" class="text-pesianGreen font-semibold cursor-pointer hover:underline">{{ 'COMMON.BUTTONS.SIGN_IN' | translate }}</a>
+		</div>
+	</form>
+</div>
