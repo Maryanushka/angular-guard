@@ -72,10 +72,22 @@ export const TRANSLATIONS = {
 		PERSONAL_INFO: {
 			EDIT_HINT: 'Click on the email address to edit it. Press Enter to save.',
 		},
+		FILE_UPLOAD: {
+			CHOOSE: 'Choose Files',
+			DROP_HERE: 'Drag & drop files here or click to browse',
+			SUPPORTED: 'PDF, PNG, JPG, JPEG, WEBP — max 10 MB',
+			UPLOADING: 'Uploading...',
+			YOUR_FILES: 'Your Files',
+			DOWNLOAD: 'Download',
+			DELETE: 'Delete',
+			NO_FILES: 'No files uploaded yet',
+			NO_FILES_HINT: 'Upload your documents and images above.',
+		},
 		GREETING: 'Hey there,',
 		TABS: {
 			PERSONAL_INFO: 'Personal Info',
 			ORDER_HISTORY: 'Order History',
+			DOCUMENTS: 'Documents',
 		},
 	},
 	BASKET: {

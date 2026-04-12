@@ -1,18 +1,20 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { from, of } from 'rxjs';
-import { catchError, map, switchMap, tap, mergeMap, concatMap } from 'rxjs/operators';
+import { catchError, map, switchMap, mergeMap, last } from 'rxjs/operators';
 import { UserActions } from './user.actions';
 import { Firestore } from '@angular/fire/firestore';
-import { collection, query, where, getDocs, doc, updateDoc, collectionGroup, addDoc, QuerySnapshot } from 'firebase/firestore';
+import { collection, query, where, getDocs, doc, updateDoc, addDoc, QuerySnapshot } from 'firebase/firestore';
 import { MessageService } from 'primeng/api';
-import { IUserData, IOrder, IUserProfile } from '../../types/user.interface';
+import { IOrder } from '../../types/user.interface';
+import { FileUploadService } from '../../services/file-upload/file-upload.service';
 
 @Injectable()
 export class UserEffects {
 	private actions$ = inject(Actions);
 	private firestore = inject(Firestore);
 	private messageService = inject(MessageService);
+	private fileUploadService = inject(FileUploadService);
 
 	loadProfile$ = createEffect(() =>
 		this.actions$.pipe(
@@ -122,6 +124,59 @@ export class UserEffects {
 					})
 				);
 			})
+		)
+	);
+
+	uploadFile$ = createEffect(() =>
+		this.actions$.pipe(
+			ofType(UserActions.uploadFile),
+			mergeMap(({ uid, file }) =>
+				this.fileUploadService.uploadFile(uid, file).pipe(
+					last(),
+					map((result) => {
+						this.messageService.add({
+							severity: 'success',
+							summary: 'Success',
+							detail: 'File uploaded successfully',
+						});
+						return UserActions.uploadFileSuccess({ downloadUrl: result.downloadUrl! });
+					}),
+					catchError((error) => {
+						this.messageService.add({
+							severity: 'error',
+							summary: 'Error',
+							detail: 'Failed to upload file',
+						});
+						return of(UserActions.uploadFileFailure({ error: error.message || 'Upload failed' }));
+					})
+				)
+			)
+		)
+	);
+
+	deleteFile$ = createEffect(() =>
+		this.actions$.pipe(
+			ofType(UserActions.deleteFile),
+			mergeMap(({ uid, fileUrl }) =>
+				from(this.fileUploadService.deleteFile(uid, fileUrl)).pipe(
+					map(() => {
+						this.messageService.add({
+							severity: 'success',
+							summary: 'Success',
+							detail: 'File deleted successfully',
+						});
+						return UserActions.deleteFileSuccess({ fileUrl });
+					}),
+					catchError((error) => {
+						this.messageService.add({
+							severity: 'error',
+							summary: 'Error',
+							detail: 'Failed to delete file',
+						});
+						return of(UserActions.deleteFileFailure({ error: error.message || 'Delete failed' }));
+					})
+				)
+			)
 		)
 	);
 }

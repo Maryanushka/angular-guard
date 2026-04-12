@@ -7,12 +7,14 @@ export const userKey = 'USER';
 export interface UserState {
 	data: IUserData | null;
 	loading: boolean;
+	uploading: boolean;
 	error: string | null;
 }
 
 export const initialUserState: UserState = {
 	data: null,
 	loading: false,
+	uploading: false,
 	error: null,
 };
 
@@ -47,6 +49,45 @@ export const userReducer = createReducer(
 		...state,
 		data: state.data ? { ...state.data, orders: [...state.data.orders, order] } : null,
 		loading: false,
+	})),
+	on(UserActions.uploadFile, (state) => ({
+		...state,
+		uploading: true,
+		error: null,
+	})),
+	on(UserActions.uploadFileSuccess, (state, { downloadUrl }) => ({
+		...state,
+		uploading: false,
+		data: state.data
+			? {
+					...state.data,
+					profile: {
+						...state.data.profile,
+						pdfUrls: [...(state.data.profile.pdfUrls || []), downloadUrl],
+					},
+			  }
+			: null,
+	})),
+	on(UserActions.uploadFileFailure, (state, { error }) => ({
+		...state,
+		uploading: false,
+		error,
+	})),
+	on(UserActions.deleteFileSuccess, (state, { fileUrl }) => ({
+		...state,
+		data: state.data
+			? {
+					...state.data,
+					profile: {
+						...state.data.profile,
+						pdfUrls: (state.data.profile.pdfUrls || []).filter((url) => url !== fileUrl),
+					},
+			  }
+			: null,
+	})),
+	on(UserActions.deleteFileFailure, (state, { error }) => ({
+		...state,
+		error,
 	})),
 	on(UserActions.clearUserData, () => initialUserState)
 );

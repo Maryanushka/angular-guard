@@ -10,6 +10,7 @@ import { APP_BASE_HREF } from '@angular/common';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { provideStorage, getStorage } from '@angular/fire/storage';
 import { environment } from 'src/environments/environment';
 import { provideHttpClient } from '@angular/common/http';
 import { isDevMode } from '@angular/core';
@@ -51,6 +52,7 @@ bootstrapApplication(AppComponent, {
 		provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
 		provideFirebaseApp(() => initializeApp(environment.firebase)),
 		provideFirestore(() => getFirestore()),
+		provideStorage(() => getStorage()),
 		provideAuth(() => getAuth()),
 		{ provide: APP_BASE_HREF, useValue: '/' },
 		provideHttpClient(),

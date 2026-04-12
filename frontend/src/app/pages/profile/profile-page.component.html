@@ -9,6 +9,7 @@
 		<p-tablist>
 			<p-tab value="0">{{ 'PROFILE.TABS.PERSONAL_INFO' | translate }}</p-tab>
 			<p-tab value="1">{{ 'PROFILE.TABS.ORDER_HISTORY' | translate }}</p-tab>
+			<p-tab value="2">{{ 'PROFILE.TABS.DOCUMENTS' | translate }}</p-tab>
 		</p-tablist>
 		<p-tabpanels>
 			<p-tabpanel value="0">
@@ -16,6 +17,9 @@
 			</p-tabpanel>
 			<p-tabpanel value="1">
 				<app-order-history></app-order-history>
+			</p-tabpanel>
+			<p-tabpanel value="2">
+				<app-file-upload></app-file-upload>
 			</p-tabpanel>
 		</p-tabpanels>
 	</p-tabs>

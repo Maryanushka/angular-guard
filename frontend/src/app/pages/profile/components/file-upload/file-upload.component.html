@@ -1,0 +1,91 @@
+<div class="max-w-2xl mt-6">
+	<!-- Upload Area -->
+	<div class="mb-6">
+		<p-fileupload
+			id="file-upload-dropzone"
+			mode="advanced"
+			[multiple]="true"
+			[accept]="acceptedTypes"
+			[maxFileSize]="maxFileSize"
+			[auto]="true"
+			[customUpload]="true"
+			(uploadHandler)="onFileSelect($event)"
+			[chooseLabel]="'PROFILE.FILE_UPLOAD.CHOOSE' | translate"
+			chooseIcon="pi pi-cloud-upload"
+			[showUploadButton]="false"
+			[showCancelButton]="false">
+			<ng-template pTemplate="content">
+				<div class="drop-zone flex flex-col items-center justify-center py-12 px-6 text-center">
+					<i class="pi pi-cloud-upload text-4xl text-gray-400 mb-3"></i>
+					<p class="text-gray-600 font-medium mb-1">{{ 'PROFILE.FILE_UPLOAD.DROP_HERE' | translate }}</p>
+					<p class="text-sm text-gray-400">{{ 'PROFILE.FILE_UPLOAD.SUPPORTED' | translate }}</p>
+				</div>
+			</ng-template>
+		</p-fileupload>
+	</div>
+
+	<!-- Upload Progress -->
+	@if (uploading$ | async) {
+		<div class="mb-6">
+			<p-progressbar mode="indeterminate" [style]="{ height: '4px' }"></p-progressbar>
+			<p class="text-sm text-gray-500 mt-2 text-center">
+				<i class="pi pi-spin pi-spinner mr-1"></i>
+				{{ 'PROFILE.FILE_UPLOAD.UPLOADING' | translate }}
+			</p>
+		</div>
+	}
+
+	<!-- File List -->
+	@if ((files$ | async)?.length) {
+		<div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+			<div class="px-5 py-3 bg-gray-50 border-b border-gray-200">
+				<h3 class="text-sm font-semibold text-gray-600 uppercase tracking-wider">
+					{{ 'PROFILE.FILE_UPLOAD.YOUR_FILES' | translate }}
+				</h3>
+			</div>
+
+			@for (fileUrl of files$ | async; track fileUrl) {
+				<div class="file-list-item flex items-center justify-between px-5 py-3 border-b border-gray-100 last:border-0">
+					<div class="flex items-center gap-3 min-w-0 flex-1">
+						<!-- File Icon / Thumbnail -->
+						@if (isImageFile(fileUrl)) {
+							<img [src]="fileUrl" alt="preview" class="w-10 h-10 rounded object-cover border border-gray-200" />
+						} @else {
+							<div class="w-10 h-10 rounded bg-red-50 flex items-center justify-center">
+								<i [class]="getFileIcon(fileUrl)" class="text-red-500 text-lg"></i>
+							</div>
+						}
+
+						<div class="min-w-0 flex-1">
+							<p class="text-sm font-medium text-gray-800 truncate">{{ getFileName(fileUrl) }}</p>
+						</div>
+					</div>
+
+					<div class="flex items-center gap-1 ml-3">
+						<!-- Download -->
+						<a [href]="fileUrl" target="_blank" rel="noopener noreferrer"
+							pButton [text]="true" [rounded]="true" severity="info"
+							icon="pi pi-download" [pTooltip]="'PROFILE.FILE_UPLOAD.DOWNLOAD' | translate"
+							id="download-file-btn">
+						</a>
+
+						<!-- Delete -->
+						<button pButton [text]="true" [rounded]="true" severity="danger"
+							icon="pi pi-trash" (click)="deleteFile(fileUrl)"
+							[pTooltip]="'PROFILE.FILE_UPLOAD.DELETE' | translate"
+							id="delete-file-btn">
+						</button>
+					</div>
+				</div>
+			}
+		</div>
+	} @else {
+		@if (!(uploading$ | async)) {
+			<div class="text-center py-12 text-gray-400">
+				<i class="pi pi-folder-open text-4xl mb-3 block"></i>
+				<p class="font-medium">{{ 'PROFILE.FILE_UPLOAD.NO_FILES' | translate }}</p>
+				<p class="text-sm mt-1">{{ 'PROFILE.FILE_UPLOAD.NO_FILES_HINT' | translate }}</p>
+			</div>
+		}
+	}
+</div>
