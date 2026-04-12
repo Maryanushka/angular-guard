@@ -42,13 +42,13 @@
 
 			<div class="flex justify-between items-center mt-1">
 				<p-button [label]="'AUTH.SIGN_IN.VIA_SMS' | translate" [link]="true" (onClick)="togglePhoneAuth()" styleClass="p-0 text-sm font-medium" />
-				<p-button [label]="'AUTH.SIGN_IN.FORGOT_PASSWORD' | translate" [link]="true" styleClass="p-0 text-sm text-gray-500" />
+				<p-button [label]="'AUTH.SIGN_IN.FORGOT_PASSWORD' | translate" [link]="true" (onClick)="goToForgotPassword()" styleClass="p-0 text-sm text-gray-500" />
 			</div>
 		</form>
 	}
 
 	<div class="text-center mt-2 text-sm text-gray-600">
 		{{ 'AUTH.SIGN_IN.NO_ACCOUNT' | translate }}
-		<a (click)="switchToRegister.emit()" class="text-pesianGreen font-semibold cursor-pointer hover:underline">{{ 'COMMON.BUTTONS.REGISTER' | translate }}</a>
+		<a (click)="goToRegister()" class="text-pesianGreen font-semibold cursor-pointer hover:underline">{{ 'COMMON.BUTTONS.REGISTER' | translate }}</a>
 	</div>
 </div>

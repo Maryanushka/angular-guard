@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Output, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
@@ -17,12 +18,11 @@ import { TranslatePipe } from '../../../pipes/translate.pipe';
 	templateUrl: './sign-in.component.html',
 })
 export class SignInComponent {
-	@Output() switchToRegister = new EventEmitter<void>();
-
 	private authFacade = inject(AuthFacade);
 	private authService = inject(AuthService);
 	private auth = inject(Auth);
 	private fb = inject(FormBuilder);
+	private router = inject(Router);
 
 	isPhoneAuth = false;
 	verificationCodeSent = false;
@@ -44,6 +44,14 @@ export class SignInComponent {
 			const { email, password } = this.loginForm.value;
 			this.authFacade.loginEmail(email!, password!);
 		}
+	}
+
+	goToRegister() {
+		this.router.navigate(['/register']);
+	}
+
+	goToForgotPassword() {
+		this.router.navigate(['/forgot-password']);
 	}
 
 	togglePhoneAuth() {

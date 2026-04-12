@@ -8,6 +8,7 @@ export const environment = {
 		messagingSenderId: '945887749507',
 		appId: '1:945887749507:web:498a9dcc1b12bd2de042b6',
 		measurementId: 'G-4WGVKM156R',
+		logLevel: 'debug',
 	},
 	qraphql: 'https://32ywkl0n.api.sanity.io/v2025-10-20/data/query/production',
 	projectId: '32ywkl0n',

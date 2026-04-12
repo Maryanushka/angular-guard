@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Output, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
@@ -16,10 +17,10 @@ import { TranslatePipe } from '../../../pipes/translate.pipe';
 	templateUrl: './register.component.html',
 })
 export class RegisterComponent {
-	@Output() switchToLogin = new EventEmitter<void>();
 	private fb = inject(FormBuilder);
 	private authFacade = inject(AuthFacade);
 	private messageService = inject(MessageService);
+	private router = inject(Router);
 
 	registerForm = this.fb.group({
 		name: ['', Validators.required],
@@ -47,5 +48,9 @@ export class RegisterComponent {
 
 	loginGoogle() {
 		this.authFacade.loginGoogle();
+	}
+
+	goToLogin() {
+		this.router.navigate(['/signin']);
 	}
 }

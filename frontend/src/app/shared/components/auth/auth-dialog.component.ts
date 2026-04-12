@@ -4,23 +4,26 @@ import { CommonModule } from '@angular/common';
 import { DialogModule } from 'primeng/dialog';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { RegisterComponent } from './register/register.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { AuthFacade } from '@shared';
 
 @Component({
 	selector: 'app-auth-dialog',
 	standalone: true,
-	imports: [CommonModule, DialogModule, SignInComponent, RegisterComponent],
+	imports: [CommonModule, DialogModule, SignInComponent, RegisterComponent, ForgotPasswordComponent],
 	template: `
 		<p-dialog [visible]="isVisible()" [modal]="true" [draggable]="false" [resizable]="false" [dismissableMask]="true" [style]="{ width: '450px' }" (onHide)="close()">
 			<ng-template pTemplate="header">
-				<div class="text-xl font-bold">{{ isLoginMode() ? 'Sign In' : 'Register' }}</div>
+				<div class="text-xl font-bold">{{ mode() === 'login' ? 'Sign In' : mode() === 'register' ? 'Register' : 'Reset Password' }}</div>
 			</ng-template>
 
 			<div class="flex flex-col gap-4">
-				@if (isLoginMode()) {
-					<app-sign-in (switchToRegister)="switchMode()"></app-sign-in>
+				@if (mode() === 'login') {
+					<app-sign-in (switchToRegister)="mode.set('register')" (switchToForgotPassword)="mode.set('forgotPassword')"></app-sign-in>
+				} @else if (mode() === 'register') {
+					<app-register (switchToLogin)="mode.set('login')"></app-register>
 				} @else {
-					<app-register (switchToLogin)="switchMode()"></app-register>
+					<app-forgot-password (switchToLogin)="mode.set('login')"></app-forgot-password>
 				}
 			</div>
 		</p-dialog>
@@ -31,23 +34,19 @@ export class AuthDialogComponent {
 
 	private showModal = toSignal(this.authFacade.showAuthModal$, { initialValue: false });
 	isVisible = signal(false);
-	isLoginMode = signal(true);
+	mode = signal<'login' | 'register' | 'forgotPassword'>('login');
 
 	constructor() {
 		effect(() => {
 			const visible = this.showModal();
 			this.isVisible.set(visible);
 			if (visible) {
-				this.isLoginMode.set(true);
+				this.mode.set('login');
 			}
 		});
 	}
 
 	close() {
 		this.authFacade.closeAuthModal();
-	}
-
-	switchMode() {
-		this.isLoginMode.update((v) => !v);
 	}
 }

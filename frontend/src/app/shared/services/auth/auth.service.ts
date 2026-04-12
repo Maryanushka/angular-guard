@@ -8,9 +8,10 @@ import {
 	updateProfile,
 	signOut,
 	verifyBeforeUpdateEmail,
+	sendPasswordResetEmail,
 } from '@angular/fire/auth';
 import { Firestore } from '@angular/fire/firestore';
-import { collection, addDoc, query, where, getDocs } from 'firebase/firestore';
+import { doc, setDoc, getDoc } from 'firebase/firestore';
 
 @Injectable({
 	providedIn: 'root',
@@ -28,11 +29,11 @@ export class AuthService {
 
 		// Check if user document exists, if not create it
 		const user = result.user;
-		const q = query(collection(this.firestore, 'users'), where('uid', '==', user.uid));
-		const snapshot = await getDocs(q);
+		const userDocRef = doc(this.firestore, 'users', user.uid);
+		const snapshot = await getDoc(userDocRef);
 
-		if (snapshot.empty) {
-			await addDoc(collection(this.firestore, 'users'), {
+		if (!snapshot.exists()) {
+			await setDoc(userDocRef, {
 				uid: user.uid,
 				name: user.displayName || 'User',
 				email: user.email,
@@ -57,9 +58,8 @@ export class AuthService {
 		const userCredential = await createUserWithEmailAndPassword(this.authFirebase, email, password);
 		await updateProfile(userCredential.user, { displayName: name });
 
-		// Create user document in Firestore with auto-generated ID
-		// We store the uid as a field to link with Auth
-		await addDoc(collection(this.firestore, 'users'), {
+		// Create user document in Firestore using UID as document ID
+		await setDoc(doc(this.firestore, 'users', userCredential.user.uid), {
 			uid: userCredential.user.uid,
 			name,
 			email,
@@ -95,5 +95,9 @@ export class AuthService {
 			return verifyBeforeUpdateEmail(user, newEmail);
 		}
 		throw new Error('No user is currently logged in');
+	}
+
+	async resetPassword(email: string) {
+		sendPasswordResetEmail(this.authFirebase, email);
 	}
 }

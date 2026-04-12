@@ -1,4 +1,5 @@
 import { inject, Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Actions, createEffect, ofType, ROOT_EFFECTS_INIT } from '@ngrx/effects';
 import { from, of } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
@@ -13,6 +14,7 @@ export class AuthEffects {
 	private auth = inject(Auth);
 	private authService = inject(AuthService);
 	private messageService = inject(MessageService);
+	private router = inject(Router);
 
 	authState$ = createEffect(() =>
 		this.actions$.pipe(
@@ -72,11 +74,15 @@ export class AuthEffects {
 		)
 	);
 
-	authSuccess$ = createEffect(() =>
-		this.actions$.pipe(
-			ofType(AuthActions.authSuccess),
-			map(() => AuthActions.closeAuthModal())
-		)
+	authSuccess$ = createEffect(
+		() =>
+			this.actions$.pipe(
+				ofType(AuthActions.authSuccess),
+				tap(() => {
+					this.router.navigate(['/products']);
+				})
+			),
+		{ dispatch: false }
 	);
 
 	authFailure$ = createEffect(
@@ -137,6 +143,48 @@ export class AuthEffects {
 					this.messageService.add({
 						severity: 'error',
 						summary: 'Update Failed',
+						detail: error,
+					});
+				})
+			),
+		{ dispatch: false }
+	);
+
+	resetPassword$ = createEffect(() =>
+		this.actions$.pipe(
+			ofType(AuthActions.resetPassword),
+			switchMap(({ email }) =>
+				from(this.authService.resetPassword(email)).pipe(
+					map(() => AuthActions.resetPasswordSuccess()),
+					catchError((error) => of(AuthActions.resetPasswordFailure({ error: error.message || 'Failed to send password reset email' })))
+				)
+			)
+		)
+	);
+
+	resetPasswordSuccess$ = createEffect(
+		() =>
+			this.actions$.pipe(
+				ofType(AuthActions.resetPasswordSuccess),
+				tap(() => {
+					this.messageService.add({
+						severity: 'success',
+						summary: 'Reset Email Sent',
+						detail: 'A password reset link has been sent to your email address.',
+					});
+				})
+			),
+		{ dispatch: false }
+	);
+
+	resetPasswordFailure$ = createEffect(
+		() =>
+			this.actions$.pipe(
+				ofType(AuthActions.resetPasswordFailure),
+				tap(({ error }) => {
+					this.messageService.add({
+						severity: 'error',
+						summary: 'Reset Failed',
 						detail: error,
 					});
 				})

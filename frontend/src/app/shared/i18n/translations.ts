@@ -47,6 +47,23 @@ export const TRANSLATIONS = {
 		REGISTER: {
 			ALREADY_HAVE_ACCOUNT: 'Already have an account?',
 		},
+		FORGOT_PASSWORD: {
+			INSTRUCTION: 'We will send instructions by email',
+		},
+		BACK_TO_LOGIN: 'Back to Signin page',
+		SEND_RESET_LINK: 'Send Reset Link',
+		SIGN_IN_PAGE: {
+			TITLE: 'Sign In',
+			SUBTITLE: 'Welcome back! Please enter your details.',
+		},
+		REGISTER_PAGE: {
+			TITLE: 'Create Account',
+			SUBTITLE: 'Join us to track your orders and more.',
+		},
+		FORGOT_PASSWORD_PAGE: {
+			TITLE: 'Reset Password',
+			SUBTITLE: "We'll send you a link to reset your password.",
+		},
 	},
 	PROFILE: {
 		ORDER_HISTORY: {

@@ -6,4 +6,5 @@ export * from './tabs/tabs.component';
 export * from './video-player/video-player.component';
 export * from './auth/sign-in/sign-in.component';
 export * from './auth/register/register.component';
+export * from './auth/forgot-password/forgot-password.component';
 export * from './auth/auth-dialog.component';

@@ -11,6 +11,14 @@ export const routes: Route[] = [
 		loadComponent: () => import('./pages/signin/signin-page.component').then((m) => m.SigninPageComponent),
 	},
 	{
+		path: 'register',
+		loadComponent: () => import('./pages/register/register-page.component').then((m) => m.RegisterPageComponent),
+	},
+	{
+		path: 'forgot-password',
+		loadComponent: () => import('./pages/forgot-password/forgot-password-page.component').then((m) => m.ForgotPasswordPageComponent),
+	},
+	{
 		path: 'basket',
 		loadComponent: () => import('./pages/basket-page/basket-page.component').then((m) => m.BasketPageComponent),
 	},

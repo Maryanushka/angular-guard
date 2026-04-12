@@ -41,4 +41,8 @@ export class AuthFacade {
 	updateEmail(newEmail: string) {
 		this.store.dispatch(AuthActions.updateEmail({ newEmail }));
 	}
+
+	resetPassword(email: string) {
+		this.store.dispatch(AuthActions.resetPassword({ email }));
+	}
 }
