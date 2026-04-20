@@ -1,3 +1,5 @@
+import { key } from './environment';
+
 export const environment = {
 	production: true,
 	firebase: {
@@ -19,5 +21,6 @@ export const environment = {
 		serviceId: 'service_wda5h3j',
 		templateId: 'template_contactForm',
 	},
+	googleDriveUploadUrl: `https://script.google.com/macros/s/${key}/exec`,
+	gasSecretKey: 'my-hobby-secret-key-123',
 };
-

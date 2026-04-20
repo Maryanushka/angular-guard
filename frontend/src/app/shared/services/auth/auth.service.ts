@@ -9,6 +9,8 @@ import {
 	signOut,
 	verifyBeforeUpdateEmail,
 	sendPasswordResetEmail,
+	ConfirmationResult,
+	ApplicationVerifier,
 } from '@angular/fire/auth';
 import { Firestore } from '@angular/fire/firestore';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
@@ -21,7 +23,7 @@ export class AuthService {
 	private firestore = inject(Firestore);
 
 	// Phone Auth
-	confirmationResult: any;
+	confirmationResult?: ConfirmationResult;
 
 	async signInWithGoogle() {
 		const provider = new GoogleAuthProvider();
@@ -41,7 +43,7 @@ export class AuthService {
 					name: user.displayName || 'User',
 					email: user.email,
 					phone: '',
-					pdfUrls: [],
+					documents: [],
 				},
 				createdAt: new Date(),
 			});
@@ -67,7 +69,7 @@ export class AuthService {
 				name,
 				email,
 				phone: '',
-				pdfUrls: [],
+				documents: [],
 			},
 			createdAt: new Date(),
 		});
@@ -75,13 +77,14 @@ export class AuthService {
 		return userCredential;
 	}
 
-	async startPhoneSignIn(phoneNumber: string, appVerifier: any) {
+	async startPhoneSignIn(phoneNumber: string, appVerifier: ApplicationVerifier) {
 		const result = await signInWithPhoneNumber(this.authFirebase, phoneNumber, appVerifier);
 		this.confirmationResult = result;
 		return result;
 	}
 
 	async verifyOtp(otp: string) {
+		if (!this.confirmationResult) throw new Error('No phone sign-in in progress');
 		return this.confirmationResult.confirm(otp);
 	}
 

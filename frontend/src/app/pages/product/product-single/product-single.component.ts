@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import {
 	toIProduct,
 	ISingleProduct,
+	ISanityImage,
 	SanityImageService,
 	MainFacade,
 	NavigationComponent,
@@ -62,7 +63,7 @@ export class ProductSingleComponent implements OnInit, OnDestroy {
 
 	private sanityImage = inject(SanityImageService);
 
-	getImageUrl(cover: any): string {
+	getImageUrl(cover: ISanityImage | string | null | undefined): string {
 		return this.sanityImage.getResizedUrl(cover, 800);
 	}
 

@@ -6,7 +6,7 @@ import { UserActions } from './user.actions';
 import { Firestore } from '@angular/fire/firestore';
 import { collection, query, where, getDocs, doc, updateDoc, addDoc, QuerySnapshot } from 'firebase/firestore';
 import { MessageService } from 'primeng/api';
-import { IOrder } from '../../types/user.interface';
+import { IOrder, IUserProfile } from '../../types/user.interface';
 import { FileUploadService } from '../../services/file-upload/file-upload.service';
 
 @Injectable()
@@ -25,7 +25,7 @@ export class UserEffects {
 					switchMap((snapshot: QuerySnapshot) => {
 						if (!snapshot.empty) {
 							const userDoc = snapshot.docs[0];
-							const userData = userDoc.data() as any;
+							const userData = userDoc.data() as { profile: IUserProfile };
 
 							return from(getDocs(collection(this.firestore, 'users', userDoc.id, 'orders'))).pipe(
 								map((orderSnapshot) => {
@@ -130,8 +130,8 @@ export class UserEffects {
 	uploadFile$ = createEffect(() =>
 		this.actions$.pipe(
 			ofType(UserActions.uploadFile),
-			mergeMap(({ uid, file }) =>
-				this.fileUploadService.uploadFile(uid, file).pipe(
+			mergeMap(({ uid, file, folderName }) =>
+				this.fileUploadService.uploadFile(uid, file, folderName).pipe(
 					last(),
 					map((result) => {
 						this.messageService.add({
@@ -139,7 +139,7 @@ export class UserEffects {
 							summary: 'Success',
 							detail: 'File uploaded successfully',
 						});
-						return UserActions.uploadFileSuccess({ downloadUrl: result.downloadUrl! });
+						return UserActions.uploadFileSuccess({ document: { name: file.name, url: result.downloadUrl! } });
 					}),
 					catchError((error) => {
 						this.messageService.add({
@@ -157,15 +157,15 @@ export class UserEffects {
 	deleteFile$ = createEffect(() =>
 		this.actions$.pipe(
 			ofType(UserActions.deleteFile),
-			mergeMap(({ uid, fileUrl }) =>
-				from(this.fileUploadService.deleteFile(uid, fileUrl)).pipe(
+			mergeMap(({ uid, document }) =>
+				from(this.fileUploadService.deleteFile(uid, document)).pipe(
 					map(() => {
 						this.messageService.add({
 							severity: 'success',
 							summary: 'Success',
 							detail: 'File deleted successfully',
 						});
-						return UserActions.deleteFileSuccess({ fileUrl });
+						return UserActions.deleteFileSuccess({ url: document.url });
 					}),
 					catchError((error) => {
 						this.messageService.add({

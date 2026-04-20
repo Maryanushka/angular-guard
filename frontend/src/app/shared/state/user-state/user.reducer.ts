@@ -55,7 +55,7 @@ export const userReducer = createReducer(
 		uploading: true,
 		error: null,
 	})),
-	on(UserActions.uploadFileSuccess, (state, { downloadUrl }) => ({
+	on(UserActions.uploadFileSuccess, (state, { document }) => ({
 		...state,
 		uploading: false,
 		data: state.data
@@ -63,7 +63,7 @@ export const userReducer = createReducer(
 					...state.data,
 					profile: {
 						...state.data.profile,
-						pdfUrls: [...(state.data.profile.pdfUrls || []), downloadUrl],
+						documents: [...(state.data.profile.documents || []), document],
 					},
 			  }
 			: null,
@@ -73,14 +73,14 @@ export const userReducer = createReducer(
 		uploading: false,
 		error,
 	})),
-	on(UserActions.deleteFileSuccess, (state, { fileUrl }) => ({
+	on(UserActions.deleteFileSuccess, (state, { url }) => ({
 		...state,
 		data: state.data
 			? {
 					...state.data,
 					profile: {
 						...state.data.profile,
-						pdfUrls: (state.data.profile.pdfUrls || []).filter((url) => url !== fileUrl),
+						documents: (state.data.profile.documents || []).filter((doc) => doc.url !== url),
 					},
 			  }
 			: null,

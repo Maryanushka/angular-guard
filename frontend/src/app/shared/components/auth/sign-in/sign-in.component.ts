@@ -28,7 +28,7 @@ export class SignInComponent {
 	verificationCodeSent = false;
 	phoneNumber = '';
 	otp = '';
-	recaptchaVerifier: any;
+	recaptchaVerifier?: RecaptchaVerifier;
 
 	loginForm = this.fb.group({
 		email: ['', [Validators.required, Validators.email]],
@@ -42,7 +42,9 @@ export class SignInComponent {
 	loginEmail() {
 		if (this.loginForm.valid) {
 			const { email, password } = this.loginForm.value;
-			this.authFacade.loginEmail(email!, password!);
+			if (email && password) {
+				this.authFacade.loginEmail(email, password);
+			}
 		}
 	}
 
@@ -60,7 +62,7 @@ export class SignInComponent {
 			if (!this.recaptchaVerifier) {
 				this.recaptchaVerifier = new RecaptchaVerifier(this.auth, 'recaptcha-container', {
 					size: 'normal',
-					callback: (response: any) => {
+					callback: (_response: string) => {
 						// reCAPTCHA solved
 					},
 				});
@@ -71,6 +73,7 @@ export class SignInComponent {
 
 	async sendCode() {
 		try {
+			if (!this.recaptchaVerifier) throw new Error('Recaptcha not initialized');
 			await this.authService.startPhoneSignIn(this.phoneNumber, this.recaptchaVerifier);
 			this.verificationCodeSent = true;
 		} catch (error) {

@@ -1,6 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import imageUrlBuilder from '@sanity/image-url';
 import { SANITY_CLIENT } from '../sanity-client-token/sanity-client.token';
+import { ISanityImage } from '../../types/product.inteface';
 
 @Injectable({
 	providedIn: 'root',
@@ -14,7 +15,7 @@ export class SanityImageService {
 	 * @param source Sanity image source
 	 * @returns ImageUrlBuilder
 	 */
-	getImageBuilder(source: any) {
+	getImageBuilder(source: ISanityImage | string) {
 		return this.builder.image(source);
 	}
 
@@ -25,7 +26,9 @@ export class SanityImageService {
 	 * @param height optional height
 	 * @returns string URL
 	 */
-	getResizedUrl(source: any, width: number, height?: number) {
+	getResizedUrl(source: ISanityImage | string | null | undefined, width: number, height?: number) {
+		if (!source) return ''; // Safely return empty string if no image source is provided
+
 		let b = this.getImageBuilder(source).width(width).auto('format');
 		if (height) {
 			b = b.height(height);

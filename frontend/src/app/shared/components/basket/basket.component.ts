@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MainFacade } from '../../state/main-state/main.facade';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ButtonModule } from 'primeng/button';
-import { SanityImageService } from '@shared';
+import { SanityImageService, ISanityImage } from '@shared';
 
 @Component({
 	selector: 'app-basket',
@@ -20,7 +20,7 @@ export class BasketComponent {
 	$count = toSignal(this.facade.basketCount$, { initialValue: 0 });
 	$basket = toSignal(this.facade.basket$, { initialValue: [] });
 
-	getImageUrl(cover: any): string {
+	getImageUrl(cover: ISanityImage | string | null | undefined): string {
 		return this.sanityImage.getResizedUrl(cover, 160);
 	}
 }

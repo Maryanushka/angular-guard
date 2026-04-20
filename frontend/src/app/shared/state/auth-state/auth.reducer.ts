@@ -25,6 +25,10 @@ export const authReducer = createReducer(
 		...state,
 		showAuthModal: false,
 	})),
+	on(AuthActions.authSuccess, (state) => ({
+		...state,
+		showAuthModal: false,
+	})),
 	on(AuthActions.setAuthState, (state, { user }) => ({
 		...state,
 		isLoggedIn: !!user,

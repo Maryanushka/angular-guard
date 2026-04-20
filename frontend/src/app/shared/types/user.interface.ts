@@ -1,8 +1,15 @@
+import { ISanityImage } from './product.inteface';
+
+export interface IDocument {
+	name: string;
+	url: string;
+}
+
 export interface IUserProfile {
 	name: string;
 	email: string;
 	phone?: string;
-	pdfUrls?: string[];
+	documents?: IDocument[];
 }
 
 export interface IOrderItem {
@@ -10,12 +17,12 @@ export interface IOrderItem {
 	productTitle: string;
 	quantity: number;
 	price: number;
-	cover?: any;
+	cover?: ISanityImage | null;
 }
 
 export interface IOrder {
 	id: string;
-	date: any; // Firebase Timestamp or ISO string
+	date: string | number | { seconds: number; nanoseconds: number }; // Firebase Timestamp or ISO string
 	total: number;
 	items: IOrderItem[];
 }

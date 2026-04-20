@@ -1,8 +1,16 @@
+export interface ISanityImage {
+	_type: 'image';
+	asset: {
+		_ref: string;
+		_type: 'reference';
+	};
+}
+
 export interface IProduct {
 	_slug: string;
 	title: string;
 	description: string;
-	cover: any | null;
+	cover: ISanityImage | null;
 	categories: { _slug: string; title: string }[];
 	/** Category slugs (e.g. ["hair", "blonde", "set"]). Product appears in each category. */
 	tag?: string[];
@@ -32,7 +40,7 @@ export interface ISingleProduct {
 	title: string;
 	description: string;
 	price: string;
-	cover: any[];
+	cover: ISanityImage[];
 	categories: { _slug: string; title: string }[];
 	content: { body: string }[];
 	seo: {

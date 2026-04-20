@@ -7,5 +7,5 @@ export const selectUserProfile = createSelector(selectUserState, (state: UserSta
 export const selectUserOrders = createSelector(selectUserState, (state: UserState) => state.data?.orders ?? []);
 export const selectUserLoading = createSelector(selectUserState, (state: UserState) => state.loading);
 export const selectUserError = createSelector(selectUserState, (state: UserState) => state.error);
-export const selectUserFiles = createSelector(selectUserState, (state: UserState) => state.data?.profile?.pdfUrls ?? []);
+export const selectUserDocuments = createSelector(selectUserState, (state: UserState) => state.data?.profile?.documents ?? []);
 export const selectUserUploading = createSelector(selectUserState, (state: UserState) => state.uploading);

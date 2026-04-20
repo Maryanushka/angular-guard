@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { selectUserProfile, selectUserOrders, selectUserLoading, selectUserError, selectUserFiles, selectUserUploading } from './user.selectors';
+import { selectUserProfile, selectUserOrders, selectUserLoading, selectUserError, selectUserDocuments, selectUserUploading } from './user.selectors';
 import { UserActions } from './user.actions';
 import { IUserProfile, IOrder } from '../../types/user.interface';
 import { Observable } from 'rxjs';
@@ -15,7 +15,7 @@ export class UserFacade {
 	orders$ = this.store.pipe(select(selectUserOrders));
 	loading$: Observable<boolean> = this.store.pipe(select(selectUserLoading));
 	error$: Observable<string | null> = this.store.pipe(select(selectUserError));
-	files$ = this.store.pipe(select(selectUserFiles));
+	documents$ = this.store.pipe(select(selectUserDocuments));
 	uploading$: Observable<boolean> = this.store.pipe(select(selectUserUploading));
 
 	loadProfile(uid: string) {
@@ -30,12 +30,12 @@ export class UserFacade {
 		this.store.dispatch(UserActions.submitOrder({ uid, order }));
 	}
 
-	uploadFile(uid: string, file: File) {
-		this.store.dispatch(UserActions.uploadFile({ uid, file }));
+	uploadFile(uid: string, file: File, folderName: string) {
+		this.store.dispatch(UserActions.uploadFile({ uid, file, folderName }));
 	}
 
-	deleteFile(uid: string, fileUrl: string) {
-		this.store.dispatch(UserActions.deleteFile({ uid, fileUrl }));
+	deleteFile(uid: string, document: { name: string; url: string }) {
+		this.store.dispatch(UserActions.deleteFile({ uid, document }));
 	}
 
 	clearUserData() {

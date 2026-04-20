@@ -5,7 +5,7 @@ import { ButtonModule } from 'primeng/button';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { TooltipModule } from 'primeng/tooltip';
 import { UserFacade, AuthFacade, TranslatePipe } from '@shared';
-import { take } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
 const ACCEPTED_TYPES = '.pdf,.png,.jpg,.jpeg,.webp';
@@ -47,10 +47,11 @@ export class FileUploadComponent implements OnInit {
 	private userFacade = inject(UserFacade);
 	private authFacade = inject(AuthFacade);
 
-	files$ = this.userFacade.files$;
+	documents$ = this.userFacade.documents$;
 	uploading$ = this.userFacade.uploading$;
 
 	private currentUid: string | null = null;
+	private currentProfileName = '';
 
 	readonly maxFileSize = MAX_FILE_SIZE;
 	readonly acceptedTypes = ACCEPTED_TYPES;
@@ -59,51 +60,39 @@ export class FileUploadComponent implements OnInit {
 		this.authFacade.user$.pipe(take(1)).subscribe((user) => {
 			this.currentUid = user?.uid ?? null;
 		});
+		this.userFacade.profile$.pipe(take(1)).subscribe((profile) => {
+			this.currentProfileName = profile?.name ?? 'User';
+		});
 	}
 
-	onFileSelect(event: any) {
-		const files: File[] = event.files || event.currentFiles;
+	onFileSelect(event: { files?: File[]; currentFiles?: File[] }) {
+		const files: File[] = event.files || event.currentFiles || [];
 		if (!files?.length || !this.currentUid) return;
 
+		const folderName = `${this.currentProfileName.replace(/\s+/g, '_')}_${this.currentUid}`;
+
 		for (const file of files) {
-			this.userFacade.uploadFile(this.currentUid, file);
+			this.userFacade.uploadFile(this.currentUid, file, folderName);
 		}
 	}
 
-	deleteFile(fileUrl: string) {
+	deleteFile(document: { name: string; url: string }) {
 		if (!this.currentUid) return;
-		this.userFacade.deleteFile(this.currentUid, fileUrl);
+		this.userFacade.deleteFile(this.currentUid, document);
 	}
 
-	getFileName(url: string): string {
-		try {
-			// Firebase Storage URLs encode the path — extract the filename
-			const decodedUrl = decodeURIComponent(url);
-			const pathPart = decodedUrl.split('/o/')[1]?.split('?')[0] || '';
-			const segments = pathPart.split('/');
-			const fullName = segments[segments.length - 1] || 'Unknown file';
-			// Remove the timestamp prefix (e.g. "1712956800000_document.pdf" → "document.pdf")
-			const underscoreIndex = fullName.indexOf('_');
-			return underscoreIndex > 0 ? fullName.substring(underscoreIndex + 1) : fullName;
-		} catch {
-			return 'Unknown file';
-		}
-	}
-
-	getFileIcon(url: string): string {
-		const name = this.getFileName(url).toLowerCase();
-		if (name.endsWith('.pdf')) return 'pi pi-file-pdf';
-		if (name.match(/\.(png|jpg|jpeg|webp|gif)$/)) return 'pi pi-image';
+	getFileIcon(name: string): string {
+		const lowerName = name.toLowerCase();
+		if (lowerName.endsWith('.pdf')) return 'pi pi-file-pdf';
+		if (lowerName.match(/\.(png|jpg|jpeg|webp|gif)$/)) return 'pi pi-image';
 		return 'pi pi-file';
 	}
 
-	isPdfFile(url: string): boolean {
-		return this.getFileName(url).toLowerCase().endsWith('.pdf');
+	isPdfFile(name: string): boolean {
+		return name.toLowerCase().endsWith('.pdf');
 	}
 
-	isImageFile(url: string): boolean {
-		return !!this.getFileName(url)
-			.toLowerCase()
-			.match(/\.(png|jpg|jpeg|webp|gif)$/);
+	isImageFile(name: string): boolean {
+		return !!name.toLowerCase().match(/\.(png|jpg|jpeg|webp|gif)$/);
 	}
 }

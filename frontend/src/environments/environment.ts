@@ -1,3 +1,5 @@
+export const key = 'AKfycby-1Dd2WBkLdmU5vQHdhczSHI0O6AbxFJ5BT3MoctTuWiv3xVpfGVZe00JyOfULrVSq';
+
 export const environment = {
 	production: false,
 	firebase: {
@@ -20,4 +22,6 @@ export const environment = {
 		serviceId: 'service_wda5h3j',
 		templateId: 'template_contactForm',
 	},
+	googleDriveUploadUrl: `https://script.google.com/macros/s/${key}/exec`,
+	gasSecretKey: 'my-hobby-secret-key-123',
 };

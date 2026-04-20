@@ -4,7 +4,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { InputNumberModule } from 'primeng/inputnumber';
-import { MainFacade, SanityImageService, BasketLine, IProduct, TranslateService, TranslatePipe } from '@shared';
+import { MainFacade, SanityImageService, BasketLine, IProduct, TranslateService, TranslatePipe, ISanityImage } from '@shared';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 
@@ -21,7 +21,7 @@ export class BasketListComponent {
 	private sanityImage = inject(SanityImageService);
 	private translate = inject(TranslateService);
 
-	getImageUrl(cover: any): string {
+	getImageUrl(cover: ISanityImage | string | null | undefined): string {
 		return this.sanityImage.getResizedUrl(cover, 200);
 	}
 
