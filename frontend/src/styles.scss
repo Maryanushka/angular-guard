@@ -1,19 +1,13 @@
-@layer tailwind-base, primeng, tailwind-utilities;
+/* 1. Сначала все внешние импорты */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;500;600;700;800;900&display=swap');
+@import 'primeicons/primeicons.css';
 
-@layer tailwind-base {
-	@tailwind base;
-}
+/* 2. Базовые стили Tailwind */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@layer tailwind-utilities {
-	@tailwind components;
-	@tailwind utilities;
-}
-
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;500;600;700;800;900;&display=swap');
-
+/* 3. Глобальные стили */
 body {
 	font-family: 'Lato', sans-serif;
 }
-
-/* Load after Tailwind so preflight doesn't override icon font */
-@import 'primeicons/primeicons.css';
