@@ -1,4 +1,4 @@
-import { key } from './environment';
+export const key = 'AKfycby-1Dd2WBkLdmU5vQHdhczSHI0O6AbxFJ5BT3MoctTuWiv3xVpfGVZe00JyOfULrVSq';
 
 export const environment = {
 	production: true,
