@@ -6,7 +6,7 @@ import { PersonalInfoComponent } from './components/personal-info/personal-info.
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
 import { ButtonModule } from 'primeng/button';
-import { take } from 'rxjs';
+import { filter, take } from 'rxjs';
 import { TranslatePipe } from '@shared';
 
 @Component({
@@ -39,11 +39,14 @@ export class ProfilePageComponent implements OnInit {
 	user$ = this.authFacade.user$;
 
 	ngOnInit() {
-		this.user$.pipe(take(1)).subscribe((user) => {
-			if (user?.uid) {
-				this.userFacade.loadProfile(user.uid);
-			}
-		});
+		this.user$
+			.pipe(
+				filter((user) => !!user?.uid),
+				take(1)
+			)
+			.subscribe((user) => {
+				this.userFacade.loadProfile(user!.uid);
+			});
 	}
 
 	logout() {

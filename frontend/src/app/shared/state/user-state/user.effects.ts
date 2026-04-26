@@ -4,7 +4,7 @@ import { from, of } from 'rxjs';
 import { catchError, map, switchMap, mergeMap, last } from 'rxjs/operators';
 import { UserActions } from './user.actions';
 import { Firestore } from '@angular/fire/firestore';
-import { collection, query, where, getDocs, doc, updateDoc, addDoc, QuerySnapshot } from 'firebase/firestore';
+import { collection, getDocs, doc, getDoc, updateDoc, addDoc } from 'firebase/firestore';
 import { MessageService } from 'primeng/api';
 import { IOrder, IUserProfile } from '../../types/user.interface';
 import { FileUploadService } from '../../services/file-upload/file-upload.service';
@@ -20,14 +20,13 @@ export class UserEffects {
 		this.actions$.pipe(
 			ofType(UserActions.loadProfile),
 			switchMap(({ uid }) => {
-				const q = query(collection(this.firestore, 'users'), where('uid', '==', uid));
-				return from(getDocs(q)).pipe(
-					switchMap((snapshot: QuerySnapshot) => {
-						if (!snapshot.empty) {
-							const userDoc = snapshot.docs[0];
-							const userData = userDoc.data() as { profile: IUserProfile };
+				const userDocRef = doc(this.firestore, 'users', uid);
+				return from(getDoc(userDocRef)).pipe(
+					switchMap((snapshot) => {
+						if (snapshot.exists()) {
+							const userData = snapshot.data() as { profile: IUserProfile };
 
-							return from(getDocs(collection(this.firestore, 'users', userDoc.id, 'orders'))).pipe(
+							return from(getDocs(collection(this.firestore, 'users', uid, 'orders'))).pipe(
 								map((orderSnapshot) => {
 									const orders = orderSnapshot.docs.map((d) => ({ id: d.id, ...d.data() }) as IOrder);
 									return UserActions.loadProfileSuccess({
@@ -59,24 +58,15 @@ export class UserEffects {
 		this.actions$.pipe(
 			ofType(UserActions.updateProfile),
 			switchMap(({ uid, profile }) => {
-				const q = query(collection(this.firestore, 'users'), where('uid', '==', uid));
-				return from(getDocs(q)).pipe(
-					switchMap((snapshot) => {
-						if (!snapshot.empty) {
-							const userDocId = snapshot.docs[0].id;
-							return from(updateDoc(doc(this.firestore, 'users', userDocId), { profile })).pipe(
-								map(() => {
-									this.messageService.add({
-										severity: 'success',
-										summary: 'Success',
-										detail: 'Profile updated successfully',
-									});
-									return UserActions.updateProfileSuccess({ profile });
-								})
-							);
-						} else {
-							return of(UserActions.updateProfileFailure({ error: 'User document not found' }));
-						}
+				const userDocRef = doc(this.firestore, 'users', uid);
+				return from(updateDoc(userDocRef, { profile })).pipe(
+					map(() => {
+						this.messageService.add({
+							severity: 'success',
+							summary: 'Success',
+							detail: 'Profile updated successfully',
+						});
+						return UserActions.updateProfileSuccess({ profile });
 					}),
 					catchError((error) => {
 						this.messageService.add({
@@ -94,36 +84,12 @@ export class UserEffects {
 	submitOrder$ = createEffect(() =>
 		this.actions$.pipe(
 			ofType(UserActions.submitOrder),
-			switchMap(({ uid, order }) => {
-				console.log('UseEffects: Submitting order for uid:', uid);
-				const q = query(collection(this.firestore, 'users'), where('uid', '==', uid));
-				return from(getDocs(q)).pipe(
-					switchMap((snapshot) => {
-						if (!snapshot.empty) {
-							const userDocId = snapshot.docs[0].id;
-							console.log('UseEffects: User document found:', userDocId);
-							return from(addDoc(collection(this.firestore, 'users', userDocId, 'orders'), order)).pipe(
-								map((docRef) => {
-									console.log('UseEffects: Order created with ID:', docRef.id);
-									return UserActions.submitOrderSuccess({ order: { ...order, id: docRef.id } });
-								}),
-								catchError((error) => {
-									console.error('UseEffects: Failed to add order doc:', error);
-									return of(UserActions.submitOrderFailure({ error: error.message }));
-								})
-							);
-						} else {
-							console.warn('UseEffects: User document not found for uid:', uid);
-							// Create user document if it doesn't exist (fallback)
-							return of(UserActions.submitOrderFailure({ error: 'User document not found' }));
-						}
-					}),
-					catchError((error) => {
-						console.error('UseEffects: Error querying user doc:', error);
-						return of(UserActions.submitOrderFailure({ error: error.message }));
-					})
-				);
-			})
+			switchMap(({ uid, order }) =>
+				from(addDoc(collection(this.firestore, 'users', uid, 'orders'), order)).pipe(
+					map((docRef) => UserActions.submitOrderSuccess({ order: { ...order, id: docRef.id } })),
+					catchError((error) => of(UserActions.submitOrderFailure({ error: error.message })))
+				)
+			)
 		)
 	);
 
