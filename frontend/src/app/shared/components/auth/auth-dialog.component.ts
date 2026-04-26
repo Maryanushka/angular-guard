@@ -12,7 +12,14 @@ import { AuthFacade } from '@shared';
 	standalone: true,
 	imports: [CommonModule, DialogModule, SignInComponent, RegisterComponent, ForgotPasswordComponent],
 	template: `
-		<p-dialog [visible]="isVisible()" [modal]="true" [draggable]="false" [resizable]="false" [dismissableMask]="true" [style]="{ width: '450px' }" (onHide)="close()">
+		<p-dialog
+			[visible]="isVisible()"
+			[modal]="true"
+			[draggable]="false"
+			[resizable]="false"
+			[dismissableMask]="true"
+			[style]="{ width: '450px' }"
+			(visibleChange)="onVisibleChange($event)">
 			<ng-template pTemplate="header">
 				<div class="text-xl font-bold">{{ mode() === 'login' ? 'Sign In' : mode() === 'register' ? 'Register' : 'Reset Password' }}</div>
 			</ng-template>
@@ -46,7 +53,10 @@ export class AuthDialogComponent {
 		});
 	}
 
-	close() {
-		this.authFacade.closeAuthModal();
+	onVisibleChange(visible: boolean) {
+		if (!visible) {
+			this.isVisible.set(false);
+			this.authFacade.closeAuthModal();
+		}
 	}
 }

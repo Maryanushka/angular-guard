@@ -51,6 +51,7 @@ export class RegisterComponent {
 	}
 
 	goToLogin() {
+		this.authFacade.closeAuthModal();
 		this.router.navigate(['/signin']);
 	}
 }

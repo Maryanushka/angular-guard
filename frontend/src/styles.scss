@@ -1,13 +1,21 @@
-/* 1. Сначала все внешние импорты */
+/* 1. External imports */
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;500;600;700;800;900&display=swap');
 @import 'primeicons/primeicons.css';
 
-/* 2. Базовые стили Tailwind */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* 2. Declare layer order so PrimeNG sits between Tailwind base and utilities */
+@layer tailwind-base, primeng, tailwind-utilities;
 
-/* 3. Глобальные стили */
+@layer tailwind-base {
+	@tailwind base;
+}
+
+@tailwind components;
+
+@layer tailwind-utilities {
+	@tailwind utilities;
+}
+
+/* 3. Global styles */
 body {
 	font-family: 'Lato', sans-serif;
 }

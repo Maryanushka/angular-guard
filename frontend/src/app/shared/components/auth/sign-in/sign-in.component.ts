@@ -49,10 +49,12 @@ export class SignInComponent {
 	}
 
 	goToRegister() {
+		this.authFacade.closeAuthModal();
 		this.router.navigate(['/register']);
 	}
 
 	goToForgotPassword() {
+		this.authFacade.closeAuthModal();
 		this.router.navigate(['/forgot-password']);
 	}
 

@@ -1,5 +1,5 @@
 import { Injectable, inject, Injector, runInInjectionContext } from '@angular/core';
-import { HttpClient, HttpEventType, HttpRequest, HttpResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Firestore } from '@angular/fire/firestore';
 import { doc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore';
 import { Observable, Subject, firstValueFrom } from 'rxjs';
@@ -9,6 +9,7 @@ import { environment } from '../../../../environments/environment';
 export interface UploadProgress {
 	progress: number;
 	downloadUrl?: string;
+	fileName?: string;
 }
 
 @Injectable({
@@ -35,13 +36,8 @@ export class FileUploadService {
 					secretKey: environment.gasSecretKey,
 				};
 
-				// Browsers force an OPTIONS preflight if XHR upload progress listeners are registered.
-				// Since Google Apps Script completely breaks on OPTIONS preflight redirects, we must NOT use reportProgress.
-
-				// Fake a starting progress so UI shows loading state
 				subject.next({ progress: 10 });
 
-				// Standard POST request (No preflight)
 				this.http
 					.post(environment.googleDriveUploadUrl, JSON.stringify(payload), {
 						headers: new HttpHeaders({ 'Content-Type': 'text/plain;charset=utf-8' }),
@@ -49,7 +45,6 @@ export class FileUploadService {
 					})
 					.subscribe({
 						next: (event) => {
-							// Jump to 99% progress when done
 							subject.next({ progress: 99 });
 
 							try {
@@ -57,7 +52,6 @@ export class FileUploadService {
 								if (responseData.success && responseData.downloadUrl) {
 									const downloadUrl = responseData.downloadUrl;
 
-									// Append to user's pdfUrls in Firestore
 									runInInjectionContext(this.injector, async () => {
 										try {
 											const userDocRef = doc(this.firestore, 'users', uid);
@@ -69,7 +63,7 @@ export class FileUploadService {
 												summary: 'Success',
 												detail: 'File uploaded successfully',
 											});
-											subject.next({ progress: 100, downloadUrl });
+											subject.next({ progress: 100, downloadUrl, fileName: file.name });
 											subject.complete();
 										} catch (error) {
 											this.messageService.add({
@@ -125,7 +119,6 @@ export class FileUploadService {
 			reader.readAsDataURL(file);
 			reader.onload = () => {
 				const result = reader.result as string;
-				// Remove the 'data:application/pdf;base64,' prefix
 				const base64Raw = result.split(',')[1];
 				resolve(base64Raw);
 			};
@@ -141,7 +134,6 @@ export class FileUploadService {
 				secretKey: environment.gasSecretKey,
 			};
 
-			// Send delete request to Apps Script
 			const response: string = await firstValueFrom(
 				this.http.post(environment.googleDriveUploadUrl, JSON.stringify(payload), {
 					headers: new HttpHeaders({ 'Content-Type': 'text/plain;charset=utf-8' }),
@@ -153,7 +145,6 @@ export class FileUploadService {
 				throw new Error(parsed.error);
 			}
 
-			// Remove document from Firestore
 			return runInInjectionContext(this.injector, async () => {
 				const userDocRef = doc(this.firestore, 'users', uid);
 				await updateDoc(userDocRef, {

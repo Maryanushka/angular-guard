@@ -42,4 +42,44 @@
 		<i class="pi pi-info-circle text-xs mr-1"></i>
 		{{ 'PROFILE.PERSONAL_INFO.EDIT_HINT' | translate }}
 	</p>
+
+	<!-- Uploaded Documents -->
+	@if ((documents$ | async)?.length) {
+		<div class="mt-8">
+			<h2 class="text-lg font-semibold text-gray-800 mb-3">{{ 'PROFILE.FILE_UPLOAD.YOUR_FILES' | translate }}</h2>
+			<div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+				@for (doc of documents$ | async; track doc.url) {
+					<div class="flex items-center justify-between px-5 py-3 border-b border-gray-100 last:border-none hover:bg-gray-50 transition-colors">
+						<div class="flex items-center gap-3 min-w-0 flex-1">
+							<div class="w-10 h-10 rounded bg-blue-50 flex items-center justify-center flex-shrink-0">
+								<i [class]="getFileIcon(doc.name)" class="text-blue-600 text-lg"></i>
+							</div>
+							<p class="text-sm font-medium text-gray-800 truncate min-w-0 flex-1">{{ doc.name || 'Unnamed file' }}</p>
+						</div>
+
+						<div class="flex items-center gap-1 ml-3">
+							<a
+								[href]="doc.url"
+								target="_blank"
+								rel="noopener noreferrer"
+								pButton
+								[text]="true"
+								[rounded]="true"
+								severity="info"
+								icon="pi pi-eye"
+								[pTooltip]="'PROFILE.FILE_UPLOAD.DOWNLOAD' | translate"></a>
+							<button
+								pButton
+								[text]="true"
+								[rounded]="true"
+								severity="danger"
+								icon="pi pi-trash"
+								(click)="deleteFile(doc)"
+								[pTooltip]="'PROFILE.FILE_UPLOAD.DELETE' | translate"></button>
+						</div>
+					</div>
+				}
+			</div>
+		</div>
+	}
 </div>

@@ -33,6 +33,7 @@ export class ForgotPasswordComponent {
 	}
 
 	goToLogin() {
+		this.authFacade.closeAuthModal();
 		this.router.navigate(['/signin']);
 	}
 }

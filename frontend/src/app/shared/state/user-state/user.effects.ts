@@ -133,22 +133,8 @@ export class UserEffects {
 			mergeMap(({ uid, file, folderName }) =>
 				this.fileUploadService.uploadFile(uid, file, folderName).pipe(
 					last(),
-					map((result) => {
-						this.messageService.add({
-							severity: 'success',
-							summary: 'Success',
-							detail: 'File uploaded successfully',
-						});
-						return UserActions.uploadFileSuccess({ document: { name: file.name, url: result.downloadUrl! } });
-					}),
-					catchError((error) => {
-						this.messageService.add({
-							severity: 'error',
-							summary: 'Error',
-							detail: 'Failed to upload file',
-						});
-						return of(UserActions.uploadFileFailure({ error: error.message || 'Upload failed' }));
-					})
+					map((result) => UserActions.uploadFileSuccess({ document: { name: result.fileName || file.name, url: result.downloadUrl! } })),
+					catchError((error) => of(UserActions.uploadFileFailure({ error: error.message || 'Upload failed' })))
 				)
 			)
 		)
@@ -159,22 +145,8 @@ export class UserEffects {
 			ofType(UserActions.deleteFile),
 			mergeMap(({ uid, document }) =>
 				from(this.fileUploadService.deleteFile(uid, document)).pipe(
-					map(() => {
-						this.messageService.add({
-							severity: 'success',
-							summary: 'Success',
-							detail: 'File deleted successfully',
-						});
-						return UserActions.deleteFileSuccess({ url: document.url });
-					}),
-					catchError((error) => {
-						this.messageService.add({
-							severity: 'error',
-							summary: 'Error',
-							detail: 'Failed to delete file',
-						});
-						return of(UserActions.deleteFileFailure({ error: error.message || 'Delete failed' }));
-					})
+					map(() => UserActions.deleteFileSuccess({ url: document.url })),
+					catchError((error) => of(UserActions.deleteFileFailure({ error: error.message || 'Delete failed' })))
 				)
 			)
 		)

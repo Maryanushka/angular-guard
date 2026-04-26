@@ -104,6 +104,7 @@ export class AuthEffects {
 		this.actions$.pipe(
 			ofType(AuthActions.logout),
 			switchMap(() => from(this.authService.signOut())),
+			tap(() => this.router.navigate(['/products'])),
 			map(() => AuthActions.setAuthState({ user: null }))
 		)
 	);
